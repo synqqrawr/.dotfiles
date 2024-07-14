@@ -2,7 +2,7 @@
   programs.git = {
     enable = true;
 
-    userEmail = "git.nest608@passinbox.com";
+    userEmail = "174339922+synqqrawr@users.noreply.github.com";
     userName = "synqqrawr";
 
     extraConfig = {
