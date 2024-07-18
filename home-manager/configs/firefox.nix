@@ -139,6 +139,9 @@
             "! old.reddit.com##.comment:has(.entry .tagline .moderator)"
             "! Hide Moderator section"
             "www.reddit.com###moderation_section"
+
+            # remove the sign in w/ google stuff
+            "||accounts.google.com/gsi/*$xhr,script,3p"
           ];
           hostnameSwitchesString = lib.concatMapStrings (x: x + "\n") [
             "no-large-media: behind-the-scene false"
