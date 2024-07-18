@@ -76,42 +76,52 @@ in
       }
     ];
 
-    initExtra = ''
-      # options
-      unsetopt BEEP
+    initExtra =
+      # bash
+      ''
+        # options
+        unsetopt BEEP
 
-      # Autosuggestions
-      # https://github.com/zsh-users/zsh-autosuggestions#disabling-automatic-widget-re-binding
-      ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+        # Autosuggestions
+        # https://github.com/zsh-users/zsh-autosuggestions#disabling-automatic-widget-re-binding
+        ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 
-      # History substring
-      bindkey '^[[a' history-substring-search-up
-      bindkey '^[[b' history-substring-search-down
-      bindkey "$terminfo[kcuu1]" history-substring-search-up
-      bindkey "$terminfo[kcud1]" history-substring-search-down
+        # History substring
+        bindkey '^[[a' history-substring-search-up
+        bindkey '^[[b' history-substring-search-down
+        bindkey "$terminfo[kcuu1]" history-substring-search-up
+        bindkey "$terminfo[kcud1]" history-substring-search-down
 
-      # set descriptions format to enable group support
-      zstyle ':completion:*:descriptions'   format '[%d]'
-      # set list-colors to enable filename colorizing
-      zstyle ':completion:*'                list-colors ''${(s.:.)LS_COLORS}
+        # set descriptions format to enable group support
+        zstyle ':completion:*:descriptions'   format '[%d]'
+        # set list-colors to enable filename colorizing
+        zstyle ':completion:*'                list-colors ''${(s.:.)LS_COLORS}
 
-      # force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
-      zstyle ':completion:*'                menu no
-      # preview directory's content with lsd when completing cd
-      zstyle ':fzf-tab:complete:cd:*'       fzf-preview 'lsd -1 --color=always $realpath'
+        # force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+        zstyle ':completion:*'                menu no
+        # preview directory's content with lsd when completing cd
+        zstyle ':fzf-tab:complete:cd:*'       fzf-preview 'lsd -1 --color=always $realpath'
 
-      # appearance
-      zstyle ':fzf-tab:complete:cd:*'       popup-pad 20 0
-      zstyle ':completion:*'                file-sort modification
-      zstyle ':completion:*:lsd'            sort false
-      zstyle ':completion:files'            sort false
-    '';
+        # appearance
+        zstyle ':fzf-tab:complete:cd:*'       popup-pad 20 0
+        zstyle ':completion:*'                file-sort modification
+        zstyle ':completion:*:lsd'            sort false
+        zstyle ':completion:files'            sort false
+
+        function chpwd_cdls() {
+          if [[ -o interactive ]]; then
+            emulate -L zsh
+              ${config.programs.zsh.shellAliases.ls}
+              fi
+        }
+      '';
     shellAliases = {
       ls = "${lsd}";
       l = "${lsd}";
       ll = "${lsd} -ll";
       lla = "${lsd} -la";
       la = "${lsd} -a";
+      tree = "${lsd} --tree";
     };
   };
 

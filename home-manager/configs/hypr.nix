@@ -1,4 +1,9 @@
-{ pkgs, osConfig, ... }:
+{
+  pkgs,
+  config,
+  osConfig,
+  ...
+}:
 {
   home.packages = with pkgs; [ grimblast ];
   programs.hyprlock = {
@@ -6,7 +11,7 @@
     settings = {
       background = [
         {
-          path = "${osConfig.stylix.image}";
+          path = "${config.stylix.image}";
           blur_passes = 3;
           blur_size = 4;
           noise = 1.0e-2;
@@ -24,7 +29,7 @@
 
         dots_spacing = 0.3;
         dots_center = true;
-        inner_color = "rgba(${osConfig.lib.stylix.colors.base05-rgb-r}, ${osConfig.lib.stylix.colors.base05-rgb-g}, ${osConfig.lib.stylix.colors.base05-rgb-b}, 0.85)";
+        inner_color = "rgba(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b}, 0.85)";
         placeholder_text = "<i>Input Password...</i>";
         fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
         position = "0, 100";
@@ -35,21 +40,34 @@
       label = [
         {
           monitor = "";
-          text = "cmd[update:1000] echo \"<b><big> $(date +\"%H\") </big></b>\"";
-          color = "rgba(${osConfig.lib.stylix.colors.base05-rgb-r}, ${osConfig.lib.stylix.colors.base05-rgb-g}, ${osConfig.lib.stylix.colors.base05-rgb-b}, 0.7)";
+          text = "$TIME";
+
+          color = "rgba(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b}, 0.7)";
           font_size = "112";
-          font_family = "Jetbrains Mono";
+          font_family = "${osConfig.stylix.fonts.sansSerif.name}";
           shadow_passes = "3";
           shadow_size = "4";
-
-          position = "0, 220";
-          halign = "center";
-          valign = "center";
+          position = "-50, 150";
+          valign = "bottom";
+          halign = "right";
         }
+        # {
+        #   monitor = "";
+        #   text = "cmd[update:1000] echo \"<b><big> $(date +\"%H\") </big></b>\"";
+        #   color = "rgba(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b}, 0.7)";
+        #   font_size = "112";
+        #   font_family = "Jetbrains Mono";
+        #   shadow_passes = "3";
+        #   shadow_size = "4";
+        #
+        #   position = "0, 220";
+        #   halign = "center";
+        #   valign = "center";
+        # }
         {
           monitor = "";
           text = "cmd[update:1000] echo \"<b><big> $(date +\"%M\") </big></b>\"";
-          color = "rgba(${osConfig.lib.stylix.colors.base05-rgb-r}, ${osConfig.lib.stylix.colors.base05-rgb-g}, ${osConfig.lib.stylix.colors.base05-rgb-b}, 0.7)";
+          color = "rgba(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b}, 0.7)";
           font_size = "112";
           font_family = "Jetbrains Mono";
           shadow_passes = "3";
@@ -63,7 +81,7 @@
           monitor = "";
           # text = "cmd[update:18000000] echo \"<b><big> \"$(date +'%A')\" </big></b>\"";
           text = "cmd[update:18000000] echo \"<b><big> \"$(date +'%A')\" </big></b>\"";
-          color = "rgba(${osConfig.lib.stylix.colors.base05-rgb-r}, ${osConfig.lib.stylix.colors.base05-rgb-g}, ${osConfig.lib.stylix.colors.base05-rgb-b}, 0.8)";
+          color = "rgba(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b}, 0.8)";
           font_size = "25";
           font_family = "Jetbrains Mono";
           rotate = "0";
@@ -77,7 +95,7 @@
         {
           monitor = "";
           text = "cmd[update:18000000] echo \"<b> \"$(date +'%d %b')\" </b>\"";
-          color = "rgba(${osConfig.lib.stylix.colors.base05-rgb-r}, ${osConfig.lib.stylix.colors.base05-rgb-g}, ${osConfig.lib.stylix.colors.base05-rgb-b}, 0.8)";
+          color = "rgba(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b}, 0.8)";
           font_size = "18";
           font_family = "Jetbrains Mono";
 
@@ -89,9 +107,9 @@
           monitor = "";
           text = "<b>\"Привет, товарищ. Если вы выживете в этом гулаге, вы получите свою свободу.\"</b>";
           text_align = "center"; # center/right or any value for default left. multi-line text alignment inside label container
-          color = "rgba(${osConfig.lib.stylix.colors.base05-rgb-r}, ${osConfig.lib.stylix.colors.base05-rgb-g}, ${osConfig.lib.stylix.colors.base05-rgb-b}, 0.8)";
+          color = "rgba(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b}, 0.8)";
           font_size = "15";
-          font_family = osConfig.stylix.fonts.sansSerif.name;
+          font_family = config.stylix.fonts.sansSerif.name;
           rotate = "0"; # degrees, counter-clockwise
           shadow_passes = "3";
           shadow_size = "4";
@@ -106,7 +124,10 @@
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
-      exec-once = [ "fcitx5 -d" ];
+      exec-once = [
+        "fcitx5 -d"
+        "ags"
+      ];
       "$mod" = "SUPER";
       monitor = ",1920x1080,0x0,1";
       general = {
@@ -137,15 +158,25 @@
           "$mod, k, movefocus, u"
           "$mod, l, movefocus, r"
 
-          "$mod, left, movewindow, l"
-          "$mod, down, movewindow, d"
-          "$mod, up, movewindow, u"
-          "$mod, right, movewindow, r"
+          "$mod SHIFT, h, movewindow, l"
+          "$mod SHIFT, j, movewindow, d"
+          "$mod SHIFT, k, movewindow, u"
+          "$mod SHIFT, l, movewindow, r"
 
-          "$mod SHIFT, D, exec, grimblast copy area"
-          "$mod SHIFT_ALT, D, exec, grimblast --freeze copy area"
-          "$mod SHIFT, F, exec, grimblast copysave output ~/.screenshots/$(date +'%s_hypr.png')"
-          "$mod SHIFT, G, exec, grimblast copy active"
+          # "$mod SHIFT, D, exec, grimblast copy area"
+          # "$mod SHIFT_ALT, D, exec, grimblast --freeze copy area"
+          # "$mod SHIFT, F, exec, grimblast copysave output ~/.screenshots/$(date +'%s_hypr.png')"
+          # "$mod SHIFT, G, exec, grimblast copy active"
+          "$mod SHIFT, D, exec, ags -r 'recorder.start()'"
+          "$mod SHIFT, S, exec, ags -r 'recorder.screenshot()'"
+          "$mod, S, exec, ags -r 'recorder.screenshot(true)'"
+
+          "$mod_CTRL_SHIFT, R, exec, ags -q && ags"
+          "$mod, R, exec, ags -t launcher"
+          ",XF86PowerOff, exec, ags -t powermenu"
+          "$mod, Tab, exec, ags -t overview"
+
+          "$mod, G, fullscreen"
         ]
         ++ (
           # workspaces

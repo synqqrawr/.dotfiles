@@ -101,7 +101,14 @@
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
 
   # Enable touchpad support (enabled by defauly in most desktopManager).
   services.libinput.enable = true;
@@ -152,6 +159,9 @@
     zip
     unzip
     p7zip
+    lazygit
+
+    mpv
   ];
 
   environment.variables = {
@@ -177,6 +187,17 @@
     clean.enable = true;
     clean.extraArgs = "--keep-since 4d --keep 3";
     flake = "/home/async/.dotfiles";
+  };
+
+  services.resolved = {
+    enable = true;
+    extraConfig = ''
+      DNS=45.90.28.0#d12453.dns.nextdns.io
+      DNS=2a07:a8c0::#d12453.dns.nextdns.io
+      DNS=45.90.30.0#d12453.dns.nextdns.io
+      DNS=2a07:a8c1::#d12453.dns.nextdns.io
+      DNSOverTLS=yes
+    '';
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

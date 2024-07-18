@@ -28,6 +28,13 @@
 
     # neovim-nightly-overlay
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
+
+    ags.url = "github:Aylur/ags";
+    ags.inputs.nixpkgs.follows = "nixpkgs";
+
+    prismlauncher.url = "github:Diegiwg/PrismLauncher-Cracked";
+    prismlauncher.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =

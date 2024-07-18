@@ -34,6 +34,7 @@
     {
       stylix.targets.kde.enable = false;
       stylix.targets.vim.enable = false;
+      stylix.targets.lazygit.enable = false;
     }
   ];
 }

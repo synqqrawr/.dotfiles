@@ -1,21 +1,10 @@
-local function patch()
-  local parsers = require("nvim-treesitter.parsers")
-  parsers.get_parser_configs = setmetatable({}, {
-    __call = function()
-      return parsers
-    end,
-  })
-end
-
 return {
   {
     "nvim-treesitter/nvim-treesitter",
     version = false, -- last release is way too old and doesn't work on Windows
-    branch = "main",
     build = ":TSUpdate",
     cmd = {},
     opts = function()
-      patch()
       return {
         ensure_installed = {
           "c",
@@ -28,7 +17,6 @@ return {
           "git_config",
           "git_rebase",
           "gitattributes",
-          "nix",
           "css",
           "ninja",
           "rst",
@@ -47,79 +35,9 @@ return {
         dofile(vim.g.base46_cache .. "syntax")
         dofile(vim.g.base46_cache .. "treesitter")
       end)
-
-      local function norm(ensure)
-        return ensure == nil and {} or type(ensure) == "string" and { ensure } or ensure
-      end
-
-      ---@generic T
-      ---@param list T[]
-      ---@return T[]
-      local function dedup(list)
-        local ret = {}
-        local seen = {}
-        for _, v in ipairs(list) do
-          if not seen[v] then
-            table.insert(ret, v)
-            seen[v] = true
-          end
-        end
-        return ret
-      end
-
-      opts.ensure_install = dedup(vim.list_extend(norm(opts.ensure_install), norm(opts.ensure_installed)))
-      require("nvim-treesitter").setup(opts)
-      patch()
-
-      -- backwards compatibility with the old treesitter config for indent
-      if vim.tbl_get(opts, "indent", "enable") then
-        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-      end
-
-      -- backwards compatibility with the old treesitter config for highlight
-      if vim.tbl_get(opts, "highlight", "enable") then
-        vim.api.nvim_create_autocmd("FileType", {
-          callback = function()
-            pcall(vim.treesitter.start)
-          end,
-        })
-      end
+      require("nvim-treesitter.configs").setup(opts)
     end,
     event = { "BufReadPost", "BufNewFile" },
-  },
-  {
-    "folke/flash.nvim",
-    opts = {},
-    keys = {
-      {
-        "s",
-        '<cmd>lua require("flash").jump()<CR>',
-        desc = "Flash",
-      },
-      {
-        "S",
-        '<cmd>lua require("flash").treesitter()<CR>',
-        desc = "Flash tree-sitter",
-      },
-      {
-        "r",
-        mode = "o",
-        '<cmd>lua require("flash").remote()<CR>',
-        desc = "Remote Flash",
-      },
-      {
-        "R",
-        mode = { "o", "x" },
-        '<cmd>lua require("flash").treesitter_search()<CR>',
-        desc = "Treesitter Search",
-      },
-      { "f", mode = { "n", "x", "o" } },
-      { "F", mode = { "n", "x", "o" } },
-      { "t", mode = { "n", "x", "o" } },
-      { "T", mode = { "n", "x", "o" } },
-      "/",
-      "?",
-    },
   },
   {
     "echasnovski/mini.diff",
@@ -134,14 +52,6 @@ return {
       dofile(vim.g.base46_cache .. "git")
       require("mini.diff").setup(opts)
     end,
-  },
-  {
-    "lewis6991/gitsigns.nvim",
-    opts = {
-      signcolumn = false,
-      current_line_blame = true,
-    },
-    event = "VeryLazy",
   },
   {
     "echasnovski/mini-git",

@@ -179,7 +179,7 @@ require("lspconfig")["lua_ls"].setup({
     Lua = {
       hint = {
         enable = true,
-        arrayIndex = "Disable",
+        -- arrayIndex = "Disable",
       },
       runtime = {
         pathStrict = true,

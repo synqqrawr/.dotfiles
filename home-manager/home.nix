@@ -27,6 +27,10 @@
     ./configs/fcitx5.nix
     ./configs/xdg.nix
     ./configs/git.nix
+    ./configs/gtk.nix
+    ./configs/yazi.nix
+    ./configs/cava.nix
+    ./configs/ags.nix
   ];
 
   # TODO: Set your username
@@ -42,6 +46,16 @@
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git.enable = true;
+
+  home.packages = with pkgs; [
+    (inputs.prismlauncher.packages.${system}.prismlauncher.override {
+      jdks = [
+        jdk17
+        jdk8
+        jdk21
+      ];
+    })
+  ];
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";

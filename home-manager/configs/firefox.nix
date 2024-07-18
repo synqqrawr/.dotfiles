@@ -30,6 +30,7 @@ in
           "https://addons.mozilla.org/firefox/downloads/file/4290466/ublock_origin-1.58.0.xpi"
           "https://addons.mozilla.org/firefox/downloads/file/4308094/sponsorblock-5.7.xpi"
           "https://addons.mozilla.org/firefox/downloads/file/4246774/sidebery-5.2.0.xpi"
+          "https://addons.mozilla.org/firefox/downloads/file/4308076/return_youtube_dislikes-3.0.0.16.xpi"
         ];
       };
       SearchEngines = {
@@ -243,66 +244,52 @@ in
       };
     };
     profiles = {
-      test = {
-        name = "test";
-        id = 1;
-        userChrome = ''
-          @import "${inputs.shyfox}/chrome/userChrome.css";
-        '';
-        userContent = ''
-          @import "${inputs.shyfox}/chrome/userContent.css";
-        '';
-        extraConfig = ''
-          user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
-          user_pref("svg.context-properties.content.enabled", true);
-          user_pref("layout.css.color-mix.enabled", true);
-          user_pref("layout.css.light-dark.enabled", true);
-          user_pref("layout.css.has-selector.enabled", true);
-        '';
-      };
       async = {
         name = "async";
         id = 0;
-        userChrome = ''
-          @import "${inputs.shyfox}/chrome/userChrome.css";
-          @import "${inputs.edge-frfox}/chrome/icons/icons.css";
-          @import "${inputs.edge-frfox}/chrome/global/popup.css";
-          @import "${inputs.edge-frfox}/chrome/global/tree.css";
-          @import "${inputs.edge-frfox}/chrome/global/tweaks.css";
+        userChrome =
+          # css
+          ''
+            @import "${inputs.shyfox}/chrome/userChrome.css";
+            @import "${inputs.edge-frfox}/chrome/icons/icons.css";
+            @import "${inputs.edge-frfox}/chrome/global/popup.css";
+            @import "${inputs.edge-frfox}/chrome/global/tree.css";
+            @import "${inputs.edge-frfox}/chrome/global/tweaks.css";
 
-          :root {
-            --outline: 0;
-          }
-        '';
-        userContent = ''
-          @import "${inputs.shyfox}/chrome/userContent.css";
-
-          @-moz-document regexp("^moz-extension://.*?/sidebar/sidebar.html")
-          {
-            #nav_bar {
-              box-shadow: none !important;
+            :root {
+              --outline: 0;
             }
+          '';
+        userContent = # css
+          ''
+            @import "${inputs.shyfox}/chrome/userContent.css";
 
-            #icon_settings path {
-              d: path("M8 0a8.02 8.02 0 0 0-1.672.174.474.474 0 0 0-.367.377L5.617 2.44a.942.942 0 0 1-1.242.717L2.57 2.512a.47.47 0 0 0-.508.127A7.998 7.998 0 0 0 .386 5.537a.47.47 0 0 0 .143.504l1.463 1.242a.94.94 0 0 1 0 1.433L.529 9.958a.471.471 0 0 0-.143.504 7.988 7.988 0 0 0 1.676 2.898.47.47 0 0 0 .508.127l1.805-.644a.941.941 0 0 1 1.242.717l.344 1.889c.034.187.18.337.367.377A8.022 8.022 0 0 0 8 15.999c.567 0 1.126-.057 1.672-.173a.472.472 0 0 0 .366-.377l.345-1.89a.942.942 0 0 1 1.242-.717l1.805.645a.47.47 0 0 0 .508-.127 7.998 7.998 0 0 0 1.676-2.898.47.47 0 0 0-.143-.504l-1.463-1.242a.94.94 0 0 1 0-1.433l1.463-1.242a.471.471 0 0 0 .143-.504 7.988 7.988 0 0 0-1.676-2.898.47.47 0 0 0-.508-.127l-1.805.645a.941.941 0 0 1-1.242-.717L10.037.55a.472.472 0 0 0-.365-.376A8.027 8.027 0 0 0 8 0zm0 .941c.395 0 .786.032 1.17.096l.285 1.572a1.88 1.88 0 0 0 2.486 1.434l1.502-.537c.5.605.897 1.289 1.172 2.025l-1.219 1.033a1.883 1.883 0 0 0 0 2.87l1.22 1.034a7.043 7.043 0 0 1-1.173 2.025l-1.502-.537a1.882 1.882 0 0 0-2.486 1.433l-.285 1.572a7.135 7.135 0 0 1-2.342 0l-.283-1.572a1.88 1.88 0 0 0-2.486-1.433l-1.502.537a7.054 7.054 0 0 1-1.172-2.025l1.219-1.033a1.883 1.883 0 0 0 0-2.871L1.384 5.53a7.046 7.046 0 0 1 1.173-2.025l1.502.537a1.882 1.882 0 0 0 2.486-1.434l.283-1.572A7.132 7.132 0 0 1 8 .941zm0 4.56A2.5 2.5 0 1 0 8 10.5a2.5 2.5 0 0 0 0-5zm0 1a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z") !important;
+            @-moz-document regexp("^moz-extension://.*?/sidebar/sidebar.html")
+            {
+              #nav_bar {
+                box-shadow: none !important;
+              }
+
+              #icon_settings path {
+                d: path("M8 0a8.02 8.02 0 0 0-1.672.174.474.474 0 0 0-.367.377L5.617 2.44a.942.942 0 0 1-1.242.717L2.57 2.512a.47.47 0 0 0-.508.127A7.998 7.998 0 0 0 .386 5.537a.47.47 0 0 0 .143.504l1.463 1.242a.94.94 0 0 1 0 1.433L.529 9.958a.471.471 0 0 0-.143.504 7.988 7.988 0 0 0 1.676 2.898.47.47 0 0 0 .508.127l1.805-.644a.941.941 0 0 1 1.242.717l.344 1.889c.034.187.18.337.367.377A8.022 8.022 0 0 0 8 15.999c.567 0 1.126-.057 1.672-.173a.472.472 0 0 0 .366-.377l.345-1.89a.942.942 0 0 1 1.242-.717l1.805.645a.47.47 0 0 0 .508-.127 7.998 7.998 0 0 0 1.676-2.898.47.47 0 0 0-.143-.504l-1.463-1.242a.94.94 0 0 1 0-1.433l1.463-1.242a.471.471 0 0 0 .143-.504 7.988 7.988 0 0 0-1.676-2.898.47.47 0 0 0-.508-.127l-1.805.645a.941.941 0 0 1-1.242-.717L10.037.55a.472.472 0 0 0-.365-.376A8.027 8.027 0 0 0 8 0zm0 .941c.395 0 .786.032 1.17.096l.285 1.572a1.88 1.88 0 0 0 2.486 1.434l1.502-.537c.5.605.897 1.289 1.172 2.025l-1.219 1.033a1.883 1.883 0 0 0 0 2.87l1.22 1.034a7.043 7.043 0 0 1-1.173 2.025l-1.502-.537a1.882 1.882 0 0 0-2.486 1.433l-.285 1.572a7.135 7.135 0 0 1-2.342 0l-.283-1.572a1.88 1.88 0 0 0-2.486-1.433l-1.502.537a7.054 7.054 0 0 1-1.172-2.025l1.219-1.033a1.883 1.883 0 0 0 0-2.871L1.384 5.53a7.046 7.046 0 0 1 1.173-2.025l1.502.537a1.882 1.882 0 0 0 2.486-1.434l.283-1.572A7.132 7.132 0 0 1 8 .941zm0 4.56A2.5 2.5 0 1 0 8 10.5a2.5 2.5 0 0 0 0-5zm0 1a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z") !important;
+              }
+
+              /* selected tab outline */
+              .Tab[data-pin="true"][data-active="true"] .body {
+                border: 0 !important;
+                background-color: var(--tabs-activated-bg) !important;
+              }
+
+              /* NAVBAR */
+
+              /** #root.root {--nav-btn-width: 25px;}
+              #root.root {--nav-btn-height: 25px;}
+              #root.root {--nav-btn-margin: 2px;} **/
+              #root.root {--toolbar-bg: transparent;}
+
+              .PinnedTabsBar {margin: 10px 0px;}
             }
-
-            /* selected tab outline */
-            .Tab[data-pin="true"][data-active="true"] .body {
-              border: 0 !important;
-              background-color: var(--tabs-activated-bg) !important;
-            }
-
-            /* NAVBAR */
-
-            /** #root.root {--nav-btn-width: 25px;}
-            #root.root {--nav-btn-height: 25px;}
-            #root.root {--nav-btn-margin: 2px;} **/
-            #root.root {--toolbar-bg: transparent;}
-
-            .PinnedTabsBar {margin: 10px 0px;}
-          }
-        '';
+          '';
         search = {
           default = "Brave";
           force = true;
@@ -353,11 +340,12 @@ in
         };
         extraConfig = lib.strings.concatStrings [
           (builtins.readFile "${inputs.betterfox}/user.js")
+          # javascript
           ''
             user_pref("network.trr.mode", 3);
-            user_pref("network.trr.uri", "https://dns.nextdns.io/7eb5d1/Firefox"); // TRR/DoH
+            user_pref("network.trr.uri", "https://dns.nextdns.io/d12453"); // TRR/DoH
           ''
-          # userchrome
+          # javascript
           ''
             user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
             user_pref("svg.context-properties.content.enabled", true);
@@ -365,6 +353,7 @@ in
             user_pref("layout.css.light-dark.enabled", true);
             user_pref("layout.css.has-selector.enabled", true);
           ''
+          # javascript
           ''
             user_pref("browser.startup.page", 3); // 0102
             // user_pref("browser.privatebrowsing.autostart", false); // 0110 required if you had it set as true
@@ -372,9 +361,19 @@ in
             user_pref("privacy.clearOnShutdown.history", false); // 2811
             // user_pref("privacy.cpd.history", false); // 2820 optional to match when you use Ctrl-Shift-Del
           ''
+          #javascript
           ''
             user_pref("browser.download.useDownloadDir", false);
+            user_pref("dom.security.https_only_mode", true);
+            user_pref("gfx.webrender.all", true);
+            user_pref("gfx.webrender.all", true);
+            user_pref("dom.webgpu.enabled", true);
+            user_pref("layers.gpu-process.enabled", true);
+            user_pref("layers.mlgpu.enabled", true);
+            user_pref("media.gpu-process-decoder", true);
+            user_pref("media.ffmpeg.vaapi.enabled", true);
           ''
+          # javascript
           ''
             user_pref("browser.uiCustomization.state", "{\"placements\":{\"widget-overflow-fixed-list\":[],\"unified-extensions-area\":[\"atbc_easonwong-browser-action\"],\"nav-bar\":[\"back-button\",\"forward-button\",\"stop-reload-button\",\"customizableui-special-spring1\",\"urlbar-container\",\"customizableui-special-spring2\",\"save-to-pocket-button\",\"unified-extensions-button\"],\"toolbar-menubar\":[\"menubar-items\"],\"TabsToolbar\":[\"ublock0_raymondhill_net-browser-action\",\"sponsorblocker_ajay_app-browser-action\",\"_3c078156-979c-498b-8990-85f7987dd929_-browser-action\",\"screenshot-button\",\"firefox-view-button\",\"downloads-button\",\"fullscreen-button\",\"tabbrowser-tabs\",\"new-tab-button\",\"alltabs-button\",\"customizableui-special-spring5\"],\"PersonalToolbar\":[\"import-button\",\"personal-bookmarks\"]},\"seen\":[\"ublock0_raymondhill_net-browser-action\",\"_3c078156-979c-498b-8990-85f7987dd929_-browser-action\",\"sponsorblocker_ajay_app-browser-action\",\"developer-button\",\"atbc_easonwong-browser-action\"],\"dirtyAreaCache\":[\"unified-extensions-area\",\"nav-bar\",\"PersonalToolbar\",\"TabsToolbar\",\"toolbar-menubar\"],\"currentVersion\":20,\"newElementCount\":5}");
             user_pref("browser.theme.toolbar-theme", 0);

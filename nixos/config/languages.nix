@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   environment.systemPackages = with pkgs; [
     # nix
     nil
@@ -30,8 +31,7 @@
     tailwindcss-language-server
 
     #css
-    nodePackages.vscode-css-languageserver-bin
-
+    vscode-langservers-extracted
     # svelte
     nodePackages.svelte-language-server
 
