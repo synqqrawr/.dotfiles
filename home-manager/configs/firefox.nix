@@ -2,17 +2,8 @@
   inputs,
   lib,
   pkgs,
-  osConfig,
   ...
 }:
-let
-  background = osConfig.lib.stylix.colors.base00;
-  background-darker = osConfig.lib.stylix.colors.base00;
-  primary = osConfig.lib.stylix.colors.base02;
-  foreground = osConfig.lib.stylix.colors.base05;
-  border = osConfig.lib.stylix.colors.base00;
-  font = osConfig.stylix.fonts.sansSerif.name;
-in
 {
   programs.firefox = {
     enable = true;
@@ -57,7 +48,7 @@ in
             "behind-the-scene * 3p noop"
             "* * 3p-frame block"
             "* * 3p-script block"
-            ""
+            # compat stuf
             "duolingo.com * 3p-frame noop"
             "github.com githubassets.com * noop"
             "chatgpt.com oaistatic.com * noop"
@@ -78,29 +69,25 @@ in
             "* jsdelivr.net * noop"
             "* *.cloudfront.net * noop"
             "* cloudfront.net * noop"
-            ""
             "* cloudflare.com * noop"
             "* recaptcha.net * noop"
             "* google.com * noop"
             "* unpkg.com * noop"
             "* youtube-nocookie.com * noop"
-            ""
             "knowyourmeme.com kym-cdn.com * noop"
             "knowyourmeme.com llnwi.net * noop"
-            ""
             "lichess.org lichess1.org * noop"
             "wallhaven.cc whvn.cc * noop"
-            ""
             "open.spotify.com spotifycdn.com * noop"
             "open.spotify.com spotifycdn.map.fastly.net * noop"
             "open.spotify.com scdn.co * noop"
             "open.spotify.com spotify.map.fastly.net * noop"
-            ""
             "msn.com d.akamaiedge.net * noop"
-            ""
             "* gravatar.com * noop"
             "* discourse-cdn.com * noop"
+            "quora.com quoracdn.net * noop"
             ""
+            # tbh you'll be *fine* w/o cosmetic filtering except on for youtube ig
             "no-cosmetic-filtering: youtube.com false"
           ];
           userFilters = lib.concatMapStrings (x: x + "\n") [
