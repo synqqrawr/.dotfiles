@@ -29,6 +29,7 @@
     ./fonts.nix
     ./config/languages.nix
     ./config/fcitx5.nix
+    ./config/gaming.nix
   ];
 
   nixpkgs = {
@@ -67,8 +68,14 @@
         flake-registry = "";
         # Workaround for https://github.com/NixOS/nix/issues/9574
         nix-path = config.nix.nixPath;
-        substituters = [ "https://nix-community.cachix.org" ];
-        trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
+        substituters = [
+          "https://nix-community.cachix.org"
+          "https://nix-gaming.cachix.org"
+        ];
+        trusted-public-keys = [
+          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+          "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+        ];
       };
       # Opinionated: disable channels
       channel.enable = false;
@@ -162,6 +169,7 @@
     lazygit
 
     mpv
+    killall
   ];
 
   environment.variables = {

@@ -3,7 +3,7 @@ return {
     "folke/lazydev.nvim",
     init = function()
       vim.api.nvim_create_autocmd("User", {
-        group = vim.api.nvim_create_augroup("LoadLazyFile", { clear = true }),
+        group = vim.api.nvim_create_augroup("LoadLazyFile_lazydev", { clear = true }),
         pattern = "LazyFile",
         callback = function()
           local function load_lazydev()

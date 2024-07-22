@@ -40,84 +40,82 @@
       label = [
         {
           monitor = "";
-          text = "$TIME";
+          text = "cmd[update:200] echo \"<b>$(date +'%A, %B %d')</b>\"";
 
-          color = "rgba(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b}, 0.7)";
-          font_size = "112";
-          font_family = "${osConfig.stylix.fonts.sansSerif.name}";
-          shadow_passes = "3";
-          shadow_size = "4";
-          position = "-50, 150";
-          valign = "bottom";
-          halign = "right";
+          color = "rgba(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b}, 0.75)";
+          font_size = "20";
+          font_family = "SF Pro Display Bold";
+          shadow_passes = "4";
+          shadow_size = "2";
+          position = "0, 400";
+          valign = "center";
+          halign = "center";
         }
+        {
+          monitor = "";
+          text = "cmd[update:200] echo \"<b>$(date +'%k:%M')</b>\"";
+
+          color = "rgba(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b}, 0.75)";
+          font_size = "93";
+          font_family = "SF Pro Display Bold";
+          shadow_passes = "4";
+          shadow_size = "2";
+          position = "0, 330";
+          valign = "center";
+          halign = "center";
+        }
+        # # {
+        # #   monitor = "";
+        # #   text = "cmd[update:1000] echo \"<b><big> $(date +\"%H\") </big></b>\"";
+        # #   color = "rgba(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b}, 0.7)";
+        # #   font_size = "112";
+        # #   font_family = "Jetbrains Mono";
+        # #   shadow_passes = "3";
+        # #   shadow_size = "4";
+        # #
+        # #   position = "0, 220";
+        # #   halign = "center";
+        # #   valign = "center";
+        # # }
         # {
         #   monitor = "";
-        #   text = "cmd[update:1000] echo \"<b><big> $(date +\"%H\") </big></b>\"";
+        #   text = "cmd[update:1000] echo \"<b><big> $(date +\"%M\") </big></b>\"";
         #   color = "rgba(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b}, 0.7)";
         #   font_size = "112";
         #   font_family = "Jetbrains Mono";
         #   shadow_passes = "3";
         #   shadow_size = "4";
         #
-        #   position = "0, 220";
+        #   position = "0, 80";
         #   halign = "center";
         #   valign = "center";
         # }
-        {
-          monitor = "";
-          text = "cmd[update:1000] echo \"<b><big> $(date +\"%M\") </big></b>\"";
-          color = "rgba(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b}, 0.7)";
-          font_size = "112";
-          font_family = "Jetbrains Mono";
-          shadow_passes = "3";
-          shadow_size = "4";
-
-          position = "0, 80";
-          halign = "center";
-          valign = "center";
-        }
-        {
-          monitor = "";
-          # text = "cmd[update:18000000] echo \"<b><big> \"$(date +'%A')\" </big></b>\"";
-          text = "cmd[update:18000000] echo \"<b><big> \"$(date +'%A')\" </big></b>\"";
-          color = "rgba(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b}, 0.8)";
-          font_size = "25";
-          font_family = "Jetbrains Mono";
-          rotate = "0";
-          shadow_passes = "3";
-          shadow_size = "4";
-
-          position = "0, 50";
-          halign = "center";
-          valign = "center";
-        }
-        {
-          monitor = "";
-          text = "cmd[update:18000000] echo \"<b> \"$(date +'%d %b')\" </b>\"";
-          color = "rgba(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b}, 0.8)";
-          font_size = "18";
-          font_family = "Jetbrains Mono";
-
-          position = "0, 20";
-          halign = "center";
-          valign = "center";
-        }
-        {
-          monitor = "";
-          text = "<b>\"Привет, товарищ. Если вы выживете в этом гулаге, вы получите свою свободу.\"</b>";
-          text_align = "center"; # center/right or any value for default left. multi-line text alignment inside label container
-          color = "rgba(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b}, 0.8)";
-          font_size = "15";
-          font_family = config.stylix.fonts.sansSerif.name;
-          rotate = "0"; # degrees, counter-clockwise
-          shadow_passes = "3";
-          shadow_size = "4";
-
-          position = "0, 3";
-          halign = "center";
-          valign = "center";
-        }
+        # {
+        #   monitor = "";
+        #   # text = "cmd[update:18000000] echo \"<b><big> \"$(date +'%A')\" </big></b>\"";
+        #   text = "cmd[update:18000000] echo \"<b><big> \"$(date +'%A')\" </big></b>\"";
+        #   color = "rgba(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b}, 0.8)";
+        #   font_size = "25";
+        #   font_family = "Jetbrains Mono";
+        #   rotate = "0";
+        #   shadow_passes = "3";
+        #   shadow_size = "4";
+        #
+        #   position = "0, 50";
+        #   halign = "center";
+        #   valign = "center";
+        # }
+        # {
+        #   monitor = "";
+        #   text = "cmd[update:18000000] echo \"<b> \"$(date +'%d %b')\" </b>\"";
+        #   color = "rgba(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b}, 0.8)";
+        #   font_size = "18";
+        #   font_family = "Jetbrains Mono";
+        #
+        #   position = "0, 20";
+        #   halign = "center";
+        #   valign = "center";
+        # }
       ];
     };
   };

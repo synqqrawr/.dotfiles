@@ -22,6 +22,10 @@ return {
           "rst",
           "python",
           "nix",
+          "svelte",
+          "javascript",
+          "typescript",
+          "css",
 
           "markdown",
           "markdown_inline",

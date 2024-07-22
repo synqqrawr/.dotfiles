@@ -274,6 +274,24 @@
     },
     "flake-parts_3": {
       "inputs": {
+        "nixpkgs-lib": "nixpkgs-lib"
+      },
+      "locked": {
+        "lastModified": 1719994518,
+        "narHash": "sha256-pQMhCCHyQGRzdfAkdJ4cIWiw+JNuWsTX7f0ZYSyz0VY=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "9227223f6d922fee3c7b190b2cc238a99527bbb7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-parts_4": {
+      "inputs": {
         "nixpkgs-lib": [
           "prismlauncher",
           "nixpkgs"
@@ -496,6 +514,27 @@
         "type": "github"
       }
     },
+    "nix-gaming": {
+      "inputs": {
+        "flake-parts": "flake-parts_3",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1720920199,
+        "narHash": "sha256-0dNwRhtUVQha5S+NFeoeMXEt/6v0x56DCdyUk+vEFeY=",
+        "owner": "fufexan",
+        "repo": "nix-gaming",
+        "rev": "fce565402d5b1ed4e92c4a9dfcd094d0172d8f0b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fufexan",
+        "repo": "nix-gaming",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1720768451,
@@ -510,6 +549,18 @@
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
+      }
+    },
+    "nixpkgs-lib": {
+      "locked": {
+        "lastModified": 1719876945,
+        "narHash": "sha256-Fm2rDDs86sHy0/1jxTOKB1118Q0O3Uc7EC0iXvXKpbI=",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/5daf0514482af3f97abaefc78a6606365c9108e2.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/5daf0514482af3f97abaefc78a6606365c9108e2.tar.gz"
       }
     },
     "pre-commit-hooks": {
@@ -545,7 +596,7 @@
     "prismlauncher": {
       "inputs": {
         "flake-compat": "flake-compat_3",
-        "flake-parts": "flake-parts_3",
+        "flake-parts": "flake-parts_4",
         "libnbtplusplus": "libnbtplusplus",
         "nixpkgs": [
           "nixpkgs"
@@ -573,6 +624,7 @@
         "edge-frfox": "edge-frfox",
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
+        "nix-gaming": "nix-gaming",
         "nixpkgs": "nixpkgs",
         "prismlauncher": "prismlauncher",
         "shyfox": "shyfox",
@@ -582,11 +634,11 @@
     "shyfox": {
       "flake": false,
       "locked": {
-        "lastModified": 1720674677,
-        "narHash": "sha256-CS2gEK2cIKCVWmbwthioB/9q4B2+1KM9LXXh1AWTP3M=",
+        "lastModified": 1721280286,
+        "narHash": "sha256-V4hInWPDB18kkqhXjM0prLrNRCtwReG12oPJBWfznUw=",
         "owner": "Naezr",
         "repo": "ShyFox",
-        "rev": "cf5fc4e0a94ad3df62e15aaf9dae7fe168665497",
+        "rev": "324088ac06a5b962408875cf2a94275a855c8aa4",
         "type": "github"
       },
       "original": {

@@ -72,9 +72,9 @@ local lspconfig = require("lspconfig")
 local servers = {
   "basedpyright",
   -- "clangd",
-  -- "svelte",
-  -- "emmet_ls",
-  -- "tailwindcss",
+  "svelte",
+  "emmet_ls",
+  "tailwindcss",
   -- "marksman",
 }
 
@@ -112,10 +112,10 @@ require("lspconfig")["markdown_oxide"].setup({
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
 
-    vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave", "CursorHold", "LspAttach" }, {
-      buffer = bufnr,
-      callback = vim.lsp.codelens.refresh,
-    })
+    -- vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave", "CursorHold", "LspAttach" }, {
+    --   buffer = bufnr,
+    --   callback = vim.lsp.codelens.refresh,
+    -- })
     vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
 
     -- setup Markdown Oxide daily note commands
@@ -203,7 +203,6 @@ require("lspconfig")["lua_ls"].setup({
 
 require("lspconfig")["cssls"].setup({
   capabilities = capabilities,
-  cmd = { "css-languageserver", "--stdio" },
   on_attach = on_attach,
   on_init = on_init,
 })
