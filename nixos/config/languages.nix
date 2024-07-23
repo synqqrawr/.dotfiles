@@ -29,6 +29,8 @@
     bun
     emmet-ls
     tailwindcss-language-server
+    nodejs
+    eslint_d
 
     #css
     vscode-langservers-extracted

@@ -87,6 +87,8 @@
             "* gravatar.com * noop"
             "* discourse-cdn.com * noop"
             "quora.com quoracdn.net * noop"
+            "boards.4chan.org 4cdn.org * noop"
+            "codepen.io cdpn.io * noop"
             ""
             # tbh you'll be *fine* w/o cosmetic filtering except on for youtube ig
             "no-cosmetic-filtering: youtube.com false"

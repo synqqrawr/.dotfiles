@@ -22,15 +22,21 @@ return {
   {
     "mfussenegger/nvim-lint",
     opts = {
-      linters_by_ft = {},
+      linters_by_ft = {
+        javascript = { "eslint_d" },
+        typescript = { "eslint_d" },
+        ["javascript.jsx"] = { "eslint_d" },
+        ["typescript.tsx"] = { "eslint_d" },
+        typescriptreact = { "eslint_d" },
+        javascriptreact = { "eslint_d" },
+
+        svelte = { "eslint_d" },
+      },
       linters = {},
     },
     config = function(_, opts)
-      local lint = require("lint")
-      lint.linters_by_ft = opts.linters_by_ft
-      for k, v in pairs(opts.linters) do
-        lint.linters[k] = v
-      end
+      require("lint").linters_by_ft = opts.linters_by_ft
+      require("lint").linters = opts.linters
     end,
     event = "LspAttach",
   },
@@ -48,6 +54,6 @@ return {
   {
     "chrisgrieser/nvim-lsp-endhints",
     event = "LspAttach",
-    opts = {}, -- required, even if empty
+    opts = {},
   },
 }

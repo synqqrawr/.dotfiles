@@ -2,6 +2,7 @@
   pkgs,
   config,
   osConfig,
+  inputs,
   ...
 }:
 {
@@ -243,10 +244,7 @@
         ];
       };
     };
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-hyprland
-    ];
+    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
     xdgOpenUsePortal = true;
   };
 
