@@ -257,6 +257,20 @@
       async = {
         name = "async";
         id = 0;
+        bookmarks = [
+          {
+            name = "Youtube";
+            url = "https://www.youtube.com";
+          }
+          {
+            name = "Reddit";
+            url = "https://www.reddit.com";
+          }
+          {
+            name = "Sh.itjust.works";
+            url = "https://www.sh.itjust.works";
+          }
+        ];
         userChrome =
           # css
           ''
