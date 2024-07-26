@@ -431,6 +431,12 @@
                 "!hm"
               ];
             };
+            "Marginalia.nu" = {
+              urls = [ { tempalte = "https://search.marginalia.nu/search?query={searchTerms}"; } ];
+              iconUpdateURL = "https://search.marginalia.nu/favicon.ico";
+              updateInterval = 24 * 60 * 60 * 1000; # every day
+              definedAliases = [ "!mn" ];
+            };
             "Wikipedia (en)".metaData.alias = "@wiki";
             "Google".metaData.hidden = true;
             "Amazon.com".metaData.hidden = true;
