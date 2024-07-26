@@ -259,16 +259,93 @@
         id = 0;
         bookmarks = [
           {
-            name = "Youtube";
-            url = "https://www.youtube.com";
-          }
-          {
-            name = "Reddit";
-            url = "https://www.reddit.com";
-          }
-          {
-            name = "Sh.itjust.works";
-            url = "https://www.sh.itjust.works";
+            toolbar = true;
+            bookmarks = [
+              {
+                name = "Youtube";
+                url = "https://www.youtube.com";
+              }
+              {
+                name = "Reddit";
+                url = "https://www.reddit.com";
+              }
+              {
+                name = "shitjustworks";
+                url = "https://sh.itjust.works";
+              }
+              {
+                name = "/g/";
+                url = "https://boards.4chan.org/g/";
+              }
+              {
+                name = "/lit/";
+                url = "https://boards.4chan.org/lit/";
+              }
+              {
+                name = "/his/";
+                url = "https://boards.4chan.org/his/";
+              }
+              {
+                name = "/sci/";
+                url = "https://boards.4chan.org/sci/";
+              }
+              {
+                name = "r/keeb";
+                url = "https://reddit.com/r/mechanicalkeyboards";
+              }
+              {
+                name = "r/unixporn";
+                url = "https://reddit.com/r/unixporn";
+              }
+              {
+                name = "r/til";
+                url = "https://reddit.com/r/todayilearned";
+              }
+              {
+                name = "r/piracy";
+                url = "https://reddit.com/r/Piracy";
+              }
+              {
+                name = "r/privacy";
+                url = "https://reddit.com/r/privacy";
+              }
+              {
+                name = "r/sci";
+                url = "https://reddit.com/r/science";
+              }
+              {
+                name = "r/obs";
+                url = "https://reddit.com/r/ObsidianMD/";
+              }
+              {
+                name = "r/nixos";
+                url = "https://reddit.com/r/NixOS/";
+              }
+              {
+                name = "r/ubo";
+                url = "https://reddit.com/r/uBlockOrigin/";
+              }
+              {
+                name = "r/nvim";
+                url = "https://reddit.com/r/neovim/";
+              }
+              {
+                name = "r/space";
+                url = "https://reddit.com/r/space/";
+              }
+              {
+                name = "r/technology";
+                url = "https://reddit.com/r/technology/";
+              }
+              {
+                name = "r/tech";
+                url = "https://reddit.com/r/tech/";
+              }
+              {
+                name = "hn";
+                url = "https://news.ycombinator.com/";
+              }
+            ];
           }
         ];
         userChrome =
@@ -359,7 +436,6 @@
             "Amazon.co.jp".metaData.hidden = true;
             "Bing".metaData.hidden = true;
             "eBay".metaData.hidden = true;
-            "Wikipedia (en)".metaData.hidden = true;
           };
         };
         extraConfig = lib.strings.concatStrings [
