@@ -90,6 +90,7 @@
             "boards.4chan.org 4cdn.org * noop"
             "codepen.io cdpn.io * noop"
             ""
+            "10fastfingers.com bootstrapcdn.com * noop"
             # tbh you'll be *fine* w/o cosmetic filtering except on for youtube ig
             "no-cosmetic-filtering: youtube.com false"
           ];
