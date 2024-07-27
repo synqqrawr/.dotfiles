@@ -8,77 +8,110 @@ return {
     end,
   },
   {
-    "nvim-telescope/telescope.nvim",
+    "echasnovski/mini.pick",
     opts = {
-      defaults = {
+      window = {
         prompt_prefix = "   ",
-        selection_caret = "  ",
-        entry_prefix = "  ",
-        initial_mode = "insert",
-        selection_strategy = "reset",
-        sorting_strategy = "ascending",
-        layout_strategy = "horizontal",
-        layout_config = {
-          horizontal = {
-            prompt_position = "top",
-            preview_width = 0.55,
-            results_width = 0.8,
-          },
-          vertical = {
-            mirror = false,
-          },
-          width = 0.87,
-          height = 0.80,
-          preview_cutoff = 120,
-        },
-        file_sorter = function(...)
-          require("telescope.sorters").get_fuzzy_file(...)
-        end,
-        file_ignore_patterns = { "node_modules/*", "*.git/*", "*/tmp/*" },
-        generic_sorter = function(...)
-          require("telescope.sorters").get_generic_fuzzy_sorter(...)
-        end,
-      },
-    },
-    config = function(_, opts)
-      dofile(vim.g.base46_cache .. "telescope")
-
-      require("telescope").setup(opts)
-    end,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",
-      {
-        "danielfalk/smart-open.nvim",
-        dependencies = {
-          "kkharji/sqlite.lua",
-          {
-            "nvim-telescope/telescope-fzy-native.nvim",
-            config = function()
-              require("telescope").load_extension("fzy_native")
-            end,
-          },
-        },
-        config = function()
-          require("telescope").load_extension("smart_open")
-        end,
+        prompt_cursor = "",
       },
     },
     keys = {
       {
         "<leader>ff",
-        "<cmd>lua require('telescope').extensions.smart_open.smart_open({ cwd_only = true, filename_first = false })<CR>",
-        desc = "telescope: find_files",
+        function()
+          require("mini.pick").builtin.files({ tool = "rg" })
+        end,
+        desc = "mini.pick: files",
       },
-      { "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "telescope: buffers" },
-      { "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "telescope: live_grep" },
-      { "<leader>f;", "<cmd>Telescope resume<CR>", desc = "telescope: resume" },
-      { "<leader>fx", "<cmd>Telescope diagnostics<CR>", desc = "telescope: diagnostics" },
+      {
+        "<leader>fg",
+        function()
+          require("mini.pick").builtin.grep_live({ tool = "rg" })
+        end,
+        desc = "mini.pick: live_grep",
+      },
+      {
+        "<leader>fb",
+        function()
+          require("mini.pick").builtin.buffers()
+        end,
+        desc = "mini.pick: buffers",
+      },
     },
-    cmd = {
-      "Telescope",
-    },
+    cmd = { "Pick" },
   },
+  -- {
+  --   "nvim-telescope/telescope.nvim",
+  --   opts = {
+  --     defaults = {
+  --       prompt_prefix = "   ",
+  --       selection_caret = "  ",
+  --       entry_prefix = "  ",
+  --       initial_mode = "insert",
+  --       selection_strategy = "reset",
+  --       sorting_strategy = "ascending",
+  --       layout_strategy = "horizontal",
+  --       layout_config = {
+  --         horizontal = {
+  --           prompt_position = "top",
+  --           preview_width = 0.55,
+  --           results_width = 0.8,
+  --         },
+  --         vertical = {
+  --           mirror = false,
+  --         },
+  --         width = 0.87,
+  --         height = 0.80,
+  --         preview_cutoff = 120,
+  --       },
+  --       file_sorter = function(...)
+  --         require("telescope.sorters").get_fuzzy_file(...)
+  --       end,
+  --       file_ignore_patterns = { "node_modules/*", "*.git/*", "*/tmp/*" },
+  --       generic_sorter = function(...)
+  --         require("telescope.sorters").get_generic_fuzzy_sorter(...)
+  --       end,
+  --     },
+  --   },
+  --   config = function(_, opts)
+  --     dofile(vim.g.base46_cache .. "telescope")
+  --
+  --     require("telescope").setup(opts)
+  --   end,
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-tree/nvim-web-devicons",
+  --     {
+  --       "danielfalk/smart-open.nvim",
+  --       dependencies = {
+  --         "kkharji/sqlite.lua",
+  --         {
+  --           "nvim-telescope/telescope-fzy-native.nvim",
+  --           config = function()
+  --             require("telescope").load_extension("fzy_native")
+  --           end,
+  --         },
+  --       },
+  --       config = function()
+  --         require("telescope").load_extension("smart_open")
+  --       end,
+  --     },
+  --   },
+  --   keys = {
+  --     {
+  --       "<leader>ff",
+  --       "<cmd>lua require('telescope').extensions.smart_open.smart_open({ cwd_only = true, filename_first = false })<CR>",
+  --       desc = "telescope: find_files",
+  --     },
+  --     { "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "telescope: buffers" },
+  --     { "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "telescope: live_grep" },
+  --     { "<leader>f;", "<cmd>Telescope resume<CR>", desc = "telescope: resume" },
+  --     { "<leader>fx", "<cmd>Telescope diagnostics<CR>", desc = "telescope: diagnostics" },
+  --   },
+  --   cmd = {
+  --     "Telescope",
+  --   },
+  -- },
   {
     "echasnovski/mini.files",
     opts = {
