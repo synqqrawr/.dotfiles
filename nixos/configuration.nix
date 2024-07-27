@@ -30,6 +30,7 @@
     ./config/languages.nix
     ./config/fcitx5.nix
     ./config/gaming.nix
+    ./config/keyboard.nix
   ];
 
   nixpkgs = {
@@ -109,7 +110,6 @@
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
 
   # Enable sound.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -172,6 +172,8 @@
 
     mpv
     killall
+
+    tor-browser
   ];
 
   environment.variables = {
