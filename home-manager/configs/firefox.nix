@@ -23,6 +23,7 @@
           "https://addons.mozilla.org/firefox/downloads/file/4246774/sidebery-5.2.0.xpi"
           "https://addons.mozilla.org/firefox/downloads/file/4308076/return_youtube_dislikes-3.0.0.16.xpi"
           "https://addons.mozilla.org/firefox/downloads/file/4045009/auto_tab_discard-0.6.7.xpi"
+          "https://addons.mozilla.org/firefox/downloads/file/4282309/reddit_enhancement_suite-5.24.6.xpi"
         ];
       };
       SearchEngines = {
