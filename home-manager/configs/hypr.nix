@@ -176,6 +176,8 @@
           "$mod, Tab, exec, ags -t overview"
 
           "$mod, G, fullscreen"
+
+          "$mod, T, togglegroup"
         ]
         ++ (
           # workspaces
