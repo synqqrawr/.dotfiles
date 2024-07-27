@@ -346,6 +346,10 @@
                 name = "hn";
                 url = "https://news.ycombinator.com/";
               }
+              {
+                name = "English (Stackexchange)";
+                url = "https://english.stackexchange.com";
+              }
             ];
           }
         ];
