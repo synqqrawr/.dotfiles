@@ -351,6 +351,10 @@
                 name = "English (Stackexchange)";
                 url = "https://english.stackexchange.com";
               }
+              {
+                name = "pagespeed (lighthouse)";
+                url = "https://pagespeed.web.dev";
+              }
             ];
           }
         ];
