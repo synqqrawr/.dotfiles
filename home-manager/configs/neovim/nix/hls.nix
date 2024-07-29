@@ -113,6 +113,9 @@
           StatuslineItalic = { bg = colors.base00, fg = colors.base04 };
           StatuslineSpinner = { bg = colors.base00, fg = colors.base0B };
           StatuslineTitle = { bg = colors.base00, fg = colors.base04 };
+
+          MsgSeparator = { fg = colors.base04, bg = colors.base00 },
+          WinSeparator = { fg = colors.base00, bg = colors.base00 },
         }
       '';
   };
