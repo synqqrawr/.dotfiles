@@ -92,6 +92,21 @@ with lib;
               }
             })
             package_preload("mini.git")
+            package_preload("mini.surround", {
+              mappings = {
+                add = "gza",
+                delete = "gzd",
+                find = "gzf",
+                find_left = "gzF",
+                highlight = "gzh",
+                replace = "gzr",
+                update_n_lines = "gzn",
+
+                suffix_last = "l",
+                suffix_next = "n",
+              },
+              search_method = "cover_or_next",
+            })
 
             package.preload["nvim-web-devicons"] = function()
               require("mini.icons").mock_nvim_web_devicons()
@@ -111,6 +126,11 @@ with lib;
               vim.keymap.del("n", "<leader>to")
               vim.keymap.set("n", "<leader>to", function() require("mini.files").open() end)
               vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Ignore><leader>to", true, true, true), "i", false)
+            end)
+            vim.keymap.set({ "n", "x" }, "gz", function()
+              vim.keymap.del({ "n", "x" }, "gz")
+              require("mini.surround")
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Ignore>gz", true, true, true), "i", false)
             end)
 
             vim.api.nvim_create_autocmd("User", {
