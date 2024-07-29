@@ -49,6 +49,31 @@
       #     patches = [ ./change-hello-to-hi.patch ];
       #   });
       # })
+
+      (final: prev: {
+        neovimUtils = prev.neovimUtils // {
+          grammarToPlugin =
+            grammar:
+            let
+              prevPlugin = prev.neovimUtils.grammarToPlugin grammar;
+            in
+            prevPlugin.overrideAttrs (prevAttrs: {
+              buildCommand = ''
+                mkdir -p $out/parser
+                ln -s ${grammar}/parser $out/parser/${lib.removePrefix "vimplugin-treesitter-grammar-" prevAttrs.name}.so
+              '';
+            });
+        };
+      })
+      (final: prev: {
+        vimPlugins = prev.vimPlugins // {
+          nvim-treesitter-main = prev.vimUtils.buildVimPlugin {
+            pname = "nvim-treesitter";
+            src = inputs.nvim-treesitter-src;
+            version = "2024-07-28";
+          };
+        };
+      })
     ];
     # Configure your nixpkgs instance
     config = {

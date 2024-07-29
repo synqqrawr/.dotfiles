@@ -16,7 +16,7 @@ rec {
 
   home.packages = with pkgs; [
     gtk.iconTheme.package
-    gnome.adwaita-icon-theme
+    adwaita-icon-theme
     papirus-icon-theme
   ];
 }
