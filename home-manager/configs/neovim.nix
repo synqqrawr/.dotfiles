@@ -58,6 +58,10 @@ with lib;
             })
           '';
       }
+      {
+        plugin = nvim-treesitter-textobjects;
+        optional = true;
+      }
       rec {
         plugin = mini-nvim;
         type = "lua";
@@ -114,6 +118,16 @@ with lib;
               },
               search_method = "cover_or_next",
             })
+            package_preload("mini.ai", function()
+              local ai = require("mini.ai")
+              vim.cmd.packadd("nvim-treesitter-textobjects")
+              return {
+                n_lines = 500,
+                custom_textobjects = {
+                  F = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }), 
+                },
+              }
+            end)
 
             package.preload["nvim-web-devicons"] = function()
               require("mini.icons").mock_nvim_web_devicons()
@@ -138,6 +152,16 @@ with lib;
               vim.keymap.del({ "n", "x" }, "gz")
               require("mini.surround")
               vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Ignore>gz", true, true, true), "i", false)
+            end)
+            vim.keymap.set({ "n", "x" }, "i", function()
+              vim.keymap.del({ "n", "x" }, "i")
+              require("mini.ai")
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Ignore>i", true, true, true), "i", false)
+            end)
+            vim.keymap.set({ "n", "x" }, "a", function()
+              vim.keymap.del({ "n", "x" }, "a")
+              require("mini.ai")
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Ignore>a", true, true, true), "i", false)
             end)
 
             vim.api.nvim_create_autocmd("User", {
