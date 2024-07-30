@@ -14,7 +14,7 @@
 
         return {
           Normal = { bg = colors.base00, fg = colors.base05 },
-          ColorColumn = { bg = colors.base01, fg = "NONE" },
+          ColorColumn = { bg = colors.base01 },
           Conceal = { bg = "", fg = colors.base0D },
           CurSearch = { bg = colors.base09, fg = colors.base01 },
           Cursor = { fg = colors.base00, bg = colors.base00 },
@@ -52,6 +52,9 @@
           DiffAdd = { fg = colors.base0B },
           DiffChange = { fg = colors.base0E },
           DiffDelete = { fg = colors.base08 },
+
+          IncSearch = { fg = colors.base01, bg = colors.base09 },
+          Search = { fg = colors.base01, bg = colors.base0A },
         }
       '';
   };
