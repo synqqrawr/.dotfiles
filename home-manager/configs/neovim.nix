@@ -67,15 +67,17 @@ with lib;
           ''
             local packadded_mini_nvim = false
             -- Trust me, I can name things better than this :D.
-            local package_preload = function(a, o)
-              if not packadded_mini_nvim then
-                vim.cmd.packadd("${plugin.pname}")
-                packadded_mini_nvim = true
+            local package_preload = function(a, opt)
+              package.preload[a] = function()
+                if not packadded_mini_nvim then
+                  vim.cmd.packadd("${plugin.pname}")
+                  packadded_mini_nvim = true
+                end
+                package.loaded[a] = nil
+                package.preload[a] = nil
+                require(a).setup((type(opt) == "function") and opt() or opt)
+                return require(a)
               end
-              package.loaded[a] = nil
-              package.loaded[a] = nil
-              require(a).setup(o)
-              return a
             end
 
             package_preload("mini.pick", {
