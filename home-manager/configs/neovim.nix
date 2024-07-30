@@ -87,7 +87,6 @@ with lib;
             package_preload("mini.pick", {
               window = {
                 prompt_prefix = "   ",
-                prompt_cursor = "",
               },
             })
             package_preload("mini.files")
