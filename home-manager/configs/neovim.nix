@@ -128,6 +128,7 @@ with lib;
                 },
               }
             end)
+            package_preload("mini.operators")
 
             package.preload["nvim-web-devicons"] = function()
               require("mini.icons").mock_nvim_web_devicons()
@@ -163,6 +164,32 @@ with lib;
               require("mini.ai")
               vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Ignore>a", true, true, true), "i", false)
             end)
+            vim.keymap.set({ "n", "x", "o" }, "g=", function()
+              vim.keymap.del({ "n", "x", "o" }, "g=")
+              require("mini.operators")
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Ignore>g=", true, true, true), "i", false)
+            end)
+            vim.keymap.set({ "n", "x", "o" }, "gx", function()
+              vim.keymap.del({ "n", "x", "o" }, "gx")
+              require("mini.operators")
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Ignore>gx", true, true, true), "i", false)
+            end)
+            vim.keymap.set({ "n", "x", "o" }, "gm", function()
+              vim.keymap.del({ "n", "x", "o" }, "gm")
+              require("mini.operators")
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Ignore>gm", true, true, true), "i", false)
+            end)
+            vim.keymap.set({ "n", "x", "o" }, "gr", function()
+              vim.keymap.del({ "n", "x", "o" }, "gr")
+              require("mini.operators")
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Ignore>gr", true, true, true), "i", false)
+            end)
+            vim.keymap.set({ "n", "x", "o" }, "gs", function()
+              vim.keymap.del({ "n", "x", "o" }, "gs")
+              require("mini.operators")
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Ignore>gs", true, true, true), "i", false)
+            end)
+
 
             vim.api.nvim_create_autocmd("User", {
               group = vim.api.nvim_create_augroup("dots.nvim/mini.[git,diff]", { clear = true }),
