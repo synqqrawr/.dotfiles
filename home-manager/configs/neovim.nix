@@ -224,6 +224,31 @@ with lib;
             })
           '';
       }
+      rec {
+        plugin = indent-blankline-nvim;
+        type = "lua";
+        optional = true;
+        config =
+          # lua
+          ''
+            package.preload["ibl"] = function()
+              vim.cmd.packadd("${plugin.pname}")
+              package.loaded["ibl"] = nil
+              package.preload["ibl"] = nil
+              return require("ibl")
+            end
+            vim.api.nvim_create_autocmd("User", {
+              pattern = "LazyFile",
+              once = true,
+              callback = function()
+                require("ibl").setup({
+                  indent = { highlight = "IblChar" },
+                  scope = { enabled = false },
+                })
+              end,
+            })
+          '';
+      }
     ];
     extraLuaConfig = # lua
       ''
