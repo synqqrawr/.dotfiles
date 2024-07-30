@@ -33,6 +33,7 @@ with lib;
           paths = [
             nvim-treesitter.withAllGrammars
             nvim-treesitter.withAllGrammars.dependencies
+            vim-matchup
           ];
         };
         type = "lua";
@@ -43,11 +44,15 @@ with lib;
           # The autocmd only runs once.
           # lua
           ''
+            vim.g.matchup_matchparen_deferred = 1
+            vim.g.matchup_matchparen_offscreen = { }
             vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+              once = true,
               callback = function()
                 vim.cmd.packadd("${plugin.name}")
                 require("nvim-treesitter.configs").setup({
                   highlight = { enable = true },
+                  matchup = { enable = true },
                 })
               end
             })
@@ -143,7 +148,6 @@ with lib;
             })
             vim.api.nvim_create_autocmd("User", {
               group = vim.api.nvim_create_augroup("dots.nvim/mini.diff", { clear = true }),
-              pattern = "LazyFile",
               callback = function()
                 require("mini.diff")
                 vim.api.nvim_del_augroup_by_name("dots.nvim/mini.diff")

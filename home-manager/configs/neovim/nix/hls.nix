@@ -55,6 +55,7 @@
 
           IncSearch = { fg = colors.base01, bg = colors.base09 },
           Search = { fg = colors.base01, bg = colors.base0A },
+          MatchParen = { fg = colors.base09, bg = "NONE" },
         }
       '';
   };
