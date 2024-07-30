@@ -165,18 +165,12 @@ with lib;
             end)
 
             vim.api.nvim_create_autocmd("User", {
-              group = vim.api.nvim_create_augroup("dots.nvim/mini.git", { clear = true }),
+              group = vim.api.nvim_create_augroup("dots.nvim/mini.[git,diff]", { clear = true }),
               pattern = "LazyFile",
               callback = function()
                 require("mini.git")
-                vim.api.nvim_del_augroup_by_name("dots.nvim/mini.git")
-              end
-            })
-            vim.api.nvim_create_autocmd("User", {
-              group = vim.api.nvim_create_augroup("dots.nvim/mini.diff", { clear = true }),
-              callback = function()
                 require("mini.diff")
-                vim.api.nvim_del_augroup_by_name("dots.nvim/mini.diff")
+                vim.api.nvim_del_augroup_by_name("dots.nvim/mini.[git,diff]")
               end
             })
           '';
