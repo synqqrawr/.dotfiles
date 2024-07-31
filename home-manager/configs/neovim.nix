@@ -238,6 +238,116 @@ with lib;
             })
           '';
       }
+      rec {
+        plugin = pkgs.symlinkJoin {
+          name = "nvim-cmp";
+          paths = [
+            nvim-cmp
+            lspkind-nvim
+
+            cmp-buffer
+            cmp-nvim-lsp
+            cmp-path
+          ];
+        };
+        type = "lua";
+        config =
+          # lua
+          ''
+            vim.api.nvim_create_autocmd({ "InsertEnter" }, {
+              once = true,
+              callback = function()
+                vim.cmd.packadd("${plugin.name}")
+                local defaults = require("cmp.config.default")()
+                local cmp = require "cmp"
+                cmp.setup({
+                  snippet = {
+                    expand = function(args)
+                      vim.snippet.expand(args.body)
+                    end,
+                  },
+                  mapping = cmp.mapping.preset.insert({
+                    ["<Tab>"] = cmp.mapping(function(fallback)
+                      if cmp.visible() then
+                        cmp.select_next_item()
+                      elseif vim.snippet.active({ direction = 1 }) then
+                        vim.snippet.jump(1)
+                      else
+                        fallback()
+                      end
+                    end, { "i", "s" }),
+                    ["<S-Tab>"] = cmp.mapping(function(fallback)
+                      if cmp.visible() then
+                        cmp.select_prev_item()
+                      elseif vim.snippet.active({ direction = -1 }) then
+                        vim.snippet.jump(-1)
+                      else
+                        fallback()
+                      end
+                    end, { "i", "s" }),
+                    ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+                    ["<CR>"] = cmp.mapping.confirm({ select = false }),
+                  }),
+                  formatting = {
+                    fields = { "kind", "abbr", "menu" },
+                    format = function(entry, vim_item)
+                      local kind = require("lspkind").cmp_format({
+                        mode = "symbol_text",
+                        maxwidth = 50,
+                        ellipsis_char = "...",
+                      })(entry, vim_item)
+                      -- vim_item.kind = dots.UI.icons.LSP.kind[item]
+                      local strings = vim.split(kind.kind, "%s", { trimempty = true })
+                      kind.kind = (strings[1] or "")
+                      kind.concat = kind.abbr
+
+                      return vim_item
+                    end,
+                  },
+                  sources = cmp.config.sources({
+                    {
+                      name = "nvim_lsp",
+                      option = {
+                        markdown_oxide = {
+                          keyword_pattern = [[\(\k\| \|\/\|#\)\+]],
+                        },
+                      },
+                    },
+                    { name = "path" },
+                    -- https://github.com/hrsh7th/cmp-buffer
+                    {
+                      name = "buffer",
+                      keyword_length = 4,
+                      max_item_count = 10,
+                      option = {
+                        get_bufnrs = function()
+                          local buf = vim.api.nvim_get_current_buf()
+                          local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
+                          if byte_size > 1024 * 1024 then -- 1 Megabyte max
+                            return {}
+                          end
+                          return { buf }
+                        end,
+                        indexing_interval = 1000,
+                      },
+                    },
+                  }),
+                  experimental = {
+                    ghost_text = {
+                      hl_group = "CmpGhostText",
+                    },
+                  },
+                  view = {
+                    entries = {
+                      follow_cursor = true,
+                    },
+                  },
+                  sorting = defaults.sorting,
+                })
+              end
+            })
+          '';
+      }
     ];
     extraLuaConfig = # lua
       ''
