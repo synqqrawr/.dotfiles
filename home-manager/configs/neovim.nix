@@ -208,16 +208,11 @@ with lib;
         config =
           # lua
           ''
-            package.preload["lspconfig"] = function()
-              vim.cmd.packadd("${plugin.pname}")
-              package.loaded["lspconfig"] = nil
-              package.preload["lspconfig"] = nil
-              return require("lspconfig")
-            end
             vim.api.nvim_create_autocmd("User", {
               pattern = "LazyFile",
               once = true,
               callback = function()
+                vim.cmd.packadd("${plugin.pname}")
                 require("config.lspconfig")
               end,
             })
@@ -230,16 +225,11 @@ with lib;
         config =
           # lua
           ''
-            package.preload["ibl"] = function()
-              vim.cmd.packadd("${plugin.pname}")
-              package.loaded["ibl"] = nil
-              package.preload["ibl"] = nil
-              return require("ibl")
-            end
             vim.api.nvim_create_autocmd("User", {
               pattern = "LazyFile",
               once = true,
               callback = function()
+                vim.cmd.packadd("${plugin.pname}")
                 require("ibl").setup({
                   indent = { highlight = "IblChar" },
                   scope = { enabled = false },
