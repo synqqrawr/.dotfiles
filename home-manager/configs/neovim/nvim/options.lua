@@ -2,7 +2,6 @@ local o = vim.opt
 local g = vim.g
 
 g.mapleader = " "
-g.toggle_theme_icon = "   "
 
 -- Line numbers
 o.number = true

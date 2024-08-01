@@ -376,22 +376,23 @@ with lib;
               package.preload["conform"] = nil
               require("conform").setup({
                 format_on_save = { timeout_ms = 500, lsp_fallback = true },
-                formatters_by_ft = {
-                  c = { "clang_format" },
-                  css = { "prettierd" },
-                  html = { "prettierd" },
-                  fish = { "fish_indent" },
-                  nix = { "nixfmt" },
-                  lua = { "stylua" },
-                  markdown = { "prettierd", "prettier", stop_after_first = true },
-                  svelte = { "prettierd", "prettier", stop_after_first = true },
-                  typescript = { "prettierd", "prettier", stop_after_first = true },
-                  javascript = { "prettierd", "prettier", stop_after_first = true },
-                  typescriptreact = { "prettierd", "prettier", stop_after_first = true },
-                  javascriptreact = { "prettierd", "prettier", stop_after_first = true },
-                  python = { "black" },
-                },
-              })
+                  formatters_by_ft = {
+                    c = { "clang_format" },
+                    css = { "prettierd" },
+                    html = { "prettierd", "injected" },
+                    fish = { "fish_indent" },
+                    -- there *are* injections in nix but they don't really play nicely with Nix string intro
+                    nix = { "nixfmt" },
+                    -- iirc lua has luac but im not playing withit so, that's that
+                    lua = { "stylua" },
+                    -- markdown and svelte both have injections
+                    markdown = { "prettierd", "injected" },
+                    svelte = { "prettierd", "injected" },
+                    typescript = { "prettierd" },
+                    javascript = { "prettierd" },
+                    python = { "black" },
+                  },
+                })
               return require("conform")
             end
             vim.opt.formatexpr = "v:lua.require'conform'.formatexpr()"
@@ -400,7 +401,7 @@ with lib;
               once = true,
               callback = function()
                 require("conform")
-              end
+              end,
             })
           '';
       }
@@ -434,11 +435,11 @@ with lib;
         vim.loader.enable()
         ${builtins.readFile ./neovim/nvim/options.lua}
         ${builtins.readFile ./neovim/nvim/settings.lua}
+
         ${builtins.readFile ./neovim/nvim/autocmd.lua}
         ${builtins.readFile ./neovim/nvim/lsp.lua}
         vim.o.statusline = "%!v:lua.require'stl'.render()"
         require("buf").setup()
-
         require("hls").load()
       '';
   };
