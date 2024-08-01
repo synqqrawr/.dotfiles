@@ -45,10 +45,8 @@ o.fillchars = {
 o.foldlevel = 99
 
 o.foldmethod = "expr"
-vim.schedule(function()
-  o.foldexpr = "v:lua.require'utils.ui'.foldexpr()"
-end)
-  o.statuscolumn = [[%!v:lua.require'utils.ui'.statuscolumn()]]
+o.foldexpr = "v:lua.require'utils.ui'.foldexpr()"
+o.statuscolumn = [[%!v:lua.require'utils.ui'.statuscolumn()]]
 o.foldtext = ""
 o.fillchars = "fold: "
 
