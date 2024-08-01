@@ -348,6 +348,23 @@ with lib;
             })
           '';
       }
+      rec {
+        plugin = markview;
+        optional = true;
+        type = "lua";
+        config =
+          # lua
+          ''
+            vim.api.nvim_create_autocmd("FileType", {
+              pattern = { "markdown" },
+              once = true,
+              callback = function()
+                vim.cmd.packadd("${plugin.name}")
+                require("markview").setup()
+              end
+            })
+          '';
+      }
     ];
     extraLuaConfig = # lua
       ''

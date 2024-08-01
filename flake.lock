@@ -911,6 +911,22 @@
         "type": "github"
       }
     },
+    "markview": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1722404473,
+        "narHash": "sha256-mhRg/cszW/3oXdC1yvbpCeqWQA9WLW5FvcqGd/wBTnE=",
+        "owner": "OXY2DEV",
+        "repo": "markview.nvim",
+        "rev": "d0ccc97b5c988fb28e5033abdf7b832b9dfaf897",
+        "type": "github"
+      },
+      "original": {
+        "owner": "OXY2DEV",
+        "repo": "markview.nvim",
+        "type": "github"
+      }
+    },
     "neovim-nightly-overlay": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -1084,6 +1100,7 @@
         "hyprland-plugins": "hyprland-plugins",
         "hyprlock": "hyprlock",
         "hyprpaper": "hyprpaper",
+        "markview": "markview",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nix-gaming": "nix-gaming",
         "nixpkgs": "nixpkgs_2",

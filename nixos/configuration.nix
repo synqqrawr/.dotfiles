@@ -67,10 +67,9 @@
       })
       (final: prev: {
         vimPlugins = prev.vimPlugins // {
-          nvim-treesitter-main = prev.vimUtils.buildVimPlugin {
-            pname = "nvim-treesitter";
-            src = inputs.nvim-treesitter-src;
-            version = "2024-07-28";
+          markview = prev.vimUtils.buildVimPlugin {
+            name = "markview";
+            src = inputs.markview;
           };
         };
       })
