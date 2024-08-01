@@ -62,3 +62,6 @@ o.pumheight = 10 -- Maximum number of entries in a popup
 
 -- Sessions
 o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+-- mouse
+o.mouse = ""
