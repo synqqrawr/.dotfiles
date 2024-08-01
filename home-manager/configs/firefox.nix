@@ -150,6 +150,7 @@
 
             # remove the sign in w/ google stuff
             "||accounts.google.com/gsi/*$xhr,script,3p"
+            "www.youtube.com##tp-yt-paper-dialog.ytd-popup-container.style-scope > .ytd-popup-container.style-scope"
           ];
           hostnameSwitchesString = lib.concatMapStrings (x: x + "\n") [
             "no-large-media: behind-the-scene false"
