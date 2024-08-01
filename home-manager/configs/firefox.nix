@@ -27,6 +27,7 @@
           "https://addons.mozilla.org/firefox/downloads/file/4299481/indie_wiki_buddy-3.8.0.xpi"
           "https://github.com/bpc-clone/bpc_updates/releases/download/latest/bypass_paywalls_clean-latest.xpi"
           "https://addons.mozilla.org/firefox/downloads/file/4307344/dearrow-1.6.4.xpi"
+          "https://addons.mozilla.org/firefox/downloads/file/4295256/userchrome_toggle_extended-1.5.xpi"
         ];
       };
       SearchEngines = {
