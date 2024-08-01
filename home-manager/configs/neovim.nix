@@ -365,6 +365,45 @@ with lib;
             })
           '';
       }
+      {
+        plugin = conform-nvim;
+        type = "lua";
+        config =
+          # lua
+          ''
+            package.preload["conform"] = function()
+              package.loaded["conform"] = nil
+              package.preload["conform"] = nil
+              require("conform").setup({
+                format_on_save = { timeout_ms = 500, lsp_fallback = true },
+                formatters_by_ft = {
+                  c = { "clang_format" },
+                  css = { "prettierd" },
+                  html = { "prettierd" },
+                  fish = { "fish_indent" },
+                  nix = { "nixfmt" },
+                  lua = { "stylua" },
+                  markdown = { "prettierd", "prettier", stop_after_first = true },
+                  svelte = { "prettierd", "prettier", stop_after_first = true },
+                  typescript = { "prettierd", "prettier", stop_after_first = true },
+                  javascript = { "prettierd", "prettier", stop_after_first = true },
+                  typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+                  javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+                  python = { "black" },
+                },
+              })
+              return require("conform")
+            end
+            vim.opt.formatexpr = "v:lua.require'conform'.formatexpr()"
+
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              once = true,
+              callback = function()
+                require("conform")
+              end
+            })
+          '';
+      }
     ];
     extraLuaConfig = # lua
       ''
