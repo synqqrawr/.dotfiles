@@ -16,14 +16,14 @@ vim.api.nvim_create_user_command("BufflineNext", function()
 end, {})
 
 local function new_hl(group1, group2)
-  local fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(group1)), "fg#")
-  local bg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(group2)), "bg#")
-  vim.api.nvim_set_hl(0, group1 .. group2, { fg = fg, bg = bg })
-  return "%#" .. group1 .. group2 .. "#"
+	local fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(group1)), "fg#")
+	local bg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(group2)), "bg#")
+	vim.api.nvim_set_hl(0, group1 .. group2, { fg = fg, bg = bg })
+	return "%#" .. group1 .. group2 .. "#"
 end
 
 local createTab = function(buf)
-	local close_btn = "%" .. buf .. "@BufflineKillBuf@ %X"
+	local close_btn = "%" .. buf .. "@BufflineKillBuf@ 󱎘%X"
 	local filename = (#vim.api.nvim_buf_get_name(buf) ~= 0) and vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":t")
 		or ""
 
@@ -73,11 +73,17 @@ local createTab = function(buf)
 		icon, icon_hl = devicons.get_icon_by_filetype(filetype, { default = true })
 	end
 	if buf == vim.api.nvim_get_current_buf() then
-		filename = "%#BufflineBufOnActive#  " .. "  " .. string.format("%s%s %%#BufflineBufOnActive#", new_hl(icon_hl, "BufflineBufOnActive"), icon) .. filename
+		filename = "%#BufflineBufOnActive#  "
+			.. "  "
+			.. string.format("%s%s %%#BufflineBufOnActive#", new_hl(icon_hl, "BufflineBufOnActive"), icon)
+			.. filename
 		close_btn = (vim.bo[0].modified and "%" .. buf .. "@BufflineKillBuf@%#BuffLineBufOnModified#  ")
 			or ("%#BuffLineBufOnClose#" .. close_btn) .. " "
 	else
-		filename = "%#BufflineBufOnInactive#  " .. "  " .. string.format("%s%s %%#BufflineBufOnInactive#", new_hl(icon_hl, "BufflineBufOnInactive"), icon) .. filename
+		filename = "%#BufflineBufOnInactive#  "
+			.. "  "
+			.. string.format("%s%s %%#BufflineBufOnInactive#", new_hl(icon_hl, "BufflineBufOnInactive"), icon)
+			.. filename
 		close_btn = (vim.bo[buf].modified and "%" .. buf .. "@BufflineKillBuf@%#BuffLineBufOffModified#  ")
 			or ("%#BuffLineBufOffClose#" .. close_btn) .. " "
 	end
@@ -105,7 +111,7 @@ end
 M.getTabline = function()
 	local buffline = ""
 	local buffstart = "%#BuffLineEmpty#"
-	local closebutton = "%#BufflineCloseButton# %@CloseAll@" .. " "
+	local closebutton = "%#BufflineCloseButton# %@CloseAll@" .. "󱎘 "
 	local counter = 0
 	for _, buf in pairs(vim.api.nvim_list_bufs()) do
 		local filename = vim.api.nvim_buf_get_name(buf):match("^.+/(.+)$") or ""
