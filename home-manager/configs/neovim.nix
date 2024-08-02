@@ -71,7 +71,7 @@ with lib;
           ''
             local packadded_mini_nvim = false
             -- Trust me, I can name things better than this :D.
-            local package_preload = function(a, opt)
+            local package_preload = function(a, opt, b)
               package.preload[a] = function()
                 if not packadded_mini_nvim then
                   vim.cmd.packadd("${plugin.pname}")
@@ -79,7 +79,11 @@ with lib;
                 end
                 package.loaded[a] = nil
                 package.preload[a] = nil
-                require(a).setup((type(opt) == "function") and opt() or opt)
+                if not b then
+                  require(a).setup((type(opt) == "function") and opt() or opt)
+                else
+                  opt()
+                end
                 return require(a)
               end
             end
@@ -128,6 +132,18 @@ with lib;
               }
             end)
             package_preload("mini.operators")
+            package_preload("mini.hipatterns", function()
+              local hi = require("mini.hipatterns")
+              require("mini.hipatterns").setup({
+                highlighters = {
+                  hex_color = hi.gen_highlighter.hex_color(),
+                }
+              })
+
+              vim.defer_fn(function()
+                require("mini.hipatterns").enable()
+              end, 0)
+            end, true)
 
             package.preload["nvim-web-devicons"] = function()
               require("mini.icons").mock_nvim_web_devicons()
@@ -191,12 +207,13 @@ with lib;
 
 
             vim.api.nvim_create_autocmd("User", {
-              group = vim.api.nvim_create_augroup("dots.nvim/mini.[git,diff]", { clear = true }),
+              group = vim.api.nvim_create_augroup("dots.nvim/mini.[git,diff,hipatterns]", { clear = true }),
               pattern = "LazyFile",
               callback = function()
                 require("mini.git")
                 require("mini.diff")
-                vim.api.nvim_del_augroup_by_name("dots.nvim/mini.[git,diff]")
+                require("mini.hipatterns")
+                vim.api.nvim_del_augroup_by_name("dots.nvim/mini.[git,diff,hipatterns]")
               end
             })
           '';
