@@ -32,11 +32,36 @@
           ModeMsg = { fg = colors.base0B, bg = "" },
           MoreMsg = { fg = colors.base0B, bg = "" },
           MsgArea = { fg = colors.base05, bg = colors.base00 },
-          MsgSeparator = { fg = colors.base04, bg = colors.base02 },
           ErrorMsg = { fg = colors.base08, bg = colors.base00 },
           FoldColumn = { fg = colors.base0C, bg = colors.base01 },
           Folded = { fg = colors.base03, bg = colors.base01 },
 
+          DiffAdd = { fg = colors.base0B },
+          DiffChange = { fg = colors.base0A },
+          DiffDelete = { fg = colors.base08 },
+
+          IncSearch = { fg = colors.base01, bg = colors.base09 },
+          Search = { fg = colors.base01, bg = colors.base0A },
+          MatchParen = { fg = colors.base09, bg = "NONE" },
+
+          CmpGhostText = { link = "Comment", default = true },
+          MsgSeparator = { fg = colors.base04, bg = colors.base00 },
+          WinSeparator = { fg = colors.base00, bg = colors.base00 },
+
+          PMenu = { fg = colors.base05, bg = themes.blend(colors.base00, colors.base01, 1.3) },
+          PMenuSbar = { bg = themes.blend(colors.base00, colors.base01, 1.3) },
+          PMenuSel = { fg = themes.blend(colors.base00, colors.base01, 1.3), bg = colors.base0B },
+        }
+      '';
+  };
+  home.file."${config.xdg.configHome}/nvim/lua/hls/themes/buff.lua" = {
+    text =
+      # lua
+      ''
+        local themes = require("hls")
+        local colors = themes.getCurrentTheme()
+
+        return {
           BufflineBufOnActive = { fg = colors.base05, bg = colors.base00 },
           BufflineBufOnInactive = { fg = themes.blend(colors.base05, colors.base00, 0.45), bg = themes.blend(colors.base00, colors.base05, 0.95) },
           BufflineBufOnModified = { fg = colors.base04, bg = colors.base00 },
@@ -48,16 +73,6 @@
           BuffLineEmptyColor = { bg = colors.base01, fg = colors.base05 },
           BuffLineButton = { bg = themes.blend(colors.base00, colors.base05, 0.95), fg = colors.base07 },
           BuffLineCloseButton = { bg = colors.base08, fg = colors.base00 },
-
-          DiffAdd = { fg = colors.base0B },
-          DiffChange = { fg = colors.base0E },
-          DiffDelete = { fg = colors.base08 },
-
-          IncSearch = { fg = colors.base01, bg = colors.base09 },
-          Search = { fg = colors.base01, bg = colors.base0A },
-          MatchParen = { fg = colors.base09, bg = "NONE" },
-
-          CmpGhostText = { link = "Comment", default = true },
         }
       '';
   };
