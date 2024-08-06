@@ -2,6 +2,7 @@ return {
   {
     "OXY2DEV/markview.nvim",
     ft = "markdown",
+    branch = "dev",
     init = function()
       vim.api.nvim_create_autocmd("User", {
         group = vim.api.nvim_create_augroup("LoadLazyFile_markview", { clear = true }),
@@ -22,6 +23,10 @@ return {
         end,
       })
     end,
+    opts = {
+      modes = { "n", "i", "c" },
+      hybrid_modes = { "i" },
+    },
     dependencies = {
       -- You may not need this if you don't lazy load
       -- Or if the parsers are in your $RUNTIMEPATH
