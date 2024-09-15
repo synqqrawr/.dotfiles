@@ -45,6 +45,11 @@ M.ui = {
     MiniDiffSignDelete = { fg = "red" },
 
     MiniNotifyNormal = { link = "Normal" },
+
+    MiniPickPrompt = { bg = "darker_black", fg = "green" },
+    MiniPickHeader = { bg = "darker_black" },
+    MiniPickBorderBusy = { bg = "darker_black", fg = "darker_black" },
+    MiniPickMatchRanges = { fg = "purple" },
   },
 }
 

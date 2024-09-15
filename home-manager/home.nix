@@ -31,6 +31,7 @@
     ./configs/yazi.nix
     ./configs/cava.nix
     ./configs/ags.nix
+    ./configs/gnome.nix
   ];
 
   # TODO: Set your username

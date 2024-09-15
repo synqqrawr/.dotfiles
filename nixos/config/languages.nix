@@ -31,6 +31,7 @@
     tailwindcss-language-server
     nodejs
     eslint_d
+    nodePackages.typescript-language-server
 
     #css
     vscode-langservers-extracted

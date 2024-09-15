@@ -30,7 +30,7 @@
 
         dots_spacing = 0.3;
         dots_center = true;
-        inner_color = "rgba(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b}, 0.85)";
+        inner_color = "rgb(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b})";
         placeholder_text = "<i>Input Password...</i>";
         fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
         position = "0, 100";
@@ -43,11 +43,11 @@
           monitor = "";
           text = "cmd[update:200] echo \"<b>$(date +'%A, %B %d')</b>\"";
 
-          color = "rgba(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b}, 0.75)";
+          color = "rgb(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b})";
           font_size = "20";
           font_family = "SF Pro Display Bold";
-          shadow_passes = "4";
-          shadow_size = "2";
+          shadow_passes = "0";
+          shadow_size = "0";
           position = "0, 400";
           valign = "center";
           halign = "center";
@@ -56,11 +56,11 @@
           monitor = "";
           text = "cmd[update:200] echo \"<b>$(date +'%k:%M')</b>\"";
 
-          color = "rgba(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b}, 0.75)";
+          color = "rgb(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b})";
           font_size = "93";
           font_family = "SF Pro Display Bold";
-          shadow_passes = "4";
-          shadow_size = "2";
+          shadow_passes = "0";
+          shadow_size = "0";
           position = "0, 330";
           valign = "center";
           halign = "center";
@@ -68,7 +68,7 @@
         # # {
         # #   monitor = "";
         # #   text = "cmd[update:1000] echo \"<b><big> $(date +\"%H\") </big></b>\"";
-        # #   color = "rgba(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b}, 0.7)";
+        # #   color = "rgba(${config.lib.stylix.colors.base00-rgb-r}, ${config.lib.stylix.colors.base00-rgb-g}, ${config.lib.stylix.colors.base00-rgb-b}, 0.7)";
         # #   font_size = "112";
         # #   font_family = "Jetbrains Mono";
         # #   shadow_passes = "3";
@@ -81,7 +81,7 @@
         # {
         #   monitor = "";
         #   text = "cmd[update:1000] echo \"<b><big> $(date +\"%M\") </big></b>\"";
-        #   color = "rgba(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b}, 0.7)";
+        #   color = "rgba(${config.lib.stylix.colors.base00-rgb-r}, ${config.lib.stylix.colors.base00-rgb-g}, ${config.lib.stylix.colors.base00-rgb-b}, 0.7)";
         #   font_size = "112";
         #   font_family = "Jetbrains Mono";
         #   shadow_passes = "3";
@@ -95,7 +95,7 @@
         #   monitor = "";
         #   # text = "cmd[update:18000000] echo \"<b><big> \"$(date +'%A')\" </big></b>\"";
         #   text = "cmd[update:18000000] echo \"<b><big> \"$(date +'%A')\" </big></b>\"";
-        #   color = "rgba(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b}, 0.8)";
+        #   color = "rgba(${config.lib.stylix.colors.base00-rgb-r}, ${config.lib.stylix.colors.base00-rgb-g}, ${config.lib.stylix.colors.base00-rgb-b}, 0.8)";
         #   font_size = "25";
         #   font_family = "Jetbrains Mono";
         #   rotate = "0";
@@ -109,7 +109,7 @@
         # {
         #   monitor = "";
         #   text = "cmd[update:18000000] echo \"<b> \"$(date +'%d %b')\" </b>\"";
-        #   color = "rgba(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b}, 0.8)";
+        #   color = "rgba(${config.lib.stylix.colors.base00-rgb-r}, ${config.lib.stylix.colors.base00-rgb-g}, ${config.lib.stylix.colors.base00-rgb-b}, 0.8)";
         #   font_size = "18";
         #   font_family = "Jetbrains Mono";
         #
@@ -127,7 +127,6 @@
         "fcitx5 -d"
         "ags"
       ];
-      "$mod" = "SUPER";
       monitor = ",1920x1080,0x0,1";
       general = {
         border_size = 0;
@@ -136,52 +135,53 @@
         rounding = 8;
         shadow_range = 12;
         dim_inactive = true;
+        dim_strength = 0.3;
       };
       bindm = [
-        "$mod, mouse:272, movewindow"
-        "$mod, mouse:273, resizewindow"
+        "SUPER, mouse:272, movewindow"
+        "SUPER, mouse:273, resizewindow"
       ];
       bind =
         [
-          "$mod, Q, killactive"
-          "$mod, Return, exec, kitty"
-          "$mod, W, exec, firefox"
-          "$mod, F, togglefloating"
-          # "$mod, F, centerwindow"
-          "$mod_ALT, L, exec, hyprlock"
-          "$mod, F, pin"
-          "$mod, P, pseudo"
+          "SUPER, Q, killactive"
+          "SUPER, Return, exec, kitty"
+          "SUPER, W, exec, firefox"
+          "SUPER, F, togglefloating"
+          # "SUPER, F, centerwindow"
+          "SUPER_ALT, L, exec, hyprlock"
+          "SUPER, F, pin"
+          "SUPER, P, pseudo"
 
-          "$mod, h, movefocus, l"
-          "$mod, j, movefocus, d"
-          "$mod, k, movefocus, u"
-          "$mod, l, movefocus, r"
+          "SUPER, h, movefocus, l"
+          "SUPER, j, movefocus, d"
+          "SUPER, k, movefocus, u"
+          "SUPER, l, movefocus, r"
 
-          "$mod SHIFT, h, movewindow, l"
-          "$mod SHIFT, j, movewindow, d"
-          "$mod SHIFT, k, movewindow, u"
-          "$mod SHIFT, l, movewindow, r"
+          "SUPER SHIFT, h, movewindow, l"
+          "SUPER SHIFT, j, movewindow, d"
+          "SUPER SHIFT, k, movewindow, u"
+          "SUPER SHIFT, l, movewindow, r"
 
-          # "$mod SHIFT, D, exec, grimblast copy area"
-          # "$mod SHIFT_ALT, D, exec, grimblast --freeze copy area"
-          # "$mod SHIFT, F, exec, grimblast copysave output ~/.screenshots/$(date +'%s_hypr.png')"
-          # "$mod SHIFT, G, exec, grimblast copy active"
-          "$mod SHIFT, D, exec, ags -r 'recorder.start()'"
-          "$mod SHIFT, S, exec, ags -r 'recorder.screenshot()'"
-          "$mod, S, exec, ags -r 'recorder.screenshot(true)'"
+          # "SUPER SHIFT, D, exec, grimblast copy area"
+          # "SUPER SHIFT_ALT, D, exec, grimblast --freeze copy area"
+          # "SUPER SHIFT, F, exec, grimblast copysave output ~/.screenshots/$(date +'%s_hypr.png')"
+          # "SUPER SHIFT, G, exec, grimblast copy active"
+          "SUPER SHIFT, D, exec, ags -r 'recorder.start()'"
+          "SUPER SHIFT, S, exec, ags -r 'recorder.screenshot()'"
+          "SUPER, S, exec, ags -r 'recorder.screenshot(true)'"
 
-          "$mod_CTRL_SHIFT, R, exec, ags -q && ags"
-          "$mod, R, exec, ags -t launcher"
+          "SUPER_CTRL_SHIFT, R, exec, ags -q && ags"
+          "SUPER, R, exec, ags -t launcher"
           ",XF86PowerOff, exec, ags -t powermenu"
-          "$mod, Tab, exec, ags -t overview"
+          "SUPER, Tab, exec, ags -t overview"
 
-          "$mod, G, fullscreen"
+          "SUPER, G, fullscreen"
 
-          "$mod, T, togglegroup"
+          "SUPER, T, togglegroup"
         ]
         ++ (
           # workspaces
-          # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
+          # binds SUPER + [shift +] {1..10} to [move to] workspace {1..10}
           builtins.concatLists (
             builtins.genList (
               x:
@@ -193,9 +193,13 @@
                   builtins.toString (x + 1 - (c * 10));
               in
               [
-                "$mod, ${ws}, workspace, ${toString (x + 1)}"
-                "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-                "$mod CTRL, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
+                "SUPER, ${ws}, workspace, ${toString (x + 1)}"
+                "SUPER SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+                "SUPER CTRL, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
+
+                "SUPER_ALT, ${ws}, workspace, ${toString (x + 11)}"
+                "SUPER_ALT SHIFT, ${ws}, movetoworkspace, ${toString (x + 11)}"
+                "SUPER_ALT CTRL, ${ws}, movetoworkspacesilent, ${toString (x + 11)}"
               ]
             ) 10
           )

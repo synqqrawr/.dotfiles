@@ -65,13 +65,21 @@
             });
         };
       })
+      # GNOME 46: triple-buffering-v4-46
       (final: prev: {
-        vimPlugins = prev.vimPlugins // {
-          markview = prev.vimUtils.buildVimPlugin {
-            name = "markview";
-            src = inputs.markview;
-          };
-        };
+        gnome = prev.gnome.overrideScope (
+          gnomeFinal: gnomePrev: {
+            mutter = gnomePrev.mutter.overrideAttrs (old: {
+              src = pkgs.fetchFromGitLab {
+                domain = "gitlab.gnome.org";
+                owner = "vanvugt";
+                repo = "mutter";
+                rev = "triple-buffering-v4-46";
+                hash = "sha256-fkPjB/5DPBX06t7yj0Rb3UEuu5b9mu3aS+jhH18+lpI=";
+              };
+            });
+          }
+        );
       })
     ];
     # Configure your nixpkgs instance
@@ -129,9 +137,12 @@
   services.xserver.enable = true;
 
   # Enable the Plasma 5 Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  # services.displayManager.sddm.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
+  services.xserver.desktopManager.gnome.enable = true;
+  programs.dconf.enable = true;
 
   # Enable sound.
   hardware.pulseaudio.enable = false;
@@ -173,6 +184,8 @@
 
   users.defaultUserShell = pkgs.zsh;
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   programs.zsh.enable = true;
 
   environment.systemPackages = with pkgs; [
@@ -198,6 +211,14 @@
     killall
 
     tor-browser
+    vesktop
+    bat
+    feh
+
+    freetube
+    mullvad-browser
+    btop
+    brave
   ];
 
   environment.variables = {
@@ -235,6 +256,8 @@
       DNSOverTLS=yes
     '';
   };
+
+  services.flatpak.enable = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";

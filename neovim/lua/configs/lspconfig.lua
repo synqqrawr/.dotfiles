@@ -86,6 +86,15 @@ for _, lsp in ipairs(servers) do
   })
 end
 
+require("lspconfig")["clangd"].setup({
+  on_attach = function(client, bufnr)
+    client.server_capabilities.signatureHelpProvider = false
+    on_attach(client, bufnr)
+  end,
+  on_init = on_init,
+  capabilities = capabilities,
+})
+
 require("lspconfig")["nil_ls"].setup({
   on_attach = on_attach,
   on_init = on_init,

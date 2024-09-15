@@ -12,21 +12,14 @@ return {
     },
   },
   {
-    "L3MON4D3/LuaSnip",
-    config = function()
-      require("luasnip.loaders.from_vscode").lazy_load()
-    end,
-    dependencies = {
-      "rafamadriz/friendly-snippets",
-      "fivethree-team/vscode-svelte-snippets",
-    },
-    event = "InsertEnter",
-  },
-  {
     "hrsh7th/nvim-cmp",
     opts = function()
       local cmp = require("cmp")
-      local luasnip = require("luasnip")
+      local has_words_before = function()
+        unpack = unpack or table.unpack
+        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+      end
 
       return {
         completion = {
@@ -35,11 +28,6 @@ return {
         performance = {
           max_view_entries = 20,
           debounce = 150,
-        },
-        snippet = {
-          expand = function(args)
-            require("luasnip").lsp_expand(args.body)
-          end,
         },
         sources = cmp.config.sources({
           {
@@ -50,7 +38,6 @@ return {
               },
             },
           },
-          { name = "luasnip" },
           { name = "path" },
           { name = "crates" },
           -- https://github.com/hrsh7th/cmp-buffer
@@ -72,27 +59,33 @@ return {
           },
         }),
         mapping = cmp.mapping.preset.insert({
+          ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+          ["<CR>"] = cmp.mapping.confirm({ select = false }),
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
+              -- You could replace select_next_item() with confirm({ select = true }) to get VS Code autocompletion behavior
               cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
+            elseif vim.snippet.active({ direction = 1 }) then
+              vim.schedule(function()
+                vim.snippet.jump(1)
+              end)
+            elseif has_words_before() then
+              cmp.complete()
             else
               fallback()
             end
           end, { "i", "s" }),
-
           ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
+            elseif vim.snippet.active({ direction = -1 }) then
+              vim.schedule(function()
+                vim.snippet.jump(-1)
+              end)
             else
               fallback()
             end
           end, { "i", "s" }),
-          ["<C-y>"] = cmp.mapping.confirm({ select = true }),
-          ["<CR>"] = cmp.mapping.confirm({ select = false }),
         }),
         formatting = {
           fields = { "kind", "abbr", "menu" },
@@ -125,8 +118,6 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
-      "L3MON4D3/LuaSnip",
-      "saadparwaiz1/cmp_luasnip",
       "onsails/lspkind.nvim",
     },
     event = "InsertEnter",
