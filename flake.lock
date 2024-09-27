@@ -184,22 +184,6 @@
         "type": "github"
       }
     },
-    "edge-frfox": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1725464847,
-        "narHash": "sha256-0R8K7n/3tFX/vKGl7VSu6fsbvgGrttL3Hlz5yRc4upU=",
-        "owner": "bmFtZQ",
-        "repo": "edge-frfox",
-        "rev": "7872d6424c79f8384820494b9cfddc054f67525d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "bmFtZQ",
-        "repo": "edge-frfox",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -1113,7 +1097,6 @@
       "inputs": {
         "ags": "ags",
         "betterfox": "betterfox",
-        "edge-frfox": "edge-frfox",
         "home-manager": "home-manager",
         "hypridle": "hypridle",
         "hyprland": "hyprland",

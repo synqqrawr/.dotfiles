@@ -32,6 +32,7 @@
     ./configs/cava.nix
     ./configs/ags.nix
     ./configs/gnome.nix
+    ./configs/fuzzel.nix
   ];
 
   # TODO: Set your username

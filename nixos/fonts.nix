@@ -8,7 +8,14 @@
       # noto-fonts-emoji
       # unifont
       # ubuntu_font_family
-      (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+      (nerdfonts.override {
+        fonts = [
+          "NerdFontsSymbolsOnly"
+          "SpaceMono"
+        ];
+      })
+      material-symbols
+      google-fonts
       # fira-code
       # fira-code-symbols
       mplus-outline-fonts.githubRelease
@@ -48,6 +55,11 @@
               <string>MPlus Code 50</string>
             </edit>
           </match>
+          <alias>
+            <family>monospace</family>
+            <prefer><family>${config.stylix.fonts.emoji.name}</family></prefer>
+            <prefer><family>${config.stylix.fonts.monospace.name}</family></prefer>
+          </alias>
         </fontconfig>
       '';
     };

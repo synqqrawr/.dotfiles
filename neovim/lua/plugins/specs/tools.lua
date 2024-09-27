@@ -24,6 +24,13 @@ return {
         desc = "mini.pick: files",
       },
       {
+        "<leader>fo",
+        function()
+          require("mini.extra").pickers.oldfiles({ tool = "rg" })
+        end,
+        desc = "mini.pick: oldfiles",
+      },
+      {
         "<leader>fg",
         function()
           require("mini.pick").builtin.grep_live({ tool = "rg" })

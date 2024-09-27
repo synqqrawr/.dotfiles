@@ -166,18 +166,20 @@
           # "SUPER SHIFT_ALT, D, exec, grimblast --freeze copy area"
           # "SUPER SHIFT, F, exec, grimblast copysave output ~/.screenshots/$(date +'%s_hypr.png')"
           # "SUPER SHIFT, G, exec, grimblast copy active"
-          "SUPER SHIFT, D, exec, ags -r 'recorder.start()'"
-          "SUPER SHIFT, S, exec, ags -r 'recorder.screenshot()'"
-          "SUPER, S, exec, ags -r 'recorder.screenshot(true)'"
+          # "SUPER SHIFT, D, exec, ags -r 'recorder.start()'"
+          # "SUPER SHIFT, S, exec, ags -r 'recorder.screenshot()'"
+          # "SUPER, S, exec, ags -r 'recorder.screenshot(true)'"
 
-          "SUPER_CTRL_SHIFT, R, exec, ags -q && ags"
-          "SUPER, R, exec, ags -t launcher"
-          ",XF86PowerOff, exec, ags -t powermenu"
-          "SUPER, Tab, exec, ags -t overview"
+          # "SUPER_CTRL_SHIFT, R, exec, ags -q && ags"
+          # "SUPER, R, exec, ags -t launcher"
+          # ",XF86PowerOff, exec, ags -t powermenu"
+          # "SUPER, Tab, exec, ags -t overview"
 
           "SUPER, G, fullscreen"
 
           "SUPER, T, togglegroup"
+
+          "SUPER, R, exec, fuzzel"
         ]
         ++ (
           # workspaces

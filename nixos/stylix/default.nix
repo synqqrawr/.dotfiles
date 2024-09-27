@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  imports = [ ./themes/everblush.nix ];
+  imports = [ ./themes/pasteldark.nix ];
   stylix = {
     enable = true;
     fonts = {
@@ -20,9 +20,11 @@
       };
 
       emoji = {
-        package = pkgs.twitter-color-emoji;
-        name = "TwitterColorEmoji";
+        package = pkgs.noto-fonts-color-emoji;
+        name = "Noto Color Emoji";
       };
+
+      sizes.popups = 16;
     };
     cursor = {
       package = pkgs.qogir-icon-theme;
@@ -35,6 +37,7 @@
       stylix.targets.kde.enable = false;
       stylix.targets.neovim.enable = false;
       stylix.targets.lazygit.enable = false;
+      stylix.targets.btop.enable = true;
     }
   ];
 }

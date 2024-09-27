@@ -4,6 +4,17 @@ local utils = require("nvchad.stl.utils")
 
 M.ui = {
   theme = "everblush",
+  nvdash = {
+    load_on_startup = true,
+    buttons = {
+      { "  Find File", "Spc f f", [[lua require("mini.pick").builtin.files({ tool = "rg" })]] },
+      { "󰈚  Recent Files", "Spc f o", [[lua require("mini.extra").pickers.oldfiles({ tool = "rg" })]] },
+      { "󰈭  Find Word", "Spc f g", [[lua require("mini.pick").builtin.grep_live({ tool = "rg" })]] },
+      { "", "", "" },
+      { "", "", "" },
+      { "", "", "" },
+    },
+  },
   statusline = {
     order = {
       "mode",
@@ -38,6 +49,9 @@ M.ui = {
 
     FloatBorder = { fg = "darker_black", bg = "darker_black" },
     NormalFloat = { bg = "darker_black" },
+
+    Comment = { italic = true },
+    ["@comment"] = { italic = true },
   },
   hl_add = {
     MiniDiffSignAdd = { fg = "green" },

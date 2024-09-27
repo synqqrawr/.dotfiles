@@ -219,7 +219,17 @@
     mullvad-browser
     btop
     brave
+
+    ddcutil
+    jq
+    grim
+
+    spotify
+    age
   ];
+
+  programs.gnupg.agent.enable = true;
+  programs.gnupg.agent.pinentryPackage = pkgs.pinentry-gtk2;
 
   environment.variables = {
     EDITOR = "nvim";

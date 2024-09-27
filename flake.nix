@@ -23,10 +23,6 @@
     shyfox.url = "github:Naezr/ShyFox";
     shyfox.flake = false;
 
-    # edge-frfox
-    edge-frfox.url = "github:bmFtZQ/edge-frfox";
-    edge-frfox.flake = false;
-
     # neovim-nightly-overlay
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";

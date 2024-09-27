@@ -44,6 +44,10 @@
           ];
           userFilters = lib.concatMapStrings (x: x + "\n") [
             "||0.0.0.0^$3p,domain=~localhost|~127.0.0.1|~[::1]|~0.0.0.0|~[::]|~local "
+
+            "en.wikipedia.org##+js(trusted-set-cookie, enwikimwclientpreferences, skin-theme-clientpref-night%2Cvector-feature-limited-width-clientpref-1%2Cvector-feature-custom-font-size-clientpref-1%2Cvector-feature-appearance-pinned-clientpref-0)"
+            "ja.wikipedia.org##+js(trusted-set-cookie, jawikimwclientpreferences, skin-theme-clientpref-night%2Cvector-feature-limited-width-clientpref-1%2Cvector-feature-custom-font-size-clientpref-1%2Cvector-feature-appearance-pinned-clientpref-0)"
+            "searx.be##+js(trusted-set-cookie, categories, general)"
           ];
           hostnameSwitchesString = lib.concatMapStrings (x: x + "\n") [
             "no-large-media: behind-the-scene false"
@@ -160,10 +164,6 @@
           # css
           ''
             @import "${inputs.shyfox}/chrome/userChrome.css";
-            /* @import "${inputs.edge-frfox}/chrome/icons/icons.css"; */
-            /* @import "${inputs.edge-frfox}/chrome/global/popup.css"; */
-            /* @import "${inputs.edge-frfox}/chrome/global/tree.css"; */
-            /* @import "${inputs.edge-frfox}/chrome/global/tweaks.css"; */
 
             :root {
               --outline: 0;
@@ -247,7 +247,7 @@
             "SearXNG" = {
               urls = [
                 {
-                  template = "https://au.priv.au/search";
+                  template = "https://searx.be/search";
                   params = [
                     {
                       name = "q";
@@ -286,24 +286,18 @@
           ''
             user_pref("network.trr.mode", 3);
             user_pref("network.trr.uri", "https://dns.nextdns.io/d12453"); // TRR/DoH
-          ''
-          # javascript
-          ''
             user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
             user_pref("svg.context-properties.content.enabled", true);
             user_pref("layout.css.color-mix.enabled", true);
             user_pref("layout.css.light-dark.enabled", true);
             user_pref("layout.css.has-selector.enabled", true);
-          ''
-          # javascript
-          ''
+
+            user_pref("shyfox.larger.context.menu", true);
+            user_pref("shyfox.enable.context.menu.icons", true);
             user_pref("browser.startup.page", 3); // 0102
 
             user_pref("browser.download.useDownloadDir", false);
             user_pref("accessibility.force_disabled", 1);
-          ''
-          # javascript
-          ''
             user_pref("browser.uiCustomization.state", "{\"placements\":{\"widget-overflow-fixed-list\":[],\"unified-extensions-area\":[\"_3c078156-979c-498b-8990-85f7987dd929_-browser-action\",\"atbc_easonwong-browser-action\",\"_762f9885-5a13-4abd-9c77-433dcd38b8fd_-browser-action\",\"_c2c003ee-bd69-42a2-b0e9-6f34222cb046_-browser-action\",\"_cb31ec5d-c49a-4e5a-b240-16c767444f62_-browser-action\"],\"nav-bar\":[\"back-button\",\"forward-button\",\"stop-reload-button\",\"customizableui-special-spring1\",\"urlbar-container\",\"customizableui-special-spring2\",\"save-to-pocket-button\",\"unified-extensions-button\"],\"toolbar-menubar\":[\"menubar-items\"],\"TabsToolbar\":[\"userchrome-toggle-extended_n2ezr_ru-browser-action\",\"ublock0_raymondhill_net-browser-action\",\"dearrow_ajay_app-browser-action\",\"sponsorblocker_ajay_app-browser-action\",\"magnolia_12_34-browser-action\",\"customizableui-special-spring8\",\"fullscreen-button\",\"screenshot-button\",\"firefox-view-button\",\"downloads-button\",\"tabbrowser-tabs\",\"new-tab-button\",\"alltabs-button\"],\"PersonalToolbar\":[\"import-button\",\"personal-bookmarks\"]},\"seen\":[\"ublock0_raymondhill_net-browser-action\",\"_3c078156-979c-498b-8990-85f7987dd929_-browser-action\",\"sponsorblocker_ajay_app-browser-action\",\"developer-button\",\"atbc_easonwong-browser-action\",\"magnolia_12_34-browser-action\",\"userchrome-toggle-extended_n2ezr_ru-browser-action\",\"_762f9885-5a13-4abd-9c77-433dcd38b8fd_-browser-action\",\"_c2c003ee-bd69-42a2-b0e9-6f34222cb046_-browser-action\",\"_cb31ec5d-c49a-4e5a-b240-16c767444f62_-browser-action\",\"dearrow_ajay_app-browser-action\"],\"dirtyAreaCache\":[\"unified-extensions-area\",\"nav-bar\",\"PersonalToolbar\",\"TabsToolbar\",\"toolbar-menubar\"],\"currentVersion\":20,\"newElementCount\":10}");
             user_pref("browser.theme.toolbar-theme", 0);
             user_pref("browser.theme.content-theme", 0);

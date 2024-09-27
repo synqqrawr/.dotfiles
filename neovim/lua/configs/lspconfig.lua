@@ -70,159 +70,122 @@ require("nvchad.lsp").diagnostic_config()
 local lspconfig = require("lspconfig")
 
 local servers = {
-  "basedpyright",
-  -- "clangd",
-  "svelte",
-  "emmet_ls",
-  "tailwindcss",
-  -- "marksman",
+  basedpyright = {},
+  clangd = {
+    on_attach = function(c, b)
+      c.server_capabilities.signatureHelpProvider = false
+      on_attach(c, b)
+    end,
+  },
+  svelte = {},
+  emmet_ls = {},
+  tailwindcss = {},
+  nil_ls = {
+    settings = {
+      ["nil"] = {
+        nix = { flake = { autoArchive = true } },
+      },
+    },
+  },
+  nixd = {
+    on_attach = function(c, b)
+      c.server_capabilities.semanticTokensProvider = nil
+      on_attach(c, b)
+    end,
+  },
+  markdown_oxide = {
+    on_attach = function(c, b)
+      on_attach(c, b)
+
+      vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
+
+      -- setup Markdown Oxide daily note commands
+      if c.name == "markdown_oxide" then
+        vim.api.nvim_create_user_command("Daily", function(args)
+          local input = args.args
+
+          vim.lsp.buf.execute_command({ command = "jump", arguments = { input } })
+        end, { desc = "Open daily note", nargs = "*" })
+      end
+    end,
+    capabilities = vim.tbl_deep_extend("force", capabilities, {
+      workspace = {
+        didChangeWatchedFiles = {
+          dynamicRegistration = true,
+        },
+      },
+    }),
+  },
+  rust_analyzer = {
+    settings = {
+      ["rust-analyzer"] = {
+        cargo = {
+          allFeatures = true,
+          loadOutDirsFromCheck = true,
+          runBuildScripts = true,
+        },
+        check = {
+          command = "clippy",
+          allFeatures = true,
+          extraArgs = {
+            "--",
+            "-W clippy::pedantic",
+            "-W clippy::nursery",
+            "-W clippy::unwrap_used",
+            "-W clippy::expect_used",
+          },
+        },
+        procMacro = {
+          enable = true,
+          ignored = {
+            ["async-trait"] = { "async_trait" },
+            ["napi-derive"] = { "napi" },
+            ["async-recursion"] = { "async_recursion" },
+          },
+        },
+      },
+    },
+  },
+  lua_ls = {
+    settings = {
+      Lua = {
+        hint = {
+          enable = true,
+          -- arrayIndex = "Disable",
+        },
+        runtime = {
+          pathStrict = true,
+        },
+        completion = {
+          callSnippet = "Both",
+        },
+        diagnostics = {
+          globals = {
+            "vim",
+          },
+        },
+        workspace = {
+          maxPreload = 100000,
+          preloadFileSize = 10000,
+          checkThirdParty = false,
+        },
+      },
+    },
+  },
+  cssls = {},
+  ruff_lsp = {
+    on_attach = function(c, b)
+      on_attach(c, b)
+      c.server_capabilities.hoverProvider = false
+    end,
+  },
+  -- marksman = {},
 }
 
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup({
-    on_attach = on_attach,
-    on_init = on_init,
-    capabilities = capabilities,
-  })
+for name, opts in pairs(servers) do
+  opts.on_init = opts.on_init and opts.on_init or on_init
+  opts.on_attach = opts.on_attach and opts.on_attach or on_attach
+  opts.capabilities = opts.capabilities and opts.capabilities or capabilities
+
+  require("lspconfig")[name].setup(opts)
 end
-
-require("lspconfig")["clangd"].setup({
-  on_attach = function(client, bufnr)
-    client.server_capabilities.signatureHelpProvider = false
-    on_attach(client, bufnr)
-  end,
-  on_init = on_init,
-  capabilities = capabilities,
-})
-
-require("lspconfig")["nil_ls"].setup({
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-
-  settings = {
-    ["nil"] = {
-      nix = { flake = { autoArchive = true } },
-    },
-  },
-})
-
-require("lspconfig")["nixd"].setup({
-  on_attach = on_attach,
-  on_init = function(client, _)
-    on_init(client, _)
-
-    client.server_capabilities.semanticTokensProvider = nil
-  end,
-  capabilities = capabilities,
-})
-
-require("lspconfig")["markdown_oxide"].setup({
-  on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
-
-    -- vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave", "CursorHold", "LspAttach" }, {
-    --   buffer = bufnr,
-    --   callback = vim.lsp.codelens.refresh,
-    -- })
-    vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
-
-    -- setup Markdown Oxide daily note commands
-    if client.name == "markdown_oxide" then
-      vim.api.nvim_create_user_command("Daily", function(args)
-        local input = args.args
-
-        vim.lsp.buf.execute_command({ command = "jump", arguments = { input } })
-      end, { desc = "Open daily note", nargs = "*" })
-    end
-  end,
-  on_init = on_init,
-  capabilities = vim.tbl_deep_extend("force", capabilities, {
-    workspace = {
-      didChangeWatchedFiles = {
-        dynamicRegistration = true,
-      },
-    },
-  }),
-})
-
-require("lspconfig")["rust_analyzer"].setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
-  on_init = on_init,
-  settings = {
-    ["rust-analyzer"] = {
-      cargo = {
-        allFeatures = true,
-        loadOutDirsFromCheck = true,
-        runBuildScripts = true,
-      },
-      check = {
-        command = "clippy",
-        allFeatures = true,
-        extraArgs = {
-          "--",
-          "-W clippy::pedantic",
-          "-W clippy::nursery",
-          "-W clippy::unwrap_used",
-          "-W clippy::expect_used",
-        },
-      },
-      procMacro = {
-        enable = true,
-        ignored = {
-          ["async-trait"] = { "async_trait" },
-          ["napi-derive"] = { "napi" },
-          ["async-recursion"] = { "async_recursion" },
-        },
-      },
-    },
-  },
-})
-
-require("lspconfig")["lua_ls"].setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
-  on_init = on_init,
-  settings = {
-    Lua = {
-      hint = {
-        enable = true,
-        -- arrayIndex = "Disable",
-      },
-      runtime = {
-        pathStrict = true,
-      },
-      completion = {
-        callSnippet = "Both",
-      },
-      diagnostics = {
-        globals = {
-          "vim",
-        },
-      },
-      workspace = {
-        maxPreload = 100000,
-        preloadFileSize = 10000,
-        checkThirdParty = false,
-      },
-    },
-  },
-})
-
-require("lspconfig")["cssls"].setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
-  on_init = on_init,
-})
-
-require("lspconfig")["ruff_lsp"].setup({
-  capabilities = capabilities,
-  on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
-
-    -- Disable hover in favor of Pyright
-    client.server_capabilities.hoverProvider = false
-  end,
-  on_init = on_init,
-})
