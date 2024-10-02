@@ -2,20 +2,27 @@
 local M = {}
 local utils = require("nvchad.stl.utils")
 
-M.ui = {
-  theme = "everblush",
-  nvdash = {
-    load_on_startup = true,
-    buttons = {
-      { "  Find File", "Spc f f", [[lua require("mini.pick").builtin.files({ tool = "rg" })]] },
-      { "󰈚  Recent Files", "Spc f o", [[lua require("mini.extra").pickers.oldfiles({ tool = "rg" })]] },
-      { "󰈭  Find Word", "Spc f g", [[lua require("mini.pick").builtin.grep_live({ tool = "rg" })]] },
-      { "", "", "" },
-      { "", "", "" },
-      { "", "", "" },
+M.nvdash = {
+  load_on_startup = true,
+  buttons = {
+    { txt = "  Find File", keys = "Spc f f", cmd = [[lua require("mini.pick").builtin.files({ tool = "rg" })]] },
+    {
+      txt = "󰈚  Recent Files",
+      keys = "Spc f o",
+      cmd = [[lua require("mini.extra").pickers.oldfiles({ tool = "rg" })]],
+    },
+    {
+      txt = "󰈭  Find Word",
+      keys = "Spc f g",
+      cmd = [[lua require("mini.pick").builtin.grep_live({ tool = "rg" })]],
     },
   },
+}
+
+M.ui = {
   statusline = {
+    theme = "minimal",
+    separator_style = "round",
     order = {
       "mode",
       "file",
@@ -43,6 +50,10 @@ M.ui = {
       end,
     },
   },
+}
+
+M.base46 = {
+  theme = "everblush",
   hl_override = {
     DiffAdd = { fg = "green" },
     DiffModified = { fg = "yellow" },
@@ -60,10 +71,14 @@ M.ui = {
 
     MiniNotifyNormal = { link = "Normal" },
 
+    MiniPickBorderText = { bg = "darker_black", fg = "green" },
     MiniPickPrompt = { bg = "darker_black", fg = "green" },
     MiniPickHeader = { bg = "darker_black" },
     MiniPickBorderBusy = { bg = "darker_black", fg = "darker_black" },
     MiniPickMatchRanges = { fg = "purple" },
+
+    MiniFilesTitle = { bg = "darker_black", fg = "grey" },
+    MiniFilesTitleFocused = { bg = "darker_black", fg = "white" },
   },
 }
 
