@@ -74,6 +74,14 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    colorizer = {
+      url = "github:nutsalhan87/nix-colorizer";
+    };
+
+    blink = {
+      url = "github:Saghen/blink.cmp";
+    };
   };
 
   outputs =

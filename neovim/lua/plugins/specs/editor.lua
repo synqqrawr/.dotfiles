@@ -1,4 +1,5 @@
 return {
+  "nvim-lua/plenary.nvim",
   {
     "nvim-treesitter/nvim-treesitter",
     version = false, -- last release is way too old and doesn't work on Windows
@@ -330,5 +331,27 @@ return {
   {
     "windwp/nvim-ts-autotag",
     opts = true,
+  },
+  {
+    "nvchad/minty",
+    keys = {
+      {
+        "<leader>ms",
+        function()
+          require("minty.shades").open()
+        end,
+        desc = "Minty: Open shades",
+      },
+      {
+        "<leader>mh",
+        function()
+          require("minty.huefy").open()
+        end,
+        desc = "Minty: Open huefy",
+      },
+    },
+    dependencies = {
+      "nvchad/volt",
+    },
   },
 }

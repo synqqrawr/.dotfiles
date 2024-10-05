@@ -87,6 +87,7 @@ local servers = {
       },
     },
   },
+  ts_ls = {},
   nixd = {
     on_attach = function(c, b)
       c.server_capabilities.semanticTokensProvider = nil

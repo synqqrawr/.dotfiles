@@ -12,7 +12,8 @@ return {
     },
   },
   {
-    "hrsh7th/nvim-cmp",
+    "yioneko/nvim-cmp",
+    branch = "perf-up",
     opts = function()
       local cmp = require("cmp")
       local has_words_before = function()

@@ -16,6 +16,22 @@ M.nvdash = {
       keys = "Spc f g",
       cmd = [[lua require("mini.pick").builtin.grep_live({ tool = "rg" })]],
     },
+    { txt = "󱥚  Themes", keys = "Spc t h", cmd = ":lua require('nvchad.themes').open()" },
+    { txt = "  Mappings", keys = "Spc c h", cmd = "NvCheatsheet" },
+
+    { txt = "─", hl = "NvDashLazy", no_gap = true, rep = true },
+
+    {
+      txt = function()
+        local stats = require("lazy").stats()
+        local ms = math.floor(stats.startuptime) .. " ms"
+        return "  Loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms
+      end,
+      hl = "NvDashLazy",
+      no_gap = true,
+    },
+
+    { txt = "─", hl = "NvDashLazy", no_gap = true, rep = true },
   },
 }
 
@@ -53,7 +69,7 @@ M.ui = {
 }
 
 M.base46 = {
-  theme = "everblush",
+  theme = "pastelDark",
   hl_override = {
     DiffAdd = { fg = "green" },
     DiffModified = { fg = "yellow" },

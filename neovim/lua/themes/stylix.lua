@@ -1,0 +1,1 @@
+/nix/store/v0hz7kix293387pj6x922svvqwsmrmr6-home-manager-files/.config/nvim/lua/themes/stylix.lua

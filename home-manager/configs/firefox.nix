@@ -20,14 +20,13 @@
           "wikipedia@search.mozilla.org"
         ];
         Install = [
-          "https://addons.mozilla.org/firefox/downloads/file/4290466/ublock_origin-1.58.0.xpi"
-          "https://addons.mozilla.org/firefox/downloads/file/4308094/sponsorblock-5.7.xpi"
+          "https://addons.mozilla.org/firefox/downloads/file/4359936/ublock_origin-1.60.0.xpi"
+          "https://addons.mozilla.org/firefox/downloads/file/4360577/sponsorblock-5.9.3.xpi"
           "https://addons.mozilla.org/firefox/downloads/file/4246774/sidebery-5.2.0.xpi"
-          "https://addons.mozilla.org/firefox/downloads/file/4308076/return_youtube_dislikes-3.0.0.16.xpi"
-          "https://addons.mozilla.org/firefox/downloads/file/4299481/indie_wiki_buddy-3.8.0.xpi"
+          "https://addons.mozilla.org/firefox/downloads/file/4342747/return_youtube_dislikes-3.0.0.17.xpi"
+          "https://addons.mozilla.org/firefox/downloads/file/4340783/indie_wiki_buddy-3.10.1.xpi"
           "https://github.com/bpc-clone/bpc_updates/releases/download/latest/bypass_paywalls_clean-latest.xpi"
-          "https://addons.mozilla.org/firefox/downloads/file/4307344/dearrow-1.6.4.xpi"
-          "https://addons.mozilla.org/firefox/downloads/file/4295256/userchrome_toggle_extended-1.5.xpi"
+          "https://addons.mozilla.org/firefox/downloads/file/4341014/userchrome_toggle_extended-2.0.1.xpi"
         ];
       };
       "3rdparty".Extensions."uBlock0@raymondhill.net" = {
@@ -295,6 +294,12 @@
             user_pref("shyfox.larger.context.menu", true);
             user_pref("shyfox.enable.context.menu.icons", true);
             user_pref("browser.startup.page", 3); // 0102
+
+            user_pref("cookiebanners.service.mode", 0); // I'm using Easylist cookie so it should be fine :D
+            user_pref("cookiebanners.service.mode.privateBrowsing", 0);
+            user_pref("browser.sessionstore.restore_pinned_tabs_on_demand", true);
+
+            user_pref("gfx.webrender.all", true);
 
             user_pref("browser.download.useDownloadDir", false);
             user_pref("accessibility.force_disabled", 1);
