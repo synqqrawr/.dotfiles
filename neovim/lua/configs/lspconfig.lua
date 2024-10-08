@@ -27,10 +27,6 @@ local on_attach = function(client, bufnr)
 end
 
 local on_init = function(client, _)
-  if client.supports_method("textDocument/semanticTokens") then
-    client.server_capabilities.semanticTokensProvider = nil
-  end
-
   vim.b.inlay_hints_enabled = true
   vim.lsp.inlay_hint.enable(true)
   vim.api.nvim_create_autocmd("InsertEnter", {

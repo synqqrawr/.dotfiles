@@ -31,9 +31,10 @@
     ./configs/yazi.nix
     ./configs/cava.nix
     ./configs/ags.nix
-    ./configs/gnome.nix
+    # ./configs/gnome.nix
     ./configs/fuzzel.nix
     ./configs/spotify.nix
+    ./configs/btop.nix
 
     # ---
     # pkgs
@@ -64,10 +65,6 @@
   #     ];
   #   })
   # ];
-
-  home.packages = with pkgs; [
-    inputs.blink.packages.${system}.blink-cmp
-  ];
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";

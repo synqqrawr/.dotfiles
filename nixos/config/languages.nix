@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   environment.systemPackages = with pkgs; [
     # nix
@@ -7,10 +7,7 @@
     nixfmt-rfc-style
 
     # rust
-    cargo
-    rustc
-    rustfmt
-    rustPackages.clippy
+    inputs.fenix.packages.x86_64-linux.default.toolchain
     rust-analyzer
 
     # c

@@ -79,8 +79,8 @@
       url = "github:nutsalhan87/nix-colorizer";
     };
 
-    blink = {
-      url = "github:Saghen/blink.cmp";
+    fenix = {
+      url = "github:nix-community/fenix";
     };
   };
 

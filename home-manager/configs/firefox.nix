@@ -2,7 +2,6 @@
   inputs,
   lib,
   pkgs,
-  osConfig,
   ...
 }:
 {
@@ -47,6 +46,51 @@
             "en.wikipedia.org##+js(trusted-set-cookie, enwikimwclientpreferences, skin-theme-clientpref-night%2Cvector-feature-limited-width-clientpref-1%2Cvector-feature-custom-font-size-clientpref-1%2Cvector-feature-appearance-pinned-clientpref-0)"
             "ja.wikipedia.org##+js(trusted-set-cookie, jawikimwclientpreferences, skin-theme-clientpref-night%2Cvector-feature-limited-width-clientpref-1%2Cvector-feature-custom-font-size-clientpref-1%2Cvector-feature-appearance-pinned-clientpref-0)"
             "searx.be##+js(trusted-set-cookie, categories, general)"
+
+            ''
+              ! YT Homepage and Subscriptions (Grid View) - Hide the Shorts section
+              youtube.com##[is-shorts]
+              ! YT Menu - Hide the Shorts button
+              www.youtube.com###guide [title="Shorts"], .ytd-mini-guide-entry-renderer[title="Shorts"]
+              ! YT Search - Hide Shorts
+              www.youtube.com##ytd-search ytd-video-renderer:has([overlay-style="SHORTS"])
+              ! YT Search, Channels, Subscriptions (List View) and Sidebar/Below Player Recommendations - Hide the Shorts sections
+              www.youtube.com##ytd-reel-shelf-renderer
+              ! YT Channels - Hide the Shorts tab
+              www.youtube.com##[tab-title="Shorts"]
+              ! YT Subscriptions - Hide Shorts - Grid View
+              www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-grid-video-renderer:has([overlay-style="SHORTS"])
+              ! YT Subscriptions - Hide Shorts - List View
+              www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-video-renderer:has([overlay-style="SHORTS"])
+              ! YT Subscriptions - New Layout - Hide Shorts
+              www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer:has([overlay-style="SHORTS"])
+              ! YT Sidebar - Hide Shorts
+              www.youtube.com###related ytd-compact-video-renderer:has([overlay-style="SHORTS"])
+
+              ! YT Mobile - Hide the Shorts Menu button
+              m.youtube.com##ytm-pivot-bar-item-renderer:has(>.pivot-shorts)
+              ! YT Mobile - Hide the Shorts sections
+              m.youtube.com##ytm-reel-shelf-renderer
+              m.youtube.com##ytm-rich-section-renderer:has([d^="M17.77,10.32l-1.2"])
+              ! YT Mobile - Hide Shorts in search results
+              m.youtube.com##ytm-search ytm-video-with-context-renderer:has([data-style="SHORTS"])
+              ! YT Mobile - Hide the Shorts button on Channels
+              m.youtube.com##[tab-title="Shorts"]
+            ''
+            ''
+              ! YT Search - keep only videos (no shorts)
+              youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(:not(ytd-video-renderer,yt-showing-results-for-renderer,[icon-name="promo-full-height:EMPTY_SEARCH"]),ytd-video-renderer:has([aria-label="Shorts"])),ytd-secondary-search-container-renderer
+
+              ! YT Search - keep only videos (no shorts) and channels
+              youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(:not(ytd-video-renderer,ytd-channel-renderer,yt-showing-results-for-renderer,[icon-name="promo-full-height:EMPTY_SEARCH"]),ytd-video-renderer:has([aria-label="Shorts"])),ytd-secondary-search-container-renderer
+
+              ! YT Search - keep only videos (no shorts), channels and playlists
+              youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(:not(ytd-video-renderer,ytd-channel-renderer, ytd-playlist-renderer,yt-showing-results-for-renderer,[icon-name="promo-full-height:EMPTY_SEARCH"]),ytd-video-renderer:has([aria-label="Shorts"])),ytd-secondary-search-container-renderer
+            ''
+            ''
+              ! YT Sidebar - Hide videos based on their titles
+              youtube.com###related ytd-compact-video-renderer:has(#video-title:is([title*="mrbeast"i]))
+            ''
           ];
           hostnameSwitchesString = lib.concatMapStrings (x: x + "\n") [
             "no-large-media: behind-the-scene false"

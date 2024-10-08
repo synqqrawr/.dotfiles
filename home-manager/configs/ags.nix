@@ -1,7 +1,7 @@
 {
   inputs,
-  config,
   pkgs,
+  config,
   ...
 }:
 {
@@ -14,6 +14,11 @@
       webkitgtk
       accountsservice
     ];
+  };
+
+  home.file."${config.xdg.configHome}/ags" = {
+    recursive = true;
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/ags";
   };
 
   home.packages = with pkgs; [
@@ -35,30 +40,6 @@
     pavucontrol
     networkmanager
     gtk3
+    libnotify
   ];
-
-  home.file = {
-    "${config.xdg.configHome}/ags" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/ags";
-      recursive = true;
-    };
-    ".config/ags/scss/colors.scss".text = with config.lib.stylix.colors; ''
-      $base00: #${base00};
-      $base01: #${base01};
-      $base02: #${base02};
-      $base03: #${base03};
-      $base04: #${base04};
-      $base05: #${base05};
-      $base06: #${base06};
-      $base07: #${base07};
-      $base08: #${base08};
-      $base09: #${base09};
-      $base0A: #${base0A};
-      $base0B: #${base0B};
-      $base0C: #${base0C};
-      $base0D: #${base0D};
-      $base0E: #${base0E};
-      $base0F: #${base0F};
-    '';
-  };
 }

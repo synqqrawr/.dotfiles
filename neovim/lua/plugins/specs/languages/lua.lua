@@ -3,7 +3,7 @@ return {
     "folke/lazydev.nvim",
     init = function()
       vim.api.nvim_create_autocmd("User", {
-        group = vim.api.nvim_create_augroup("LoadLazyFile_lazydev", { clear = true }),
+        group = vim.api.nvim_create_augroup("LoadLazyFilerlazydev", { clear = true }),
         pattern = "LazyFile",
         callback = function()
           local function load_lazydev()
@@ -30,14 +30,4 @@ return {
     },
   },
   { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
-  { -- optional completion source for require statements and module annotations
-    "nvim-cmp",
-    opts = function(_, opts)
-      opts.sources = opts.sources or {}
-      table.insert(opts.sources, {
-        name = "lazydev",
-        group_index = 0, -- set group index to 0 to skip loading LuaLS completions
-      })
-    end,
-  },
 }

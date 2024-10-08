@@ -2,7 +2,6 @@ return {
   {
     "OXY2DEV/markview.nvim",
     ft = "markdown",
-    branch = "dev",
     init = function()
       vim.api.nvim_create_autocmd("User", {
         group = vim.api.nvim_create_augroup("LoadLazyFile_markview", { clear = true }),

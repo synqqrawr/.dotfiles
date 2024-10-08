@@ -29,6 +29,7 @@ return {
           "typescript",
           "css",
           "html",
+          "latex",
 
           "markdown",
           "markdown_inline",
@@ -331,27 +332,5 @@ return {
   {
     "windwp/nvim-ts-autotag",
     opts = true,
-  },
-  {
-    "nvchad/minty",
-    keys = {
-      {
-        "<leader>ms",
-        function()
-          require("minty.shades").open()
-        end,
-        desc = "Minty: Open shades",
-      },
-      {
-        "<leader>mh",
-        function()
-          require("minty.huefy").open()
-        end,
-        desc = "Minty: Open huefy",
-      },
-    },
-    dependencies = {
-      "nvchad/volt",
-    },
   },
 }

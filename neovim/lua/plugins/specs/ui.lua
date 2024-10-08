@@ -74,4 +74,26 @@ return {
       end, 0)
     end,
   },
+  {
+    "nvchad/minty",
+    keys = {
+      {
+        "<leader>ms",
+        function()
+          require("minty.shades").open()
+        end,
+        desc = "Minty: Open shades",
+      },
+      {
+        "<leader>mh",
+        function()
+          require("minty.huefy").open()
+        end,
+        desc = "Minty: Open huefy",
+      },
+    },
+    dependencies = {
+      "nvchad/volt",
+    },
+  },
 }

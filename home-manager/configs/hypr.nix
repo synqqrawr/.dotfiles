@@ -161,6 +161,7 @@
           "SUPER SHIFT, j, movewindow, d"
           "SUPER SHIFT, k, movewindow, u"
           "SUPER SHIFT, l, movewindow, r"
+          "SUPER, S, exec, ~/.config/ags/scripts/grimblast.sh --freeze copy area"
 
           # "SUPER SHIFT, D, exec, grimblast copy area"
           # "SUPER SHIFT_ALT, D, exec, grimblast --freeze copy area"
