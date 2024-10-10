@@ -29,17 +29,9 @@
     ./configs/git.nix
     ./configs/gtk.nix
     ./configs/yazi.nix
-    ./configs/cava.nix
     ./configs/ags.nix
-    # ./configs/gnome.nix
     ./configs/fuzzel.nix
-    ./configs/spotify.nix
-    ./configs/btop.nix
-
-    # ---
-    # pkgs
-    # ---
-    inputs.spicetify-nix.homeManagerModules.default
+    ./configs/cli.nix
   ];
 
   # TODO: Set your username

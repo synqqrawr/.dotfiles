@@ -69,7 +69,7 @@ M.ui = {
 }
 
 M.base46 = {
-  theme = "everblush",
+  theme = "yoru",
   hl_override = {
     DiffAdd = { fg = "green" },
     DiffModified = { fg = "yellow" },

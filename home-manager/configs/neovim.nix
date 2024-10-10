@@ -1,17 +1,17 @@
 {
   pkgs,
   config,
-  osConfig,
-  inputs,
+  # osConfig,
+  # inputs,
   ...
 }:
-let
-  colorizer = inputs.colorizer;
-  darken = hex: percent: colorizer.oklchToHex (colorizer.darken (colorizer.hexToOklch hex) percent);
-  lighten = hex: percent: colorizer.oklchToHex (colorizer.lighten (colorizer.hexToOklch hex) percent);
-
-  darker_black = darken "#${config.lib.stylix.colors.base01-hex}" 0;
-in
+# let
+#   colorizer = inputs.colorizer;
+#   darken = hex: percent: colorizer.oklchToHex (colorizer.darken (colorizer.hexToOklch hex) percent);
+#   lighten = hex: percent: colorizer.oklchToHex (colorizer.lighten (colorizer.hexToOklch hex) percent);
+#
+#   darker_black = darken "#${config.lib.stylix.colors.base01-hex}" 0;
+# in
 {
   home.file."${config.xdg.configHome}/nvim" = {
     recursive = true;

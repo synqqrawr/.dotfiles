@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  imports = [ ./themes/everblush.nix ];
+  imports = [ ./themes/yoru.nix ];
   stylix = {
     enable = true;
     fonts = {

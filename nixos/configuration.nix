@@ -120,6 +120,13 @@
       nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
     };
 
+  documentation = {
+    enable = true;
+    doc.enable = false;
+    man.enable = true;
+    dev.enable = false;
+  };
+
   # FIXME: Add the rest of your current configuration
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -141,7 +148,7 @@
   services.xserver.displayManager.gdm.enable = true;
   # services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
   programs.dconf.enable = true;
 
   # Enable sound.
@@ -189,50 +196,33 @@
   programs.zsh.enable = true;
 
   environment.systemPackages = with pkgs; [
-    vim
     wget
-    firefox
     fzf
     lsd
     keepassxc
     (obsidian.overrideAttrs (e: rec {
-      # Add arguments to the .desktop entry
       desktopItem = e.desktopItem.override (d: {
         exec = "${d.exec} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime";
       });
-
-      # Update the install script to use the new .desktop entry
       installPhase = builtins.replaceStrings [ "${e.desktopItem}" ] [ "${desktopItem}" ] e.installPhase;
     }))
-
     sqlite
     gcc
     ripgrep
-
     tree-sitter
     zip
     unzip
     p7zip
     lazygit
-
     mpv
     killall
-
-    tor-browser
     vesktop
-    bat
     feh
-
-    freetube
-    mullvad-browser
     brave
-
     ddcutil
     jq
     grim
-
     age
-
   ];
 
   programs.gnupg.agent.enable = true;

@@ -1,19 +1,20 @@
 return {
-  {
-    "altermo/ultimate-autopair.nvim",
-    opts = {
-      bs = {
-        indent_ignore = true,
-      },
-    },
-    event = {
-      "InsertEnter",
-      "CmdlineEnter",
-    },
-  },
+  -- {
+  --   "altermo/ultimate-autopair.nvim",
+  --   opts = {
+  --     bs = {
+  --       indent_ignore = true,
+  --     },
+  --   },
+  --   event = {
+  --     "InsertEnter",
+  --     "CmdlineEnter",
+  --   },
+  -- },
   {
     "saghen/blink.cmp",
-    lazy = false, -- lazy loading handled internally
+    event = "InsertEnter",
+    -- lazy = false, -- lazy loading handled internally
     -- optional: provides snippets for the snippet source
     dependencies = "rafamadriz/friendly-snippets",
 
@@ -23,27 +24,27 @@ return {
     build = "cargo build --release",
 
     opts = {
-      -- highlight = {
-      --   -- sets the fallback highlight groups to nvim-cmp's highlight groups
-      --   -- useful for when your theme doesn't support blink.cmp
-      --   -- will be removed in a future release, assuming themes add support
-      --   use_nvim_cmp_as_default = true,
-      -- },
-      -- -- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-      -- -- adjusts spacing to ensure icons are aligned
-      -- nerd_font_variant = "normal",
-      --
-      -- -- experimental auto-brackets support
-      -- -- accept = { auto_brackets = { enabled = true } },
-      --
-      -- -- experimental signature help support
-      -- trigger = { signature_help = { enabled = true } },
-      --
-      -- keymap = {
-      --   accept = "<C-y>",
-      --   select_prev = { "<Up>", "<C-k>" },
-      --   select_next = { "<Down>", "<C-j>" },
-      -- },
+      highlight = {
+        -- sets the fallback highlight groups to nvim-cmp's highlight groups
+        -- useful for when your theme doesn't support blink.cmp
+        -- will be removed in a future release, assuming themes add support
+        -- use_nvim_cmp_as_default = true,
+      },
+      -- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+      -- adjusts spacing to ensure icons are aligned
+      nerd_font_variant = "normal",
+
+      -- experimental auto-brackets support
+      -- accept = { auto_brackets = { enabled = true } },
+
+      -- experimental signature help support
+      trigger = { signature_help = { enabled = true } },
+
+      keymap = {
+        accept = "<C-y>",
+        select_prev = { "<Up>", "<C-k>" },
+        select_next = { "<Down>", "<C-j>" },
+      },
     },
   },
   {

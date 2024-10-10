@@ -132,10 +132,14 @@
         border_size = 0;
       };
       decoration = {
-        rounding = 8;
-        shadow_range = 12;
+        rounding = 10;
+        shadow_range = 10;
+        shadow_render_power = 2;
         dim_inactive = true;
         dim_strength = 0.3;
+      };
+      render = {
+        direct_scanout = true;
       };
       bindm = [
         "SUPER, mouse:272, movewindow"

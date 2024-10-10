@@ -11,7 +11,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # stylix
-    stylix.url = "github:danth/stylix";
+    stylix.url = "github:trueNAHO/stylix/stylix-downgrade-and-lock-tinted-kitty-input";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
     stylix.inputs.home-manager.follows = "home-manager";
 
@@ -62,23 +62,15 @@
       inputs.nixpkgs.follows = "hyprland/nixpkgs";
       inputs.systems.follows = "hyprland/systems";
     };
-
     hyprpaper = {
       url = "github:hyprwm/hyprpaper";
       inputs.hyprlang.follows = "hyprland/hyprlang";
       inputs.nixpkgs.follows = "hyprland/nixpkgs";
       inputs.systems.follows = "hyprland/systems";
     };
-
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     colorizer = {
       url = "github:nutsalhan87/nix-colorizer";
     };
-
     fenix = {
       url = "github:nix-community/fenix";
     };
