@@ -23,7 +23,7 @@
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
-    ./home-manager.nix
+    # ./home-manager.nix
     ./stylix
     ./config/hyprland.nix
     ./fonts.nix

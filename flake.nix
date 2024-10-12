@@ -43,6 +43,7 @@
     {
       self,
       nixpkgs,
+      home-manager,
       ...
     }@inputs:
     let
@@ -51,10 +52,10 @@
     {
       # Your custom packages
       # Accessible through 'nix build', 'nix shell', etc
-      packages = import ./pkgs nixpkgs.legacyPackages."x86_64-linux";
+      packages = import ./pkgs nixpkgs.legacyPackages.x86_64-linux;
       # Formatter for your nix files, available through 'nix fmt'
       # Other options beside 'alejandra' include 'nixpkgs-fmt'
-      formatter = system: nixpkgs.legacyPackages."x86_64-linux".alejandra;
+      formatter = system: nixpkgs.legacyPackages.x86_64-linux.alejandra;
 
       # Your custom packages and modifications, exported as overlays
       overlays = import ./overlays { inherit inputs; };
@@ -80,6 +81,28 @@
 
             # stylix
             inputs.stylix.nixosModules.stylix
+          ];
+        };
+      };
+      homeConfigurations = {
+        "async@nixos" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = {
+            inherit inputs outputs;
+          };
+          # useGlobalPkgs = true;
+          # backupFileExtension = "bak";
+          modules = [
+            # > Our main home-manager configuration file <
+            ./home-manager/home.nix
+            inputs.stylix.homeManagerModules.stylix
+            ./nixos/stylix/default.nix
+            {
+              stylix.targets.kde.enable = false;
+              stylix.targets.neovim.enable = false;
+              stylix.targets.lazygit.enable = false;
+            }
+
           ];
         };
       };
