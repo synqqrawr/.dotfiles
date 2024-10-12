@@ -32,7 +32,7 @@
     ./config/gaming.nix
     ./config/keyboard.nix
     ./config/power.nix
-    ./config/kernel.nix
+    ./config/bootloader.nix
   ];
 
   nixpkgs = {
