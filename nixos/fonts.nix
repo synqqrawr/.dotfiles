@@ -2,24 +2,24 @@
 {
   fonts = {
     fontDir.enable = true;
-    packages = with pkgs; [
+    packages = [
       # noto-fonts
-      noto-fonts-cjk
+      pkgs.noto-fonts-cjk
       # noto-fonts-emoji
       # unifont
       # ubuntu_font_family
-      (nerdfonts.override {
+      (pkgs.nerdfonts.override {
         fonts = [
           "NerdFontsSymbolsOnly"
           "SpaceMono"
         ];
       })
-      material-symbols
-      google-fonts
+      pkgs.material-symbols
+      pkgs.google-fonts
       # fira-code
       # fira-code-symbols
-      mplus-outline-fonts.githubRelease
-      jetbrains-mono
+      pkgs.mplus-outline-fonts.githubRelease
+      pkgs.jetbrains-mono
     ];
     fontconfig = {
       antialias = true;

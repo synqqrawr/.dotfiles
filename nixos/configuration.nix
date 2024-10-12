@@ -29,7 +29,6 @@
     ./fonts.nix
     ./config/languages.nix
     ./config/fcitx5.nix
-    ./config/gaming.nix
     ./config/keyboard.nix
     ./config/power.nix
     ./config/bootloader.nix
@@ -161,34 +160,34 @@
 
   programs.zsh.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    wget
-    fzf
-    lsd
-    keepassxc
-    (obsidian.overrideAttrs (e: rec {
+  environment.systemPackages = [
+    pkgs.wget
+    pkgs.fzf
+    pkgs.lsd
+    pkgs.keepassxc
+    (pkgs.obsidian.overrideAttrs (e: rec {
       desktopItem = e.desktopItem.override (d: {
         exec = "${d.exec} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime";
       });
       installPhase = builtins.replaceStrings [ "${e.desktopItem}" ] [ "${desktopItem}" ] e.installPhase;
     }))
-    sqlite
-    gcc
-    ripgrep
-    tree-sitter
-    zip
-    unzip
-    p7zip
-    lazygit
-    mpv
-    killall
-    vesktop
-    feh
-    brave
-    ddcutil
-    jq
-    grim
-    age
+    pkgs.sqlite
+    pkgs.gcc
+    pkgs.ripgrep
+    pkgs.tree-sitter
+    pkgs.zip
+    pkgs.unzip
+    pkgs.p7zip
+    pkgs.lazygit
+    pkgs.mpv
+    pkgs.killall
+    pkgs.vesktop
+    pkgs.feh
+    pkgs.brave
+    pkgs.ddcutil
+    pkgs.jq
+    pkgs.grim
+    pkgs.age
   ];
 
   programs.gnupg.agent.enable = true;

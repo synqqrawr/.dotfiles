@@ -1,12 +1,10 @@
 {
   pkgs,
   config,
-  osConfig,
-  inputs,
   ...
 }:
 {
-  home.packages = with pkgs; [ grimblast ];
+  home.packages = [ pkgs.grimblast ];
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -257,7 +255,7 @@
         ];
       };
     };
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     xdgOpenUsePortal = true;
   };
 

@@ -8,7 +8,7 @@
 
   programs.fuzzel.settings = {
     main = {
-      font = lib.mkForce "${osConfig.stylix.fonts.monospace.name}:size=17";
+      font = lib.mkForce "${osConfig.stylix.fonts.monospace.name}:size=12";
     };
   };
 }

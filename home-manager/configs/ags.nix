@@ -9,10 +9,10 @@
   imports = [ inputs.ags.homeManagerModules.default ];
   programs.ags = {
     enable = true;
-    extraPackages = with pkgs; [
-      gtksourceview
-      webkitgtk
-      accountsservice
+    extraPackages = [
+      pkgs.gtksourceview
+      pkgs.webkitgtk
+      pkgs.accountsservice
     ];
   };
 
@@ -21,24 +21,24 @@
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/ags";
   };
 
-  home.packages = with pkgs; [
-    matugen
-    swww
-    bun
-    dart-sass
-    gvfs
-    sassc
-    fd
-    brightnessctl
-    swww
-    slurp
-    wf-recorder
-    wl-clipboard
-    wayshot
-    swappy
-    hyprpicker
-    pavucontrol
-    gtk3
-    libnotify
+  home.packages = [
+    pkgs.matugen
+    pkgs.swww
+    pkgs.bun
+    pkgs.dart-sass
+    pkgs.gvfs
+    pkgs.sassc
+    pkgs.fd
+    pkgs.brightnessctl
+    pkgs.swww
+    pkgs.slurp
+    pkgs.wf-recorder
+    pkgs.wl-clipboard
+    pkgs.wayshot
+    pkgs.swappy
+    pkgs.hyprpicker
+    pkgs.pavucontrol
+    pkgs.gtk3
+    pkgs.libnotify
   ];
 }
