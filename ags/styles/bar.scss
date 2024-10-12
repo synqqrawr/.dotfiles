@@ -1,0 +1,74 @@
+@use "variables.scss" as *;
+
+window.Bar {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  color: $fg;
+  font-size: 1.1em;
+  font-weight: 500;
+  font-family: 'Geist', 'Noto Sans';
+
+  &>centerbox {
+    background-color: $bg;
+    margin: 5pt 300pt;
+    padding: 5pt;
+    border-radius: $radius;
+  }
+
+  button {
+    all: unset;
+  }
+
+  label {
+    transition: 200ms;
+    padding: 0 8px;
+    margin: 2px;
+    border-radius: $radius;
+    border: 1pt solid transparent;
+  }
+
+  .Workspace {
+    background-color: transparentize($fg, .8);
+    border-radius: 12px;
+    padding: $workspace-padding;
+    margin: 0 3pt;
+  }
+
+  .active {
+    background-color: $accent;
+    border-radius: 6.5px;
+    padding: calc(3pt + $workspace-padding) calc(8pt + $workspace-padding);
+  }
+
+  .occupied {
+    background-color: transparentize($fg, .5);
+    padding: calc(2pt + $workspace-padding);
+  }
+
+  .Media .Cover {
+    min-height: 1.2em;
+    min-width: 1.2em;
+    border-radius: $radius;
+    background-position: center;
+    background-size: contain;
+  }
+
+  .Battery {
+    padding: unset;
+    margin-right: 10px;
+  }
+
+  .Battery label {
+    padding: 0;
+    margin: 0;
+  }
+
+  .SysTray button {
+    margin: 0 5px;
+  }
+
+  .Wifi {
+    margin: 0 5px;
+  }
+}

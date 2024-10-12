@@ -2,8 +2,18 @@
   inputs,
   lib,
   pkgs,
+  config,
   ...
 }:
+let
+  C = config.lib.stylix.colors;
+  # Main highlight (bg)
+  M = C.base02;
+  # Highlight on the bg
+  F = C.base05;
+
+  searx = "searx.tiekoetter.com";
+in
 {
   programs.firefox = {
     package = inputs.nixpkgs-small.legacyPackages.x86_64-linux.firefox;
@@ -24,7 +34,7 @@
           "https://addons.mozilla.org/firefox/downloads/file/4246774/sidebery-5.2.0.xpi"
           "https://addons.mozilla.org/firefox/downloads/file/4342747/return_youtube_dislikes-3.0.0.17.xpi"
           "https://addons.mozilla.org/firefox/downloads/file/4340783/indie_wiki_buddy-3.10.1.xpi"
-          "https://github.com/bpc-clone/bpc_updates/releases/download/latest/bypass_paywalls_clean-latest.xpi"
+          "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-latest.xpi&inline=false&commit=50d859419f4d12d34a802178b06e27a29d0f067a"
           "https://addons.mozilla.org/firefox/downloads/file/4341014/userchrome_toggle_extended-2.0.1.xpi"
         ];
       };
@@ -210,15 +220,83 @@
 
             :root {
               --outline: 0;
+              color-scheme: dark dark;
+            }
+
+            html#main-window,
+            html#main-window > * {
+              --lwt-accent-color: #${M};
+              --lwt-text-color: #${F};
+              --arrowpanel-background: #${C.base02};
+              --arrowpanel-color: #${C.base05};
+              --arrowpanel-border-color: rgba(0, 0, 0, 0);
+              --toolbar-field-background-color: #${C.base03};
+              --toolbar-bgcolor: #${C.base03};
+              --toolbar-color: #${C.base05};
+              --toolbar-field-color: #${C.base05};
+              --toolbar-field-border-color: rgba(0, 0, 0, 0);
+              --toolbar-field-focus-background-color: #${C.base03};
+              --toolbar-field-focus-color: #${C.base05};
+              --toolbar-field-focus-border-color: rgba(0, 0, 0, 0);
+              --newtab-background-color: #${M};
+              --newtab-background-color-secondary: #${C.base00};
+              --newtab-text-primary-color: #${F};
+              --tab-loading-fill: #${C.base0C};
+              --tab-selected-bgcolor: rgba(${C.base04-rgb-r}, ${C.base04-rgb-g}, ${C.base04-rgb-b}, 0.7);
+              --tab-selected-textcolor: #${C.base00};
+              --lwt-tab-line-color: #${M};
+              --tabs-navbar-separator-color: rgba(0, 0, 0, 0);
+              --tabs-navbar-separator-style: none;
+              --chrome-content-separator-color: rgba(0, 0, 0, 0);;
+              --urlbarView-highlight-background: #${M};
+              --urlbarView-highlight-color: #${C.base00};
+              --sidebar-background-color: #${M};
+              --sidebar-text-color: #${C.base05};
+              --tabpanel-background-color: #${M};
+            }
+
+            #contentAreaContextMenu[showservicesmenu="true"],
+            #contentAreaContextMenu[showservicesmenu="true"] menupopup
+            {
+              --panel-background: var(--arrowpanel-background) !important;
+               --toolbar-field-focus-background-color: var(--arrowpanel-background) !important;
+              --panel-border-color: rgba(0, 0, 0, 0) !important;
+              
+              menu:where([_moz-menuactive="true"]:not([disabled="true"])), menuitem:where([_moz-menuactive="true"]:not([disabled="true"])) {
+                background-color: ${C.base04} !important;
+                color: ${C.base05} !important;
+              }
+            }
+
+            findbar {
+              background-color: var(--arrowpanel-background) !important;
+
+              .findbar-textbox {
+                background-color: #${C.base03} !important;
+              }
+
+              & > * {
+                color: #${C.base05} !important;
+              }
             }
           '';
         userContent =
           # css
           ''
             @import "${inputs.shyfox}/chrome/userContent.css";
+
+            @-moz-document regexp("^moz-extension://.*?/sidebar/sidebar.html") {
+              #root.root {
+                --toolbar-fg: #${F} !important;
+                --frame-fg: #${F} !important;
+                --toolbar-bg: #${M} !important;
+                --frame-bg: #${M} !important;
+                --tabs-activated-bg: #${C.base04} !important;
+              }
+            }
           '';
         search = {
-          default = "SearXNG";
+          default = "SearXNG (${searx})";
           force = true;
           engines = {
             "Brave" = {
@@ -288,10 +366,10 @@
               updateInterval = 24 * 60 * 60 * 1000; # every day
               definedAliases = [ "@hm" ];
             };
-            "SearXNG" = {
+            "SearXNG (${searx})" = {
               urls = [
                 {
-                  template = "https://searx.be/search";
+                  template = "https://${searx}/search";
                   params = [
                     {
                       name = "q";
@@ -332,8 +410,6 @@
             user_pref("network.trr.uri", "https://dns.nextdns.io/d12453"); // TRR/DoH
             user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
             user_pref("svg.context-properties.content.enabled", true);
-            user_pref("layout.css.color-mix.enabled", true);
-            user_pref("layout.css.light-dark.enabled", true);
             user_pref("layout.css.has-selector.enabled", true);
 
             user_pref("shyfox.larger.context.menu", true);
@@ -348,12 +424,12 @@
 
             user_pref("browser.download.useDownloadDir", false);
             user_pref("accessibility.force_disabled", 1);
-            user_pref("browser.uiCustomization.state", "{\"placements\":{\"widget-overflow-fixed-list\":[],\"unified-extensions-area\":[\"_3c078156-979c-498b-8990-85f7987dd929_-browser-action\",\"atbc_easonwong-browser-action\",\"_762f9885-5a13-4abd-9c77-433dcd38b8fd_-browser-action\",\"_c2c003ee-bd69-42a2-b0e9-6f34222cb046_-browser-action\",\"_cb31ec5d-c49a-4e5a-b240-16c767444f62_-browser-action\"],\"nav-bar\":[\"back-button\",\"forward-button\",\"stop-reload-button\",\"customizableui-special-spring1\",\"urlbar-container\",\"customizableui-special-spring2\",\"save-to-pocket-button\",\"unified-extensions-button\"],\"toolbar-menubar\":[\"menubar-items\"],\"TabsToolbar\":[\"userchrome-toggle-extended_n2ezr_ru-browser-action\",\"ublock0_raymondhill_net-browser-action\",\"dearrow_ajay_app-browser-action\",\"sponsorblocker_ajay_app-browser-action\",\"magnolia_12_34-browser-action\",\"customizableui-special-spring8\",\"fullscreen-button\",\"screenshot-button\",\"firefox-view-button\",\"downloads-button\",\"tabbrowser-tabs\",\"new-tab-button\",\"alltabs-button\"],\"PersonalToolbar\":[\"import-button\",\"personal-bookmarks\"]},\"seen\":[\"ublock0_raymondhill_net-browser-action\",\"_3c078156-979c-498b-8990-85f7987dd929_-browser-action\",\"sponsorblocker_ajay_app-browser-action\",\"developer-button\",\"atbc_easonwong-browser-action\",\"magnolia_12_34-browser-action\",\"userchrome-toggle-extended_n2ezr_ru-browser-action\",\"_762f9885-5a13-4abd-9c77-433dcd38b8fd_-browser-action\",\"_c2c003ee-bd69-42a2-b0e9-6f34222cb046_-browser-action\",\"_cb31ec5d-c49a-4e5a-b240-16c767444f62_-browser-action\",\"dearrow_ajay_app-browser-action\"],\"dirtyAreaCache\":[\"unified-extensions-area\",\"nav-bar\",\"PersonalToolbar\",\"TabsToolbar\",\"toolbar-menubar\"],\"currentVersion\":20,\"newElementCount\":10}");
-            user_pref("browser.theme.toolbar-theme", 0);
-            user_pref("browser.theme.content-theme", 0);
-            user_pref("browser.tabs.inTitlebar", 0);
-            user_pref("browser.uidensity", 0);
-            user_pref("extensions.activeThemeID", "firefox-compact-dark@mozilla.org");
+            // user_pref("browser.uiCustomization.state", "{\"placements\":{\"widget-overflow-fixed-list\":[],\"unified-extensions-area\":[\"_3c078156-979c-498b-8990-85f7987dd929_-browser-action\",\"atbc_easonwong-browser-action\",\"_762f9885-5a13-4abd-9c77-433dcd38b8fd_-browser-action\",\"_c2c003ee-bd69-42a2-b0e9-6f34222cb046_-browser-action\",\"_cb31ec5d-c49a-4e5a-b240-16c767444f62_-browser-action\"],\"nav-bar\":[\"back-button\",\"forward-button\",\"stop-reload-button\",\"customizableui-special-spring1\",\"urlbar-container\",\"customizableui-special-spring2\",\"save-to-pocket-button\",\"unified-extensions-button\"],\"toolbar-menubar\":[\"menubar-items\"],\"TabsToolbar\":[\"userchrome-toggle-extended_n2ezr_ru-browser-action\",\"ublock0_raymondhill_net-browser-action\",\"dearrow_ajay_app-browser-action\",\"sponsorblocker_ajay_app-browser-action\",\"magnolia_12_34-browser-action\",\"customizableui-special-spring8\",\"fullscreen-button\",\"screenshot-button\",\"firefox-view-button\",\"downloads-button\",\"tabbrowser-tabs\",\"new-tab-button\",\"alltabs-button\"],\"PersonalToolbar\":[\"import-button\",\"personal-bookmarks\"]},\"seen\":[\"ublock0_raymondhill_net-browser-action\",\"_3c078156-979c-498b-8990-85f7987dd929_-browser-action\",\"sponsorblocker_ajay_app-browser-action\",\"developer-button\",\"atbc_easonwong-browser-action\",\"magnolia_12_34-browser-action\",\"userchrome-toggle-extended_n2ezr_ru-browser-action\",\"_762f9885-5a13-4abd-9c77-433dcd38b8fd_-browser-action\",\"_c2c003ee-bd69-42a2-b0e9-6f34222cb046_-browser-action\",\"_cb31ec5d-c49a-4e5a-b240-16c767444f62_-browser-action\",\"dearrow_ajay_app-browser-action\"],\"dirtyAreaCache\":[\"unified-extensions-area\",\"nav-bar\",\"PersonalToolbar\",\"TabsToolbar\",\"toolbar-menubar\"],\"currentVersion\":20,\"newElementCount\":10}");
+            // user_pref("browser.theme.toolbar-theme", 0);
+            // user_pref("browser.theme.content-theme", 0);
+            // user_pref("browser.tabs.inTitlebar", 0);
+            // user_pref("browser.uidensity", 0);
+            // user_pref("extensions.activeThemeID", "firefox-compact-dark@mozilla.org");
 
           ''
         ];

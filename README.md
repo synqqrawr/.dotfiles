@@ -1,3 +1,5 @@
+# Lasciate ogne speranza voi c'intrate
+
 > [!WARNING]
 > These dotfiles are very \*personal\* so expect this to NOT work on your machine. I will \*NOT\* be responsible for any damage to your machine.
 > You should only use this as reference and just copy paste the stuff you want. (NOTE: please do give credit)
@@ -5,8 +7,6 @@
 ## Dotfiles
 
 This is my personal dotfile.
-
-### Tweaks
 
 ### CREDITS
 
