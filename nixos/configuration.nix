@@ -31,6 +31,8 @@
     ./config/fcitx5.nix
     ./config/gaming.nix
     ./config/keyboard.nix
+    ./config/power.nix
+    ./config/kernel.nix
   ];
 
   nixpkgs = {
@@ -65,26 +67,8 @@
             });
         };
       })
-      # # GNOME 46: triple-buffering-v4-46
-      # (final: prev: {
-      #   gnome = prev.gnome.overrideScope (
-      #     gnomeFinal: gnomePrev: {
-      #       mutter = gnomePrev.mutter.overrideAttrs (old: {
-      #         src = pkgs.fetchFromGitLab {
-      #           domain = "gitlab.gnome.org";
-      #           owner = "vanvugt";
-      #           repo = "mutter";
-      #           rev = "triple-buffering-v4-46";
-      #           hash = "sha256-fkPjB/5DPBX06t7yj0Rb3UEuu5b9mu3aS+jhH18+lpI=";
-      #         };
-      #       });
-      #     }
-      #   );
-      # })
     ];
-    # Configure your nixpkgs instance
     config = {
-      # Disable if you don't want unfree packages
       allowUnfree = true;
     };
   };
@@ -190,8 +174,6 @@
   };
 
   users.defaultUserShell = pkgs.zsh;
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   programs.zsh.enable = true;
 

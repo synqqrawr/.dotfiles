@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   programs.hyprland = {
     enable = true;
@@ -6,7 +6,4 @@
   };
 
   environment.systemPackages = with pkgs; [ wl-clipboard ];
-
-  imports = [ inputs.hyprland.nixosModules.default ];
-
 }

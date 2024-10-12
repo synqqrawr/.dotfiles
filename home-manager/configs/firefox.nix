@@ -212,7 +212,8 @@
               --outline: 0;
             }
           '';
-        userContent = # css
+        userContent =
+          # css
           ''
             @import "${inputs.shyfox}/chrome/userContent.css";
           '';

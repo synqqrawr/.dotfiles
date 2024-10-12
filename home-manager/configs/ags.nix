@@ -13,24 +13,6 @@
       gtksourceview
       webkitgtk
       accountsservice
-      matugen
-      swww
-      bun
-      dart-sass
-      gvfs
-      sassc
-      fd
-      brightnessctl
-      swww
-      slurp
-      wf-recorder
-      wl-clipboard
-      wayshot
-      swappy
-      hyprpicker
-      pavucontrol
-      gtk3
-      libnotify
     ];
   };
 
@@ -38,4 +20,25 @@
     recursive = true;
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/ags";
   };
+
+  home.packages = with pkgs; [
+    matugen
+    swww
+    bun
+    dart-sass
+    gvfs
+    sassc
+    fd
+    brightnessctl
+    swww
+    slurp
+    wf-recorder
+    wl-clipboard
+    wayshot
+    swappy
+    hyprpicker
+    pavucontrol
+    gtk3
+    libnotify
+  ];
 }

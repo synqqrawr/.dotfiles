@@ -74,6 +74,7 @@
     fenix = {
       url = "github:nix-community/fenix";
     };
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
   };
 
   outputs =
@@ -128,6 +129,7 @@
 
             # stylix
             inputs.stylix.nixosModules.stylix
+            inputs.chaotic.nixosModules.default
           ];
         };
       };
