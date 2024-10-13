@@ -6,8 +6,6 @@
 
 This is my personal dotfile.
 
-### Tweaks
-
 ### CREDITS
 
 This dotfiles took a bunch of dotfiles for inspiration etc... props for them for making them and making them public :\)
