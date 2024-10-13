@@ -41,17 +41,6 @@ return {
     event = "LspAttach",
   },
   {
-    "jmbuhr/otter.nvim",
-    dependencies = {
-      "nvim-treesitter",
-      "nvim-cmp",
-      "nvim-lspconfig",
-    },
-    config = function()
-      require("otter").activate({ "javascript", "python" }, true, true, nil)
-    end,
-  },
-  {
     "chrisgrieser/nvim-lsp-endhints",
     event = "LspAttach",
     opts = {},
