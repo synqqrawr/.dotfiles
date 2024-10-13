@@ -38,7 +38,6 @@ M.nvdash = {
 M.ui = {
   statusline = {
     theme = "minimal",
-    separator_style = "round",
     order = {
       "mode",
       "file",

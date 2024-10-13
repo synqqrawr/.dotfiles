@@ -3,6 +3,7 @@
 {
   config,
   outputs,
+  inputs,
   ...
 }:
 {
@@ -47,6 +48,7 @@
       #     patches = [ ./change-hello-to-hi.patch ];
       #   });
       # })
+      inputs.neovim-nightly-overlay.overlays.default
     ];
     # Configure your nixpkgs instance
     config = {
