@@ -249,7 +249,7 @@ in
               --urlbarView-highlight-background: #${M};
               --urlbarView-highlight-color: #${C.base00};
               --sidebar-background-color: #${M};
-              --sidebar-text-color: #${C.base00};
+              --sidebar-text-color: #${C.base05};
               --tabpanel-background-color: #${M};
             }
 
@@ -290,12 +290,6 @@ in
                 --toolbar-bg: #${M} !important;
                 --frame-bg: #${M} !important;
               }
-            }
-
-            @-moz-document url("about:home"), url("about:newtab") {
-              :root${
-                if config.stylix.polarity == "light" then ":not" else ""
-              }([lwt-newtab-brighttext]) body {background-image: url(url("${config.stylix.image}") !important;}
             }
           '';
         search = {
