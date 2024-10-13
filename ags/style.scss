@@ -1,0 +1,123 @@
+$bg: #0c0e0f;
+$bg-light: #121415;
+$bg-lighter: #27292a;
+$fg: #edeff0;
+$accent: #6791C9;
+$radius: 7px;
+
+window.Bar {
+  border: none;
+  box-shadow: none;
+  background-color: $bg;
+  color: $fg;
+  font-size: 1.1em;
+  font-weight: 500;
+  font-family: 'Fira Sans', sans-serif;
+
+  button {
+    all: unset;
+    background-color: transparent;
+
+    &:hover label {
+      background-color: transparentize($fg, 0.84);
+      border-color: transparentize($accent, 0.8);
+    }
+
+    &:active label {
+      background-color: transparentize($fg, 0.8)
+    }
+  }
+
+  label {
+    transition: 200ms;
+    padding: 0 8px;
+    margin: 2px;
+    border-radius: $radius;
+    border: 1pt solid transparent;
+  }
+
+  .Workspace {
+    background-color: transparentize($fg, .8);
+    border-radius: 12px;
+    min-width: 10px;
+    min-height: 10px;
+    padding: 1px;
+    margin: 6px 3px;
+  }
+
+  .active {
+    background-color: $accent;
+    min-width: 20pt;
+    min-height: 12pt;
+    margin: 3px 3px;
+  }
+
+  .occupied {
+    background-color: transparentize($fg, .2);
+    min-width: 7pt;
+    min-height: 7pt;
+  }
+
+  .WorkspaceClick {
+    background-color: transparent;
+    all: unset;
+  }
+
+  .Workspaces {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .WorkspaceClick {
+    background-color: transparent;
+    all: unset;
+  }
+
+  .FocusedClient {
+    color: $accent;
+  }
+
+  .Media .Cover {
+    min-height: 1.2em;
+    min-width: 1.2em;
+    border-radius: $radius;
+    background-position: center;
+    background-size: contain;
+  }
+
+  .Battery label {
+    padding-left: 0;
+    margin-left: 0;
+  }
+
+  .AudioSlider {
+    * {
+      all: unset;
+    }
+
+    icon {
+      margin-right: .6em;
+    }
+
+    margin: 0 1em;
+
+    trough {
+      background-color: transparentize($fg, 0.8);
+      border-radius: $radius;
+    }
+
+    highlight {
+      background-color: $accent;
+      min-height: .8em;
+      border-radius: $radius;
+    }
+
+    slider {
+      background-color: $fg;
+      border-radius: $radius;
+      min-height: 1em;
+      min-width: 1em;
+      margin: -.2em;
+    }
+  }
+}

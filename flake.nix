@@ -27,8 +27,8 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
 
-    ags.url = "github:Aylur/ags";
-    ags.inputs.nixpkgs.follows = "nixpkgs";
+    ags.url = "github:aylur/ags/v2";
+    # ags.inputs.nixpkgs.follows = "nixpkgs";
 
     prismlauncher.url = "github:Diegiwg/PrismLauncher-Cracked";
     prismlauncher.inputs.nixpkgs.follows = "nixpkgs";
@@ -89,6 +89,7 @@
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = {
             inherit inputs outputs;
+            flake = self;
           };
           # useGlobalPkgs = true;
           # backupFileExtension = "bak";

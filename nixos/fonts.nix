@@ -20,6 +20,7 @@
       # fira-code-symbols
       pkgs.mplus-outline-fonts.githubRelease
       pkgs.jetbrains-mono
+      pkgs.fira
     ];
     fontconfig = {
       antialias = true;

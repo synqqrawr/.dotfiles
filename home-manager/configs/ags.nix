@@ -5,20 +5,28 @@
   ...
 }:
 {
-
   imports = [ inputs.ags.homeManagerModules.default ];
+
   programs.ags = {
     enable = true;
+
+    # additional packages to add to gjs's runtime
     extraPackages = [
-      pkgs.gtksourceview
-      pkgs.webkitgtk
-      pkgs.accountsservice
+      inputs.ags.packages.${pkgs.system}.astal
+      inputs.ags.packages.${pkgs.system}.mpris
+      inputs.ags.packages.${pkgs.system}.hyprland
+      inputs.ags.packages.${pkgs.system}.tray
+      inputs.ags.packages.${pkgs.system}.battery
+      inputs.ags.packages.${pkgs.system}.wireplumber
+      inputs.ags.packages.${pkgs.system}.network
     ];
   };
 
-  home.file."${config.xdg.configHome}/ags" = {
-    recursive = true;
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/ags";
+  home.file = {
+    "${config.xdg.configHome}/ags" = {
+      recursive = true;
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/ags";
+    };
   };
 
   home.packages = [
