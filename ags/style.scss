@@ -45,22 +45,18 @@ window.Bar {
     border-radius: 12px;
     min-width: 6pt;
     min-height: 6pt;
-    margin: 1.5pt 3pt;
+    margin: 0 3pt;
   }
 
   .active {
     background-color: $accent;
-    min-height: 7pt;
-    min-width: 20pt;
-    margin: -1.8pt 2pt;
     border-radius: 6.5px;
+    padding: 2.5pt 8pt;
   }
 
   .occupied {
     background-color: transparentize($fg, .2);
-    min-height: 7pt;
-    min-width: 7pt;
-    margin: 0.7pt 2pt;
+    padding: 1pt;
   }
 
   .WorkspaceClick {
@@ -90,9 +86,8 @@ window.Bar {
     background-size: contain;
   }
 
-  .Battery label {
-    padding-left: 0;
-    margin-left: 0;
+  .Battery icon {
+    margin-right: 10px;
   }
 
   .SysTray button {

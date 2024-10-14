@@ -1,5 +1,5 @@
 import Hyprland from "gi://AstalHyprland";
-import { bind, Variable } from "astal";
+import { bind, Variable, Gtk } from "astal";
 
 const hyprland = Hyprland.get_default();
 
@@ -29,7 +29,7 @@ const Workspace = ({ id }: { id: number }) => {
     <box>
       <box hexpand />
       <button className="WorkspaceClick" onClick={handleClick}>
-        <box className={className()} />
+        <box className={className()} valign={Gtk.Align.CENTER} />
       </button>
       <box hexpand />
     </box>
