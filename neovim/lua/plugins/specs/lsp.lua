@@ -45,4 +45,9 @@ return {
     event = "LspAttach",
     opts = {},
   },
+  {
+    "dgagn/diagflow.nvim",
+    event = "LspAttach",
+    opts = true,
+  },
 }
