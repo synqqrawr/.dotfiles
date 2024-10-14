@@ -1,33 +1,34 @@
 import Hyprland from "gi://AstalHyprland";
-import { bind, Gdk, Gtk, Variable, Widget } from "astal";
+import { bind, Variable } from "astal";
 
 const hyprland = Hyprland.get_default();
 
-// Thanx to https://github.com/rice-cracker-dev/nixos-config/blob/main/modules/extends/candy/home/desktop/shell/ags/config/widgets/HyprlandWidget/index.tsx
 const Workspace = ({ id }: { id: number }) => {
+  // Extract bindings for workspaces and focused workspace
+  const workspaces = bind(hyprland, "workspaces");
+  const focused = bind(hyprland, "focusedWorkspace");
+
   const className = Variable.derive(
-    [bind(hyprland, "workspaces"), bind(hyprland, "focusedWorkspace")],
+    [workspaces, focused],
     (workspaces, focused) => {
       const workspace = workspaces.find((w) => w.id === id);
-
-      if (!workspace) {
-        return "Workspace";
-      }
+      if (!workspace) return "Workspace";
 
       const occupied = workspace.get_clients().length > 0;
       const active = focused.id === id;
 
-      return `Workspace ${active ? "active" : occupied && "occupied"}`;
+      return `Workspace ${active ? "active" : occupied ? "occupied" : ""}`;
     },
   );
+
+  const handleClick = () => {
+    hyprland.dispatch("workspace", `${id}`);
+  };
 
   return (
     <box>
       <box hexpand />
-      <button
-        className={"WorkspaceClick"}
-        onClick={() => hyprland.dispatch("workspace", `${id}`)}
-      >
+      <button className="WorkspaceClick" onClick={handleClick}>
         <box className={className()} />
       </button>
       <box hexpand />
@@ -36,15 +37,15 @@ const Workspace = ({ id }: { id: number }) => {
 };
 
 export default function Workspaces() {
+  const handleScroll = (_, e) => {
+    hyprland.dispatch("workspace", e.delta_y > 0 ? "+1" : "-1");
+  };
+
   return (
-    <eventbox
-      onScroll={(_, e) => {
-        hyprland.dispatch("workspace", e.delta_y > 0 ? "+1" : "-1");
-      }}
-    >
-      <box className={"Workspaces"}>
-        {[...Array(10).keys()].map((i) => (
-          <Workspace id={i + 1} />
+    <eventbox onScroll={handleScroll}>
+      <box className="Workspaces">
+        {Array.from({ length: 10 }, (_, i) => (
+          <Workspace key={i + 1} id={i + 1} />
         ))}
       </box>
     </eventbox>

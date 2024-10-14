@@ -1,16 +1,16 @@
 import { App, Variable, Astal, Gtk, Gdk, GLib, bind } from "astal";
-import Hyprland from "gi://AstalHyprland";
 import Battery from "gi://AstalBattery";
 import Wp from "gi://AstalWp";
 import Network from "gi://AstalNetwork";
 import Tray from "gi://AstalTray";
 import Workspaces from "./Workspaces";
+import FocusedClient from "./FocusedClient";
 
 function SysTray() {
   const tray = Tray.get_default();
 
   return (
-    <box>
+    <box className="SysTray">
       {bind(tray, "items").as((items) =>
         items.map((item) => {
           if (item.iconThemePath) App.add_icons(item.iconThemePath);
@@ -55,14 +55,35 @@ function AudioSlider() {
   const speaker = Wp.get_default()?.audio.defaultSpeaker!;
 
   return (
-    <box className="AudioSlider" css="min-width: 140px">
-      <icon icon={bind(speaker, "volumeIcon")} />
-      <slider
-        hexpand
-        onDragged={({ value }) => (speaker.volume = value)}
-        value={bind(speaker, "volume")}
-      />
-    </box>
+    <eventbox
+      onScroll={(_, e) => {
+        if (!speaker) return;
+
+        speaker.volume = Math.max(
+          0,
+          Math.min(
+            speaker.volume +
+              (e.delta_y < 0
+                ? speaker.volume <= 0.09
+                  ? 0.01
+                  : 0.03
+                : speaker.volume <= 0.09
+                  ? -0.01
+                  : -0.03),
+            150,
+          ),
+        );
+      }}
+    >
+      <box className="AudioSlider" css="min-width: 140px">
+        <icon icon={bind(speaker, "volumeIcon")} />
+        <slider
+          hexpand
+          onDragged={({ value }) => (speaker.volume = value)}
+          value={bind(speaker, "volume")}
+        />
+      </box>
+    </eventbox>
   );
 }
 
@@ -103,6 +124,7 @@ export default function Bar(monitor: Gdk.Monitor) {
     >
       <centerbox>
         <box hexpand halign={Gtk.Align.START}>
+          <FocusedClient />
           <Workspaces />
         </box>
         <box>

@@ -36,26 +36,31 @@ window.Bar {
     border: 1pt solid transparent;
   }
 
+  .Workspaces {
+    margin: 2.5pt 3pt;
+  }
+
   .Workspace {
     background-color: transparentize($fg, .8);
     border-radius: 12px;
-    min-width: 10px;
-    min-height: 10px;
-    padding: 1px;
-    margin: 6px 3px;
+    min-width: 6pt;
+    min-height: 6pt;
+    margin: 1.5pt 3pt;
   }
 
   .active {
     background-color: $accent;
+    min-height: 7pt;
     min-width: 20pt;
-    min-height: 12pt;
-    margin: 3px 3px;
+    margin: -1.8pt 2pt;
+    border-radius: 6.5px;
   }
 
   .occupied {
     background-color: transparentize($fg, .2);
-    min-width: 7pt;
     min-height: 7pt;
+    min-width: 7pt;
+    margin: 0.7pt 2pt;
   }
 
   .WorkspaceClick {
@@ -74,7 +79,7 @@ window.Bar {
   }
 
   .FocusedClient {
-    color: $accent;
+    min-width: 140pt;
   }
 
   .Media .Cover {
@@ -88,6 +93,14 @@ window.Bar {
   .Battery label {
     padding-left: 0;
     margin-left: 0;
+  }
+
+  .SysTray button {
+    margin: 0 5px;
+  }
+
+  .Wifi {
+    margin: 0 5px;
   }
 
   .AudioSlider {
@@ -120,4 +133,13 @@ window.Bar {
       margin: -.2em;
     }
   }
+}
+
+.txt-smallie {
+  font-size: 0.67rem;
+  color: transparentize($fg, 0.5)
+}
+
+.txt-smaller {
+  font-size: 0.9rem;
 }
