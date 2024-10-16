@@ -26,7 +26,6 @@
     ./configs/xdg.nix
     ./configs/git.nix
     ./configs/gtk.nix
-    ./configs/yazi.nix
     ./configs/ags.nix
     ./configs/fuzzel.nix
     ./configs/cli.nix
