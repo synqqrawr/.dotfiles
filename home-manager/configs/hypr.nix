@@ -164,6 +164,11 @@
           "SUPER SHIFT, k, movewindow, u"
           "SUPER SHIFT, l, movewindow, r"
           ", end, exec, ${pkgs.grimblast}/bin/grimblast --notify copy area"
+          "SUPER, S, togglespecialworkspace, magic"
+          "SUPER, S, movetoworkspace, +0"
+          "SUPER, S, togglespecialworkspace, magic"
+          "SUPER, S, movetoworkspace, special:magic"
+          "SUPER, S, togglespecialworkspace, magic"
 
           # "SUPER SHIFT, D, exec, grimblast copy area"
           # "SUPER SHIFT_ALT, D, exec, grimblast --freeze copy area"
