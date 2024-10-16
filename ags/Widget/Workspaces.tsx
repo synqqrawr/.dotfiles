@@ -1,7 +1,8 @@
 // https://github.com/N3RDIUM/dotfiles/blob/41dead62a1275b3e11f9035ac1439b8af8d2e107/ags/widget/Workspaces.tsx#L2
 
 import Hyprland from "gi://AstalHyprland";
-import { bind, Variable, Gtk } from "astal";
+import { bind, Variable } from "astal";
+import { Gtk } from "astal/gtk3";
 
 const hyprland = Hyprland.get_default();
 

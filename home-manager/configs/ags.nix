@@ -12,7 +12,11 @@
 
     # additional packages to add to gjs's runtime
     extraPackages = [
+      inputs.ags.packages.${pkgs.system}.default
+
       inputs.ags.packages.${pkgs.system}.astal3
+      inputs.ags.packages.${pkgs.system}.ags
+      inputs.ags.packages.${pkgs.system}.io
       inputs.ags.packages.${pkgs.system}.mpris
       inputs.ags.packages.${pkgs.system}.hyprland
       inputs.ags.packages.${pkgs.system}.tray

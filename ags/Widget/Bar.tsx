@@ -1,8 +1,10 @@
-import { App, Variable, Astal, Gtk, Gdk, GLib, bind } from "astal";
+import { Variable, GLib, bind } from "astal";
+import { App, Astal, Gtk, Gdk } from "astal/gtk3";
 import Battery from "gi://AstalBattery";
 import Wp from "gi://AstalWp";
 import Network from "gi://AstalNetwork";
 import Tray from "gi://AstalTray";
+
 import Workspaces from "./Workspaces";
 import FocusedClient from "./FocusedClient";
 
@@ -103,14 +105,14 @@ function Time({ format = "%H:%M - %A %e." }) {
   );
 }
 
-export default function Bar(monitor: Gdk.Monitor) {
+export default function Bar(monitor: number) {
   const anchor =
     Astal.WindowAnchor.TOP | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.RIGHT;
 
   return (
     <window
       className="Bar"
-      gdkmonitor={monitor}
+      monitor={monitor}
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
       anchor={anchor}
     >

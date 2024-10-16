@@ -1,7 +1,8 @@
 // https://github.com/end-4/dots-hyprland/blob/c637f5bb8b0eaea704dcd45599dc94713b381a9b/.config/ags/modules/bar/normal/spaceleft.js
 
 import Hyprland from "gi://AstalHyprland";
-import { bind, Gtk } from "astal";
+import { bind } from "astal";
+import { Gtk } from "astal/gtk3";
 
 export default function FocusedClient() {
   const hypr = Hyprland.get_default();
