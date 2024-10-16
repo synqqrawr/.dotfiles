@@ -289,6 +289,7 @@ in
                 --frame-fg: #${F} !important;
                 --toolbar-bg: #${M} !important;
                 --frame-bg: #${M} !important;
+                --tabs-activated-bg: #${C.base04} !important;
               }
             }
           '';
