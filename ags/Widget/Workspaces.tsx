@@ -1,3 +1,5 @@
+// https://github.com/N3RDIUM/dotfiles/blob/41dead62a1275b3e11f9035ac1439b8af8d2e107/ags/widget/Workspaces.tsx#L2
+
 import Hyprland from "gi://AstalHyprland";
 import { bind, Variable, Gtk } from "astal";
 
@@ -37,12 +39,12 @@ const Workspace = ({ id }: { id: number }) => {
 };
 
 export default function Workspaces() {
-  const handleScroll = (_, e) => {
-    hyprland.dispatch("workspace", e.delta_y > 0 ? "+1" : "-1");
-  };
+  // const handleScroll = (_, e) => {
+  //   hyprland.dispatch("workspace", e.delta_y > 0 ? "+1" : "-1");
+  // };
 
   return (
-    <eventbox onScroll={handleScroll}>
+    <eventbox /* onScroll={handleScroll} */>
       <box className="Workspaces">
         {Array.from({ length: 10 }, (_, i) => (
           <Workspace key={i + 1} id={i + 1} />

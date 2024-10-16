@@ -1,3 +1,5 @@
+// https://github.com/end-4/dots-hyprland/blob/c637f5bb8b0eaea704dcd45599dc94713b381a9b/.config/ags/modules/bar/normal/spaceleft.js
+
 import Hyprland from "gi://AstalHyprland";
 import { bind, Gtk } from "astal";
 
@@ -16,12 +18,16 @@ export default function FocusedClient() {
   };
 
   return (
-    <box vertical valign={Gtk.Align.CENTER}>
-      <box className="txt-smallie FocusedClient">
-        {focused.as((client) => renderLabel(client, "class", "Desktop", 40))}
-      </box>
-      <box className="txt-smaller">
-        {focused.as((client) => renderLabel(client, "title", "Workspace", 20))}
+    <box valign={Gtk.Align.CENTER}>
+      <box vertical>
+        <box className="txt-smallie" css="min-width: 140pt;">
+          {focused.as((client) => renderLabel(client, "class", "Desktop", 40))}
+        </box>
+        <box className="txt-smaller">
+          {focused.as((client) =>
+            renderLabel(client, "title", "Workspace", 20),
+          )}
+        </box>
       </box>
     </box>
   );

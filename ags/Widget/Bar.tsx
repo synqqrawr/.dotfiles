@@ -75,13 +75,8 @@ function AudioSlider() {
         );
       }}
     >
-      <box className="AudioSlider" css="min-width: 140px">
+      <box className="AudioSlider" css="margin: 0 10px;">
         <icon icon={bind(speaker, "volumeIcon")} />
-        <slider
-          hexpand
-          onDragged={({ value }) => (speaker.volume = value)}
-          value={bind(speaker, "volume")}
-        />
       </box>
     </eventbox>
   );
