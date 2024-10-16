@@ -31,7 +31,6 @@
     ./config/fcitx5.nix
     ./config/keyboard.nix
     ./config/power.nix
-    ./config/bootloader.nix
   ];
 
   nixpkgs = {
