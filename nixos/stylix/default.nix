@@ -32,11 +32,4 @@
       size = 24;
     };
   };
-  home-manager.sharedModules = [
-    {
-      stylix.targets.kde.enable = false;
-      stylix.targets.neovim.enable = false;
-      stylix.targets.lazygit.enable = false;
-    }
-  ];
 }

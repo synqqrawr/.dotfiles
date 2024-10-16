@@ -1,12 +1,10 @@
 {
   pkgs,
   config,
-  osConfig,
-  inputs,
   ...
 }:
 {
-  home.packages = with pkgs; [ grimblast ];
+  home.packages = [ pkgs.grimblast ];
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -165,7 +163,12 @@
           "SUPER SHIFT, j, movewindow, d"
           "SUPER SHIFT, k, movewindow, u"
           "SUPER SHIFT, l, movewindow, r"
-          "SUPER, S, exec, ~/.config/ags/scripts/grimblast.sh --freeze copy area"
+          ", end, exec, ${pkgs.grimblast}/bin/grimblast --notify copy area"
+          "SUPER, S, togglespecialworkspace, magic"
+          "SUPER, S, movetoworkspace, +0"
+          "SUPER, S, togglespecialworkspace, magic"
+          "SUPER, S, movetoworkspace, special:magic"
+          "SUPER, S, togglespecialworkspace, magic"
 
           # "SUPER SHIFT, D, exec, grimblast copy area"
           # "SUPER SHIFT_ALT, D, exec, grimblast --freeze copy area"
@@ -257,7 +260,7 @@
         ];
       };
     };
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     xdgOpenUsePortal = true;
   };
 
