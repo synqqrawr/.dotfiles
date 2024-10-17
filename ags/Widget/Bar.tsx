@@ -88,8 +88,17 @@ function BatteryLevel() {
   const bat = Battery.get_default();
 
   return (
-    <box className="Battery" visible={bind(bat, "isPresent")}>
-      <icon icon={bind(bat, "batteryIconName")} />
+    <box
+      className="Battery"
+      visible={bind(bat, "isPresent")}
+      valign={Gtk.Align.CENTER}
+    >
+      <icon icon={bind(bat, "batteryIconName")} valign={Gtk.Align.CENTER} />
+      <label
+        className="txt-smaller"
+        valign={Gtk.Align.CENTER}
+        label={bind(bat, "percentage").as((p) => `${Math.floor(p * 100)}%`)}
+      />
     </box>
   );
 }

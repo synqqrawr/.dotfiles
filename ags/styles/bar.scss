@@ -1,10 +1,4 @@
-$bg: #0c0e0f;
-$bg-light: #121415;
-$bg-lighter: #27292a;
-$fg: #edeff0;
-$accent: #6791C9;
-$radius: 7px;
-$workspace-padding: 3pt;
+@use "variables.scss" as *;
 
 window.Bar {
   border: none;
@@ -24,16 +18,6 @@ window.Bar {
 
   button {
     all: unset;
-    background-color: transparent;
-
-    &:hover label {
-      background-color: transparentize($fg, 0.84);
-      border-color: transparentize($accent, 0.8);
-    }
-
-    &:active label {
-      background-color: transparentize($fg, 0.8)
-    }
   }
 
   label {
@@ -70,12 +54,14 @@ window.Bar {
     background-size: contain;
   }
 
-  .Battery icon {
+  .Battery {
+    padding: unset;
     margin-right: 10px;
   }
 
-  .Battery {
-    background-color: $bg;
+  .Battery label {
+    padding: 0;
+    margin: 0;
   }
 
   .SysTray button {
@@ -85,14 +71,4 @@ window.Bar {
   .Wifi {
     margin: 0 5px;
   }
-}
-
-
-.txt-smallie {
-  font-size: 0.75rem;
-  color: transparentize($fg, 0.5)
-}
-
-.txt-smaller {
-  font-size: 0.9rem;
 }
