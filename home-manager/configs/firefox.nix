@@ -11,6 +11,8 @@ let
   M = C.base02;
   # Highlight on the bg
   F = C.base05;
+
+  searx = "searx.tiekoetter.com";
 in
 {
   programs.firefox = {
@@ -294,7 +296,7 @@ in
             }
           '';
         search = {
-          default = "SearXNG";
+          default = "SearXNG (${searx})";
           force = true;
           engines = {
             "Brave" = {
@@ -364,10 +366,10 @@ in
               updateInterval = 24 * 60 * 60 * 1000; # every day
               definedAliases = [ "@hm" ];
             };
-            "SearXNG" = {
+            "SearXNG (${searx})" = {
               urls = [
                 {
-                  template = "https://searx.be/search";
+                  template = "https://${searx}/search";
                   params = [
                     {
                       name = "q";

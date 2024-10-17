@@ -4,7 +4,16 @@
   ...
 }:
 {
-  home.packages = [ pkgs.grimblast ];
+  home.packages = [
+    pkgs.grimblast
+    pkgs.pyprland
+  ];
+  home.file."${config.xdg.configHome}/hypr/pyprland.toml".text = ''
+    [pyprland]
+    plugins = [
+        "magnify",
+    ]
+  '';
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -63,58 +72,6 @@
           valign = "center";
           halign = "center";
         }
-        # # {
-        # #   monitor = "";
-        # #   text = "cmd[update:1000] echo \"<b><big> $(date +\"%H\") </big></b>\"";
-        # #   color = "rgba(${config.lib.stylix.colors.base00-rgb-r}, ${config.lib.stylix.colors.base00-rgb-g}, ${config.lib.stylix.colors.base00-rgb-b}, 0.7)";
-        # #   font_size = "112";
-        # #   font_family = "Jetbrains Mono";
-        # #   shadow_passes = "3";
-        # #   shadow_size = "4";
-        # #
-        # #   position = "0, 220";
-        # #   halign = "center";
-        # #   valign = "center";
-        # # }
-        # {
-        #   monitor = "";
-        #   text = "cmd[update:1000] echo \"<b><big> $(date +\"%M\") </big></b>\"";
-        #   color = "rgba(${config.lib.stylix.colors.base00-rgb-r}, ${config.lib.stylix.colors.base00-rgb-g}, ${config.lib.stylix.colors.base00-rgb-b}, 0.7)";
-        #   font_size = "112";
-        #   font_family = "Jetbrains Mono";
-        #   shadow_passes = "3";
-        #   shadow_size = "4";
-        #
-        #   position = "0, 80";
-        #   halign = "center";
-        #   valign = "center";
-        # }
-        # {
-        #   monitor = "";
-        #   # text = "cmd[update:18000000] echo \"<b><big> \"$(date +'%A')\" </big></b>\"";
-        #   text = "cmd[update:18000000] echo \"<b><big> \"$(date +'%A')\" </big></b>\"";
-        #   color = "rgba(${config.lib.stylix.colors.base00-rgb-r}, ${config.lib.stylix.colors.base00-rgb-g}, ${config.lib.stylix.colors.base00-rgb-b}, 0.8)";
-        #   font_size = "25";
-        #   font_family = "Jetbrains Mono";
-        #   rotate = "0";
-        #   shadow_passes = "3";
-        #   shadow_size = "4";
-        #
-        #   position = "0, 50";
-        #   halign = "center";
-        #   valign = "center";
-        # }
-        # {
-        #   monitor = "";
-        #   text = "cmd[update:18000000] echo \"<b> \"$(date +'%d %b')\" </b>\"";
-        #   color = "rgba(${config.lib.stylix.colors.base00-rgb-r}, ${config.lib.stylix.colors.base00-rgb-g}, ${config.lib.stylix.colors.base00-rgb-b}, 0.8)";
-        #   font_size = "18";
-        #   font_family = "Jetbrains Mono";
-        #
-        #   position = "0, 20";
-        #   halign = "center";
-        #   valign = "center";
-        # }
       ];
     };
   };
@@ -124,8 +81,9 @@
       exec-once = [
         "fcitx5 -d"
         "ags"
+        "${pkgs.pyprland}/bin/pypr &"
       ];
-      monitor = ",1920x1080,0x0,1";
+      monitor = ",preferred,auto,1";
       general = {
         border_size = 0;
       };
@@ -169,6 +127,10 @@
           "SUPER, S, togglespecialworkspace, magic"
           "SUPER, S, movetoworkspace, special:magic"
           "SUPER, S, togglespecialworkspace, magic"
+
+          "SUPER SHIFT, Z, exec, pypr zoom"
+          "SUPER, Z, exec, pypr zoom ++0.5"
+          "SUPER CTRL, Z, exec, pypr zoom --0.5"
 
           # "SUPER SHIFT, D, exec, grimblast copy area"
           # "SUPER SHIFT_ALT, D, exec, grimblast --freeze copy area"

@@ -21,6 +21,7 @@
       pkgs.mplus-outline-fonts.githubRelease
       pkgs.jetbrains-mono
       pkgs.fira
+      pkgs.geist-font
     ];
     fontconfig = {
       antialias = true;

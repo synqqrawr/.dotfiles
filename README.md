@@ -1,4 +1,4 @@
-[![works on my machine badge](https://cdn.jsdelivr.net/gh/nikku/works-on-my-machine@v0.4.0/badge.svg)](https://github.com/nikku/works-on-my-machine)
+# Lasciate ogne speranza voi c'intrate
 
 > [!WARNING]
 > These dotfiles are very \*personal\* so expect this to NOT work on your machine. I will \*NOT\* be responsible for any damage to your machine.

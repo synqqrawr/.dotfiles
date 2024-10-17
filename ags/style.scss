@@ -4,6 +4,7 @@ $bg-lighter: #27292a;
 $fg: #edeff0;
 $accent: #6791C9;
 $radius: 7px;
+$workspace-padding: 3pt;
 
 window.Bar {
   border: none;
@@ -12,7 +13,7 @@ window.Bar {
   color: $fg;
   font-size: 1.1em;
   font-weight: 500;
-  font-family: 'Fira Sans', sans-serif;
+  font-family: 'Geist', 'Noto Sans';
 
   button {
     all: unset;
@@ -36,37 +37,22 @@ window.Bar {
     border: 1pt solid transparent;
   }
 
-  .Workspaces {
-    margin: 2.5pt 3pt;
-  }
-
   .Workspace {
     background-color: transparentize($fg, .8);
     border-radius: 12px;
-    min-width: 6pt;
-    min-height: 6pt;
+    padding: $workspace-padding;
     margin: 0 3pt;
   }
 
   .active {
     background-color: $accent;
     border-radius: 6.5px;
-    padding: 2.5pt 8pt;
+    padding: calc(3pt + $workspace-padding) calc(8pt + $workspace-padding);
   }
 
   .occupied {
-    background-color: transparentize($fg, .2);
-    padding: 1pt;
-  }
-
-  .WorkspaceClick {
-    background-color: transparent;
-    all: unset;
-  }
-
-  .Workspaces {
-    padding-top: 12px;
-    padding-bottom: 12px;
+    background-color: transparentize($fg, .5);
+    padding: calc(2pt + $workspace-padding);
   }
 
   .WorkspaceClick {
@@ -93,10 +79,15 @@ window.Bar {
   .Wifi {
     margin: 0 5px;
   }
+
+  .FocusedClient {
+    min-width: 200pt;
+  }
 }
 
+
 .txt-smallie {
-  font-size: 0.67rem;
+  font-size: 0.8rem;
   color: transparentize($fg, 0.5)
 }
 

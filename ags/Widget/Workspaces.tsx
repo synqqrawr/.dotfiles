@@ -32,7 +32,7 @@ const Workspace = ({ id }: { id: number }) => {
     <box>
       <box hexpand />
       <button className="WorkspaceClick" onClick={handleClick}>
-        <box className={className()} valign={Gtk.Align.CENTER} />
+        <box className={className()} valign={Gtk.Align.CENTER} halign={Gtk.Align.CENTER} />
       </button>
       <box hexpand />
     </box>
