@@ -86,6 +86,7 @@
       monitor = ",preferred,auto,1";
       general = {
         border_size = 0;
+        gaps_out = 10;
       };
       decoration = {
         rounding = 10;

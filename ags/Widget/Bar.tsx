@@ -107,7 +107,9 @@ function Time({ format = "%H:%M - %A %e." }) {
 
 export default function Bar(monitor: number) {
   const anchor =
-    Astal.WindowAnchor.TOP | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.RIGHT;
+    Astal.WindowAnchor.BOTTOM |
+    Astal.WindowAnchor.LEFT |
+    Astal.WindowAnchor.RIGHT;
 
   return (
     <window

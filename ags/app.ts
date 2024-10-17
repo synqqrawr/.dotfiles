@@ -3,7 +3,7 @@ import style from "./style.scss";
 import Bar from "./Widget/Bar";
 
 App.start({
-  instanceName: "js",
+  instanceName: "ts",
   css: style,
   requestHandler(request, res) {
     print(request);

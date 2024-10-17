@@ -9,11 +9,18 @@ $workspace-padding: 3pt;
 window.Bar {
   border: none;
   box-shadow: none;
-  background-color: $bg;
+  background: transparent;
   color: $fg;
   font-size: 1.1em;
   font-weight: 500;
   font-family: 'Geist', 'Noto Sans';
+
+  &>centerbox {
+    background-color: $bg;
+    margin: 5pt;
+    padding: 5pt;
+    border-radius: $radius;
+  }
 
   button {
     all: unset;
@@ -55,11 +62,6 @@ window.Bar {
     padding: calc(2pt + $workspace-padding);
   }
 
-  .WorkspaceClick {
-    background-color: transparent;
-    all: unset;
-  }
-
   .Media .Cover {
     min-height: 1.2em;
     min-width: 1.2em;
@@ -72,6 +74,10 @@ window.Bar {
     margin-right: 10px;
   }
 
+  .Battery {
+    background-color: $bg;
+  }
+
   .SysTray button {
     margin: 0 5px;
   }
@@ -79,15 +85,11 @@ window.Bar {
   .Wifi {
     margin: 0 5px;
   }
-
-  .FocusedClient {
-    min-width: 200pt;
-  }
 }
 
 
 .txt-smallie {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: transparentize($fg, 0.5)
 }
 

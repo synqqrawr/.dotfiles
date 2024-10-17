@@ -7,7 +7,6 @@ in
     enable = true;
     autocd = true;
     history = {
-      share = true;
       path = "${config.xdg.dataHome}/zsh/zsh_history";
       extended = true;
       save = 10000;
