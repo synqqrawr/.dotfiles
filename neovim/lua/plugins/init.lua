@@ -64,8 +64,8 @@ return {
 	{
 		"stevearc/conform.nvim",
 		opts = function()
-      return require("configs.conform")
-    end,
+			return require("configs.conform")
+		end,
 	},
 	{
 		"saghen/blink.cmp",
@@ -78,6 +78,26 @@ return {
 	},
 	{
 		"echasnovski/mini.files",
-    opts = true,
+		opts = true,
+	},
+	{
+		"folke/which-key.nvim",
+		keys = { "<leader>", "<c-w>", '"', "'", "`", "c", "v", "g" },
+		cmd = "WhichKey",
+		opts = function()
+			dofile(vim.g.base46_cache .. "whichkey")
+			return {}
+		end,
+	},
+	{
+		"windwp/nvim-autopairs",
+    event = "InsertEnter",
+		opts = {
+			fast_wrap = {},
+			disable_filetype = { "TelescopePrompt", "vim" },
+		},
+		config = function(_, opts)
+			require("nvim-autopairs").setup(opts)
+		end,
 	},
 }

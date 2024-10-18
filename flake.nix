@@ -103,7 +103,6 @@
               stylix.targets.neovim.enable = false;
               stylix.targets.lazygit.enable = false;
             }
-
           ];
         };
       };
