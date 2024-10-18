@@ -1,10 +1,10 @@
 return {
   defaults = { lazy = true },
-  install = { colorscheme = { "nvchad", "habamax" } },
+  install = { colorscheme = { "nvchad" } },
 
   ui = {
     icons = {
-      ft = " ",
+      ft = "",
       lazy = "󰂠 ",
       loaded = "",
       not_loaded = "",
@@ -41,13 +41,7 @@ return {
         "compiler",
         "bugreport",
         "ftplugin",
-        "parser",
-        "osc52",
-        "man",
       },
     },
-  },
-  change_detection = {
-    notify = false,
   },
 }
