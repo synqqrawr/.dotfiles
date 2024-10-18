@@ -63,9 +63,9 @@ return {
 	},
 	{
 		"stevearc/conform.nvim",
-		opts = {
-			formatters_by_ft = { lua = { "stylua" } },
-		},
+		opts = function()
+      return require("configs.conform")
+    end,
 	},
 	{
 		"saghen/blink.cmp",

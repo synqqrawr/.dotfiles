@@ -28,7 +28,7 @@
     neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
 
     ags.url = "github:aylur/ags/v2";
-    # ags.inputs.nixpkgs.follows = "nixpkgs";
+    ags.inputs.nixpkgs.follows = "nixpkgs";
 
     prismlauncher.url = "github:Diegiwg/PrismLauncher-Cracked";
     prismlauncher.inputs.nixpkgs.follows = "nixpkgs";
@@ -52,7 +52,7 @@
     {
       # Your custom packages
       # Accessible through 'nix build', 'nix shell', etc
-      packages = import ./pkgs nixpkgs.legacyPackages.x86_64-linux;
+      packages = nixpkgs.legacyPackages.x86_64-linux;
       # Formatter for your nix files, available through 'nix fmt'
       # Other options beside 'alejandra' include 'nixpkgs-fmt'
       formatter = system: nixpkgs.legacyPackages.x86_64-linux.alejandra;

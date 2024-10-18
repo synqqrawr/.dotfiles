@@ -187,6 +187,8 @@
     pkgs.jq
     pkgs.grim
     pkgs.age
+    pkgs.ffmpeg
+    pkgs.yt-dlp
   ];
 
   programs.gnupg.agent.enable = true;

@@ -52,5 +52,6 @@
     pkgs.ruff-lsp
     pkgs.black
     pkgs.vscode-extensions.ms-python.debugpy
+    pkgs.pipx
   ];
 }
