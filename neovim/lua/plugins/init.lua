@@ -117,4 +117,19 @@ return {
 			dofile(vim.g.base46_cache .. "blankline")
 		end,
 	},
+  {
+    "NeogitOrg/neogit",
+    opts = true,
+    config = function(_, opts)
+      dofile(vim.g.base46_cache .. "git")
+
+      require("neogit").setup(opts)
+    end,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "sindrets/diffview.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    cmd = "Neogit",
+  },
 }
