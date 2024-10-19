@@ -22,6 +22,23 @@ M.servers = {
 			},
 		},
 	},
+	rust_analyzer = {
+		settings = {
+			["rust-analyzer"] = {
+				check = {
+					command = "clippy",
+					allFeatures = true,
+					extraArgs = {
+						"--",
+						"-W clippy::pedantic",
+						"-W clippy::nursery",
+						"-W clippy::unwrap_used",
+						"-W clippy::expect_used",
+					},
+				},
+			},
+		},
+	},
 }
 
 -- export on_attach & capabilities
