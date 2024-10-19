@@ -37,6 +37,11 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    chaotic = {
+      url = "github:chaotic-cx/nyx";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -81,6 +86,8 @@
 
             # stylix
             inputs.stylix.nixosModules.stylix
+            # chaotic
+            inputs.chaotic.nixosModules.default
           ];
         };
       };

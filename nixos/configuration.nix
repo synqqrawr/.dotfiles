@@ -32,6 +32,7 @@
     ./config/keyboard.nix
     ./config/power.nix
     ./config/nix.nix
+    ./config/kernel.nix
   ];
 
   nix =
