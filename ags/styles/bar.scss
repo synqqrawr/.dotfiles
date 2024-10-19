@@ -7,11 +7,11 @@ window.Bar {
   color: $fg;
   font-size: 1.1em;
   font-weight: 600;
-  font-family: 'Source Sans Pro', 'Noto Sans';
+  font-family: 'Source Sans Pro', 'Noto Sans', 'Noto Sans CJK';
 
   &>centerbox {
     background-color: $bg;
-    margin: 5pt 300pt;
+    margin: 5pt 200pt;
     padding: 5pt;
     border-radius: $radius;
   }
@@ -36,7 +36,7 @@ window.Bar {
   }
 
   .active {
-    background-color: $accent;
+    background-color: $fg;
     border-radius: 6.5px;
     padding: calc(3pt + $workspace-padding) calc(8pt + $workspace-padding);
   }

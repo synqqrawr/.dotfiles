@@ -57,30 +57,30 @@ function AudioSlider() {
   const speaker = Wp.get_default()?.audio.defaultSpeaker!;
 
   return (
-    <eventbox
-      onScroll={(_, e) => {
-        if (!speaker) return;
+    <box className="AudioSlider" css="margin: 0 10px;">
+      <eventbox
+        onScroll={(_, e) => {
+          if (!speaker) return;
 
-        speaker.volume = Math.max(
-          0,
-          Math.min(
-            speaker.volume +
-              (e.delta_y < 0
-                ? speaker.volume <= 0.09
-                  ? 0.01
-                  : 0.03
-                : speaker.volume <= 0.09
-                  ? -0.01
-                  : -0.03),
-            150,
-          ),
-        );
-      }}
-    >
-      <box className="AudioSlider" css="margin: 0 10px;">
+          speaker.volume = Math.max(
+            0,
+            Math.min(
+              speaker.volume +
+                (e.delta_y < 0
+                  ? speaker.volume <= 0.09
+                    ? 0.01
+                    : 0.03
+                  : speaker.volume <= 0.09
+                    ? -0.01
+                    : -0.03),
+              150,
+            ),
+          );
+        }}
+      >
         <icon icon={bind(speaker, "volumeIcon")} />
-      </box>
-    </eventbox>
+      </eventbox>
+    </box>
   );
 }
 
