@@ -3,11 +3,7 @@
   fonts = {
     fontDir.enable = true;
     packages = [
-      # noto-fonts
       pkgs.noto-fonts-cjk
-      # noto-fonts-emoji
-      # unifont
-      # ubuntu_font_family
       (pkgs.nerdfonts.override {
         fonts = [
           "NerdFontsSymbolsOnly"
@@ -16,12 +12,8 @@
       })
       pkgs.material-symbols
       pkgs.google-fonts
-      # fira-code
-      # fira-code-symbols
-      pkgs.mplus-outline-fonts.githubRelease
       pkgs.jetbrains-mono
       pkgs.fira
-      pkgs.geist-font
     ];
     fontconfig = {
       antialias = true;
@@ -54,7 +46,7 @@
               <string>serif</string>
             </test>
             <edit name="family" mode="append" binding="strong">
-              <string>MPlus Code 50</string>
+              <string>Noto Sans CJK</string>
             </edit>
           </match>
           <alias>

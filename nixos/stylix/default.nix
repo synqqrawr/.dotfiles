@@ -4,14 +4,14 @@
   stylix = {
     enable = true;
     fonts = {
-      serif = {
-        package = pkgs.custom-fonts;
-        name = "SF Pro";
+      sansSerif = {
+        package = pkgs.source-sans-pro;
+        name = "Source Sans Pro";
       };
 
-      sansSerif = {
-        package = pkgs.custom-fonts;
-        name = "SF Pro";
+      serif = {
+        package = pkgs.source-serif-pro;
+        name = "Source Serif Pro";
       };
 
       monospace = {
