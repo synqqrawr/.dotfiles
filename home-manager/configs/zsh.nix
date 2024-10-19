@@ -7,7 +7,6 @@ in
     enable = true;
     autocd = true;
     history = {
-      share = true;
       path = "${config.xdg.dataHome}/zsh/zsh_history";
       extended = true;
       save = 10000;
@@ -108,10 +107,9 @@ in
         zstyle ':completion:*:lsd'            sort false
         zstyle ':completion:files'            sort false
 
-        function chpwd_cdls() {
-          if [[ -o interactive ]]; then
-            emulate -L zsh
-              ${config.programs.zsh.shellAliases.ls}
+        chpwd() {
+          if (( $(${pkgs.coreutils}/bin/ls -1 | wc -l) < 30 )); then
+            ${config.programs.zsh.shellAliases.ls}
               fi
         }
       '';

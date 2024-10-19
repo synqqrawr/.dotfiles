@@ -23,16 +23,14 @@
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
-    ./home-manager.nix
+    # ./home-manager.nix
     ./stylix
     ./config/hyprland.nix
     ./fonts.nix
     ./config/languages.nix
     ./config/fcitx5.nix
-    ./config/gaming.nix
     ./config/keyboard.nix
     ./config/power.nix
-    ./config/kernel.nix
   ];
 
   nixpkgs = {
@@ -51,22 +49,6 @@
       #     patches = [ ./change-hello-to-hi.patch ];
       #   });
       # })
-
-      (final: prev: {
-        neovimUtils = prev.neovimUtils // {
-          grammarToPlugin =
-            grammar:
-            let
-              prevPlugin = prev.neovimUtils.grammarToPlugin grammar;
-            in
-            prevPlugin.overrideAttrs (prevAttrs: {
-              buildCommand = ''
-                mkdir -p $out/parser
-                ln -s ${grammar}/parser $out/parser/${lib.removePrefix "vimplugin-treesitter-grammar-" prevAttrs.name}.so
-              '';
-            });
-        };
-      })
     ];
     config = {
       allowUnfree = true;
@@ -177,34 +159,36 @@
 
   programs.zsh.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    wget
-    fzf
-    lsd
-    keepassxc
-    (obsidian.overrideAttrs (e: rec {
+  environment.systemPackages = [
+    pkgs.wget
+    pkgs.fzf
+    pkgs.lsd
+    pkgs.keepassxc
+    (pkgs.obsidian.overrideAttrs (e: rec {
       desktopItem = e.desktopItem.override (d: {
         exec = "${d.exec} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime";
       });
       installPhase = builtins.replaceStrings [ "${e.desktopItem}" ] [ "${desktopItem}" ] e.installPhase;
     }))
-    sqlite
-    gcc
-    ripgrep
-    tree-sitter
-    zip
-    unzip
-    p7zip
-    lazygit
-    mpv
-    killall
-    vesktop
-    feh
-    brave
-    ddcutil
-    jq
-    grim
-    age
+    pkgs.sqlite
+    pkgs.gcc
+    pkgs.ripgrep
+    pkgs.tree-sitter
+    pkgs.zip
+    pkgs.unzip
+    pkgs.p7zip
+    pkgs.lazygit
+    pkgs.mpv
+    pkgs.killall
+    pkgs.vesktop
+    pkgs.feh
+    pkgs.brave
+    pkgs.ddcutil
+    pkgs.jq
+    pkgs.grim
+    pkgs.age
+    pkgs.ffmpeg
+    pkgs.yt-dlp
   ];
 
   programs.gnupg.agent.enable = true;
@@ -227,6 +211,8 @@
       PasswordAuthentication = false;
     };
   };
+
+  services.upower.enable = true;
 
   programs.nh = {
     enable = true;

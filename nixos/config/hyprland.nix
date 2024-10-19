@@ -2,8 +2,7 @@
 {
   programs.hyprland = {
     enable = true;
-    xwayland.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [ wl-clipboard ];
+  environment.systemPackages = [ pkgs.wl-clipboard ];
 }

@@ -1,56 +1,57 @@
 { pkgs, inputs, ... }:
 {
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = [
     # nix
-    nil
-    nixd
-    nixfmt-rfc-style
+    pkgs.nil
+    pkgs.nixd
+    pkgs.nixfmt-rfc-style
 
     # rust
     inputs.fenix.packages.x86_64-linux.default.toolchain
-    rust-analyzer
+    pkgs.rust-analyzer
 
     # c
-    clang-tools
-    clang
-    gcc
-    cmake
-    ninja
-    extra-cmake-modules
+    pkgs.clang-tools
+    pkgs.clang
+    pkgs.gcc
+    pkgs.cmake
+    pkgs.ninja
+    pkgs.extra-cmake-modules
 
     # toml
-    taplo
+    pkgs.taplo
 
     # web dev
-    prettierd
-    bun
-    emmet-ls
-    tailwindcss-language-server
-    nodejs
-    eslint_d
-    nodePackages.typescript-language-server
+    pkgs.prettierd
+    pkgs.bun
+    pkgs.emmet-ls
+    pkgs.tailwindcss-language-server
+    pkgs.nodejs
+    pkgs.eslint_d
+    pkgs.nodePackages.typescript-language-server
 
     #css
-    vscode-langservers-extracted
+    pkgs.vscode-langservers-extracted
     # svelte
-    nodePackages.svelte-language-server
+    pkgs.nodePackages.svelte-language-server
 
     # lua
-    stylua
-    lua-language-server
+    pkgs.stylua
+    pkgs.lua-language-server
 
     # java
-    jdk17
+    pkgs.jdk17
 
     # markdown
-    marksman
-    markdown-oxide
+    pkgs.marksman
+    pkgs.markdown-oxide
 
     # python
-    python3
-    basedpyright
-    ruff-lsp
-    black
-    vscode-extensions.ms-python.debugpy
+    pkgs.python3
+    pkgs.basedpyright
+    pkgs.ruff-lsp
+    pkgs.black
+    pkgs.vscode-extensions.ms-python.debugpy
+    pkgs.pipx
   ];
 }
