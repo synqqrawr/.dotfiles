@@ -11,8 +11,9 @@ window.Bar {
 
   &>centerbox {
     background-color: $bg;
-    margin: 5pt 200pt;
-    padding: 5pt;
+    margin: 3pt 200pt;
+    min-height: 40pt;
+    padding: 3pt;
     border-radius: $radius;
   }
 
