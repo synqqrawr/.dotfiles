@@ -29,6 +29,7 @@
     pkgs.nodejs
     pkgs.eslint_d
     pkgs.nodePackages.typescript-language-server
+    pkgs.deno
 
     #css
     pkgs.vscode-langservers-extracted

@@ -29,7 +29,7 @@
     ./configs/ags.nix
     ./configs/fuzzel.nix
     ./configs/cli.nix
-    ./config/nix.nix
+    ../nixos/config/nix.nix
   ];
 
   # TODO: Set your username

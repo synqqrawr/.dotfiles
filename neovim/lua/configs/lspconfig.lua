@@ -39,6 +39,8 @@ M.servers = {
 			},
 		},
 	},
+  nil_ls = {},
+  nixd = {},
 }
 
 -- export on_attach & capabilities

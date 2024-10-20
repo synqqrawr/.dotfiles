@@ -154,133 +154,123 @@ in
             "true"
           ]
         ];
-        toOverwrite = {
-          filterLists = [
-            "user-filters"
-            "ublock-filters"
-            "ublock-badware"
-            "ublock-privacy"
-            "ublock-quick-fixes"
-            "ublock-unbreak"
-            "easylist"
-            "easyprivacy"
-            "adguard-spyware-url"
-            "urlhaus-1"
-            "plowe-0"
-            "fanboy-cookiemonster"
-            "ublock-cookies-easylist"
-            "fanboy-social"
-            "easylist-chat"
-            "easylist-newsletters"
-            "easylist-notifications"
-            "easylist-annoyances"
-            "ublock-annoyances"
-            "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt"
-            "https://filters.adtidy.org/extension/ublock/filters/3.txt"
-            "https://raw.githubusercontent.com/yokoffing/filterlists/main/annoyance_list.txt"
-            "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/BrowseWebsitesWithoutLoggingIn.txt"
-            # "https://raw.githubusercontent.com/yokoffing/filterlists/main/youtube_clear_view.txt"
-            "https://raw.githubusercontent.com/yokoffing/filterlists/main/click2load.txt"
-          ];
-          externalLists = lib.concatMapStrings (x: x + "\n") [
-            "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt"
-            "https://filters.adtidy.org/extension/ublock/filters/3.txt"
-            "https://raw.githubusercontent.com/yokoffing/filterlists/main/annoyance_list.txt"
-            "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/BrowseWebsitesWithoutLoggingIn.txt"
-            # "https://raw.githubusercontent.com/yokoffing/filterlists/main/youtube_clear_view.txt"
-            "https://raw.githubusercontent.com/yokoffing/filterlists/main/click2load.txt"
-          ];
-          importedLists = [
-            "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt"
-            "https://filters.adtidy.org/extension/ublock/filters/3.txt"
-            "https://raw.githubusercontent.com/yokoffing/filterlists/main/annoyance_list.txt"
-            "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/BrowseWebsitesWithoutLoggingIn.txt"
-            # "https://raw.githubusercontent.com/yokoffing/filterlists/main/youtube_clear_view.txt"
-            "https://raw.githubusercontent.com/yokoffing/filterlists/main/click2load.txt"
-          ];
-          trustedSiteDirectives = [
-            "about-scheme"
-            "chrome-extension-scheme"
-            "chrome-scheme"
-            "edge-scheme"
-            "moz-extension-scheme"
-            "opera-scheme"
-            "vivaldi-scheme"
-            "wyciwyg-scheme"
-          ];
-        };
+        toOverwrite =
+          let
+            importedLists = [
+              "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt"
+              "https://filters.adtidy.org/extension/ublock/filters/3.txt"
+              "https://raw.githubusercontent.com/yokoffing/filterlists/main/annoyance_list.txt"
+              "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/BrowseWebsitesWithoutLoggingIn.txt"
+              # "https://raw.githubusercontent.com/yokoffing/filterlists/main/youtube_clear_view.txt"
+              "https://raw.githubusercontent.com/yokoffing/filterlists/main/click2load.txt"
+            ];
+          in
+          {
+            filterLists = [
+              "user-filters"
+              "ublock-filters"
+              "ublock-badware"
+              "ublock-privacy"
+              "ublock-quick-fixes"
+              "ublock-unbreak"
+              "easylist"
+              "easyprivacy"
+              "adguard-spyware-url"
+              "urlhaus-1"
+              "plowe-0"
+              "fanboy-cookiemonster"
+              "ublock-cookies-easylist"
+              "fanboy-social"
+              "easylist-chat"
+              "easylist-newsletters"
+              "easylist-notifications"
+              "easylist-annoyances"
+              "ublock-annoyances"
+            ] ++ importedLists;
+            externalLists = lib.concatMapStrings (x: x + "\n") importedLists;
+            importedLists = importedLists;
+            trustedSiteDirectives = [
+              "about-scheme"
+              "chrome-extension-scheme"
+              "chrome-scheme"
+              "edge-scheme"
+              "moz-extension-scheme"
+              "opera-scheme"
+              "vivaldi-scheme"
+              "wyciwyg-scheme"
+            ];
+          };
       };
     };
     profiles = {
       async = {
         name = "async";
         id = 0;
-        userChrome =
-          ''
-            @import "${inputs.shyfox}/chrome/userChrome.css";
+        userChrome = ''
+          @import "${inputs.shyfox}/chrome/userChrome.css";
 
-            :root {
-              --outline: 0;
-              color-scheme: dark dark;
+          :root {
+            --outline: 0;
+            color-scheme: dark dark;
+          }
+
+          html#main-window,
+          html#main-window > * {
+            --lwt-accent-color: #${M};
+            --lwt-text-color: #${F};
+            --arrowpanel-background: #${C.base02};
+            --arrowpanel-color: #${C.base05};
+            --arrowpanel-border-color: rgba(0, 0, 0, 0);
+            --toolbar-field-background-color: #${C.base03};
+            --toolbar-bgcolor: #${C.base03};
+            --toolbar-color: #${C.base05};
+            --toolbar-field-color: #${C.base05};
+            --toolbar-field-border-color: rgba(0, 0, 0, 0);
+            --toolbar-field-focus-background-color: #${C.base03};
+            --toolbar-field-focus-color: #${C.base05};
+            --toolbar-field-focus-border-color: rgba(0, 0, 0, 0);
+            --newtab-background-color: #${M};
+            --newtab-background-color-secondary: #${C.base00};
+            --newtab-text-primary-color: #${F};
+            --tab-loading-fill: #${C.base0C};
+            --tab-selected-bgcolor: rgba(${C.base04-rgb-r}, ${C.base04-rgb-g}, ${C.base04-rgb-b}, 0.7);
+            --tab-selected-textcolor: #${C.base00};
+            --lwt-tab-line-color: #${M};
+            --tabs-navbar-separator-color: rgba(0, 0, 0, 0);
+            --tabs-navbar-separator-style: none;
+            --chrome-content-separator-color: rgba(0, 0, 0, 0);;
+            --urlbarView-highlight-background: #${M};
+            --urlbarView-highlight-color: #${C.base00};
+            --sidebar-background-color: #${M};
+            --sidebar-text-color: #${C.base05};
+            --tabpanel-background-color: #${M};
+          }
+
+          #contentAreaContextMenu[showservicesmenu="true"],
+          #contentAreaContextMenu[showservicesmenu="true"] menupopup
+          {
+            --panel-background: var(--arrowpanel-background) !important;
+             --toolbar-field-focus-background-color: var(--arrowpanel-background) !important;
+            --panel-border-color: rgba(0, 0, 0, 0) !important;
+            
+            menu:where([_moz-menuactive="true"]:not([disabled="true"])), menuitem:where([_moz-menuactive="true"]:not([disabled="true"])) {
+              background-color: ${C.base04} !important;
+              color: ${C.base05} !important;
+            }
+          }
+
+          findbar {
+            background-color: var(--arrowpanel-background) !important;
+
+            .findbar-textbox {
+              background-color: #${C.base03} !important;
             }
 
-            html#main-window,
-            html#main-window > * {
-              --lwt-accent-color: #${M};
-              --lwt-text-color: #${F};
-              --arrowpanel-background: #${C.base02};
-              --arrowpanel-color: #${C.base05};
-              --arrowpanel-border-color: rgba(0, 0, 0, 0);
-              --toolbar-field-background-color: #${C.base03};
-              --toolbar-bgcolor: #${C.base03};
-              --toolbar-color: #${C.base05};
-              --toolbar-field-color: #${C.base05};
-              --toolbar-field-border-color: rgba(0, 0, 0, 0);
-              --toolbar-field-focus-background-color: #${C.base03};
-              --toolbar-field-focus-color: #${C.base05};
-              --toolbar-field-focus-border-color: rgba(0, 0, 0, 0);
-              --newtab-background-color: #${M};
-              --newtab-background-color-secondary: #${C.base00};
-              --newtab-text-primary-color: #${F};
-              --tab-loading-fill: #${C.base0C};
-              --tab-selected-bgcolor: rgba(${C.base04-rgb-r}, ${C.base04-rgb-g}, ${C.base04-rgb-b}, 0.7);
-              --tab-selected-textcolor: #${C.base00};
-              --lwt-tab-line-color: #${M};
-              --tabs-navbar-separator-color: rgba(0, 0, 0, 0);
-              --tabs-navbar-separator-style: none;
-              --chrome-content-separator-color: rgba(0, 0, 0, 0);;
-              --urlbarView-highlight-background: #${M};
-              --urlbarView-highlight-color: #${C.base00};
-              --sidebar-background-color: #${M};
-              --sidebar-text-color: #${C.base05};
-              --tabpanel-background-color: #${M};
+            & > * {
+              color: #${C.base05} !important;
             }
-
-            #contentAreaContextMenu[showservicesmenu="true"],
-            #contentAreaContextMenu[showservicesmenu="true"] menupopup
-            {
-              --panel-background: var(--arrowpanel-background) !important;
-               --toolbar-field-focus-background-color: var(--arrowpanel-background) !important;
-              --panel-border-color: rgba(0, 0, 0, 0) !important;
-              
-              menu:where([_moz-menuactive="true"]:not([disabled="true"])), menuitem:where([_moz-menuactive="true"]:not([disabled="true"])) {
-                background-color: ${C.base04} !important;
-                color: ${C.base05} !important;
-              }
-            }
-
-            findbar {
-              background-color: var(--arrowpanel-background) !important;
-
-              .findbar-textbox {
-                background-color: #${C.base03} !important;
-              }
-
-              & > * {
-                color: #${C.base05} !important;
-              }
-            }
-          '';
+          }
+        '';
         userContent =
           # css
           ''

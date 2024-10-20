@@ -38,7 +38,7 @@
 
           color = "rgb(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b})";
           font_size = "20";
-          font_family = "SF Pro Display Bold";
+          font_family = "${config.stylix.fonts.sansSerif.name}";
           shadow_passes = "0";
           shadow_size = "0";
           position = "0, 400";
@@ -51,7 +51,7 @@
 
           color = "rgb(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b})";
           font_size = "93";
-          font_family = "SF Pro Display Bold";
+          font_family = "${config.stylix.fonts.sansSerif.name}";
           shadow_passes = "0";
           shadow_size = "0";
           position = "0, 330";
