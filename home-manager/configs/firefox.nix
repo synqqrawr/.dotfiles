@@ -284,6 +284,16 @@ in
                 --frame-bg: #${M} !important;
                 --tabs-activated-bg: #${C.base04} !important;
               }
+              .Tab[data-pin="true"] .body {
+                border: 0 !important;
+              }
+
+              /* selected tab outline */
+              .Tab[data-pin="true"][data-active="true"] .body 
+              {
+                border: 0 !important;
+                background-color: #${C.base04} !important;
+              }
             }
           '';
         search = {
