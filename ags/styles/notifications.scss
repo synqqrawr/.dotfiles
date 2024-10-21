@@ -1,0 +1,26 @@
+@use "variables.scss" as *;
+
+window.Notification {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  color: $fg;
+  font-size: 1.1em;
+  font-weight: 600;
+  font-family: 'Source Sans Pro', 'Noto Sans', 'Noto Sans CJK';
+
+  .Notifications {
+     background-color: $bg;
+     margin: 1pt;
+     min-height: 20pt;
+     min-width: 200pt;
+     padding: 10pt;
+     border-radius: $radius;
+     & .Summary {
+       font-size: 1rem;
+     }
+     & .Body {
+       min-height: 30pt;
+     }
+  }
+}
