@@ -1,8 +1,11 @@
-import { Variable, bind, timeout } from "astal";
+import { GLib, Variable, bind, timeout } from "astal";
 import { App, Astal, Gtk } from "astal/gtk3";
 import Notifd from "gi://AstalNotifd";
 
-const EXPIRY_TIME = 5000; // Time to wait before removing a notification (10 seconds)
+const time = (time: number, format = "%H:%M") =>
+  GLib.DateTime.new_from_unix_local(time).format(format);
+
+const EXPIRY_TIME = 7000; // Time to wait before removing a notification (5 seconds)
 
 export default function Notification(monitor: number) {
   const anchor = Astal.WindowAnchor.BOTTOM | Astal.WindowAnchor.RIGHT;
@@ -34,34 +37,71 @@ export default function Notification(monitor: number) {
       <box vertical>
         {bind(recentNotifications).as((ns) => {
           return ns.map((notification, index) => (
-            <box
-              transition="slide_left"
-              transition_duration={10}
-              className="Notifications"
-              vertical
+            <eventbox
               key={index}
+              onHoverLost={() => {
+                // Remove notification without dismissing
+                const currentNotifications = recentNotifications.get();
+                const updatedNotifications = currentNotifications.filter((n) => n.id !== notification.id);
+                recentNotifications.set(updatedNotifications);
+              }}
             >
-              {notification.summary && notification.summary.trim() !== "" && (
-                <label
-                  truncate="end"
-                  maxWidthChars={30}
-                  halign={Gtk.Align.START}
-                  className="Summary"
-                  label={notification.summary}
-                />
-              )}
-              {notification.body && notification.body.trim() !== "" && (
-                <label
-                  halign={Gtk.Align.START}
-                  maxWidthChars={100}
-                  wrap={true}
-                  xalign={0}
-                  truncate="end"
-                  className="txt-smallie Body"
-                  label={notification.body}
-                />
-              )}
-            </box>
+              <box
+                transition="slide_left"
+                transition_duration={10}
+                className="Notifications"
+                vertical
+              >
+                <box>
+                  <label
+                    truncate="end"
+                    maxWidthChars={30}
+                    hexpand
+                    wrap
+                    halign={Gtk.Align.START}
+                    className="Summary"
+                    label={notification.summary.trim() || "[BLANK]"}
+                  />
+                  <box halign={Gtk.Align.END}>
+                    <label
+                      truncate="end"
+                      maxWidthChars={30}
+                      hexpand
+                      wrap
+                      className="txt-smallie"
+                      label={time(notification.time)}
+                    />
+                    <button
+                      className="closeButton"
+                      css={`
+                        all: unset;
+                        margin-left: 10pt;
+                      `}
+                      onClicked={() => {
+                        notification.dismiss();
+                        const currentNotifications = recentNotifications.get();
+                        const updatedNotifications = currentNotifications.filter((n) => n.id !== notification.id);
+                        recentNotifications.set(updatedNotifications);
+                      }}
+                    >
+                      <icon icon="window-close-symbolic" />
+                    </button>
+                  </box>
+                </box>
+                {notification.body && notification.body.trim() !== "" && (
+                  <label
+                    halign={Gtk.Align.START}
+                    maxWidthChars={100}
+                    hexpand
+                    wrap
+                    xalign={0}
+                    truncate="end"
+                    className="txt-smallie Body"
+                    label={notification.body}
+                  />
+                )}
+              </box>
+            </eventbox>
           ));
         })}
       </box>

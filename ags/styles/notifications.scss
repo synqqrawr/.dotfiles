@@ -22,5 +22,9 @@ window.Notification {
      & .Body {
        min-height: 30pt;
      }
+     &.closeButton {
+       all: unset;
+       margin-left: 10pt;
+     }
   }
 }
