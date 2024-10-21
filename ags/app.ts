@@ -1,6 +1,7 @@
 import { App } from "astal/gtk3";
 import style from "./styles/index.scss";
 import Bar from "./Widget/Bar";
+import Notifications from "./Widget/Notifications";
 
 App.start({
   instanceName: "ts",
@@ -11,5 +12,6 @@ App.start({
   },
   main: () => {
     Bar(0);
+    Notifications(0);
   },
 });

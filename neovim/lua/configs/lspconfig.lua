@@ -41,6 +41,7 @@ M.servers = {
 	},
   nil_ls = {},
   nixd = {},
+  ts_ls = {},
 }
 
 -- export on_attach & capabilities
@@ -80,7 +81,7 @@ M.capabilities.textDocument.completion.completionItem = {
 	documentationFormat = { "markdown", "plaintext" },
 	snippetSupport = true,
 	preselectSupport = true,
-	insertReplaceSupport = true,
+	-- insertReplaceSupport = true,
 	labelDetailsSupport = true,
 	deprecatedSupport = true,
 	commitCharactersSupport = true,

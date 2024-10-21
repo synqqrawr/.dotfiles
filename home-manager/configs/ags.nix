@@ -12,10 +12,6 @@
 
     # additional packages to add to gjs's runtime
     extraPackages = [
-      inputs.ags.packages.${pkgs.system}.default
-
-      inputs.ags.packages.${pkgs.system}.astal3
-      inputs.ags.packages.${pkgs.system}.ags
       inputs.ags.packages.${pkgs.system}.mpris
       inputs.ags.packages.${pkgs.system}.hyprland
       inputs.ags.packages.${pkgs.system}.tray
@@ -23,6 +19,7 @@
       inputs.ags.packages.${pkgs.system}.wireplumber
       inputs.ags.packages.${pkgs.system}.network
       inputs.ags.packages.${pkgs.system}.notifd
+      inputs.ags.packages.${pkgs.system}.apps
     ];
   };
 

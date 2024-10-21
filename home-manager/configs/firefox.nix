@@ -5,7 +5,6 @@
 {
   inputs,
   lib,
-  pkgs,
   config,
   ...
 }:
@@ -239,8 +238,8 @@ in
             --tabs-navbar-separator-color: rgba(0, 0, 0, 0);
             --tabs-navbar-separator-style: none;
             --chrome-content-separator-color: rgba(0, 0, 0, 0);;
-            --urlbarView-highlight-background: #${M};
-            --urlbarView-highlight-color: #${C.base00};
+            --urlbarView-highlight-background: #${C.base0C};
+            --urlbarView-highlight-color: #${M};
             --sidebar-background-color: #${M};
             --sidebar-text-color: #${C.base05};
             --tabpanel-background-color: #${M};
