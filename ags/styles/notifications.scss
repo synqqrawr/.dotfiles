@@ -13,14 +13,11 @@ window.Notification {
      background-color: $bg;
      margin: 1pt;
      min-height: 20pt;
-     min-width: 200pt;
+     min-width: 300pt;
      padding: 10pt;
      border-radius: $radius;
      & .Summary {
        font-size: 1rem;
-     }
-     & .Body {
-       min-height: 30pt;
      }
      &.closeButton {
        all: unset;
