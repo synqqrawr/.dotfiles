@@ -20,6 +20,7 @@ export default function Notification(monitor: number) {
     recentNotifications.set([...currentNotifications, n]);
 
     timeout(EXPIRY_TIME, () => {
+      n.dismiss();
       const updatedNotifications = recentNotifications
         .get()
         .filter((notification) => notification.id !== n.id);
@@ -40,7 +41,7 @@ export default function Notification(monitor: number) {
             <eventbox
               key={index}
               onHoverLost={() => {
-                // Remove notification without dismissing
+                notification.dismiss();
                 const currentNotifications = recentNotifications.get();
                 const updatedNotifications = currentNotifications.filter(
                   (n) => n.id !== notification.id,
@@ -119,9 +120,16 @@ export default function Notification(monitor: number) {
                           <button
                             hexpand
                             className="action"
-                            onButtonReleaseEvent={() =>
-                              notification.invoke(action.id)
-                            }
+                            onButtonReleaseEvent={() => {
+                              notification.invoke(action.id);
+                              const currentNotifications =
+                                recentNotifications.get();
+                              const updatedNotifications =
+                                currentNotifications.filter(
+                                  (n) => n.id !== notification.id,
+                                );
+                              recentNotifications.set(updatedNotifications);
+                            }}
                           >
                             <label label={action.label} />
                           </button>
