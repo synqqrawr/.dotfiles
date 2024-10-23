@@ -23,5 +23,11 @@ window.Notification {
        all: unset;
        margin-left: 10pt;
      }
+     & button.action {
+       background-color: $bg;
+       &:hover {
+         background-color: transparentize($fg, .9);
+       }
+     }
   }
 }
