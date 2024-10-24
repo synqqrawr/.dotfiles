@@ -14,18 +14,20 @@ export default function Notification(monitor: number) {
   const recentNotifications = Variable([]);
 
   notifd.connect("notified", (_, id) => {
-    const n = notifd.get_notification(id);
+    if (notifd.get_dont_disturb !== false) {
+      const n = notifd.get_notification(id);
 
-    const currentNotifications = recentNotifications.get();
-    recentNotifications.set([...currentNotifications, n]);
+      const currentNotifications = recentNotifications.get();
+      recentNotifications.set([...currentNotifications, n]);
 
-    timeout(EXPIRY_TIME, () => {
-      n.dismiss();
-      const updatedNotifications = recentNotifications
-        .get()
-        .filter((notification) => notification.id !== n.id);
-      recentNotifications.set(updatedNotifications);
-    });
+      timeout(EXPIRY_TIME, () => {
+        n.dismiss();
+        const updatedNotifications = recentNotifications
+          .get()
+          .filter((notification) => notification.id !== n.id);
+        recentNotifications.set(updatedNotifications);
+      });
+    }
   });
 
   return (
