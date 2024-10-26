@@ -44,6 +44,7 @@ export default function AppLauncher() {
     primaryIconName: "edit-find",
     onActivate: () => {
       items.get()[0]?.app.launch();
+      query.set("");
       App.toggle_window(WINDOW_NAME);
     },
     setup: (self) => {
