@@ -2,8 +2,6 @@
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
   config,
-  outputs,
-  inputs,
   ...
 }:
 {
@@ -27,7 +25,6 @@
     ./configs/git.nix
     ./configs/gtk.nix
     ./configs/ags.nix
-    ./configs/fuzzel.nix
     ./configs/cli.nix
     ../nixos/config/nix.nix
   ];

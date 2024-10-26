@@ -16,6 +16,16 @@ let
   F = C.base05;
 
   searx = "searx.tiekoetter.com";
+
+  ubo = {
+    importedLists = [ "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt"
+      "https://filters.adtidy.org/extension/ublock/filters/3.txt"
+      "https://raw.githubusercontent.com/yokoffing/filterlists/main/annoyance_list.txt"
+      "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/BrowseWebsitesWithoutLoggingIn.txt"
+      # "https://raw.githubusercontent.com/yokoffing/filterlists/main/youtube_clear_view.txt"
+      "https://raw.githubusercontent.com/yokoffing/filterlists/main/click2load.txt"
+    ];
+  };
 in
 {
   programs.firefox = {
@@ -36,8 +46,6 @@ in
           "https://addons.mozilla.org/firefox/downloads/file/4360577/sponsorblock-5.9.3.xpi"
           "https://addons.mozilla.org/firefox/downloads/file/4246774/sidebery-5.2.0.xpi"
           "https://addons.mozilla.org/firefox/downloads/file/4342747/return_youtube_dislikes-3.0.0.17.xpi"
-          "https://addons.mozilla.org/firefox/downloads/file/4340783/indie_wiki_buddy-3.10.1.xpi"
-          "https://gitflic.ru/project/magnolia1234/bpc_uploads/blob/raw?file=bypass_paywalls_clean-latest.xpi&inline=false&commit=50d859419f4d12d34a802178b06e27a29d0f067a"
           "https://addons.mozilla.org/firefox/downloads/file/4341014/userchrome_toggle_extended-2.0.1.xpi"
         ];
       };
@@ -154,16 +162,6 @@ in
           ]
         ];
         toOverwrite =
-          let
-            importedLists = [
-              "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt"
-              "https://filters.adtidy.org/extension/ublock/filters/3.txt"
-              "https://raw.githubusercontent.com/yokoffing/filterlists/main/annoyance_list.txt"
-              "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/BrowseWebsitesWithoutLoggingIn.txt"
-              # "https://raw.githubusercontent.com/yokoffing/filterlists/main/youtube_clear_view.txt"
-              "https://raw.githubusercontent.com/yokoffing/filterlists/main/click2load.txt"
-            ];
-          in
           {
             filterLists = [
               "user-filters"
@@ -185,9 +183,9 @@ in
               "easylist-notifications"
               "easylist-annoyances"
               "ublock-annoyances"
-            ] ++ importedLists;
-            externalLists = lib.concatMapStrings (x: x + "\n") importedLists;
-            importedLists = importedLists;
+            ] ++ ubo.importedLists;
+            externalLists = lib.concatMapStrings (x: x + "\n") ubo.importedLists;
+            importedLists = ubo.importedLists;
             trustedSiteDirectives = [
               "about-scheme"
               "chrome-extension-scheme"
@@ -205,7 +203,9 @@ in
       async = {
         name = "async";
         id = 0;
-        userChrome = ''
+        userChrome = 
+          # css
+          ''
           @import "${inputs.shyfox}/chrome/userChrome.css";
 
           :root {
