@@ -18,7 +18,8 @@ let
   searx = "searx.tiekoetter.com";
 
   ubo = {
-    importedLists = [ "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt"
+    importedLists = [
+      "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt"
       "https://filters.adtidy.org/extension/ublock/filters/3.txt"
       "https://raw.githubusercontent.com/yokoffing/filterlists/main/annoyance_list.txt"
       "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/BrowseWebsitesWithoutLoggingIn.txt"
@@ -160,115 +161,114 @@ in
             "true"
           ]
         ];
-        toOverwrite =
-          {
-            filterLists = [
-              "user-filters"
-              "ublock-filters"
-              "ublock-badware"
-              "ublock-privacy"
-              "ublock-quick-fixes"
-              "ublock-unbreak"
-              "easylist"
-              "easyprivacy"
-              "adguard-spyware-url"
-              "urlhaus-1"
-              "plowe-0"
-              "fanboy-cookiemonster"
-              "ublock-cookies-easylist"
-              "fanboy-social"
-              "easylist-chat"
-              "easylist-newsletters"
-              "easylist-notifications"
-              "easylist-annoyances"
-              "ublock-annoyances"
-            ] ++ ubo.importedLists;
-            externalLists = lib.concatMapStrings (x: x + "\n") ubo.importedLists;
-            importedLists = ubo.importedLists;
-            trustedSiteDirectives = [
-              "about-scheme"
-              "chrome-extension-scheme"
-              "chrome-scheme"
-              "edge-scheme"
-              "moz-extension-scheme"
-              "opera-scheme"
-              "vivaldi-scheme"
-              "wyciwyg-scheme"
-            ];
-          };
+        toOverwrite = {
+          filterLists = [
+            "user-filters"
+            "ublock-filters"
+            "ublock-badware"
+            "ublock-privacy"
+            "ublock-quick-fixes"
+            "ublock-unbreak"
+            "easylist"
+            "easyprivacy"
+            "adguard-spyware-url"
+            "urlhaus-1"
+            "plowe-0"
+            "fanboy-cookiemonster"
+            "ublock-cookies-easylist"
+            "fanboy-social"
+            "easylist-chat"
+            "easylist-newsletters"
+            "easylist-notifications"
+            "easylist-annoyances"
+            "ublock-annoyances"
+          ] ++ ubo.importedLists;
+          externalLists = lib.concatMapStrings (x: x + "\n") ubo.importedLists;
+          importedLists = ubo.importedLists;
+          trustedSiteDirectives = [
+            "about-scheme"
+            "chrome-extension-scheme"
+            "chrome-scheme"
+            "edge-scheme"
+            "moz-extension-scheme"
+            "opera-scheme"
+            "vivaldi-scheme"
+            "wyciwyg-scheme"
+          ];
+        };
       };
     };
     profiles = {
       async = {
         name = "async";
         id = 0;
-        userChrome = 
+        userChrome =
           # css
           ''
-          @import "${inputs.shyfox}/chrome/userChrome.css";
+            @import "${inputs.shyfox}/chrome/userChrome.css";
 
-          :root {
-            --outline: 0;
-            color-scheme: dark dark;
-          }
-
-          html#main-window,
-          html#main-window > * {
-            --lwt-accent-color: #${M};
-            --lwt-text-color: #${F};
-            --arrowpanel-background: #${C.base02};
-            --arrowpanel-color: #${C.base05};
-            --arrowpanel-border-color: rgba(0, 0, 0, 0);
-            --toolbar-field-background-color: #${C.base03};
-            --toolbar-bgcolor: #${C.base03};
-            --toolbar-color: #${C.base05};
-            --toolbar-field-color: #${C.base05};
-            --toolbar-field-border-color: rgba(0, 0, 0, 0);
-            --toolbar-field-focus-background-color: #${C.base03};
-            --toolbar-field-focus-color: #${C.base05};
-            --toolbar-field-focus-border-color: rgba(0, 0, 0, 0);
-            --newtab-background-color: #${M};
-            --newtab-background-color-secondary: #${C.base00};
-            --newtab-text-primary-color: #${F};
-            --tab-loading-fill: #${C.base0C};
-            --tab-selected-bgcolor: rgba(${C.base04-rgb-r}, ${C.base04-rgb-g}, ${C.base04-rgb-b}, 0.7);
-            --tab-selected-textcolor: #${C.base00};
-            --lwt-tab-line-color: #${M};
-            --tabs-navbar-separator-color: rgba(0, 0, 0, 0);
-            --tabs-navbar-separator-style: none;
-            --chrome-content-separator-color: rgba(0, 0, 0, 0);;
-            --urlbarView-highlight-background: #${C.base0C};
-            --urlbarView-highlight-color: #${M};
-            --sidebar-background-color: #${M};
-            --sidebar-text-color: #${C.base05};
-            --tabpanel-background-color: #${M};
-          }
-
-          #contentAreaContextMenu[showservicesmenu="true"],
-          #contentAreaContextMenu[showservicesmenu="true"] menupopup
-          {
-            --panel-background: var(--arrowpanel-background) !important;
-             --toolbar-field-focus-background-color: var(--arrowpanel-background) !important;
-            --panel-border-color: rgba(0, 0, 0, 0) !important;
-            
-            menu:where([_moz-menuactive="true"]:not([disabled="true"])), menuitem:where([_moz-menuactive="true"]:not([disabled="true"])) {
-              background-color: ${C.base04} !important;
-              color: ${C.base05} !important;
-            }
-          }
-
-          findbar {
-            background-color: var(--arrowpanel-background) !important;
-
-            .findbar-textbox {
-              background-color: #${C.base03} !important;
+            :root {
+              --outline: 0;
+              color-scheme: dark dark;
             }
 
-            & > * {
-              color: #${C.base05} !important;
+            html#main-window,
+            html#main-window > * {
+              --lwt-accent-color: #${M};
+              --lwt-text-color: #${F};
+              --arrowpanel-background: #${C.base02};
+              --arrowpanel-color: #${C.base05};
+              --arrowpanel-border-color: rgba(0, 0, 0, 0);
+              --toolbar-field-background-color: #${C.base03};
+              --toolbar-bgcolor: #${C.base03};
+              --toolbar-color: #${C.base05};
+              --toolbar-field-color: #${C.base05};
+              --toolbar-field-border-color: rgba(0, 0, 0, 0);
+              --toolbar-field-focus-background-color: #${C.base03};
+              --toolbar-field-focus-color: #${C.base05};
+              --toolbar-field-focus-border-color: rgba(0, 0, 0, 0);
+              --newtab-background-color: #${M};
+              --newtab-background-color-secondary: #${C.base00};
+              --newtab-text-primary-color: #${F};
+              --tab-loading-fill: #${C.base0C};
+              --tab-selected-bgcolor: rgba(${C.base04-rgb-r}, ${C.base04-rgb-g}, ${C.base04-rgb-b}, 0.7);
+              --tab-selected-textcolor: #${C.base00};
+              --lwt-tab-line-color: #${M};
+              --tabs-navbar-separator-color: rgba(0, 0, 0, 0);
+              --tabs-navbar-separator-style: none;
+              --chrome-content-separator-color: rgba(0, 0, 0, 0);;
+              --urlbarView-highlight-background: #${C.base0C};
+              --urlbarView-highlight-color: #${M};
+              --sidebar-background-color: #${M};
+              --sidebar-text-color: #${C.base05};
+              --tabpanel-background-color: #${M};
             }
-          }
-        '';
+
+            #contentAreaContextMenu[showservicesmenu="true"],
+            #contentAreaContextMenu[showservicesmenu="true"] menupopup
+            {
+              --panel-background: var(--arrowpanel-background) !important;
+               --toolbar-field-focus-background-color: var(--arrowpanel-background) !important;
+              --panel-border-color: rgba(0, 0, 0, 0) !important;
+              
+              menu:where([_moz-menuactive="true"]:not([disabled="true"])), menuitem:where([_moz-menuactive="true"]:not([disabled="true"])) {
+                background-color: ${C.base04} !important;
+                color: ${C.base05} !important;
+              }
+            }
+
+            findbar {
+              background-color: var(--arrowpanel-background) !important;
+
+              .findbar-textbox {
+                background-color: #${C.base03} !important;
+              }
+
+              & > * {
+                color: #${C.base05} !important;
+              }
+            }
+          '';
         userContent =
           # css
           ''
@@ -374,6 +374,13 @@ in
 
             user_pref("browser.download.useDownloadDir", false);
             user_pref("accessibility.force_disabled", 1);
+
+            // PREF: disable login manager
+            user_pref("signon.rememberSignons", false);
+
+            // PREF: disable address and credit card manager
+            user_pref("extensions.formautofill.addresses.enabled", false);
+            user_pref("extensions.formautofill.creditCards.enabled", false);
           ''
         ];
       };
