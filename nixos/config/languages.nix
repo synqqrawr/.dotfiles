@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   environment.systemPackages = [
     # nix
@@ -7,7 +7,9 @@
     pkgs.nixfmt-rfc-style
 
     # rust
-    inputs.fenix.packages.x86_64-linux.default.toolchain
+    pkgs.clippy
+    pkgs.rustc
+    pkgs.cargo
     pkgs.rust-analyzer
 
     # c

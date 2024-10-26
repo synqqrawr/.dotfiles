@@ -29,7 +29,6 @@ let
 in
 {
   programs.firefox = {
-    package = inputs.nixpkgs-small.legacyPackages.x86_64-linux.firefox;
     enable = true;
     policies = {
       Extensions = {
