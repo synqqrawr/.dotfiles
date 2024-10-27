@@ -42,6 +42,7 @@ M.servers = {
   nil_ls = {},
   nixd = {},
   ts_ls = {},
+  svelte = {}
 }
 
 -- export on_attach & capabilities

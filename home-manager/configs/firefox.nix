@@ -16,17 +16,6 @@ let
   F = C.base05;
 
   searx = "searx.tiekoetter.com";
-
-  ubo = {
-    importedLists = [
-      "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt"
-      "https://filters.adtidy.org/extension/ublock/filters/3.txt"
-      "https://raw.githubusercontent.com/yokoffing/filterlists/main/annoyance_list.txt"
-      "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/BrowseWebsitesWithoutLoggingIn.txt"
-      # "https://raw.githubusercontent.com/yokoffing/filterlists/main/youtube_clear_view.txt"
-      "https://raw.githubusercontent.com/yokoffing/filterlists/main/click2load.txt"
-    ];
-  };
 in
 {
   programs.firefox = {
@@ -45,157 +34,8 @@ in
           "https://addons.mozilla.org/firefox/downloads/file/4359936/ublock_origin-1.60.0.xpi"
           "https://addons.mozilla.org/firefox/downloads/file/4360577/sponsorblock-5.9.3.xpi"
           "https://addons.mozilla.org/firefox/downloads/file/4246774/sidebery-5.2.0.xpi"
-          "https://addons.mozilla.org/firefox/downloads/file/4342747/return_youtube_dislikes-3.0.0.17.xpi"
           "https://addons.mozilla.org/firefox/downloads/file/4341014/userchrome_toggle_extended-2.0.1.xpi"
         ];
-      };
-      "3rdparty".Extensions."uBlock0@raymondhill.net" = {
-        adminSettings = {
-          dynamicFilteringString = lib.concatMapStrings (x: x + "\n") [
-            "no-csp-reports: * true"
-            "no-large-media: behind-the-scene false"
-            "behind-the-scene * * noop"
-            "behind-the-scene * inline-script noop"
-            "behind-the-scene * 1p-script noop"
-            "behind-the-scene * 3p-frame noop"
-            "behind-the-scene * image noop"
-            "behind-the-scene * 3p noop"
-          ];
-          userFilters =
-            let
-              # Base filters
-              baseFilters = [
-                "||0.0.0.0^$3p,domain=~localhost|~127.0.0.1|~[::1]|~0.0.0.0|~[::]|~local"
-                "en.wikipedia.org##+js(trusted-set-cookie, enwikimwclientpreferences, skin-theme-clientpref-night%2Cvector-feature-limited-width-clientpref-1%2Cvector-feature-custom-font-size-clientpref-1%2Cvector-feature-appearance-pinned-clientpref-0)"
-                "ja.wikipedia.org##+js(trusted-set-cookie, jawikimwclientpreferences, skin-theme-clientpref-night%2Cvector-feature-limited-width-clientpref-1%2Cvector-feature-custom-font-size-clientpref-1%2Cvector-feature-appearance-pinned-clientpref-0)"
-              ];
-
-              # YouTube filters
-              youtubeFilters = [
-                ''
-                  ! YT Homepage and Subscriptions (Grid View) - Hide the Shorts section
-                  youtube.com##[is-shorts]
-                  ! YT Menu - Hide the Shorts button
-                  www.youtube.com###guide [title="Shorts"], .ytd-mini-guide-entry-renderer[title="Shorts"]
-                  ! YT Search - Hide Shorts
-                  www.youtube.com##ytd-search ytd-video-renderer:has([overlay-style="SHORTS"])
-                  ! YT Search, Channels, Subscriptions (List View) and Sidebar/Below Player Recommendations - Hide the Shorts sections
-                  www.youtube.com##ytd-reel-shelf-renderer
-                  ! YT Channels - Hide the Shorts tab
-                  www.youtube.com##[tab-title="Shorts"]
-                  ! YT Subscriptions - Hide Shorts - Grid View
-                  www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-grid-video-renderer:has([overlay-style="SHORTS"])
-                  ! YT Subscriptions - Hide Shorts - List View
-                  www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-video-renderer:has([overlay-style="SHORTS"])
-                  ! YT Subscriptions - New Layout - Hide Shorts
-                  www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer:has([overlay-style="SHORTS"])
-                  ! YT Sidebar - Hide Shorts
-                  www.youtube.com###related ytd-compact-video-renderer:has([overlay-style="SHORTS"])
-                  ! YT Mobile - Hide the Shorts Menu button
-                  m.youtube.com##ytm-pivot-bar-item-renderer:has(>.pivot-shorts)
-                  ! YT Mobile - Hide the Shorts sections
-                  m.youtube.com##ytm-reel-shelf-renderer
-                  m.youtube.com##ytm-rich-section-renderer:has([d^="M17.77,10.32l-1.2"])
-                  ! YT Mobile - Hide Shorts in search results
-                  m.youtube.com##ytm-search ytm-video-with-context-renderer:has([data-style="SHORTS"])
-                  ! YT Mobile - Hide the Shorts button on Channels
-                  m.youtube.com##[tab-title="Shorts"]
-                ''
-                ''
-                  ! YT Search - keep only videos (no shorts)
-                  youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(:not(ytd-video-renderer,yt-showing-results-for-renderer,[icon-name="promo-full-height:EMPTY_SEARCH"]),ytd-video-renderer:has([aria-label="Shorts"])),ytd-secondary-search-container-renderer
-
-                  ! YT Search - keep only videos (no shorts) and channels
-                  youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(:not(ytd-video-renderer,ytd-channel-renderer,yt-showing-results-for-renderer,[icon-name="promo-full-height:EMPTY_SEARCH"]),ytd-video-renderer:has([aria-label="Shorts"])),ytd-secondary-search-container-renderer
-
-                  ! YT Search - keep only videos (no shorts), channels and playlists
-                  youtube.com##ytd-search ytd-item-section-renderer>#contents>:is(:not(ytd-video-renderer,ytd-channel-renderer, ytd-playlist-renderer,yt-showing-results-for-renderer,[icon-name="promo-full-height:EMPTY_SEARCH"]),ytd-video-renderer:has([aria-label="Shorts"])),ytd-secondary-search-container-renderer
-                ''
-                ''
-                  ! YT Sidebar - Hide videos based on their titles
-                  youtube.com###related ytd-compact-video-renderer:has(#video-title:is([title*="mrbeast"i]))
-                ''
-              ];
-
-              # Add cookie settings to filters
-              cookieFilters = map (attr: "${searx}##+js(trusted-set-cookie, ${attr})") [
-                "categories, general"
-                "language, all"
-              ];
-
-              # Combining all filters into a single list
-              allFilters = baseFilters ++ youtubeFilters ++ cookieFilters;
-
-            in
-            allFilters; # Returns a list of strings
-          hostnameSwitchesString = lib.concatMapStrings (x: x + "\n") [
-            "no-large-media: behind-the-scene false"
-            "no-csp-reports: * true"
-          ];
-        };
-        advancedSettings = [
-          [
-            "cnameMaxTTL"
-            "720"
-          ]
-          [
-            "filterAuthorMode"
-            "true"
-          ]
-        ];
-        userSettings = [
-          [
-            "advancedUserEnabled"
-            "true"
-          ]
-          [
-            "ignoreGeneticCosmeticFilters"
-            "true"
-          ]
-          [
-            "popupPanelSections"
-            "31"
-          ]
-          [
-            "userFiltersTrusted"
-            "true"
-          ]
-        ];
-        toOverwrite = {
-          filterLists = [
-            "user-filters"
-            "ublock-filters"
-            "ublock-badware"
-            "ublock-privacy"
-            "ublock-quick-fixes"
-            "ublock-unbreak"
-            "easylist"
-            "easyprivacy"
-            "adguard-spyware-url"
-            "urlhaus-1"
-            "plowe-0"
-            "fanboy-cookiemonster"
-            "ublock-cookies-easylist"
-            "fanboy-social"
-            "easylist-chat"
-            "easylist-newsletters"
-            "easylist-notifications"
-            "easylist-annoyances"
-            "ublock-annoyances"
-          ] ++ ubo.importedLists;
-          externalLists = lib.concatMapStrings (x: x + "\n") ubo.importedLists;
-          importedLists = ubo.importedLists;
-          trustedSiteDirectives = [
-            "about-scheme"
-            "chrome-extension-scheme"
-            "chrome-scheme"
-            "edge-scheme"
-            "moz-extension-scheme"
-            "opera-scheme"
-            "vivaldi-scheme"
-            "wyciwyg-scheme"
-          ];
-        };
       };
     };
     profiles = {
@@ -209,7 +49,7 @@ in
 
             :root {
               --outline: 0;
-              color-scheme: dark dark;
+              color-scheme: ${config.stylix.polarity};
             }
 
             html#main-window,

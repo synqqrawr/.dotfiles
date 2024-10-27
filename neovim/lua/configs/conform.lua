@@ -11,6 +11,7 @@ local options = {
 		svelte = { "prettierd" },
 		scss = { "prettierd" },
 		astro = { "prettierd" },
+		json = { "prettierd" },
 	},
 
 	-- format_on_save = {
