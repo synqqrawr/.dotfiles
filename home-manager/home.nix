@@ -26,6 +26,7 @@
     ./configs/gtk.nix
     ./configs/ags.nix
     ./configs/cli.nix
+    ./configs/foot.nix
     ../nixos/config/nix.nix
   ];
 

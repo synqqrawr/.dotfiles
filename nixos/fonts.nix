@@ -3,7 +3,7 @@
   fonts = {
     fontDir.enable = true;
     packages = [
-      pkgs.noto-fonts-cjk
+      pkgs.noto-fonts-cjk-sans
       (pkgs.nerdfonts.override {
         fonts = [
           "NerdFontsSymbolsOnly"

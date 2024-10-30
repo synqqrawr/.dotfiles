@@ -8,7 +8,7 @@
     bind =
       [
         "SUPER, Q, killactive"
-        "SUPER, Return, exec, kitty"
+        "SUPER, Return, exec, foot"
         "SUPER, W, exec, firefox"
         "SUPER, F, togglefloating"
         # "SUPER, F, centerwindow"

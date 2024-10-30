@@ -184,6 +184,96 @@ in
               ];
               definedAliases = [ "@s" ];
             };
+            "Github Code" = {
+              urls = [
+                {
+                  template = "https://github.com/search";
+                  params = [
+                    {
+                      name = "utf8";
+                      value = "✓";
+                    }
+                    {
+                      name = "q";
+                      value = "{searchTerms}";
+                    }
+                    {
+                      name = "type";
+                      value = "Code";
+                    }
+                  ];
+                }
+              ];
+              definedAliases = [
+                "!!ghc"
+                "!ghc"
+                "@ghc"
+              ];
+            };
+            "Github" = {
+              urls = [
+                {
+                  template = "https://github.com/search";
+                  params = [
+                    {
+                      name = "utf8";
+                      value = "✓";
+                    }
+                    {
+                      name = "q";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+              definedAliases = [
+                "!!gh"
+                "!gh"
+                "@gh"
+              ];
+            };
+            "Nixpkgs" = {
+              urls = [
+                {
+                  template = "https://search.nixos.org/packages";
+                  params = [
+                    {
+                      name = "query";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+              definedAliases = [
+                "!!nixpkg"
+                "!nixpkg"
+                "@nixpkg"
+                "!!nixpkgs"
+                "!nixpkg"
+                "@nixpkgs"
+              ];
+            };
+            "Youtube" = {
+              urls = [
+                {
+                  template = "https://youtube.com/result";
+                  params = [
+                    {
+                      name = "search_query";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+              definedAliases = [
+                "!!youtube"
+                "!youtube"
+                "@youtube"
+                "!!yt"
+                "!yt"
+                "@yt"
+              ];
+            };
             "Wikipedia (en)".metaData.alias = "@wiki";
             "Google".metaData.hidden = true;
             "Amazon.com".metaData.hidden = true;
