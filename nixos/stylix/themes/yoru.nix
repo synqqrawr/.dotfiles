@@ -1,6 +1,6 @@
 {
   stylix = {
-    image = ../../../media/wallhaven-w8mp2p_1920x1080.png;
+    image = ../../../media/wallhaven-85qjx1.png;
     polarity = "dark";
     base16Scheme = {
       base00 = "#0c0e0f";

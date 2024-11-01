@@ -256,7 +256,7 @@ in
             "Youtube" = {
               urls = [
                 {
-                  template = "https://youtube.com/result";
+                  template = "https://youtube.com/results";
                   params = [
                     {
                       name = "search_query";
@@ -272,6 +272,19 @@ in
                 "!!yt"
                 "!yt"
                 "@yt"
+              ];
+            };
+            "12ft" = {
+              urls = [
+                {
+                  template = "https://12ft.io/proxy";
+                  params = [
+                    {
+                      name = "q";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
               ];
             };
             "Wikipedia (en)".metaData.alias = "@wiki";

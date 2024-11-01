@@ -35,6 +35,10 @@
       url = "github:chaotic-cx/nyx";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    shadower = {
+      url = "github:n3oney/shadower";
+    };
   };
 
   outputs =

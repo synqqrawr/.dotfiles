@@ -15,8 +15,8 @@
       };
 
       monospace = {
-        package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
-        name = "JetbrainsMonoNerdFont";
+        package = pkgs.plemoljp-nf;
+        name = "PlemolJP Console NF";
       };
 
       emoji = {

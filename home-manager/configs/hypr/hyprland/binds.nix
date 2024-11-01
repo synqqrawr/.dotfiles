@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   wayland.windowManager.hyprland.settings = {
     bindm = [
@@ -24,7 +24,7 @@
         "SUPER SHIFT, j, movewindow, d"
         "SUPER SHIFT, k, movewindow, u"
         "SUPER SHIFT, l, movewindow, r"
-        ", end, exec, ${pkgs.grimblast}/bin/grimblast --notify copy area"
+        ", end, exec, ${pkgs.grimblast}/bin/grimblast save area - | shadower | wl-copy -t image/png"
         "SUPER, S, togglespecialworkspace, magic"
         "SUPER, S, movetoworkspace, +0"
         "SUPER, S, togglespecialworkspace, magic"

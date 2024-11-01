@@ -2,6 +2,8 @@
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
   config,
+  inputs,
+  pkgs,
   ...
 }:
 {
@@ -45,6 +47,10 @@
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git.enable = true;
+
+  home.packages = [
+    inputs.shadower.packages.${pkgs.system}.shadower
+  ];
 
   # home.packages = with pkgs; [
   #   (inputs.prismlauncher.packages.${system}.prismlauncher.override {

@@ -152,7 +152,7 @@
     pkgs.lazygit
     pkgs.mpv
     pkgs.killall
-    pkgs.vesktop
+    pkgs.legcord
     pkgs.feh
     pkgs.brave
     pkgs.ddcutil
