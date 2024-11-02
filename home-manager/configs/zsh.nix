@@ -50,7 +50,7 @@ in
               "foreground_templates" = [
                 "{{ if gt .Code 0 }}red{{ end }}"
               ];
-              "template" = " x{{ reason .Code }}";
+              "template" = " {{ reason .Code }}";
             }
             {
               "foreground" = "green";

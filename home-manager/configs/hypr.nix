@@ -31,7 +31,7 @@
       monitor = ",preferred,auto,1";
       general = {
         border_size = 0;
-        gaps_in = 10;
+        gaps_in = 5;
         gaps_out = 12;
       };
       decoration = {
