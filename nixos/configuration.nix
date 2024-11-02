@@ -161,6 +161,7 @@
     pkgs.age
     pkgs.ffmpeg
     pkgs.yt-dlp
+    pkgs.nautilus
   ];
 
   programs.gnupg.agent.enable = true;

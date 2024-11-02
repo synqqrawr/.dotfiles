@@ -14,7 +14,10 @@ return {
 		end,
 	},
 	"nvchad/volt",
-	"nvchad/minty",
+	{
+		"nvchad/minty",
+		cmd = { "Huefy", "Shades" },
+	},
 	"nvchad/menu",
 	{
 		"nvim-telescope/telescope.nvim",
@@ -107,6 +110,7 @@ return {
 			indent = { char = "│", highlight = "IblChar" },
 			scope = { char = "│", highlight = "IblScopeChar" },
 		},
+		tag = "v3.8.2",
 		config = function(_, opts)
 			dofile(vim.g.base46_cache .. "blankline")
 
@@ -117,4 +121,18 @@ return {
 			dofile(vim.g.base46_cache .. "blankline")
 		end,
 	},
+	{
+		"folke/lazydev.nvim",
+		ft = "lua",
+		cmd = "LazyDev",
+		opts = {
+			library = {
+				{ path = "luvit-meta/library", words = { "vim%.uv" } },
+				{ path = "LazyVim", words = { "LazyVim" } },
+				{ path = "lazy.nvim", words = { "LazyVim" } },
+				{ path = "ui/nvchad_types" },
+			},
+		},
+	},
+	{ "Bilal2453/luvit-meta", lazy = true },
 }
