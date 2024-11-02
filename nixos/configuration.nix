@@ -97,6 +97,16 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    wireplumber = {
+      enable = true;
+      extraConfig = {
+        "10-disable-camera" = {
+          "wireplumber.profiles" = {
+            main."monitor.libcamera" = "disabled";
+          };
+        };
+      };
+    };
   };
 
   # Enable touchpad support (enabled by defauly in most desktopManager).
@@ -132,7 +142,6 @@
   programs.zsh.enable = true;
 
   environment.systemPackages = [
-    pkgs.wget
     pkgs.fzf
     pkgs.lsd
     pkgs.keepassxc
@@ -155,12 +164,9 @@
     pkgs.legcord
     pkgs.feh
     pkgs.brave
-    pkgs.ddcutil
     pkgs.jq
     pkgs.grim
     pkgs.age
-    pkgs.ffmpeg
-    pkgs.yt-dlp
     pkgs.nautilus
   ];
 
@@ -169,7 +175,6 @@
 
   environment.variables = {
     EDITOR = "nvim";
-    sqlite_nix_path = "${pkgs.sqlite.out}";
   };
 
   services.flatpak.enable = true;
