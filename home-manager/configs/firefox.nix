@@ -316,7 +316,6 @@ in
             user_pref("gfx.webrender.all", true);
 
             user_pref("browser.download.useDownloadDir", false);
-            user_pref("accessibility.force_disabled", 1);
 
             // PREF: disable login manager
             user_pref("signon.rememberSignons", false);

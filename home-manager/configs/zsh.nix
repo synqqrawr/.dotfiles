@@ -30,8 +30,26 @@ in
       la = "${lsd} -a";
       tree = "${lsd} --tree";
     };
-    syntaxHighlighting.enable = true;
+
     autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+    historySubstringSearch = {
+      enable = true;
+      searchUpKey = "$terminfo[kcuu1]";
+      searchDownKey = "$terminfo[kcud1]";
+    };
+
+    localVariables = {
+      ZSH_AUTOSUGGEST_STRATEGY = [
+        "history"
+        "completion"
+      ];
+      HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE = "1";
+      HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND = "bg=default";
+      HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND = "bg=default";
+      HISTORY_SUBSTRING_SEARCH_FUZZY = "";
+      HISTORY_SUBSTRING_SEARCH_PREFIXED = "";
+    };
   };
 
   programs.oh-my-posh = {
@@ -104,7 +122,7 @@ in
             {
               "foreground" = "magenta";
               "style" = "plain";
-              "template" = "❯";
+              "template" = "󰊠";
               "type" = "text";
             }
           ];
@@ -112,17 +130,19 @@ in
         }
       ];
       "transient_prompt" = {
-        "template" = "❯ ";
-        "foreground" = "red";
+        "template" = "󰊠 ";
+        "foreground" = "magenta";
         "background" = "transparent";
       };
       "secondary_prompt" = {
         "foreground" = "magenta";
         "background" = "transparent";
-        "template" = "❯❯ ";
+        "template" = "󰊠 ❯ ";
       };
       "final_space" = true;
       "version" = 2;
+      "disable_notice" = true;
+      "auto_upgrade" = false;
     };
   };
 

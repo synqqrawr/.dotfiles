@@ -4,35 +4,47 @@ import { App, Astal, Gdk, Gtk, Widget } from "astal/gtk3";
 import { bind, Variable } from "astal";
 import AstalApps from "gi://AstalApps";
 
-const WINDOW_NAME = "app-launcher"
+const WINDOW_NAME = "app-launcher";
 
 const apps = new AstalApps.Apps({
-  includeEntry: true,
-  includeExecutable: true,
+  nameMultiplier: 2,
+  entryMultiplier: 0,
+  executableMultiplier: 2,
 });
 
 const query = Variable<string>("");
 
 export default function AppLauncher() {
   const items = query((query) =>
-    apps
-      .fuzzy_query(query)
-      .map((app: AstalApps.Application) => (
-        <button on_Clicked={() => {
-          App.toggle_window(WINDOW_NAME)
-          app.launch()
-        }} app={app}>
-          <box hexpand={false}>
-            <icon className="AppIcon" icon={app.iconName || ""} />
-            <box className="AppText" vertical valign={Gtk.Align.CENTER}>
-              <label className="AppName" label={app.name} halign={Gtk.Align.START} truncate />
-              {app.description &&
-                <label className="AppDescription" label={app.description} halign={Gtk.Align.START} truncate />
-              }
-            </box>
+    apps.fuzzy_query(query).map((app: AstalApps.Application) => (
+      <button
+        on_Clicked={() => {
+          App.toggle_window(WINDOW_NAME);
+          app.launch();
+        }}
+        app={app}
+      >
+        <box hexpand={false}>
+          <icon className="AppIcon" icon={app.iconName || ""} />
+          <box className="AppText" vertical valign={Gtk.Align.CENTER}>
+            <label
+              className="AppName"
+              label={app.name}
+              halign={Gtk.Align.START}
+              truncate
+            />
+            {app.description && (
+              <label
+                className="AppDescription"
+                label={app.description}
+                halign={Gtk.Align.START}
+                truncate
+              />
+            )}
           </box>
-        </button>
-      )),
+        </box>
+      </button>
+    )),
   );
 
   const Entry = new Widget.Entry({
@@ -65,7 +77,7 @@ export default function AppLauncher() {
       layer={Astal.Layer.OVERLAY}
       vexpand={true}
       onKeyPressEvent={(self, event) => {
-        let key = event.get_keyval()[1]
+        let key = event.get_keyval()[1];
         if (key === Gdk.KEY_Escape) {
           if (self.visible) {
             query.set("");

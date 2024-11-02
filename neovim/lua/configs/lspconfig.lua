@@ -3,13 +3,12 @@ local map = vim.keymap.set
 
 M.servers = {
 	lua_ls = { settings = {
-			Lua = {
-				diagnostics = {
-					globals = { "vim", "require" },
-				},
+		Lua = {
+			diagnostics = {
+				globals = { "vim", "require" },
 			},
 		},
-	},
+	} },
 	rust_analyzer = {
 		settings = {
 			["rust-analyzer"] = {
@@ -27,10 +26,11 @@ M.servers = {
 			},
 		},
 	},
-  nil_ls = {},
-  nixd = {},
-  ts_ls = {},
-  svelte = {}
+	nil_ls = {},
+	nixd = {},
+	ts_ls = {},
+	svelte = {},
+	cssls = {},
 }
 
 -- export on_attach & capabilities
