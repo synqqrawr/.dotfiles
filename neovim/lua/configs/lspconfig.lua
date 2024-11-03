@@ -2,13 +2,16 @@ local M = {}
 local map = vim.keymap.set
 
 M.servers = {
-	lua_ls = { settings = {
-		Lua = {
-			diagnostics = {
-				globals = { "vim", "require" },
+	lua_ls = {
+		settings = {
+			Lua = {
+				diagnostics = {
+					globals = { "vim", "require" },
+				},
+				hint = { enable = true },
 			},
 		},
-	} },
+	},
 	rust_analyzer = {
 		settings = {
 			["rust-analyzer"] = {

@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, lib, ... }:
 {
   wayland.windowManager.hyprland.settings = {
     bindm = [
@@ -24,7 +24,7 @@
         "SUPER SHIFT, j, movewindow, d"
         "SUPER SHIFT, k, movewindow, u"
         "SUPER SHIFT, l, movewindow, r"
-        ", end, exec, ${pkgs.grimblast}/bin/grimblast save area - | shadower | wl-copy -t image/png"
+        ", end, exec, ${lib.getExe pkgs.grimblast} save area - | shadower | wl-copy -t image/png"
         "SUPER, S, togglespecialworkspace, magic"
         "SUPER, S, movetoworkspace, +0"
         "SUPER, S, togglespecialworkspace, magic"
@@ -34,19 +34,6 @@
         "SUPER SHIFT, Z, exec, pypr zoom"
         "SUPER, Z, exec, pypr zoom ++0.5"
         "SUPER CTRL, Z, exec, pypr zoom --0.5"
-
-        # "SUPER SHIFT, D, exec, grimblast copy area"
-        # "SUPER SHIFT_ALT, D, exec, grimblast --freeze copy area"
-        # "SUPER SHIFT, F, exec, grimblast copysave output ~/.screenshots/$(date +'%s_hypr.png')"
-        # "SUPER SHIFT, G, exec, grimblast copy active"
-        # "SUPER SHIFT, D, exec, ags -r 'recorder.start()'"
-        # "SUPER SHIFT, S, exec, ags -r 'recorder.screenshot()'"
-        # "SUPER, S, exec, ags -r 'recorder.screenshot(true)'"
-
-        # "SUPER_CTRL_SHIFT, R, exec, ags -q && ags"
-        # "SUPER, R, exec, ags -t launcher"
-        # ",XF86PowerOff, exec, ags -t powermenu"
-        # "SUPER, Tab, exec, ags -t overview"
 
         "SUPER, G, fullscreen"
 

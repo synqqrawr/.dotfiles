@@ -43,6 +43,16 @@
           $env.config = {
            show_banner: false
            edit_mode: vi
+           completions: {
+             case_sensitive: false # case-sensitive completions
+             quick: true    # set to false to prevent auto-selecting completions
+             partial: true    # set to false to prevent partial filling of the prompt
+             algorithm: "fuzzy"    # prefix or fuzzy
+             external: {
+               enable: true
+               completer: $external_completer
+             }
+           }
           }
           $env.PATH = ($env.PATH | 
           split row (char esep) |

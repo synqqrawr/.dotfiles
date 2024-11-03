@@ -138,8 +138,10 @@ return {
 			},
 		},
 	},
+	"Bilal2453/luvit-meta",
 	{
-		"Bilal2453/luvit-meta",
-		lazy = true,
+		"chrisgrieser/nvim-lsp-endhints",
+		event = "LspAttach",
+		opts = true,
 	},
 }
