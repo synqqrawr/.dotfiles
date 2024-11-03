@@ -17,7 +17,7 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
-    ./configs/zsh.nix
+    ./configs/nushell.nix
     ./configs/kitty.nix
     ./configs/firefox.nix
     ./configs/hypr.nix
@@ -27,7 +27,6 @@
     ./configs/git.nix
     ./configs/gtk.nix
     ./configs/ags.nix
-    ./configs/cli.nix
     ./configs/foot.nix
     ../nixos/config/nix.nix
   ];
@@ -64,6 +63,12 @@
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
+
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+    NIXPKGS_ALLOW_UNFREE = "1";
+  };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "23.05";

@@ -133,18 +133,14 @@
         "input"
         "networkmanager"
       ];
-      shell = pkgs.zsh;
+      shell = pkgs.nushell;
     };
   };
 
-  users.defaultUserShell = pkgs.zsh;
-
-  programs.zsh.enable = true;
-  programs.zsh.enableCompletion = false;
+  users.defaultUserShell = pkgs.nushell;
 
   environment.systemPackages = [
     pkgs.fzf
-    pkgs.lsd
     pkgs.keepassxc
     (pkgs.obsidian.overrideAttrs (e: rec {
       desktopItem = e.desktopItem.override (d: {
@@ -174,9 +170,10 @@
   programs.gnupg.agent.enable = true;
   programs.gnupg.agent.pinentryPackage = pkgs.pinentry-gtk2;
 
-  environment.variables = {
-    EDITOR = "nvim";
-  };
+  programs.neovim.enable = true;
+  programs.neovim.defaultEditor = true;
+  programs.neovim.package = pkgs.neovim;
+
 
   services.flatpak.enable = true;
 

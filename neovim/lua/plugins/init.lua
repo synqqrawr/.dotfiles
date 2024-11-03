@@ -38,6 +38,10 @@ return {
 		config = function(_, opts)
 			require("nvim-treesitter.configs").setup(opts)
 		end,
+		dependencies = {
+			-- NOTE: additional parser
+			{ "nushell/tree-sitter-nu", build = ":TSUpdate nu" },
+		},
 	},
 	{
 		"echasnovski/mini.icons",
