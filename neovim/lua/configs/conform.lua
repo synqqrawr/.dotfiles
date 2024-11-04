@@ -1,7 +1,7 @@
 local options = {
 	formatters_by_ft = {
 		lua = { "stylua" },
-		nix = { "nixfmt" },
+		nix = { "alejandra" },
 		css = { "prettierd" },
 		html = { "prettierd" },
 		javascript = { "prettierd" },
@@ -12,6 +12,7 @@ local options = {
 		scss = { "prettierd" },
 		astro = { "prettierd" },
 		json = { "prettierd" },
+		python = { "black" },
 	},
 
 	-- format_on_save = {

@@ -1,14 +1,12 @@
 # WELCOME TO HELL, BABY
 # This file has 400LOC, and guess what -- I'm too lazy to modualize this.
 # Please help me. Also the comments add 3 more LOC.
-
 {
   inputs,
   lib,
   config,
   ...
-}:
-let
+}: let
   C = config.lib.stylix.colors;
   # Main highlight (bg)
   M = C.base02;
@@ -16,8 +14,7 @@ let
   F = C.base05;
 
   searx = "searx.tiekoetter.com";
-in
-{
+in {
   programs.firefox = {
     enable = true;
     policies = {
@@ -90,7 +87,7 @@ in
               --panel-background: var(--arrowpanel-background) !important;
                --toolbar-field-focus-background-color: var(--arrowpanel-background) !important;
               --panel-border-color: rgba(0, 0, 0, 0) !important;
-              
+
               menu:where([_moz-menuactive="true"]:not([disabled="true"])), menuitem:where([_moz-menuactive="true"]:not([disabled="true"])) {
                 background-color: ${C.base04} !important;
                 color: ${C.base05} !important;
@@ -127,7 +124,7 @@ in
               }
 
               /* selected tab outline */
-              .Tab[data-pin="true"][data-active="true"] .body 
+              .Tab[data-pin="true"][data-active="true"] .body
               {
                 border: 0 !important;
                 background-color: #${C.base04} !important;
@@ -152,7 +149,7 @@ in
               ];
               iconUpdateURL = "https://mynixos.com/favicon-dark.svg";
               updateInterval = 24 * 60 * 60 * 1000; # every day
-              definedAliases = [ "@mno" ];
+              definedAliases = ["@mno"];
             };
             "Home Manager Options" = {
               urls = [
@@ -168,7 +165,7 @@ in
               ];
               iconUpdateURL = "https://home-manager-options.extranix.com/images/favicon.png";
               updateInterval = 24 * 60 * 60 * 1000; # every day
-              definedAliases = [ "@hm" ];
+              definedAliases = ["@hm"];
             };
             "SearXNG (${searx})" = {
               urls = [
@@ -182,7 +179,7 @@ in
                   ];
                 }
               ];
-              definedAliases = [ "@s" ];
+              definedAliases = ["@s"];
             };
             "Github Code" = {
               urls = [

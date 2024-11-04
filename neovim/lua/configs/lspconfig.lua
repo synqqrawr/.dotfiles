@@ -34,6 +34,8 @@ M.servers = {
 	ts_ls = {},
 	svelte = {},
 	cssls = {},
+	basedpyright = {},
+	ruff = {},
 }
 
 -- export on_attach & capabilities

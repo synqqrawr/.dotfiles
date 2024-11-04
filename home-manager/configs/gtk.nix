@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-rec {
+{pkgs, ...}: rec {
   qt = {
     enable = true;
 

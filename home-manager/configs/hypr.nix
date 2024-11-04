@@ -2,8 +2,7 @@
   pkgs,
   config,
   ...
-}:
-{
+}: {
   imports = [
     ./hypr/hyprlock.nix
     ./hypr/xdg.nix

@@ -1,6 +1,5 @@
-{ pkgs, ... }:
-{
-  imports = [ ./themes/yoru.nix ];
+{pkgs, ...}: {
+  imports = [./themes/yoru.nix];
   stylix = {
     enable = true;
     fonts = {

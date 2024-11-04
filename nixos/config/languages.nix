@@ -1,10 +1,9 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   environment.systemPackages = [
     # nix
     pkgs.nil
     pkgs.nixd
-    pkgs.nixfmt-rfc-style
+    pkgs.alejandra
 
     # rust
     pkgs.clippy
@@ -52,9 +51,11 @@
     # python
     pkgs.python3
     pkgs.basedpyright
-    pkgs.ruff-lsp
+    pkgs.ruff
     pkgs.black
     pkgs.vscode-extensions.ms-python.debugpy
     pkgs.pipx
+    pkgs.poetry
+    pkgs.python312Packages.pip
   ];
 }

@@ -6,7 +6,6 @@
     userName = "synqqrawr";
 
     extraConfig = {
-
       init = {
         defaultBranch = "main";
       };

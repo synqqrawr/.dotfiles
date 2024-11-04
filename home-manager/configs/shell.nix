@@ -1,5 +1,8 @@
-{ pkgs, lib, ... }:
 {
+  pkgs,
+  lib,
+  ...
+}: {
   programs = {
     nushell = {
       enable = true;
@@ -55,7 +58,7 @@
              }
            }
           }
-          $env.PATH = ($env.PATH | 
+          $env.PATH = ($env.PATH |
           split row (char esep) |
           prepend /home/myuser/.apps |
           append /usr/bin/env

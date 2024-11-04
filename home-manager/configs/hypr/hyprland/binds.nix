@@ -1,5 +1,8 @@
-{ pkgs, lib, ... }:
 {
+  pkgs,
+  lib,
+  ...
+}: {
   wayland.windowManager.hyprland.settings = {
     bindm = [
       "SUPER, mouse:272, movewindow"
@@ -46,15 +49,12 @@
         # binds SUPER + [shift +] {1..10} to [move to] workspace {1..10}
         builtins.concatLists (
           builtins.genList (
-            x:
-            let
-              ws =
-                let
-                  c = (x + 1) / 10;
-                in
+            x: let
+              ws = let
+                c = (x + 1) / 10;
+              in
                 builtins.toString (x + 1 - (c * 10));
-            in
-            [
+            in [
               "SUPER, ${ws}, workspace, ${toString (x + 1)}"
               "SUPER SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
               "SUPER CTRL, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
@@ -63,7 +63,8 @@
               "SUPER_ALT SHIFT, ${ws}, movetoworkspace, ${toString (x + 11)}"
               "SUPER_ALT CTRL, ${ws}, movetoworkspacesilent, ${toString (x + 11)}"
             ]
-          ) 10
+          )
+          10
         )
       );
   };
