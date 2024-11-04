@@ -1,4 +1,5 @@
-{pkgs, lib, ...}:{
+{ pkgs, lib, ... }:
+{
   programs = {
     nushell = {
       enable = true;
@@ -20,7 +21,7 @@
             let expanded_alias = scope aliases
             | where name == $spans.0
             | get -i 0.expansion
-          
+
             let spans = if $expanded_alias != null {
               $spans
               | skip 1
@@ -28,7 +29,7 @@
             } else {
               $spans
             }
-          
+
             match $spans.0 {
               # carapace completions are incorrect for nu
               nu => $fish_completer
@@ -69,36 +70,7 @@
         "$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json";
         "blocks" = [
           {
-            "alignment" = "right";
-            "segments" = [
-              {
-                "type" = "status";
-                "style" = "plain";
-                "foreground" = "green";
-                "foreground_templates" = [
-                  "{{ if gt .Code 0 }}red{{ end }}"
-                ];
-                "template" = " {{ reason .Code }}";
-              }
-              {
-                "foreground" = "green";
-                "foreground_templates" = [
-                  "{{ if gt .Code 0 }}red{{ end }}"
-                ];
-                "properties" = {
-                  "style" = "roundrock";
-                  "always_enabled" = true;
-                };
-                "style" = "diamond";
-                "template" = " {{ .FormattedMs }} ";
-                "type" = "executiontime";
-              }
-            ];
-            "type" = "prompt";
-          }
-          {
             "alignment" = "left";
-            "newline" = true;
             "segments" = [
               {
                 "foreground" = "blue";
@@ -124,6 +96,35 @@
               }
             ];
             "type" = "prompt";
+          }
+          {
+            "alignment" = "right";
+            "type" = "rprompt";
+            "segments" = [
+              {
+                "type" = "status";
+                "style" = "plain";
+                "foreground" = "green";
+                "foreground_templates" = [
+                  "{{ if gt .Code 0 }}red{{ end }}"
+                ];
+                "template" = " {{ reason .Code }}";
+              }
+              {
+                "foreground" = "yellow";
+                "foreground_templates" = [
+                  "{{ if gt .Code 0 }}red{{ end }}"
+                ];
+                "properties" = {
+                  "style" = "austin";
+                  "threshold" = 5000;
+                };
+                "style" = "diamond";
+                "template" = " {{ .FormattedMs }} ";
+                "type" = "executiontime";
+              }
+            ];
+            "overflow" = "hidden";
           }
           {
             "alignment" = "left";

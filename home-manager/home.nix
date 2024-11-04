@@ -17,7 +17,7 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
-    ./configs/nushell.nix
+    ./configs/shell.nix
     ./configs/kitty.nix
     ./configs/firefox.nix
     ./configs/hypr.nix
