@@ -15,8 +15,8 @@
       };
 
       monospace = {
-        package = pkgs.plemoljp-nf;
-        name = "PlemolJP Console NF";
+        package = pkgs.maple-mono-NF;
+        name = "MapleMono NF";
       };
 
       emoji = {

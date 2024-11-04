@@ -31,10 +31,10 @@ in
           "wikipedia@search.mozilla.org"
         ];
         Install = [
-          "https://addons.mozilla.org/firefox/downloads/file/4359936/ublock_origin-1.60.0.xpi"
-          "https://addons.mozilla.org/firefox/downloads/file/4360577/sponsorblock-5.9.3.xpi"
-          "https://addons.mozilla.org/firefox/downloads/file/4246774/sidebery-5.2.0.xpi"
-          "https://addons.mozilla.org/firefox/downloads/file/4341014/userchrome_toggle_extended-2.0.1.xpi"
+          "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"
+          "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi"
+          "https://addons.mozilla.org/firefox/downloads/latest/sidebery/latest.xpi"
+          "https://addons.mozilla.org/firefox/downloads/latest/userchrome_toggle_extended/latest.xpi"
         ];
       };
     };
@@ -206,7 +206,6 @@ in
               ];
               definedAliases = [
                 "!!ghc"
-                "!ghc"
                 "@ghc"
               ];
             };
@@ -228,7 +227,6 @@ in
               ];
               definedAliases = [
                 "!!gh"
-                "!gh"
                 "@gh"
               ];
             };
@@ -246,10 +244,8 @@ in
               ];
               definedAliases = [
                 "!!nixpkg"
-                "!nixpkg"
                 "@nixpkg"
                 "!!nixpkgs"
-                "!nixpkg"
                 "@nixpkgs"
               ];
             };
@@ -267,10 +263,8 @@ in
               ];
               definedAliases = [
                 "!!youtube"
-                "!youtube"
                 "@youtube"
                 "!!yt"
-                "!yt"
                 "@yt"
               ];
             };
