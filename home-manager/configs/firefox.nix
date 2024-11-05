@@ -13,7 +13,7 @@
   # Highlight on the bg
   F = C.base05;
 
-  searx = "searx.tiekoetter.com";
+  searx = "search.bus-hit.me/search";
 in {
   programs.firefox = {
     enable = true;
@@ -170,7 +170,7 @@ in {
             "SearXNG (${searx})" = {
               urls = [
                 {
-                  template = "https://${searx}/search";
+                  template = "https://${searx}";
                   params = [
                     {
                       name = "q";
