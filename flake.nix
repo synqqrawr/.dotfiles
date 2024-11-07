@@ -22,7 +22,7 @@
     shyfox.flake = false;
 
     # neovim-nightly-overlay
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay/flake-update";
     neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
 
     ags.url = "github:aylur/ags/v2";
@@ -30,11 +30,6 @@
 
     prismlauncher.url = "github:Diegiwg/PrismLauncher-Cracked";
     prismlauncher.inputs.nixpkgs.follows = "nixpkgs";
-
-    chaotic = {
-      url = "github:chaotic-cx/nyx";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     shadower = {
       url = "github:n3oney/shadower";
@@ -80,8 +75,6 @@
 
           # stylix
           inputs.stylix.nixosModules.stylix
-          # chaotic
-          inputs.chaotic.nixosModules.default
         ];
       };
     };

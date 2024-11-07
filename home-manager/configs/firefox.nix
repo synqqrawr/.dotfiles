@@ -299,6 +299,11 @@ in {
             user_pref("shyfox.larger.context.menu", true);
             user_pref("shyfox.enable.context.menu.icons", true);
             user_pref("browser.startup.page", 3); // 0102
+            user_pref("shyfox.disable.floating.search", true);
+            user_pref("shyfox.disable.compact.unified.extensions", true);
+
+            user_pref("media.ffmpeg.vaapi.enabled", true);
+            user_pref("gfx.webrender.all", true);
 
             user_pref("cookiebanners.service.mode", 0); // I'm using Easylist cookie so it should be fine :D
             user_pref("cookiebanners.service.mode.privateBrowsing", 0);
