@@ -1,4 +1,9 @@
 @use "variables.scss" as *;
+@use "sass:string";
+
+@function gtkalpha($c, $a) {
+    @return string.unquote("alpha(#{$c},#{$a})");
+}
 
 window.Bar {
   border: none;
@@ -15,6 +20,7 @@ window.Bar {
     min-height: 40pt;
     padding: 3pt;
     border-radius: $radius;
+    border: 1pt solid gtkalpha($fg, .03);
   }
 
   button {
@@ -30,7 +36,7 @@ window.Bar {
   }
 
   .Workspace {
-    background-color: transparentize($fg, .8);
+    background-color: gtkalpha($fg, 0.3);
     border-radius: 12px;
     padding: $workspace-padding;
     margin: 0 3pt;
@@ -43,7 +49,7 @@ window.Bar {
   }
 
   .occupied {
-    background-color: transparentize($fg, .5);
+    background-color: gtkalpha($fg, .5);
     padding: calc(2pt + $workspace-padding);
   }
 

@@ -1,8 +1,8 @@
 import { App } from "astal/gtk3";
 import style from "./styles/index.scss";
 import Bar from "./Widget/Bar";
-import Notifications from "./Widget/Notifications";
 import Applauncher from "./Widget/Applauncher"
+import NotificationPopups from "./Widget/notifications/NotificationPopups"
 
 App.start({
   css: style,
@@ -12,7 +12,7 @@ App.start({
   },
   main: () => {
     Bar(0);
-    Notifications(0);
+    NotificationPopups(0);
     Applauncher();
   },
 });

@@ -2,6 +2,7 @@
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
 {
   inputs,
+  outputs,
   lib,
   config,
   pkgs,
@@ -30,6 +31,7 @@
     ./config/keyboard.nix
     ./config/power.nix
     ./config/nix.nix
+    ./config/kernel.nix
   ];
 
   nix = let
@@ -55,6 +57,8 @@
     # Opinionated: make flake registry and nix path match flake inputs
     registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+    
+    package = pkgs.lix;
   };
 
   documentation = {
@@ -78,8 +82,10 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Enable the X11 windowing system.
-  # services.xserver.enable = true;
+  services.xserver.enable = true;
 
+  # Enable the Plasma 5 Desktop Environment.
+  services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
 
   # Enable sound.

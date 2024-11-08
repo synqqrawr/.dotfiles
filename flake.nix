@@ -31,6 +31,11 @@
     prismlauncher.url = "github:Diegiwg/PrismLauncher-Cracked";
     prismlauncher.inputs.nixpkgs.follows = "nixpkgs";
 
+    chaotic = {
+      url = "github:chaotic-cx/nyx";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     shadower = {
       url = "github:n3oney/shadower";
     };
@@ -75,6 +80,8 @@
 
           # stylix
           inputs.stylix.nixosModules.stylix
+          # chaotic
+          inputs.chaotic.nixosModules.default
         ];
       };
     };

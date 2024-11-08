@@ -30,6 +30,9 @@
         shadow_render_power = 2;
         dim_inactive = true;
         dim_strength = 0.3;
+        blur = {
+          enabled = false;
+        };
       };
       render = {
         direct_scanout = true;

@@ -1,6 +1,6 @@
-$bg: #0c0e0f;
+$bg: #{"@theme_bg_color"};
 $bg-light: #121415;
 $bg-lighter: #27292a;
-$fg: #edeff0;
+$fg: #{"@theme_fg_color"};
 $radius: 7pt;
 $workspace-padding: 3pt;

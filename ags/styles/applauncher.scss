@@ -1,11 +1,15 @@
 @use "variables.scss" as *;
+@use "sass:string";
+
+@function gtkalpha($c, $a) {
+  @return string.unquote("alpha(#{$c},#{$a})");
+}
 
 window.AppLauncher {
-  * {
+  & {
     border: 0;
+    background: transparent;
   }
-
-  background: transparent;
 
   .AppLauncher-Base {
     min-width: 450px;
@@ -29,17 +33,17 @@ window.AppLauncher {
     font-size: 2rem;
     padding: 10px 0;
     min-height: 50px;
-    color: transparentize($fg, 0.5);
+    color: gtkalpha($fg, 0.5);
     background-color: $bg;
   }
 
   .AppLauncher-ItemName > button:focus {
-    background-color: transparentize($fg, 0.9);
+    background-color: gtkalpha($fg, 0.9);
     color: $fg;
   }
 
   .AppLauncher-ItemName > button:hover {
-    background-color: transparentize($fg, 0.9);
+    background-color: gtkalpha($fg, 0.9);
     color: $fg;
   }
 

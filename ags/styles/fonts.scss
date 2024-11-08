@@ -1,4 +1,9 @@
 @use "variables.scss" as *;
+@use "sass:string";
+
+@function gtkalpha($c, $a) {
+    @return string.unquote("alpha(#{$c},#{$a})");
+}
 
 @mixin mainfont {
   // Other clean sans-serif
@@ -9,7 +14,7 @@
 
 .txt-smallie {
   font-size: calc(0.9091rem / 1.3);
-  color: transparentize($fg, 0.5);
+  color: gtkalpha($fg, 0.5);
   @include mainfont; 
 }
 

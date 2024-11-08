@@ -1,7 +1,6 @@
 {
   outputs,
   inputs,
-  pkgs,
   ...
 }: {
   nixpkgs = {
@@ -24,6 +23,4 @@
       allowUnfree = true;
     };
   };
-
-  nix.package = pkgs.lix;
 }
