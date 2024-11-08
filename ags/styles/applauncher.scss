@@ -6,8 +6,7 @@
 }
 
 window.AppLauncher {
-  & {
-    border: 0;
+  * {
     background: transparent;
   }
 
@@ -16,11 +15,16 @@ window.AppLauncher {
     background: $bg;
     border-radius: 12px;
     padding: 20px;
+    border: 1pt solid gtkalpha($fg, 0.03);
   }
 
   .AppLauncher-Base > scrollable {
     min-height: 500px;
     margin-top: 15px;
+    border: 0;
+    & > * {
+      border: 0;
+    }
   }
 
   .AppLauncher-Input {
@@ -38,12 +42,12 @@ window.AppLauncher {
   }
 
   .AppLauncher-ItemName > button:focus {
-    background-color: gtkalpha($fg, 0.9);
+    background-color: gtkalpha($fg, 0.1);
     color: $fg;
   }
 
   .AppLauncher-ItemName > button:hover {
-    background-color: gtkalpha($fg, 0.9);
+    background-color: gtkalpha($fg, 0.1);
     color: $fg;
   }
 
