@@ -1,99 +1,91 @@
-// ty bro: https://raw.githubusercontent.com/hashankur/ags/28a6741d9820ba852355aafe315c14538845a7d1/widget/AppLauncher.tsx
+import Apps from "gi://AstalApps";
+import { App, Astal, Gdk, Gtk } from "astal/gtk3";
+import { Variable } from "astal";
 
-import { App, Astal, Gdk, Gtk, Widget } from "astal/gtk3";
-import { bind, Variable } from "astal";
-import AstalApps from "gi://AstalApps";
+const MAX_ITEMS = 8;
 
-const WINDOW_NAME = "app-launcher";
+function hide() {
+  App.get_window("launcher")!.hide();
+}
 
-const apps = new AstalApps.Apps({
-  nameMultiplier: 2,
-  entryMultiplier: 0,
-  executableMultiplier: 2,
-});
-
-const query = Variable<string>("");
-
-export default function AppLauncher() {
-  const items = query((query) =>
-    apps.fuzzy_query(query).map((app: AstalApps.Application) => (
-      <button
-        on_Clicked={() => {
-          App.toggle_window(WINDOW_NAME);
-          app.launch();
-        }}
-        app={app}
-      >
-        <box hexpand={false}>
-          <icon className="AppIcon" icon={app.iconName || ""} />
-          <box className="AppText" vertical valign={Gtk.Align.CENTER}>
+function AppButton({ app }: { app: Apps.Application }) {
+  return (
+    <button
+      className="AppButton"
+      onClicked={() => {
+        hide();
+        app.launch();
+      }}
+    >
+      <box>
+        <icon icon={app.iconName} />
+        <box valign={Gtk.Align.CENTER} vertical>
+          <label className="name" truncate xalign={0} label={app.name} />
+          {app.description && (
             <label
-              className="AppName"
-              label={app.name}
-              halign={Gtk.Align.START}
-              truncate
+              className="description"
+              wrap
+              xalign={0}
+              label={app.description}
             />
-            {app.description && (
-              <label
-                className="AppDescription"
-                label={app.description}
-                halign={Gtk.Align.START}
-                truncate
-              />
-            )}
-          </box>
+          )}
         </box>
-      </button>
-    )),
+      </box>
+    </button>
   );
+}
 
-  const Entry = new Widget.Entry({
-    text: bind(query),
-    hexpand: true,
-    canFocus: true,
-    placeholderText: "Search",
-    className: "AppLauncher-Input",
-    primaryIconName: "edit-find",
-    onActivate: () => {
-      items.get()[0]?.app.launch();
-      query.set("");
-      App.toggle_window(WINDOW_NAME);
-    },
-    setup: (self) => {
-      self.hook(self, "notify::text", () => {
-        query.set(self.get_text());
-      });
-    },
-  });
+export default function Applauncher() {
+  const { CENTER } = Gtk.Align;
+  const apps = new Apps.Apps();
+
+  const text = Variable("");
+  const list = text((text) => apps.fuzzy_query(text).slice(0, MAX_ITEMS));
+  const onEnter = () => {
+    apps.fuzzy_query(text.get())?.[0].launch();
+    hide();
+  };
 
   return (
     <window
-      name={WINDOW_NAME}
+      name="launcher"
+      anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.BOTTOM}
+      exclusivity={Astal.Exclusivity.IGNORE}
+      keymode={Astal.Keymode.ON_DEMAND}
       application={App}
       visible={false}
-      className="AppLauncher"
-      keymode={Astal.Keymode.EXCLUSIVE}
-      exclusivity={Astal.Exclusivity.NORMAL}
-      layer={Astal.Layer.OVERLAY}
-      vexpand={true}
-      onKeyPressEvent={(self, event) => {
-        let key = event.get_keyval()[1];
-        if (key === Gdk.KEY_Escape) {
-          if (self.visible) {
-            query.set("");
-            Entry.grab_focus();
-            self.visible = false;
-          }
-        }
+      onShow={() => text.set("")}
+      onKeyPressEvent={function (self, event: Gdk.Event) {
+        if (event.get_keyval()[1] === Gdk.KEY_Escape) self.hide();
       }}
     >
-      <box className="AppLauncher-Base" vertical>
-        {Entry}
-        <scrollable vexpand>
-          <box className="AppLauncher-ItemName" vertical spacing={10}>
-            {items}
+      <box>
+        <eventbox widthRequest={4000} expand onClick={hide} />
+        <box hexpand={false} vertical>
+          <eventbox heightRequest={100} onClick={hide} />
+          <box widthRequest={500} className="Applauncher" vertical>
+            <entry
+              placeholderText="Search"
+              text={text()}
+              onChanged={(self) => text.set(self.text)}
+              onActivate={onEnter}
+            />
+            <box spacing={6} vertical>
+              {list.as((list) => list.map((app) => <AppButton app={app} />))}
+            </box>
+            <box
+              halign={CENTER}
+              className="not-found"
+              vertical
+              visible={list.as((l) => l.length === 0)}
+            >
+              <icon icon="system-search-symbolic" />
+              <label label="No match found" />
+            </box>
           </box>
-        </scrollable>
+          <eventbox expand onClick={hide} />
+        </box>
+        <eventbox widthRequest={4000} expand onClick={hide} />
       </box>
     </window>
   );

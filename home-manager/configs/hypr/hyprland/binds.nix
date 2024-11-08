@@ -42,7 +42,7 @@
 
         "SUPER, T, togglegroup"
 
-        "SUPER, R, exec, ags -t app-launcher"
+        "SUPER, R, exec, ags -t launcher"
       ]
       ++ (
         # workspaces

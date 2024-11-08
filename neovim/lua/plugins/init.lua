@@ -86,6 +86,39 @@ return {
 	{
 		"echasnovski/mini.files",
 		opts = true,
+		dependencies = {
+			"folke/snacks.nvim",
+		},
+		init = function()
+			vim.api.nvim_create_autocmd("User", {
+				pattern = "MiniFilesActionRename",
+				callback = function(event)
+					require("snacks").rename.on_rename_file(event.data.from, event.data.to)
+				end,
+			})
+		end,
+	},
+	{
+		"folke/snacks.nvim",
+		opts = {
+			quickfile = {
+				enable = true,
+			},
+			bigfile = {
+				enable = true,
+				notify = true, -- show notification when big file detected
+				size = 1.5 * 1024 * 1024, -- 1.5MB
+				-- Enable or disable features when big file detected
+				---@param ctx {buf: number, ft:string}
+				setup = function(ctx)
+					vim.b.minianimate_disable = true
+					vim.schedule(function()
+						vim.bo[ctx.buf].syntax = ctx.ft
+					end)
+				end,
+			},
+		},
+		lazy = false,
 	},
 	{
 		"folke/which-key.nvim",
