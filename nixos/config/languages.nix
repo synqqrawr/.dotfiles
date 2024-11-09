@@ -34,6 +34,7 @@
 
     #css
     pkgs.vscode-langservers-extracted
+    pkgs.stylelint-lsp
     # svelte
     pkgs.nodePackages.svelte-language-server
 

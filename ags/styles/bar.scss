@@ -16,10 +16,7 @@ window.Bar {
 
   &>centerbox {
     background-color: $bg;
-    margin: 3pt 200pt;
     min-height: 40pt;
-    padding: 3pt;
-    border-radius: $radius;
     border: 1pt solid gtkalpha($fg, .03);
   }
 

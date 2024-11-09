@@ -33,7 +33,7 @@ M.servers = {
 	nixd = {},
 	ts_ls = {},
 	svelte = {},
-	cssls = {},
+	stylelint_lsp = {},
 	basedpyright = {},
 	ruff = {},
 }
