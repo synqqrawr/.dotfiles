@@ -16,7 +16,7 @@
     settings = {
       exec-once = [
         "fcitx5 -d"
-        "ags"
+        "ags run"
       ];
       monitor = ",preferred,auto,1";
       general = {

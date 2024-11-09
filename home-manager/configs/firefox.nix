@@ -288,18 +288,18 @@ in {
         };
         extraConfig = lib.strings.concatStrings [
           (builtins.readFile "${inputs.betterfox}/user.js")
+          (builtins.readFile "${inputs.shyfox}/user.js")
           # javascript
           ''
             user_pref("network.trr.mode", 3);
             user_pref("network.trr.uri", "https://dns.nextdns.io/d12453"); // TRR/DoH
-            user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
             user_pref("svg.context-properties.content.enabled", true);
             user_pref("layout.css.has-selector.enabled", true);
 
             user_pref("shyfox.larger.context.menu", true);
             user_pref("shyfox.enable.context.menu.icons", true);
             user_pref("browser.startup.page", 3); // 0102
-            user_pref("shyfox.disable.floating.search", true);
+            user_pref("shyfox.disable.floating.search", false);
             user_pref("shyfox.disable.compact.unified.extensions", true);
 
             user_pref("media.ffmpeg.vaapi.enabled", true);
