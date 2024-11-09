@@ -6,19 +6,9 @@ M.servers = {
 		settings = {
 			Lua = {
 				diagnostics = {
-					globals = { "vim" },
+					globals = { "vim", "require" },
 				},
-				workspace = {
-					library = {
-						vim.fn.expand("$VIMRUNTIME/lua"),
-						vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
-						vim.fn.stdpath("data") .. "/lazy/ui/nvchad_types",
-						vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
-						"${3rd}/luv/library",
-					},
-					maxPreload = 100000,
-					preloadFileSize = 10000,
-				},
+				hint = { enable = true },
 			},
 		},
 	},
@@ -39,8 +29,13 @@ M.servers = {
 			},
 		},
 	},
-  nil_ls = {},
-  nixd = {},
+	nil_ls = {},
+	nixd = {},
+	ts_ls = {},
+	svelte = {},
+	stylelint_lsp = {},
+	basedpyright = {},
+	ruff = {},
 }
 
 -- export on_attach & capabilities
@@ -80,7 +75,7 @@ M.capabilities.textDocument.completion.completionItem = {
 	documentationFormat = { "markdown", "plaintext" },
 	snippetSupport = true,
 	preselectSupport = true,
-	insertReplaceSupport = true,
+	-- insertReplaceSupport = true,
 	labelDetailsSupport = true,
 	deprecatedSupport = true,
 	commitCharactersSupport = true,

@@ -1,5 +1,8 @@
-{ outputs, inputs, ... }:
 {
+  outputs,
+  inputs,
+  ...
+}: {
   nixpkgs = {
     # You can add overlays here
     overlays = [
@@ -20,5 +23,4 @@
       allowUnfree = true;
     };
   };
-
 }

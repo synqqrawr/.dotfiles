@@ -14,7 +14,10 @@ return {
 		end,
 	},
 	"nvchad/volt",
-	"nvchad/minty",
+	{
+		"nvchad/minty",
+		cmd = { "Huefy", "Shades" },
+	},
 	"nvchad/menu",
 	{
 		"nvim-telescope/telescope.nvim",
@@ -35,6 +38,10 @@ return {
 		config = function(_, opts)
 			require("nvim-treesitter.configs").setup(opts)
 		end,
+		dependencies = {
+			-- NOTE: additional parser
+			{ "nushell/tree-sitter-nu", build = ":TSUpdate nu" },
+		},
 	},
 	{
 		"echasnovski/mini.icons",
@@ -79,6 +86,30 @@ return {
 	{
 		"echasnovski/mini.files",
 		opts = true,
+		dependencies = {
+			"folke/snacks.nvim",
+		},
+		init = function()
+			vim.api.nvim_create_autocmd("User", {
+				pattern = "MiniFilesActionRename",
+				callback = function(event)
+					require("snacks").rename.on_rename_file(event.data.from, event.data.to)
+				end,
+			})
+		end,
+	},
+	{
+		"folke/snacks.nvim",
+    ---@type snacks.Config
+		opts = {
+			bigfile = { enabled = true },
+			notifier = { enabled = false },
+			quickfile = { enabled = true },
+			statuscolumn = { enabled = false },
+      words = { enabled = false },
+		},
+    priority = 1000,
+		lazy = false,
 	},
 	{
 		"folke/which-key.nvim",
@@ -107,6 +138,7 @@ return {
 			indent = { char = "│", highlight = "IblChar" },
 			scope = { char = "│", highlight = "IblScopeChar" },
 		},
+		tag = "v3.8.2",
 		config = function(_, opts)
 			dofile(vim.g.base46_cache .. "blankline")
 
@@ -117,19 +149,23 @@ return {
 			dofile(vim.g.base46_cache .. "blankline")
 		end,
 	},
-  {
-    "NeogitOrg/neogit",
-    opts = true,
-    config = function(_, opts)
-      dofile(vim.g.base46_cache .. "git")
-
-      require("neogit").setup(opts)
-    end,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "sindrets/diffview.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-    cmd = "Neogit",
-  },
+	{
+		"folke/lazydev.nvim",
+		ft = "lua",
+		cmd = "LazyDev",
+		opts = {
+			library = {
+				{ path = "luvit-meta/library", words = { "vim%.uv" } },
+				{ path = "LazyVim", words = { "LazyVim" } },
+				{ path = "lazy.nvim", words = { "LazyVim" } },
+				{ path = "ui/nvchad_types" },
+			},
+		},
+	},
+	"Bilal2453/luvit-meta",
+	{
+		"chrisgrieser/nvim-lsp-endhints",
+		event = "LspAttach",
+		opts = true,
+	},
 }

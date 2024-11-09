@@ -1,9 +1,12 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   fonts = {
     fontDir.enable = true;
     packages = [
-      pkgs.noto-fonts-cjk
+      pkgs.noto-fonts-cjk-sans
       (pkgs.nerdfonts.override {
         fonts = [
           "NerdFontsSymbolsOnly"
@@ -20,10 +23,10 @@
       cache32Bit = true;
       hinting.enable = true;
       defaultFonts = {
-        serif = [ config.stylix.fonts.serif.name ];
-        sansSerif = [ config.stylix.fonts.sansSerif.name ];
-        monospace = [ config.stylix.fonts.monospace.name ];
-        emoji = [ config.stylix.fonts.emoji.name ];
+        serif = [config.stylix.fonts.serif.name];
+        sansSerif = [config.stylix.fonts.sansSerif.name];
+        monospace = [config.stylix.fonts.monospace.name];
+        emoji = [config.stylix.fonts.emoji.name];
       };
       localConf = ''
         <?xml version="1.0"?>

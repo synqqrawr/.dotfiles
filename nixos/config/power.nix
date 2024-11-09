@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{lib, ...}: {
   powerManagement = {
     powertop = {
       enable = lib.mkForce true;

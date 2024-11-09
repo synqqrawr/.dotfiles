@@ -7,8 +7,7 @@
   config,
   pkgs,
   ...
-}:
-{
+}: {
   # You can import other NixOS modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/nixos):
@@ -35,36 +34,32 @@
     ./config/kernel.nix
   ];
 
-  nix =
-    let
-      flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-    in
-    {
-      settings = {
-        # Enable flakes and new 'nix' command
-        experimental-features = "nix-command flakes";
-        # Opinionated: disable global registry
-        flake-registry = "";
-        # Workaround for https://github.com/NixOS/nix/issues/9574
-        nix-path = config.nix.nixPath;
-        substituters = [
-          "https://nix-community.cachix.org"
-          "https://nix-gaming.cachix.org"
-          "https://hyprland.cachix.org"
-        ];
-        trusted-public-keys = [
-          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-          "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-          "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-        ];
-      };
-      # Opinionated: disable channels
-      channel.enable = false;
-
-      # Opinionated: make flake registry and nix path match flake inputs
-      registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
-      nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+  nix = let
+    flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+  in {
+    settings = {
+      # Enable flakes and new 'nix' command
+      experimental-features = "nix-command flakes";
+      # Opinionated: disable global registry
+      flake-registry = "";
+      # Workaround for https://github.com/NixOS/nix/issues/9574
+      nix-path = config.nix.nixPath;
+      substituters = [
+        "https://nix-community.cachix.org"
+      ];
+      trusted-public-keys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      ];
     };
+    # Opinionated: disable channels
+    channel.enable = false;
+
+    # Opinionated: make flake registry and nix path match flake inputs
+    registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
+    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+    
+    package = pkgs.lix;
+  };
 
   documentation = {
     enable = true;
@@ -90,12 +85,8 @@
   services.xserver.enable = true;
 
   # Enable the Plasma 5 Desktop Environment.
-  # services.displayManager.sddm.enable = true;
   services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
-  # services.xserver.desktopManager.gnome.enable = true;
-  programs.dconf.enable = true;
 
   # Enable sound.
   hardware.pulseaudio.enable = false;
@@ -105,6 +96,16 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    wireplumber = {
+      enable = true;
+      extraConfig = {
+        "10-disable-camera" = {
+          "wireplumber.profiles" = {
+            main."monitor.libcamera" = "disabled";
+          };
+        };
+      };
+    };
   };
 
   # Enable touchpad support (enabled by defauly in most desktopManager).
@@ -131,24 +132,20 @@
         "input"
         "networkmanager"
       ];
-      shell = pkgs.zsh;
+      shell = pkgs.nushell;
     };
   };
 
-  users.defaultUserShell = pkgs.zsh;
-
-  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.nushell;
 
   environment.systemPackages = [
-    pkgs.wget
     pkgs.fzf
-    pkgs.lsd
     pkgs.keepassxc
     (pkgs.obsidian.overrideAttrs (e: rec {
       desktopItem = e.desktopItem.override (d: {
         exec = "${d.exec} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime";
       });
-      installPhase = builtins.replaceStrings [ "${e.desktopItem}" ] [ "${desktopItem}" ] e.installPhase;
+      installPhase = builtins.replaceStrings ["${e.desktopItem}"] ["${desktopItem}"] e.installPhase;
     }))
     pkgs.sqlite
     pkgs.gcc
@@ -160,24 +157,23 @@
     pkgs.lazygit
     pkgs.mpv
     pkgs.killall
-    pkgs.vesktop
+    pkgs.legcord
     pkgs.feh
     pkgs.brave
-    pkgs.ddcutil
     pkgs.jq
     pkgs.grim
     pkgs.age
-    pkgs.ffmpeg
-    pkgs.yt-dlp
+    pkgs.nautilus
   ];
 
   programs.gnupg.agent.enable = true;
   programs.gnupg.agent.pinentryPackage = pkgs.pinentry-gtk2;
 
-  environment.variables = {
-    EDITOR = "nvim";
-    sqlite_nix_path = "${pkgs.sqlite.out}";
-  };
+  programs.neovim.enable = true;
+  programs.neovim.defaultEditor = true;
+  programs.neovim.package = pkgs.neovim;
+
+  services.flatpak.enable = true;
 
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.
@@ -193,13 +189,6 @@
   };
 
   services.upower.enable = true;
-
-  programs.nh = {
-    enable = true;
-    clean.enable = true;
-    clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "/home/async/.dotfiles";
-  };
 
   services.resolved = {
     enable = true;

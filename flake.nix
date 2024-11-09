@@ -4,8 +4,6 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
-
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -33,85 +31,81 @@
     prismlauncher.url = "github:Diegiwg/PrismLauncher-Cracked";
     prismlauncher.inputs.nixpkgs.follows = "nixpkgs";
 
-    fenix = {
-      url = "github:nix-community/fenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     chaotic = {
       url = "github:chaotic-cx/nyx";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    shadower = {
+      url = "github:n3oney/shadower";
+    };
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      ...
-    }@inputs:
-    let
-      inherit (self) outputs;
-    in
-    {
-      # Your custom packages
-      # Accessible through 'nix build', 'nix shell', etc
-      packages = nixpkgs.legacyPackages.x86_64-linux;
-      # Formatter for your nix files, available through 'nix fmt'
-      # Other options beside 'alejandra' include 'nixpkgs-fmt'
-      formatter = system: nixpkgs.legacyPackages.x86_64-linux.alejandra;
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
+  in {
+    # Your custom packages
+    # Accessible through 'nix build', 'nix shell', etc
+    packages = nixpkgs.legacyPackages.x86_64-linux;
+    # Formatter for your nix files, available through 'nix fmt'
+    # Other options beside 'alejandra' include 'nixpkgs-fmt'
+    formatter = system: nixpkgs.legacyPackages.x86_64-linux.alejandra;
 
-      # Your custom packages and modifications, exported as overlays
-      overlays = import ./overlays { inherit inputs; };
-      # Reusable nixos modules you might want to export
-      # These are usually stuff you would upstream into nixpkgs
-      nixosModules = import ./modules/nixos;
-      # Reusable home-manager modules you might want to export
-      # These are usually stuff you would upstream into home-manager
-      homeManagerModules = import ./modules/home-manager;
+    # Your custom packages and modifications, exported as overlays
+    overlays = import ./overlays {inherit inputs;};
+    # Reusable nixos modules you might want to export
+    # These are usually stuff you would upstream into nixpkgs
+    nixosModules = import ./modules/nixos;
+    # Reusable home-manager modules you might want to export
+    # These are usually stuff you would upstream into home-manager
+    homeManagerModules = import ./modules/home-manager;
 
-      # NixOS configuration entrypoint
-      # Available through 'nixos-rebuild --flake .#your-hostname'
-      nixosConfigurations = {
-        # FIXME replace with your hostname
-        nixos = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs outputs;
-            flake = self;
-          };
-          modules = [
-            # > Our main nixos configuration file <
-            ./nixos/configuration.nix
-
-            # stylix
-            inputs.stylix.nixosModules.stylix
-            # chaotic
-            inputs.chaotic.nixosModules.default
-          ];
+    # NixOS configuration entrypoint
+    # Available through 'nixos-rebuild --flake .#your-hostname'
+    nixosConfigurations = {
+      # FIXME replace with your hostname
+      nixos = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs outputs;
+          flake = self;
         };
-      };
-      homeConfigurations = {
-        "async@nixos" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          extraSpecialArgs = {
-            inherit inputs outputs;
-            flake = self;
-          };
-          # useGlobalPkgs = true;
-          # backupFileExtension = "bak";
-          modules = [
-            # > Our main home-manager configuration file <
-            ./home-manager/home.nix
-            inputs.stylix.homeManagerModules.stylix
-            ./nixos/stylix/default.nix
-            {
-              stylix.targets.kde.enable = false;
-              stylix.targets.neovim.enable = false;
-              stylix.targets.lazygit.enable = false;
-            }
-          ];
-        };
+        modules = [
+          # > Our main nixos configuration file <
+          ./nixos/configuration.nix
+
+          # stylix
+          inputs.stylix.nixosModules.stylix
+          # chaotic
+          inputs.chaotic.nixosModules.default
+        ];
       };
     };
+    homeConfigurations = {
+      "async@nixos" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {
+          inherit inputs outputs;
+          flake = self;
+        };
+        # useGlobalPkgs = true;
+        # backupFileExtension = "bak";
+        modules = [
+          # > Our main home-manager configuration file <
+          ./home-manager/home.nix
+          inputs.stylix.homeManagerModules.stylix
+          ./nixos/stylix/default.nix
+          {
+            stylix.targets.kde.enable = false;
+            stylix.targets.neovim.enable = false;
+            stylix.targets.lazygit.enable = false;
+          }
+        ];
+      };
+    };
+  };
 }

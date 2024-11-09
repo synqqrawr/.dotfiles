@@ -1,6 +1,5 @@
-{ pkgs, ... }:
-{
-  imports = [ ./themes/yoru.nix ];
+{pkgs, ...}: {
+  imports = [./themes/yoru.nix];
   stylix = {
     enable = true;
     fonts = {
@@ -15,8 +14,8 @@
       };
 
       monospace = {
-        package = pkgs.maple-mono;
-        name = "Maple Mono";
+        package = pkgs.maple-mono-NF;
+        name = "MapleMono NF";
       };
 
       emoji = {

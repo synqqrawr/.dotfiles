@@ -1,15 +1,13 @@
 # thanks to https://github.com/donovanglover/nix-config/blob/40090d7ef1c9cbe393b4528a385ff3b9195e5385/home/fcitx.nix#L94
-{ config, ... }:
-
-let
+{config, ...}: let
   inherit (config.lib.stylix.colors) base01 base02 base05;
 
   font = "MPlus Code 12";
   themeName = "base16";
-in
-{
+in {
   xdg.dataFile = {
-    "fcitx5/themes/${themeName}/theme.conf".text = # ini
+    "fcitx5/themes/${themeName}/theme.conf".text =
+      # ini
       ''
         [Metadata]
         Name=${themeName}
@@ -95,7 +93,8 @@ in
   xdg.configFile = {
     "mozc/ibus_config.textproto" = {
       force = true;
-      text = # config
+      text =
+        # config
         ''
           engines {
             name : "mozc-jp"
@@ -111,7 +110,8 @@ in
 
     "fcitx5/config" = {
       force = true;
-      text = # ini
+      text =
+        # ini
         ''
           [Hotkey]
           EnumerateWithTriggerKeys=True
@@ -161,7 +161,8 @@ in
 
     "fcitx5/profile" = {
       force = true;
-      text = # ini
+      text =
+        # ini
         ''
           [Groups/0]
           Name="Group 1"
@@ -183,7 +184,8 @@ in
 
     "fcitx5/conf/classicui.conf" = {
       force = true;
-      text = # ini
+      text =
+        # ini
         ''
           Vertical Candidate List=False
           PerScreenDPI=True
@@ -202,7 +204,8 @@ in
 
     "fcitx5/conf/clipboard.conf" = {
       force = true;
-      text = # ini
+      text =
+        # ini
         ''
           TriggerKey=
           PastePrimaryKey=
@@ -212,7 +215,8 @@ in
 
     "fcitx5/conf/mozc.conf" = {
       force = true;
-      text = # ini
+      text =
+        # ini
         ''
           InitialMode=Hiragana
           Vertical=True

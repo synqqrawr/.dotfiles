@@ -1,13 +1,14 @@
-{ pkgs, inputs, ... }:
-{
+{pkgs, ...}: {
   environment.systemPackages = [
     # nix
     pkgs.nil
     pkgs.nixd
-    pkgs.nixfmt-rfc-style
+    pkgs.alejandra
 
     # rust
-    inputs.fenix.packages.x86_64-linux.default.toolchain
+    pkgs.clippy
+    pkgs.rustc
+    pkgs.cargo
     pkgs.rust-analyzer
 
     # c
@@ -33,6 +34,7 @@
 
     #css
     pkgs.vscode-langservers-extracted
+    pkgs.stylelint-lsp
     # svelte
     pkgs.nodePackages.svelte-language-server
 
@@ -50,9 +52,11 @@
     # python
     pkgs.python3
     pkgs.basedpyright
-    pkgs.ruff-lsp
+    pkgs.ruff
     pkgs.black
     pkgs.vscode-extensions.ms-python.debugpy
     pkgs.pipx
+    pkgs.poetry
+    pkgs.python312Packages.pip
   ];
 }
