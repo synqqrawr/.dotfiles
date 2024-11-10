@@ -104,10 +104,12 @@
           inputs.stylix.homeManagerModules.stylix
           ./nixos/stylix/default.nix
           {
-            stylix.targets.hyprland.enable = false;
-            stylix.targets.kde.enable = false;
-            stylix.targets.neovim.enable = false;
-            stylix.targets.lazygit.enable = false;
+            stylix.targets = {
+              hyprland.enable = false;
+              kde.enable = false;
+              neovim.enable = false;
+              lazygit.enable = false;
+            };
           }
         ];
       };
