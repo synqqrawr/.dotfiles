@@ -48,9 +48,9 @@ in {
       misc.background_color = rgb base00;
       decoration = {
         shadow = {
-          color = rgb base00;
-          offset = "7 13";
-          sharp = true;
+          color = rgba base00 "99";
+          range = 10;
+          render_power = 2;
         };
         rounding = 10;
         dim_inactive = true;

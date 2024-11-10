@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   environment.systemPackages = [
     # nix
-    pkgs.nil
     pkgs.nixd
     pkgs.alejandra
 

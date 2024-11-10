@@ -29,8 +29,20 @@ M.servers = {
 			},
 		},
 	},
-	nil_ls = {},
-	nixd = {},
+	nixd = {
+		settings = {
+			nixd = {
+				options = {
+					nixos = {
+						expr = '(builtins.getFlake (\"git+file://\" + toString ./.)).nixosConfigurations.nixos.options',
+					},
+					home_manager = {
+						expr = '(builtins.getFlake (\"git+file://\" + toString ./.)).homeConfigurations.async.options',
+					},
+				},
+			},
+		},
+	},
 	ts_ls = {},
 	svelte = {},
 	stylelint_lsp = {},
