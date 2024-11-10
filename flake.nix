@@ -9,7 +9,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # stylix
-    stylix.url = "github:trueNAHO/stylix/stylix-downgrade-and-lock-tinted-kitty-input";
+    stylix.url = "github:danth/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
     stylix.inputs.home-manager.follows = "home-manager";
 
@@ -38,6 +38,10 @@
 
     shadower = {
       url = "github:n3oney/shadower";
+    };
+
+    hyprland = {
+      url = "github:hyprwm/hyprland";
     };
   };
 

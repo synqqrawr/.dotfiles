@@ -30,5 +30,9 @@
       name = "Qogir";
       size = 24;
     };
+    targets = {
+      hyprland.enable = false;
+      hyprpaper.enable = true;
+    };
   };
 }

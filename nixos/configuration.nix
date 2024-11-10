@@ -7,7 +7,9 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  pkgs-unstable = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+in {
   # You can import other NixOS modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/nixos):
@@ -46,9 +48,11 @@
       nix-path = config.nix.nixPath;
       substituters = [
         "https://nix-community.cachix.org"
+        "https://hyprland.cachix.org"
       ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc"
       ];
     };
     # Opinionated: disable channels
@@ -57,7 +61,7 @@
     # Opinionated: make flake registry and nix path match flake inputs
     registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
-    
+
     package = pkgs.lix;
   };
 
@@ -106,6 +110,14 @@
         };
       };
     };
+  };
+
+  hardware.graphics = {
+    package = pkgs-unstable.mesa.drivers;
+
+    # if you also want 32-bit support (e.g for Steam)
+    enable32Bit = true;
+    package32 = pkgs-unstable.pkgsi686Linux.mesa.drivers;
   };
 
   # Enable touchpad support (enabled by defauly in most desktopManager).
