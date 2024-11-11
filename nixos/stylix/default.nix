@@ -14,8 +14,12 @@
       };
 
       monospace = {
-        package = pkgs.maple-mono-NF;
-        name = "MapleMono NF";
+        package = pkgs.nerdfonts.override {
+          fonts = [
+            "JetBrainsMono"
+          ];
+        };
+        name = "JetBrainsMono";
       };
 
       emoji = {

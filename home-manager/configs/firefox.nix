@@ -32,6 +32,7 @@ in {
           "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi"
           "https://addons.mozilla.org/firefox/downloads/latest/sidebery/latest.xpi"
           "https://addons.mozilla.org/firefox/downloads/latest/userchrome_toggle_extended/latest.xpi"
+          "https://addons.mozilla.org/firefox/downloads/latest/keepassxc_browser/latest.xpi"
         ];
       };
     };

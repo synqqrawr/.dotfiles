@@ -1,4 +1,9 @@
-{config, ...}: {
+{config, ...}: let
+  bg =
+    if config.stylix.polarity == "dark"
+    then config.lib.stylix.colors.base05
+    else config.lib.stylix.colors.base00;
+in {
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -22,7 +27,7 @@
 
         dots_spacing = 0.3;
         dots_center = true;
-        inner_color = "rgb(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b})";
+        inner_color = "#${bg}";
         placeholder_text = "<i>Input Password...</i>";
         fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
         position = "0, 100";
@@ -35,7 +40,7 @@
           monitor = "";
           text = "cmd[update:200] echo \"<b>$(date +'%A, %B %d')</b>\"";
 
-          color = "rgb(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b})";
+          color = "#${bg}";
           font_size = "20";
           font_family = "${config.stylix.fonts.sansSerif.name}";
           shadow_passes = "0";
@@ -48,7 +53,7 @@
           monitor = "";
           text = "cmd[update:200] echo \"<b>$(date +'%k:%M')</b>\"";
 
-          color = "rgb(${config.lib.stylix.colors.base05-rgb-r}, ${config.lib.stylix.colors.base05-rgb-g}, ${config.lib.stylix.colors.base05-rgb-b})";
+          color = "#${bg}";
           font_size = "93";
           font_family = "${config.stylix.fonts.sansSerif.name}";
           shadow_passes = "0";
