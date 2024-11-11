@@ -9,7 +9,7 @@
 }: let
   C = config.lib.stylix.colors;
   # Main highlight (bg)
-  M = C.base02;
+  M = C.base00;
   # Highlight on the bg
   F = C.base05;
 
@@ -57,12 +57,12 @@ in {
               --arrowpanel-background: #${C.base02};
               --arrowpanel-color: #${C.base05};
               --arrowpanel-border-color: rgba(0, 0, 0, 0);
-              --toolbar-field-background-color: #${C.base03};
-              --toolbar-bgcolor: #${C.base03};
+              --toolbar-field-background-color: #${C.base01};
+              --toolbar-bgcolor: #${C.base01};
               --toolbar-color: #${C.base05};
               --toolbar-field-color: #${C.base05};
               --toolbar-field-border-color: rgba(0, 0, 0, 0);
-              --toolbar-field-focus-background-color: #${C.base03};
+              --toolbar-field-focus-background-color: #${C.base01};
               --toolbar-field-focus-color: #${C.base05};
               --toolbar-field-focus-border-color: rgba(0, 0, 0, 0);
               --newtab-background-color: #${M};
@@ -118,7 +118,7 @@ in {
                 --frame-fg: #${F} !important;
                 --toolbar-bg: #${M} !important;
                 --frame-bg: #${M} !important;
-                --tabs-activated-bg: #${C.base04} !important;
+                --tabs-activated-bg: #${C.base02} !important;
               }
               .Tab[data-pin="true"] .body {
                 border: 0 !important;
@@ -270,6 +270,19 @@ in {
               urls = [
                 {
                   template = "https://12ft.io/proxy";
+                  params = [
+                    {
+                      name = "q";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+            };
+            "Perplexity" = {
+              urls = [
+                {
+                  template = "https://www.perplexity.ai/";
                   params = [
                     {
                       name = "q";

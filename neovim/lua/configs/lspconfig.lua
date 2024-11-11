@@ -40,7 +40,7 @@ M.servers = {
 						expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.nixos.options',
 					},
 					home_manager = {
-						expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations.async.options',
+						expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."async@nixos".options',
 					},
 				},
 			},
