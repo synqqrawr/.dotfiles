@@ -296,7 +296,7 @@ in {
             user_pref("svg.context-properties.content.enabled", true);
             user_pref("layout.css.has-selector.enabled", true);
 
-            user_pref("shyfox.larger.context.menu", true);
+            user_pref("shyfox.larger.context.menu", false);
             user_pref("shyfox.enable.context.menu.icons", true);
             user_pref("browser.startup.page", 3); // 0102
             user_pref("shyfox.disable.floating.search", false);
