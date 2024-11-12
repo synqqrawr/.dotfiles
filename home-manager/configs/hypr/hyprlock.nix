@@ -40,7 +40,6 @@ in {
           monitor = "";
           text = "cmd[update:200] echo \"<b>$(date +'%A, %B %d')</b>\"";
 
-          color = "#${bg}";
           font_size = "20";
           font_family = "${config.stylix.fonts.sansSerif.name}";
           shadow_passes = "0";
@@ -53,7 +52,6 @@ in {
           monitor = "";
           text = "cmd[update:200] echo \"<b>$(date +'%k:%M')</b>\"";
 
-          color = "#${bg}";
           font_size = "93";
           font_family = "${config.stylix.fonts.sansSerif.name}";
           shadow_passes = "0";

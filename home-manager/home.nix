@@ -18,7 +18,7 @@
     # ./nvim.nix
     ./configs/shell.nix
     ./configs/kitty.nix
-    ./configs/firefox.nix
+    # ./configs/firefox.nix
     ./configs/hypr.nix
     ./configs/neovim.nix
     ./configs/fcitx5.nix

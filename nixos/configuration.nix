@@ -176,6 +176,7 @@ in {
     pkgs.grim
     pkgs.age
     pkgs.nautilus
+    pkgs.firefox
   ];
 
   programs.gnupg.agent.enable = true;

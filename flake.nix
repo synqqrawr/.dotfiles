@@ -47,7 +47,7 @@
     };
 
     zen = {
-      url = "path:/.home-manager/zen";
+      url = "path:./home-manager/configs/zen";
     };
   };
 
