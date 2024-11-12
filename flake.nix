@@ -45,6 +45,10 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+
+    zen = {
+      url = "path:/.home-manager/zen";
+    };
   };
 
   outputs = {

@@ -28,6 +28,7 @@
     ./configs/ags.nix
     ./configs/foot.nix
     ../nixos/config/nix.nix
+    ./configs/browsers.nix
   ];
 
   # TODO: Set your username

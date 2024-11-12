@@ -12,7 +12,7 @@
       [
         "SUPER, Q, killactive"
         "SUPER, Return, exec, foot"
-        "SUPER, W, exec, firefox"
+        "SUPER, W, exec, io.github.zen_browser.zen"
         "SUPER, F, togglefloating"
         # "SUPER, F, centerwindow"
         "SUPER_ALT, L, exec, hyprlock"
