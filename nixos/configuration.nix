@@ -154,33 +154,28 @@ in {
     NIXOS_OZONE_WL = "1";
   };
 
-  environment.systemPackages = [
-    pkgs.fzf
-    pkgs.keepassxc
-    (pkgs.obsidian.overrideAttrs (e: rec {
-      desktopItem = e.desktopItem.override (d: {
-        exec = "${d.exec} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime";
-      });
-      installPhase = builtins.replaceStrings ["${e.desktopItem}"] ["${desktopItem}"] e.installPhase;
-    }))
-    pkgs.sqlite
-    pkgs.gcc
-    pkgs.ripgrep
-    pkgs.tree-sitter
-    pkgs.zip
-    pkgs.unzip
-    pkgs.p7zip
-    pkgs.lazygit
-    pkgs.mpv
-    pkgs.killall
-    pkgs.legcord
-    pkgs.feh
-    pkgs.brave
-    pkgs.jq
-    pkgs.grim
-    pkgs.age
-    pkgs.nautilus
-    pkgs.firefox
+  environment.systemPackages = with pkgs; [
+    fzf
+    keepassxc
+    obsidian
+    sqlite
+    gcc
+    ripgrep
+    tree-sitter
+    zip
+    unzip
+    p7zip
+    lazygit
+    mpv
+    killall
+    legcord
+    feh
+    brave
+    jq
+    grim
+    age
+    nautilus
+    firefox
   ];
 
   programs.gnupg.agent.enable = true;
