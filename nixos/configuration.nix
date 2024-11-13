@@ -150,6 +150,10 @@ in {
 
   users.defaultUserShell = pkgs.nushell;
 
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
+
   environment.systemPackages = [
     pkgs.fzf
     pkgs.keepassxc
