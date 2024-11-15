@@ -43,6 +43,9 @@
         "SUPER, T, togglegroup"
 
         "SUPER, R, exec, ags toggle launcher"
+
+        "SUPER, mouse_down, workspace, e-1"
+        "SUPER, mouse_up, workspace, e+1"
       ]
       ++ (
         # workspaces

@@ -1,5 +1,8 @@
 {pkgs, ...}: {
-  imports = [./themes/everblush.nix];
+  imports = [
+    # ./themes/everblush.nix
+    ./themes/gruvbox.nix
+  ];
   stylix = {
     enable = true;
     fonts = {

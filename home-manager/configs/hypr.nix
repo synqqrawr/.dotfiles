@@ -29,7 +29,7 @@ in {
       monitor = ",preferred,auto,1";
       general = {
         gaps_in = 5;
-        gaps_out = 12;
+        gaps_out = 20;
         "col.active_border" = rgb base03;
         "col.inactive_border" = rgb base03;
         snap.enabled = true;
@@ -47,18 +47,19 @@ in {
         };
       };
       misc.background_color = rgb base00;
+      misc.vfr = true;
       decoration = {
-        shadow = {
-          color = rgba base00 "99";
-          range = 15;
-          render_power = 5;
-        };
+        shadow.enabled = false;
         rounding = 10;
         dim_inactive = true;
         dim_strength = 0.3;
         blur = {
           enabled = false;
         };
+      };
+      gestures = {
+        workspace_swipe = true;
+        workspace_swipe_forever = true;
       };
       render = {
         direct_scanout = true;

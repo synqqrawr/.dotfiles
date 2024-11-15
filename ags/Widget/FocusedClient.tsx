@@ -22,7 +22,7 @@ export default function FocusedClient() {
     <box valign={Gtk.Align.CENTER} css="min-width: 130pt;">
       <box vertical>
         <box className="txt-smaller">
-          {focused.as((client) => renderLabel(client, "class", "Desktop", 40))}
+          {focused.as((client) => renderLabel(client, "class", "Desktop", 15))}
         </box>
         <box className="txt-smallie">
           {focused.as((client) =>

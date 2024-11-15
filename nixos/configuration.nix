@@ -176,6 +176,7 @@ in {
     age
     nautilus
     firefox
+    newsflash
   ];
 
   programs.gnupg.agent.enable = true;

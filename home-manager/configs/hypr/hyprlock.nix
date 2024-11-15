@@ -1,24 +1,18 @@
-{config, ...}: let
-  bg =
-    if config.stylix.polarity == "dark"
-    then config.lib.stylix.colors.base05
-    else config.lib.stylix.colors.base00;
+{config, lib, ...}: let
 in {
   programs.hyprlock = {
     enable = true;
     settings = {
-      background = [
-        {
-          path = "${config.stylix.image}";
-          blur_passes = 3;
-          blur_size = 4;
-          noise = 1.0e-2;
-          contrast = 1.3;
-          brightness = 0.7;
-          vibrancy = 0.1;
-          vibrancy_darkness = 0.0;
-        }
-      ];
+      background = {
+        path = lib.mkForce "${config.stylix.image}";
+        blur_passes = 3;
+        blur_size = 4;
+        noise = 1.0e-2;
+        contrast = 1.3;
+        brightness = 0.7;
+        vibrancy = 0.1;
+        vibrancy_darkness = 0.0;
+      };
       input-field = {
         monitor = "";
 
@@ -27,7 +21,6 @@ in {
 
         dots_spacing = 0.3;
         dots_center = true;
-        inner_color = "#${bg}";
         placeholder_text = "<i>Input Password...</i>";
         fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
         position = "0, 100";
