@@ -159,10 +159,6 @@
     zoxide.enableNushellIntegration = true;
     carapace.enable = true;
     carapace.enableNushellIntegration = true;
-    lsd = {
-      enable = true;
-      enableAliases = true;
-    };
     btop.enable = true;
   };
 }

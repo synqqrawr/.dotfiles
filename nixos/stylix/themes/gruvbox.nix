@@ -1,6 +1,6 @@
 {
   stylix = {
-    image = ../../../media/beachCityGB.jpg;
+    image = ../../../media/sea_gruvbox.jpg;
     polarity = "light";
     base16Scheme = {
       base00 = "#1e2122";
