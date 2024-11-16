@@ -47,19 +47,16 @@
   programs.home-manager.enable = true;
   programs.git.enable = true;
 
-  home.packages = [
+  home.packages = with pkgs; [
     inputs.shadower.packages.${pkgs.system}.shadower
+    (inputs.prismlauncher.packages.${pkgs.system}.prismlauncher.override {
+      jdks = [
+        jdk17
+        jdk8
+        jdk21
+      ];
+    })
   ];
-
-  # home.packages = with pkgs; [
-  #   (inputs.prismlauncher.packages.${system}.prismlauncher.override {
-  #     jdks = [
-  #       jdk17
-  #       jdk8
-  #       jdk21
-  #     ];
-  #   })
-  # ];
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
