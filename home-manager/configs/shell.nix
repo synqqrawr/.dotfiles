@@ -1,3 +1,6 @@
+# https://github.com/Lykos153/nixos/blob/36467d6a5f0200d5d863f33f8a59783c90e9f4a8/modules/homeManager/nushell/completions.nix#L7
+# https://github.com/n3oney/nixus/blob/4e0b71ee43e760734f0fd277d71b2eb7c7b3bdcc/modules/programs/nushell.nix#L10
+
 {
   pkgs,
   lib,

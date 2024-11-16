@@ -1,7 +1,7 @@
 {
   stylix = {
     image = ../../../media/sea_gruvbox.jpg;
-    polarity = "light";
+    polarity = "dark";
     base16Scheme = {
       base00 = "#1e2122";
       base01 = "#2c2f30";
