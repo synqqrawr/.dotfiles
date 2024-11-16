@@ -14,10 +14,6 @@ window.Bar {
   font-weight: 600;
   font-family: "Source Sans Pro", "Noto Sans", "Noto Sans CJK";
 
-  & > * {
-    transition: min-width 200ms ease-out;
-  }
-
   & > centerbox {
     background-color: $bg;
     min-height: 35pt;
@@ -45,23 +41,19 @@ window.Bar {
   .Workspace {
     background-color: gtkalpha($fg, 0.3);
     border-radius: 12px;
-    min-width: 5pt;
-    min-height: 5pt;
+    padding: $workspace-padding;
     margin: 0 3pt;
-    transition-duration: 150ms;
   }
 
   .active {
     background-color: $fg;
     border-radius: 6.5px;
-    min-width: 20pt;
-    min-height: 12pt;
+    padding: calc(3pt + $workspace-padding) calc(8pt + $workspace-padding);
   }
 
   .occupied {
     background-color: gtkalpha($fg, 0.5);
-    min-width: 7pt;
-    min-height: 7pt;
+    padding: calc(2pt + $workspace-padding);
   }
 
   .Media .Cover {

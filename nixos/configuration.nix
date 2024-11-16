@@ -168,7 +168,7 @@ in {
     lazygit
     mpv
     killall
-    legcord
+    vesktop
     feh
     brave
     jq

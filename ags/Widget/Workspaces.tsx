@@ -2,7 +2,7 @@
 //
 import Hyprland from "gi://AstalHyprland";
 import { bind, Variable } from "astal";
-import { Gdk, Gtk, Widget } from "astal/gtk3";
+import { Gtk } from "astal/gtk3";
 
 const hyprland = Hyprland.get_default();
 
@@ -25,19 +25,16 @@ const Workspace = ({ id }: { id: number }) => {
   );
 
   return (
-    <box>
-      <box hexpand />
-      <button
-        onClick={() => hyprland.dispatch("workspace", `${id}`)}
-      >
-        <box
-          className={className()}
-          valign={Gtk.Align.CENTER}
-          halign={Gtk.Align.CENTER}
-        />
-      </button>
-      <box hexpand />
-    </box>
+    <button
+      className="WorkspaceClick"
+      onClick={() => hyprland.dispatch("workspace", `${id}`)}
+    >
+      <box
+        className={className()}
+        valign={Gtk.Align.CENTER}
+        halign={Gtk.Align.CENTER}
+      />
+    </button>
   );
 };
 
@@ -48,7 +45,7 @@ export default function Workspaces() {
         hyprland.dispatch("workspace", e.delta_y > 0 ? "+1" : "-1");
       }}
     >
-      <box className={"Workspaces"}>
+      <box>
         {[...Array(10).keys()].map((i) => (
           <Workspace id={i + 1} />
         ))}

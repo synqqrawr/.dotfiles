@@ -6,7 +6,6 @@
 }:
 with config.lib.stylix.colors; let
   rgb = color: "rgb(${color})";
-  rgba = color: alpha: "rgba(${color}${alpha})";
 in {
   imports = [
     ./hypr/hyprlock.nix
