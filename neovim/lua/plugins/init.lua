@@ -143,7 +143,7 @@ return {
 			{ "sF", mode = { "n", "v" } },
 			{ "sh", mode = { "n", "v" } },
 			{ "sr", mode = { "n", "v" } },
-			{ "sn", mode = { "n", "v" } },
+			{ "sn", mode = { "n", "x" } },
 		},
 	},
 	{
