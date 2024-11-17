@@ -53,7 +53,7 @@ window.Bar {
 
   .occupied {
     background-color: gtkalpha($fg, 0.5);
-    padding: calc(2pt + $workspace-padding);
+    padding: calc(1pt + $workspace-padding);
   }
 
   .Media .Cover {
