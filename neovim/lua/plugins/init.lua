@@ -13,12 +13,12 @@ return {
 			require("nvchad")
 		end,
 	},
-	"nvchad/volt",
+	"nvzone/volt",
 	{
-		"nvchad/minty",
+		"nvzone/minty",
 		cmd = { "Huefy", "Shades" },
 	},
-	"nvchad/menu",
+	"nvzone/menu",
 	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
