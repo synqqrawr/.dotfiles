@@ -74,7 +74,7 @@ return {
 		"saghen/blink.cmp",
 		event = "InsertEnter",
 		dependencies = "rafamadriz/friendly-snippets",
-		version = "v0.*",
+		build = "nix run .#build-plugin",
 		opts = function()
 			return require("configs.blink")
 		end,

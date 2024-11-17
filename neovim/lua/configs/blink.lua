@@ -12,6 +12,11 @@ return {
 		["Tab>"] = { "snippet_forward", "fallback" },
 		["<S-Tab>"] = { "snippet_backward", "fallback" },
 	},
+	windows = {
+		ghost_text = {
+			enabled = true,
+		},
+	},
 	sources = {
 		completion = {
 			enabled_providers = { "lsp", "path", "snippets", "buffer", "lazydev" },
