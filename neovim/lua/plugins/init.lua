@@ -95,19 +95,6 @@ return {
 		end,
 	},
 	{
-		"folke/snacks.nvim",
-		---@type snacks.Config
-		opts = {
-			bigfile = { enabled = true },
-			notifier = { enabled = false },
-			quickfile = { enabled = true },
-			statuscolumn = { enabled = false },
-			words = { enabled = false },
-		},
-		priority = 1000,
-		lazy = false,
-	},
-	{
 		"folke/which-key.nvim",
 		keys = { "<leader>", "<c-w>", '"', "'", "`", "c", "v", "g" },
 		cmd = "WhichKey",
