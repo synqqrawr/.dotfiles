@@ -96,15 +96,15 @@ return {
 	},
 	{
 		"folke/snacks.nvim",
-    ---@type snacks.Config
+		---@type snacks.Config
 		opts = {
 			bigfile = { enabled = true },
 			notifier = { enabled = false },
 			quickfile = { enabled = true },
 			statuscolumn = { enabled = false },
-      words = { enabled = false },
+			words = { enabled = false },
 		},
-    priority = 1000,
+		priority = 1000,
 		lazy = false,
 	},
 	{
@@ -163,5 +163,18 @@ return {
 		"chrisgrieser/nvim-lsp-endhints",
 		event = "LspAttach",
 		opts = true,
+	},
+	{
+		"echasnovski/mini.surround",
+		opts = true,
+		keys = {
+			{ "sa", mode = { "n", "v" } },
+			{ "sd", mode = { "n", "v" } },
+			{ "sf", mode = { "n", "v" } },
+			{ "sF", mode = { "n", "v" } },
+			{ "sh", mode = { "n", "v" } },
+			{ "sr", mode = { "n", "v" } },
+			{ "sn", mode = { "n", "v" } },
+		},
 	},
 }
