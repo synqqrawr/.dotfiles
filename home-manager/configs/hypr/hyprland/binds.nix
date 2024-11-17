@@ -11,7 +11,9 @@
     bind =
       [
         "SUPER, Q, killactive"
-        "SUPER, Return, exec, foot"
+        # https://github.com/kovidgoyal/kitty/issues/330#issuecomment-1145085171
+        # The initial window will take more time to startup but it is fast enough to a point where there will be no precievable difference
+        "SUPER, Return, exec, kitty -1"
         "SUPER, W, exec, zen"
         "SUPER, F, togglefloating"
         # "SUPER, F, centerwindow"
