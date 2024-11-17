@@ -1,5 +1,8 @@
 {pkgs, ...}: {
-  imports = [./themes/yoru.nix];
+  imports = [
+    # ./themes/everblush.nix
+    ./themes/gruvbox.nix
+  ];
   stylix = {
     enable = true;
     fonts = {
@@ -14,8 +17,12 @@
       };
 
       monospace = {
-        package = pkgs.maple-mono-NF;
-        name = "MapleMono NF";
+        package = pkgs.nerdfonts.override {
+          fonts = [
+            "JetBrainsMono"
+          ];
+        };
+        name = "JetBrainsMono";
       };
 
       emoji = {

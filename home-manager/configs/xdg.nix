@@ -7,12 +7,12 @@
     mimeApps = {
       enable = true;
       defaultApplications = {
-        "default-web-browser" = ["firefox.desktop"];
-        "text/html" = ["firefox.desktop"];
-        "x-scheme-handler/http" = ["firefox.desktop"];
-        "x-scheme-handler/https" = ["firefox.desktop"];
-        "x-scheme-handler/about" = ["firefox.desktop"];
-        "x-scheme-handler/unknown" = ["firefox.desktop"];
+        "default-web-browser" = ["zen.desktop"];
+        "text/html" = ["zen.desktop"];
+        "x-scheme-handler/http" = ["zen.desktop"];
+        "x-scheme-handler/https" = ["zen.desktop"];
+        "x-scheme-handler/about" = ["zen.desktop"];
+        "x-scheme-handler/unknown" = ["zen.desktop"];
       };
     };
     userDirs = {
@@ -26,7 +26,7 @@
   home.packages = [
     # used by `gio open` and xdp-gtk
     (pkgs.writeShellScriptBin "xdg-terminal-exec" ''
-      kitty "$@"
+      ${pkgs.kitty} "$@"
     '')
     pkgs.xdg-utils
   ];

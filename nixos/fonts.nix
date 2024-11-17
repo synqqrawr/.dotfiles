@@ -10,12 +10,10 @@
       (pkgs.nerdfonts.override {
         fonts = [
           "NerdFontsSymbolsOnly"
-          "SpaceMono"
         ];
       })
       pkgs.material-symbols
       pkgs.google-fonts
-      pkgs.jetbrains-mono
       pkgs.fira
     ];
     fontconfig = {

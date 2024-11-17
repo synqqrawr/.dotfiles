@@ -9,7 +9,7 @@
 }: let
   C = config.lib.stylix.colors;
   # Main highlight (bg)
-  M = C.base02;
+  M = C.base00;
   # Highlight on the bg
   F = C.base05;
 
@@ -32,6 +32,7 @@ in {
           "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi"
           "https://addons.mozilla.org/firefox/downloads/latest/sidebery/latest.xpi"
           "https://addons.mozilla.org/firefox/downloads/latest/userchrome_toggle_extended/latest.xpi"
+          "https://addons.mozilla.org/firefox/downloads/latest/keepassxc_browser/latest.xpi"
         ];
       };
     };
@@ -56,12 +57,12 @@ in {
               --arrowpanel-background: #${C.base02};
               --arrowpanel-color: #${C.base05};
               --arrowpanel-border-color: rgba(0, 0, 0, 0);
-              --toolbar-field-background-color: #${C.base03};
-              --toolbar-bgcolor: #${C.base03};
+              --toolbar-field-background-color: #${C.base01};
+              --toolbar-bgcolor: #${C.base01};
               --toolbar-color: #${C.base05};
               --toolbar-field-color: #${C.base05};
               --toolbar-field-border-color: rgba(0, 0, 0, 0);
-              --toolbar-field-focus-background-color: #${C.base03};
+              --toolbar-field-focus-background-color: #${C.base01};
               --toolbar-field-focus-color: #${C.base05};
               --toolbar-field-focus-border-color: rgba(0, 0, 0, 0);
               --newtab-background-color: #${M};
@@ -117,7 +118,7 @@ in {
                 --frame-fg: #${F} !important;
                 --toolbar-bg: #${M} !important;
                 --frame-bg: #${M} !important;
-                --tabs-activated-bg: #${C.base04} !important;
+                --tabs-activated-bg: #${C.base02} !important;
               }
               .Tab[data-pin="true"] .body {
                 border: 0 !important;
@@ -278,6 +279,19 @@ in {
                 }
               ];
             };
+            "Perplexity" = {
+              urls = [
+                {
+                  template = "https://www.perplexity.ai/";
+                  params = [
+                    {
+                      name = "q";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+            };
             "Wikipedia (en)".metaData.alias = "@wiki";
             "Google".metaData.hidden = true;
             "Amazon.com".metaData.hidden = true;
@@ -288,18 +302,18 @@ in {
         };
         extraConfig = lib.strings.concatStrings [
           (builtins.readFile "${inputs.betterfox}/user.js")
+          (builtins.readFile "${inputs.shyfox}/user.js")
           # javascript
           ''
             user_pref("network.trr.mode", 3);
             user_pref("network.trr.uri", "https://dns.nextdns.io/d12453"); // TRR/DoH
-            user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
             user_pref("svg.context-properties.content.enabled", true);
             user_pref("layout.css.has-selector.enabled", true);
 
-            user_pref("shyfox.larger.context.menu", true);
+            user_pref("shyfox.larger.context.menu", false);
             user_pref("shyfox.enable.context.menu.icons", true);
             user_pref("browser.startup.page", 3); // 0102
-            user_pref("shyfox.disable.floating.search", true);
+            user_pref("shyfox.disable.floating.search", false);
             user_pref("shyfox.disable.compact.unified.extensions", true);
 
             user_pref("media.ffmpeg.vaapi.enabled", true);

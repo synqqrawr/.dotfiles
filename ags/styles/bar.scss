@@ -2,7 +2,7 @@
 @use "sass:string";
 
 @function gtkalpha($c, $a) {
-    @return string.unquote("alpha(#{$c},#{$a})");
+  @return string.unquote("alpha(#{$c},#{$a})");
 }
 
 window.Bar {
@@ -12,12 +12,18 @@ window.Bar {
   color: $fg;
   font-size: 1.1em;
   font-weight: 600;
-  font-family: 'Source Sans Pro', 'Noto Sans', 'Noto Sans CJK';
+  font-family: "Source Sans Pro", "Noto Sans", "Noto Sans CJK";
 
-  &>centerbox {
+  & > centerbox {
     background-color: $bg;
-    min-height: 40pt;
-    border: 1pt solid gtkalpha($fg, .03);
+    min-height: 35pt;
+    margin-top: 5pt;
+    margin-left: 15pt;
+    margin-right: 15pt;
+    margin-bottom: 0pt;
+    padding: 5pt;
+    border-radius: 7pt;
+    border: 1pt solid gtkalpha($fg, 0.03);
   }
 
   button {
@@ -46,8 +52,8 @@ window.Bar {
   }
 
   .occupied {
-    background-color: gtkalpha($fg, .5);
-    padding: calc(2pt + $workspace-padding);
+    background-color: gtkalpha($fg, 0.5);
+    padding: calc(1pt + $workspace-padding);
   }
 
   .Media .Cover {

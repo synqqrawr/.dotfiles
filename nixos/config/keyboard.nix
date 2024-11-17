@@ -1,13 +1,26 @@
 {
-  services.keyd = {
+  services.kanata = {
     enable = true;
-    keyboards.default = {
-      ids = ["*"];
-      settings = {
-        main = {
-          capslock = "overload(control, esc)"; # Ctrl/esc combo.
-        };
-      };
+    keyboards.allKeyboards = {
+      extraDefCfg =
+        #scheme
+        ''
+          process-unmapped-keys yes
+        '';
+      config =
+        #scheme
+        ''
+          (defsrc
+            caps
+          )
+          (defalias
+            escctrl (tap-hold 200 200 esc lctl)
+          )
+
+          (deflayer base
+            @escctrl
+          )
+        '';
     };
   };
 }

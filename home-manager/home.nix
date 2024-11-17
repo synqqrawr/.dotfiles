@@ -18,7 +18,7 @@
     # ./nvim.nix
     ./configs/shell.nix
     ./configs/kitty.nix
-    ./configs/firefox.nix
+    # ./configs/firefox.nix
     ./configs/hypr.nix
     ./configs/neovim.nix
     ./configs/fcitx5.nix
@@ -28,6 +28,7 @@
     ./configs/ags.nix
     ./configs/foot.nix
     ../nixos/config/nix.nix
+    ./configs/browsers.nix
   ];
 
   # TODO: Set your username
@@ -46,19 +47,16 @@
   programs.home-manager.enable = true;
   programs.git.enable = true;
 
-  home.packages = [
+  home.packages = with pkgs; [
     inputs.shadower.packages.${pkgs.system}.shadower
+    (inputs.prismlauncher.packages.${pkgs.system}.prismlauncher.override {
+      jdks = [
+        jdk17
+        jdk8
+        jdk21
+      ];
+    })
   ];
-
-  # home.packages = with pkgs; [
-  #   (inputs.prismlauncher.packages.${system}.prismlauncher.override {
-  #     jdks = [
-  #       jdk17
-  #       jdk8
-  #       jdk21
-  #     ];
-  #   })
-  # ];
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
@@ -67,6 +65,7 @@
     EDITOR = "nvim";
     VISUAL = "nvim";
     NIXPKGS_ALLOW_UNFREE = "1";
+    NIXOS_OZONE_WL = "1";
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

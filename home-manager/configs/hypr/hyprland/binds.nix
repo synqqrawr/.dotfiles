@@ -12,7 +12,7 @@
       [
         "SUPER, Q, killactive"
         "SUPER, Return, exec, foot"
-        "SUPER, W, exec, firefox"
+        "SUPER, W, exec, zen"
         "SUPER, F, togglefloating"
         # "SUPER, F, centerwindow"
         "SUPER_ALT, L, exec, hyprlock"
@@ -43,6 +43,9 @@
         "SUPER, T, togglegroup"
 
         "SUPER, R, exec, ags toggle launcher"
+
+        "SUPER, mouse_down, workspace, e-1"
+        "SUPER, mouse_up, workspace, e+1"
       ]
       ++ (
         # workspaces

@@ -9,7 +9,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # stylix
-    stylix.url = "github:trueNAHO/stylix/stylix-downgrade-and-lock-tinted-kitty-input";
+    stylix.url = "github:danth/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
     stylix.inputs.home-manager.follows = "home-manager";
 
@@ -25,7 +25,7 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
 
-    ags.url = "github:aylur/ags/v2";
+    ags.url = "github:aylur/ags";
     ags.inputs.nixpkgs.follows = "nixpkgs";
 
     prismlauncher.url = "github:Diegiwg/PrismLauncher-Cracked";
@@ -38,6 +38,16 @@
 
     shadower = {
       url = "github:n3oney/shadower";
+    };
+
+    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    zen = {
+      url = "path:./home-manager/configs/zen";
     };
   };
 
@@ -100,9 +110,12 @@
           inputs.stylix.homeManagerModules.stylix
           ./nixos/stylix/default.nix
           {
-            stylix.targets.kde.enable = false;
-            stylix.targets.neovim.enable = false;
-            stylix.targets.lazygit.enable = false;
+            stylix.targets = {
+              hyprland.enable = false;
+              kde.enable = false;
+              neovim.enable = false;
+              lazygit.enable = false;
+            };
           }
         ];
       };
