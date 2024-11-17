@@ -1,6 +1,7 @@
 {
   "base46": { "branch": "v2.5", "commit": "16ee0e93dfc52e35ee7c9cf45e5ebf116958edb7" },
   "blink.cmp": { "branch": "main", "commit": "75cadbcd2657ed01326ca2b0e5e4d78a77127ca3" },
+  "blink.nvim": { "branch": "main", "commit": "4cccfe390b75b43fd768378d02cee991f78806c3" },
   "conform.nvim": { "branch": "master", "commit": "023f795dbcf32d4351b6a9ed2e613d471b5bb812" },
   "friendly-snippets": { "branch": "main", "commit": "de8fce94985873666bd9712ea3e49ee17aadb1ed" },
   "gitsigns.nvim": { "branch": "main", "commit": "ac5aba6dce8c06ea22bea2c9016f51a2dbf90dc7" },
@@ -21,6 +22,6 @@
   "snacks.nvim": { "branch": "main", "commit": "3f24e0a477c98b319f3d59051c12cc38c1dae21f" },
   "telescope.nvim": { "branch": "master", "commit": "85922dde3767e01d42a08e750a773effbffaea3e" },
   "ui": { "branch": "v3.0", "commit": "9b54aa578de937c42974cc2c7f89a8b026e0c297" },
-  "volt": { "branch": "main", "commit": "2cf7e86f3bc7f41cbb6d0a8d0d84fc759c0dae86" },
+  "volt": { "branch": "main", "commit": "39d34ce6e77483e68cd931a7d83175df531cce50" },
   "which-key.nvim": { "branch": "main", "commit": "68e37e12913a66b60073906f5d3f14dee0de19f2" }
 }
