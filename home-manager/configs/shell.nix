@@ -1,14 +1,21 @@
 # https://github.com/Lykos153/nixos/blob/36467d6a5f0200d5d863f33f8a59783c90e9f4a8/modules/homeManager/nushell/completions.nix#L7
 # https://github.com/n3oney/nixus/blob/4e0b71ee43e760734f0fd277d71b2eb7c7b3bdcc/modules/programs/nushell.nix#L10
-
 {
   pkgs,
   lib,
+  config,
   ...
 }: {
   programs = {
     nushell = {
       enable = true;
+      environmentVariables = {
+        NIXPKGS_ALLOW_UNFREE = "1";
+        NIXPKGS_ALLOW_INSECURE = "1";
+        SHELL = "${pkgs.nushell}/bin/nu";
+        EDITOR = config.home.sessionVariables.EDITOR;
+        VISUAL = config.home.sessionVariables.VISUAL;
+      };
       extraConfig =
         # nu
         ''
@@ -61,6 +68,7 @@
           prepend /home/myuser/.apps |
           append /usr/bin/env
           )
+          $env.TRANSIENT_PROMPT_COMMAND = {|| starship module character }
 
           def disown [...command: string] {
             sh -c '"$@" </dev/null >/dev/null 2>/dev/null & disown' $command.0 ...$command
@@ -68,98 +76,9 @@
         '';
     };
 
-    oh-my-posh = {
+    starship = {
       enable = true;
-      enableNushellIntegration = true;
-      settings = {
-        "$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json";
-        "blocks" = [
-          {
-            "alignment" = "left";
-            "segments" = [
-              {
-                "foreground" = "blue";
-                "properties" = {
-                  "style" = "full";
-                };
-                "style" = "plain";
-                "template" = " {{ .Path }}";
-                "type" = "path";
-              }
-              {
-                "foreground" = "242";
-                "properties" = {
-                  "commit_icon" = "@";
-                  "branch_max_length" = 25;
-                  "fetch_stash_count" = true;
-                  "fetch_status" = true;
-                  "fetch_upstream_icon" = true;
-                };
-                "style" = "plain";
-                "template" = " {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>";
-                "type" = "git";
-              }
-            ];
-            "type" = "prompt";
-          }
-          {
-            "alignment" = "right";
-            "type" = "rprompt";
-            "segments" = [
-              {
-                "type" = "status";
-                "style" = "plain";
-                "foreground" = "green";
-                "foreground_templates" = [
-                  "{{ if gt .Code 0 }}red{{ end }}"
-                ];
-                "template" = " {{ reason .Code }}";
-              }
-              {
-                "foreground" = "yellow";
-                "foreground_templates" = [
-                  "{{ if gt .Code 0 }}red{{ end }}"
-                ];
-                "properties" = {
-                  "style" = "austin";
-                  "threshold" = 5000;
-                };
-                "style" = "diamond";
-                "template" = " {{ .FormattedMs }} ";
-                "type" = "executiontime";
-              }
-            ];
-            "overflow" = "hidden";
-          }
-          {
-            "alignment" = "left";
-            "newline" = true;
-            "segments" = [
-              {
-                "foreground" = "magenta";
-                "style" = "plain";
-                "template" = "󰊠";
-                "type" = "text";
-              }
-            ];
-            "type" = "prompt";
-          }
-        ];
-        "transient_prompt" = {
-          "template" = "󰊠 ";
-          "foreground" = "magenta";
-          "background" = "transparent";
-        };
-        "secondary_prompt" = {
-          "foreground" = "magenta";
-          "background" = "transparent";
-          "template" = "󰊠 ❯ ";
-        };
-        "final_space" = true;
-        "version" = 2;
-        "disable_notice" = true;
-        "auto_upgrade" = false;
-      };
+      enableTransience = true;
     };
 
     zoxide.enable = true;
