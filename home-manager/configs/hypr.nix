@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   config,
   ...
 }:
@@ -18,7 +17,6 @@ in {
   ];
   services.hyprpaper.enable = true;
   wayland.windowManager.hyprland = {
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     enable = true;
     settings = {
       exec-once = [
