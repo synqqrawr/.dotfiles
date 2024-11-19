@@ -51,6 +51,7 @@ M.servers = {
 	stylelint_lsp = {},
 	basedpyright = {},
 	ruff = {},
+	cssls = {},
 }
 
 -- export on_attach & capabilities
