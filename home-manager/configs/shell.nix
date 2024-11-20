@@ -87,4 +87,8 @@
     carapace.enableNushellIntegration = true;
     btop.enable = true;
   };
+
+  home.packages = with pkgs; [
+    tealdeer
+  ];
 }
