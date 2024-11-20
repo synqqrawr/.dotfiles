@@ -18,11 +18,22 @@ in {
   services.hyprpaper.enable = true;
   wayland.windowManager.hyprland = {
     enable = true;
+    plugins = [
+      pkgs.hyprlandPlugins.hyprbars
+    ];
     settings = {
       exec-once = [
         "fcitx5 -d"
         "ags run"
       ];
+      plugin = {
+        hyprbars = {
+          bar_color = rgb base00;
+          "col.text" = rgb base05;
+          bar_text_font = config.stylix.fonts.monospace.name;
+          bar_height = 50;
+        };
+      };
       monitor = ",preferred,auto,1";
       general = {
         gaps_in = 5;
