@@ -138,7 +138,7 @@
     };
   };
 
-  users.defaultUserShell = pkgs.nushell;
+  users.defaultUserShell = pkgs.bash;
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
@@ -147,7 +147,7 @@
   environment.systemPackages = with pkgs; [
     fzf
     keepassxc
-    (pkgs.obsidian.overrideAttrs (e: rec {
+    (obsidian.overrideAttrs (e: rec {
       desktopItem = e.desktopItem.override (d: {
         exec = "${d.exec} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime";
       });
@@ -163,15 +163,18 @@
     lazygit
     mpv
     killall
-    (pkgs.vesktop.overrideAttrs (e: {
+    (vesktop.overrideAttrs (e: {
       desktopItems =
-        e.desktopItems
-        // {
-          exec = "vesktop --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime %U";
-        };
+        map (
+          d:
+            d.override {
+              exec = "vesktop --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime";
+            }
+        )
+        e.desktopItems;
     }))
     feh
-    brave
+    (brave.override {commandLineArgs = "--enable-wayland-ime";})
     jq
     grim
     age

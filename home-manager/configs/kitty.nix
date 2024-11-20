@@ -5,7 +5,6 @@
       enable_audio_bell = false;
       window_margin_width = "10";
       undercurl_style = "thick-dense";
-      confirm_os_window_close = "0";
       cursor_trail = "10";
     };
     extraConfig = ''
