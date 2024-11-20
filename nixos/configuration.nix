@@ -147,7 +147,12 @@
   environment.systemPackages = with pkgs; [
     fzf
     keepassxc
-    obsidian
+    (pkgs.obsidian.overrideAttrs (e: rec {
+      desktopItem = e.desktopItem.override (d: {
+        exec = "${d.exec} --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime";
+      });
+      installPhase = builtins.replaceStrings ["${e.desktopItem}"] ["${desktopItem}"] e.installPhase;
+    }))
     sqlite
     gcc
     ripgrep
@@ -158,7 +163,13 @@
     lazygit
     mpv
     killall
-    vesktop
+    (pkgs.vesktop.overrideAttrs (e: {
+      desktopItems =
+        e.desktopItems
+        // {
+          exec = "vesktop --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime %U";
+        };
+    }))
     feh
     brave
     jq

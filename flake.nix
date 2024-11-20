@@ -40,12 +40,6 @@
       url = "github:n3oney/shadower";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-
     zen = {
       url = "path:./home-manager/configs/zen";
     };
