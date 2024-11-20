@@ -32,6 +32,7 @@
     ./config/power.nix
     ./config/nix.nix
     ./config/kernel.nix
+    ./config/sound.nix
   ];
 
   nix = let
@@ -91,25 +92,6 @@
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
 
   # Enable sound.
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    wireplumber = {
-      enable = true;
-      extraConfig = {
-        "10-disable-camera" = {
-          "wireplumber.profiles" = {
-            main."monitor.libcamera" = "disabled";
-          };
-        };
-      };
-    };
-  };
-
   # Enable touchpad support (enabled by defauly in most desktopManager).
   services.libinput.enable = true;
 
