@@ -27,6 +27,7 @@
     ./configs/gtk.nix
     ./configs/ags.nix
     ./configs/foot.nix
+    ./configs/legcord.nix
     ../nixos/config/nix.nix
     ./configs/browsers.nix
   ];
