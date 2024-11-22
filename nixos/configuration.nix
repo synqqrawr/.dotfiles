@@ -145,16 +145,15 @@
     lazygit
     mpv
     killall
-    (legcord.overrideAttrs (e: {
-      desktopItems =
-        map (
-          d:
-            d.override {
-              exec = "legcord --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime";
-            }
-        )
-        e.desktopItems;
-    }))
+    (
+      equibop.overrideAttrs (e: {
+        desktopItems =
+          e.desktopItems
+          // {
+            exec = "equibop --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime %U"; # Replace with your desired command
+          };
+      })
+    )
     feh
     (brave.override {commandLineArgs = "--enable-wayland-ime";})
     jq
