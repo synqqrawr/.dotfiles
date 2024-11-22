@@ -23,37 +23,42 @@ window.Bar {
     margin-bottom: 5pt;
     padding: 5pt;
     border-radius: 7pt;
-    border: 1pt solid gtkalpha($fg, 0.03);
+    border: 1pt solid gtkalpha($fg, 0.1);
   }
 
   button {
     all: unset;
-  }
+    background-color: transparent;
 
-  label {
-    transition: 200ms;
-    padding: 0 8px;
-    margin: 2px;
-    border-radius: $radius;
-    border: 1pt solid transparent;
+    &:hover label {
+      background-color: gtkalpha($fg, 0.84);
+      border-color: gtkalpha($fg, 0.8);
+    }
+
+    &:active label {
+      background-color: gtkalpha($fg, 0.8);
+    }
   }
 
   .Workspace {
     background-color: gtkalpha($fg, 0.3);
     border-radius: 12px;
-    padding: $workspace-padding;
+    min-width: $workspace-padding;
+    min-height: $workspace-padding;
     margin: 0 3pt;
   }
 
   .active {
     background-color: $fg;
     border-radius: 6.5px;
-    padding: calc(3pt + $workspace-padding) calc(8pt + $workspace-padding);
+    min-height: calc(5pt + $workspace-padding);
+    min-width: calc(15pt + $workspace-padding);
   }
 
   .occupied {
     background-color: gtkalpha($fg, 0.5);
-    padding: calc(1pt + $workspace-padding);
+    min-width: calc(1pt + $workspace-padding);
+    min-height: calc(1pt + $workspace-padding);
   }
 
   .Media .Cover {

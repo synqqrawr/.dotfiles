@@ -145,12 +145,12 @@
     lazygit
     mpv
     killall
-    (vesktop.overrideAttrs (e: {
+    (legcord.overrideAttrs (e: {
       desktopItems =
         map (
           d:
             d.override {
-              exec = "vesktop --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime";
+              exec = "legcord --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime";
             }
         )
         e.desktopItems;

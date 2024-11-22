@@ -36,9 +36,7 @@
         "SUPER, S, movetoworkspace, special:magic"
         "SUPER, S, togglespecialworkspace, magic"
 
-        "SUPER SHIFT, Z, exec, pypr zoom"
-        "SUPER, Z, exec, pypr zoom ++0.5"
-        "SUPER CTRL, Z, exec, pypr zoom --0.5"
+        "SUPER, O, pin"
 
         "SUPER, G, fullscreen"
 
