@@ -29,10 +29,10 @@ const Workspace = ({ id }: { id: number }) => {
       className="WorkspaceClick"
       onClick={() => hyprland.dispatch("workspace", `${id}`)}
     >
-      <box
+      <label
         className={className()}
         valign={Gtk.Align.CENTER}
-        halign={Gtk.Align.CENTER}
+        label={`${id}`}
       />
     </button>
   );
@@ -40,16 +40,10 @@ const Workspace = ({ id }: { id: number }) => {
 
 export default function Workspaces() {
   return (
-    <eventbox
-      onScroll={(_, e) => {
-        hyprland.dispatch("workspace", e.delta_y > 0 ? "+1" : "-1");
-      }}
-    >
-      <box>
-        {[...Array(10).keys()].map((i) => (
-          <Workspace id={i + 1} />
-        ))}
-      </box>
-    </eventbox>
+    <box>
+      {[...Array(10).keys()].map((i) => (
+        <Workspace id={i + 1} />
+      ))}
+    </box>
   );
 }

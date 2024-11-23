@@ -1,8 +1,11 @@
-import { App } from "astal/gtk3";
+import { App, Gtk } from "astal/gtk3";
 import style from "./styles/index.scss";
 import Bar from "./Widget/Bar";
-import Applauncher from "./Widget/Applauncher"
-import NotificationPopups from "./Widget/notifications/NotificationPopups"
+import Applauncher from "./Widget/Applauncher";
+import NotificationPopups from "./Widget/notifications/NotificationPopups";
+
+const settings = Gtk.Settings.get_default();
+settings.gtk_enable_animations = true;
 
 App.start({
   css: style,
