@@ -33,8 +33,8 @@
       sizes.popups = 16;
     };
     cursor = {
-      package = pkgs.qogir-icon-theme;
-      name = "Qogir";
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Classic";
       size = 24;
     };
   };

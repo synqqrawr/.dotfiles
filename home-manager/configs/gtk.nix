@@ -2,7 +2,7 @@
   qt = {
     enable = true;
 
-    platformTheme.name = "gtk";
+    platformTheme.name = "gtk3";
   };
 
   gtk = {
@@ -10,13 +10,6 @@
     iconTheme = {
       package = pkgs.morewaita-icon-theme;
       name = "MoreWaita";
-    };
-    gtk3.extraConfig = {
-      gtk-enable-animations = true;
-      gtk-decoration-layout = "icon:close";
-    };
-    gtk4.extraConfig = {
-      gtk-enable-animations = true;
     };
   };
 

@@ -28,29 +28,21 @@ window.Bar {
 
   button {
     all: unset;
-    background-color: transparent;
-
-    &:hover label {
-      background-color: gtkalpha($fg, 0.84);
-      border-color: gtkalpha($fg, 0.8);
-    }
-
-    &:active label {
-      background-color: gtkalpha($fg, 0.8);
-    }
   }
 
   .Workspace {
     background-color: gtkalpha($fg, 0.3);
-    border-radius: 12px;
-    padding: $workspace-padding;
-    margin: 0 3pt;
-    transition: padding 0.1s linear;
+    border-radius: 100pt;
+    min-width: $workspace-padding;
+    min-height: $workspace-padding;
+    margin: 0 2.5pt;
+    transition: 0.1s linear;
     font-size: 0;
     &.active {
       background-color: $fg;
-      border-radius: 5pt;
-      padding: calc(3pt + $workspace-padding) calc(10pt + $workspace-padding);
+      border-radius: $radius * 2;
+      min-width: calc(15pt + $workspace-padding);
+      min-height: calc(2pt + $workspace-padding);
     }
     &.occupied {
       background-color: gtkalpha($fg, 0.5);
