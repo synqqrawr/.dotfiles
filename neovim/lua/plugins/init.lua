@@ -115,6 +115,24 @@ return {
 		end,
 	},
 	{
+		"lukas-reineke/indent-blankline.nvim",
+		event = "User FilePost",
+		opts = {
+			indent = { char = "│", highlight = "IblChar" },
+			scope = { char = "│", highlight = "IblScopeChar" },
+		},
+		tag = "v3.8.2",
+		config = function(_, opts)
+			dofile(vim.g.base46_cache .. "blankline")
+
+			local hooks = require("ibl.hooks")
+			hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
+			require("ibl").setup(opts)
+
+			dofile(vim.g.base46_cache .. "blankline")
+		end,
+	},
+	{
 		"folke/lazydev.nvim",
 		ft = "lua",
 		cmd = "LazyDev",
@@ -144,52 +162,6 @@ return {
 			{ "sh", mode = { "n", "v" } },
 			{ "sr", mode = { "n", "v" } },
 			{ "sn", mode = { "n", "x" } },
-		},
-	},
-	{
-		"saghen/blink.nvim",
-		event = "User FilePost",
-		config = function(_, opts)
-			dofile(vim.g.base46_cache .. "blankline")
-			require("blink").setup(opts)
-		end,
-		opts = {
-			indent = {
-				enabled = true,
-				blocked = {
-					buftypes = {
-						"terminal",
-						"nofile",
-						"quickfix",
-						"prompt",
-					},
-					filetypes = {
-						"lspinfo",
-						"packer",
-						"checkhealth",
-						"help",
-						"man",
-						"gitcommit",
-						"TelescopePrompt",
-						"TelescopeResults",
-						"",
-					},
-				},
-				static = {
-					char = "│",
-					highlights = { "IblChar" },
-				},
-				scope = {
-					char = "│",
-					highlights = {
-						"IblScopeChar",
-					},
-				},
-				chartoggle = { enabled = false },
-				tree = { enabled = false },
-				select = { enabled = false },
-				cmp = { enabled = false },
-			},
 		},
 	},
 }
