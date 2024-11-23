@@ -1,6 +1,7 @@
 {
   outputs,
   inputs,
+  pkgs,
   ...
 }: {
   nixpkgs = {

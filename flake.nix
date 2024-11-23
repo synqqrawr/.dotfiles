@@ -98,7 +98,6 @@
           ./nixos/stylix/default.nix
           {
             stylix.targets = {
-              hyprland.enable = false;
               kde.enable = false;
               neovim.enable = false;
               lazygit.enable = false;

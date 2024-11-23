@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+lib,
   ...
 }:
 with config.lib.stylix.colors; let
@@ -27,23 +28,14 @@ in {
       general = {
         gaps_in = 5;
         gaps_out = 20;
-        "col.active_border" = rgb base03;
-        "col.inactive_border" = rgb base03;
+        "col.active_border" = lib.mkForce (rgb base0E);
         snap.enabled = true;
-        border_size = 0;
       };
       group = {
-        "col.border_inactive" = rgb base02;
-        "col.border_active" = rgb base02;
-        "col.border_locked_active" = rgb base0C;
-
         groupbar = {
-          text_color = rgb base05;
-          "col.active" = rgb base0D;
-          "col.inactive" = rgb base03;
+          text_color = lib.mkForce (rgb base00);
         };
       };
-      misc.background_color = rgb base00;
       misc.vfr = true;
       decoration = {
         shadow.enabled = false;
