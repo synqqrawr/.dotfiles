@@ -163,6 +163,7 @@
     nautilus
     firefox
     newsflash
+    brightnessctl
   ];
 
   programs.gnupg.agent.enable = true;

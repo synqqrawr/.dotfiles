@@ -1,7 +1,7 @@
 {
   pkgs,
   config,
-lib,
+  lib,
   ...
 }:
 with config.lib.stylix.colors; let
@@ -28,10 +28,14 @@ in {
       monitor = ",preferred,auto,1";
       general = {
         gaps_in = 5;
-        gaps_out = 20;
+        gaps_out = 10;
         "col.active_border" = lib.mkForce (rgb base0E);
         snap.enabled = true;
       };
+      workspace = [
+        "w[tv1], gapsout:50, gapsin:0"
+        "f[1], gapsout:50, gapsin:0"
+      ];
       group = {
         groupbar = {
           text_color = lib.mkForce (rgb base00);
