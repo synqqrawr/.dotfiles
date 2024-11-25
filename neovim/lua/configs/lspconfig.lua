@@ -52,6 +52,7 @@ M.servers = {
 	basedpyright = {},
 	ruff = {},
 	cssls = {},
+	tailwindcss = {},
 }
 
 -- export on_attach & capabilities

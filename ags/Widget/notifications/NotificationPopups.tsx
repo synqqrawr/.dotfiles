@@ -94,7 +94,7 @@ class NotifiationMap implements Subscribable {
 }
 
 export default function NotificationPopups(monitor: number) {
-  const { TOP, RIGHT } = Astal.WindowAnchor;
+  const { BOTTOM, RIGHT } = Astal.WindowAnchor;
   const notifs = new NotifiationMap();
 
   return (
@@ -102,7 +102,7 @@ export default function NotificationPopups(monitor: number) {
       className="NotificationPopups"
       monitor={monitor}
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
-      anchor={TOP | RIGHT}
+      anchor={BOTTOM | RIGHT}
     >
       <box vertical>{bind(notifs)}</box>
     </window>

@@ -8,11 +8,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1731966249,
-        "narHash": "sha256-9hDeMy6S2q1wWBFGiJic5yUms19zW8LhAX9MlCtuN6k=",
+        "lastModified": 1732307740,
+        "narHash": "sha256-ZDsYdZOtg5qkK/wfLLB83B3SI+fE32S+/6Ey0ggHODM=",
         "owner": "aylur",
         "repo": "ags",
-        "rev": "12e0bfefd2051c43d7450123fcb095f655b891e8",
+        "rev": "81159966eb8b39b66c3efc133982fd76920c9605",
         "type": "github"
       },
       "original": {
@@ -693,7 +693,7 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-QBwcfKGxurM8a7GnQyi+W2m2ZTqAvWGCeGLDZktfCuE=",
+        "narHash": "sha256-mxKGHValPcwcm08TVmDNy9p0BecXrEl7F14WGIVelBs=",
         "path": "./home-manager/configs/zen",
         "type": "path"
       },
