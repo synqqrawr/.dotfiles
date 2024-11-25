@@ -95,14 +95,6 @@
           # > Our main home-manager configuration file <
           ./home-manager/home.nix
           inputs.stylix.homeManagerModules.stylix
-          ./nixos/stylix/default.nix
-          {
-            stylix.targets = {
-              kde.enable = false;
-              neovim.enable = false;
-              lazygit.enable = false;
-            };
-          }
         ];
       };
     };

@@ -17,7 +17,6 @@ in {
   home.packages = [
     pkgs.grimblast
   ];
-  services.hyprpaper.enable = true;
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
@@ -37,7 +36,10 @@ in {
           text_color = lib.mkForce (rgb base00);
         };
       };
-      misc.vfr = true;
+      misc = {
+        force_default_wallpaper = 0;
+        vfr = true;
+      };
       decoration = {
         shadow.enabled = false;
         rounding = 10;
