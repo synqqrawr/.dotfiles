@@ -36,7 +36,7 @@
     };
 
     zen = {
-      url = "path:./home-manager/configs/zen";
+      url = "git+file:.?dir=/home-manager/configs/zen";
     };
   };
 

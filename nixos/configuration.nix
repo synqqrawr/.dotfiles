@@ -164,7 +164,7 @@
     firefox
     newsflash
     brightnessctl
-    nvtop-intel
+    nvtopPackages.intel
   ];
 
   programs.gnupg.agent.enable = true;

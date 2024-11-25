@@ -2,7 +2,6 @@
   inputs,
   pkgs,
   config,
-  lib,
   ...
 }: {
   imports = [inputs.ags.homeManagerModules.default];

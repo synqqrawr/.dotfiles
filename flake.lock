@@ -692,14 +692,18 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-fEnqV1hLmneJjLYxtu80cJDUN2o2uLhukaE6rsz4cz4=",
-        "path": "./home-manager/configs/zen",
-        "type": "path"
+        "dir": "/home-manager/configs/zen",
+        "dirtyRev": "41ad910d58823453147c64a1fd3f95692b2ea187-dirty",
+        "dirtyShortRev": "41ad910-dirty",
+        "lastModified": 1732525075,
+        "narHash": "sha256-JKeQoV+Tdp+1M/IcbjE0nYbY5h/wfxoJbqAtg8rfTQY=",
+        "type": "git",
+        "url": "file:."
       },
       "original": {
-        "path": "./home-manager/configs/zen",
-        "type": "path"
+        "dir": "/home-manager/configs/zen",
+        "type": "git",
+        "url": "file:."
       }
     }
   },
