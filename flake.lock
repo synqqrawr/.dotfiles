@@ -468,6 +468,21 @@
         "type": "github"
       }
     },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1732483221,
+        "narHash": "sha256-kF6rDeCshoCgmQz+7uiuPdREVFuzhIorGOoPXMalL2U=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "45348ad6fb8ac0e8415f6e5e96efe47dd7f39405",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1732014248,
@@ -529,6 +544,7 @@
         "betterfox": "betterfox",
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
+        "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "prismlauncher": "prismlauncher",
         "shadower": "shadower",
@@ -679,10 +695,10 @@
       },
       "locked": {
         "dir": "/home-manager/configs/zen",
-        "dirtyRev": "2f2b44e983b80800a6227bbe0a867d345e0c6c4c-dirty",
-        "dirtyShortRev": "2f2b44e-dirty",
-        "lastModified": 1732528437,
-        "narHash": "sha256-2q0D3sl2SqpXTYslrAnmzNpqbayC6pJQLtx20wdlU5E=",
+        "dirtyRev": "6f0529f7f9b16035976d16b3aa3b55bccd2eb29c-dirty",
+        "dirtyShortRev": "6f0529f-dirty",
+        "lastModified": 1732529784,
+        "narHash": "sha256-Ixbrsir+PGCNRl7fSUn6YJKt4HIpxOJp5mXkhx9I59k=",
         "type": "git",
         "url": "file:."
       },

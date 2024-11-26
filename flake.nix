@@ -39,6 +39,8 @@
       url = "git+file:.?dir=/home-manager/configs/zen";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
   outputs = {
@@ -80,6 +82,10 @@
 
           # stylix
           inputs.stylix.nixosModules.stylix
+
+          inputs.nixos-hardware.nixosModules.common-cpu-intel
+          inputs.nixos-hardware.nixosModules.common-gpu-intel
+          inputs.nixos-hardware.nixosModules.common-pc-ssd
         ];
       };
     };
