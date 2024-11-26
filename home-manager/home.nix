@@ -28,6 +28,7 @@
     ./configs/ags.nix
     ./configs/foot.nix
     ./configs/swww.nix
+    ./configs/spotify.nix
     ./configs/stylix.nix
     ./configs/discord.nix
     ../nixos/config/nix.nix
