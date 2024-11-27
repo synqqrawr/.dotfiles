@@ -108,22 +108,6 @@
         "type": "github"
       }
     },
-    "betterfox": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1731098411,
-        "narHash": "sha256-CxPZxo9G44lRocNngjfwTBHSqL5dEJ5MNO5Iauoxp2Y=",
-        "owner": "yokoffing",
-        "repo": "BetterFox",
-        "rev": "429abb61f52726b7c6f1675bccca32bbb5359c02",
-        "type": "github"
-      },
-      "original": {
-        "owner": "yokoffing",
-        "repo": "BetterFox",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -557,14 +541,12 @@
     "root": {
       "inputs": {
         "ags": "ags",
-        "betterfox": "betterfox",
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "prismlauncher": "prismlauncher",
         "shadower": "shadower",
-        "shyfox": "shyfox",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
         "zen": "zen"
@@ -586,22 +568,6 @@
       "original": {
         "owner": "n3oney",
         "repo": "shadower",
-        "type": "github"
-      }
-    },
-    "shyfox": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1730549913,
-        "narHash": "sha256-9InO33jS+YP+aupQc8OadvGSyXEIBcTbN8kTo91hAbY=",
-        "owner": "Naezr",
-        "repo": "ShyFox",
-        "rev": "6488ff1934c184a7b81770c67f5c3b5e983152e3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Naezr",
-        "repo": "ShyFox",
         "type": "github"
       }
     },
@@ -733,11 +699,10 @@
       },
       "locked": {
         "dir": "/home-manager/configs/zen",
-        "lastModified": 1732661201,
-        "narHash": "sha256-Aq1ucHPE8QX9nr/jCJiHoVrBbbS5A/0qtQrtoUh8oP8=",
-        "ref": "refs/heads/unstable",
-        "rev": "a2605c308cfbcc3ed00af49c874332f145768119",
-        "revCount": 177,
+        "dirtyRev": "9f61cee696debe6775db6bf8b174c31f93814552-dirty",
+        "dirtyShortRev": "9f61cee-dirty",
+        "lastModified": 1732695508,
+        "narHash": "sha256-1ZOE6rSJAjPnvVCWh8pAZhm/XUvWkKHIvJJ/XtEvjd4=",
         "type": "git",
         "url": "file:."
       },
