@@ -733,10 +733,11 @@
       },
       "locked": {
         "dir": "/home-manager/configs/zen",
-        "dirtyRev": "bb9eaafb7d1b73e4e15454b2c0731ae5c7a64056-dirty",
-        "dirtyShortRev": "bb9eaaf-dirty",
-        "lastModified": 1732660145,
-        "narHash": "sha256-EwwvoqPPpX4oWj3+9BwNnDoMh2w0/+WAVVAMlN7nKBA=",
+        "lastModified": 1732661201,
+        "narHash": "sha256-Aq1ucHPE8QX9nr/jCJiHoVrBbbS5A/0qtQrtoUh8oP8=",
+        "ref": "refs/heads/unstable",
+        "rev": "a2605c308cfbcc3ed00af49c874332f145768119",
+        "revCount": 177,
         "type": "git",
         "url": "file:."
       },
