@@ -80,13 +80,10 @@
         modules = [
           # > Our main nixos configuration file <
           ./nixos/configuration.nix
+          ./hosts/dynabook-laptop/configuration.nix
 
           # stylix
           inputs.stylix.nixosModules.stylix
-
-          inputs.nixos-hardware.nixosModules.common-cpu-intel
-          inputs.nixos-hardware.nixosModules.common-gpu-intel
-          inputs.nixos-hardware.nixosModules.common-pc-ssd
         ];
       };
     };
@@ -102,6 +99,7 @@
         modules = [
           # > Our main home-manager configuration file <
           ./home-manager/home.nix
+          ./hosts/dynabook-laptop/home.nix
           inputs.stylix.homeManagerModules.stylix
         ];
       };
