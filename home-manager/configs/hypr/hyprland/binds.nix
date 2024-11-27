@@ -35,6 +35,7 @@
         "SUPER, S, togglespecialworkspace, magic"
         "SUPER, S, movetoworkspace, special:magic"
         "SUPER, S, togglespecialworkspace, magic"
+        "SUPER, E, exec, nautilus"
 
         "SUPER, O, pin"
 

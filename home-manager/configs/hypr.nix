@@ -40,6 +40,9 @@ in {
         force_default_wallpaper = 0;
         vfr = true;
       };
+      windowrule = [
+        "float, ^(org.gnome.Nautilus)$"
+      ];
       decoration = {
         shadow.enabled = false;
         rounding = 10;
