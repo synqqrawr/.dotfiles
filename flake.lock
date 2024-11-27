@@ -548,8 +548,7 @@
         "prismlauncher": "prismlauncher",
         "shadower": "shadower",
         "spicetify-nix": "spicetify-nix",
-        "stylix": "stylix",
-        "zen": "zen"
+        "stylix": "stylix"
       }
     },
     "shadower": {
@@ -689,27 +688,6 @@
         "owner": "tinted-theming",
         "repo": "tinted-tmux",
         "type": "github"
-      }
-    },
-    "zen": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "dir": "/home-manager/configs/zen",
-        "dirtyRev": "9f61cee696debe6775db6bf8b174c31f93814552-dirty",
-        "dirtyShortRev": "9f61cee-dirty",
-        "lastModified": 1732695508,
-        "narHash": "sha256-1ZOE6rSJAjPnvVCWh8pAZhm/XUvWkKHIvJJ/XtEvjd4=",
-        "type": "git",
-        "url": "file:."
-      },
-      "original": {
-        "dir": "/home-manager/configs/zen",
-        "type": "git",
-        "url": "file:."
       }
     }
   },
