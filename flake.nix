@@ -9,27 +9,27 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # stylix
-    stylix.url = "github:danth/stylix";
-    stylix.inputs.nixpkgs.follows = "nixpkgs";
-    stylix.inputs.home-manager.follows = "home-manager";
-
-    # betterfox
-    betterfox.url = "github:yokoffing/BetterFox";
-    betterfox.flake = false;
-
-    # shyfox
-    shyfox.url = "github:Naezr/ShyFox";
-    shyfox.flake = false;
+    stylix = {
+      url = "github:danth/stylix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
 
     # neovim-nightly-overlay
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    neovim-nightly-overlay.inputs.nixpkgs.follows = "nixpkgs";
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     ags.url = "github:aylur/ags";
     ags.inputs.nixpkgs.follows = "nixpkgs";
 
-    prismlauncher.url = "github:synqqrawr/PrismLauncher";
-    prismlauncher.inputs.nixpkgs.follows = "nixpkgs";
+    prismlauncher = {
+      url = "github:synqqrawr/PrismLauncher";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     shadower = {
       url = "github:n3oney/shadower";
@@ -42,8 +42,10 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
