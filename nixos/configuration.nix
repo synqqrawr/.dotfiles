@@ -32,6 +32,7 @@
     ./config/power.nix
     ./config/nix.nix
     ./config/sound.nix
+    ./config/xdg.nix
   ];
 
   nix = let

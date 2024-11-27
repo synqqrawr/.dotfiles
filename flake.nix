@@ -28,7 +28,7 @@
     ags.url = "github:aylur/ags";
     ags.inputs.nixpkgs.follows = "nixpkgs";
 
-    prismlauncher.url = "github:Diegiwg/PrismLauncher-Cracked";
+    prismlauncher.url = "github:synqqrawr/PrismLauncher";
     prismlauncher.inputs.nixpkgs.follows = "nixpkgs";
 
     shadower = {

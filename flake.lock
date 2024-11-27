@@ -541,16 +541,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1731323379,
-        "narHash": "sha256-gT08EDeIjs3yuDVSgGkrkm5g1WqntwbDYyhqKQZP9Tk=",
-        "owner": "Diegiwg",
-        "repo": "PrismLauncher-Cracked",
-        "rev": "752668e50f155b21cd6de6b05192e0010517da31",
+        "lastModified": 1732688275,
+        "narHash": "sha256-w3epfkvtkW2p/1RtEkdo3Ym123aynB3JAHHBNSJymxI=",
+        "owner": "synqqrawr",
+        "repo": "PrismLauncher",
+        "rev": "625d00c4b6907732bd6381857dd3bbed2ee1f8d0",
         "type": "github"
       },
       "original": {
-        "owner": "Diegiwg",
-        "repo": "PrismLauncher-Cracked",
+        "owner": "synqqrawr",
+        "repo": "PrismLauncher",
         "type": "github"
       }
     },
