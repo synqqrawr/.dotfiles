@@ -29,7 +29,7 @@
         "SUPER SHIFT, j, movewindow, d"
         "SUPER SHIFT, k, movewindow, u"
         "SUPER SHIFT, l, movewindow, r"
-        ", end, exec, ${lib.getExe pkgs.grimblast} save area - | shadower | wl-copy -t image/png && notify-send \"Screenshot Taken\" \"Your screenshot has been copied to the clipboard.\""
+        ", end, exec, ${lib.getExe pkgs.grimblast} save area - | wl-copy -t image/png && notify-send \"Screenshot Taken\" \"Your screenshot has been copied to the clipboard.\""
         "SUPER, S, togglespecialworkspace, magic"
         "SUPER, S, movetoworkspace, +0"
         "SUPER, S, togglespecialworkspace, magic"

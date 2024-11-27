@@ -52,7 +52,6 @@
   programs.git.enable = true;
 
   home.packages = with pkgs; [
-    inputs.shadower.packages.${pkgs.system}.shadower
     (inputs.prismlauncher.packages.${pkgs.system}.prismlauncher.override {
       jdks = [
         jdk17

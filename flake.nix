@@ -31,10 +31,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    shadower = {
-      url = "github:n3oney/shadower";
-    };
-
     zen = {
       url = "git+file:.?dir=/home-manager/configs/zen";
       inputs.nixpkgs.follows = "nixpkgs";
