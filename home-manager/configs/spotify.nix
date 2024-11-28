@@ -1,8 +1,10 @@
 {
   pkgs,
   inputs,
+  config,
   ...
-}: {
+}:
+with config.lib.stylix.colors; {
   imports = [
     inputs.spicetify-nix.homeManagerModules.default
   ];
@@ -16,8 +18,9 @@
       hidePodcasts
     ];
     enabledCustomApps = with spicePkgs.apps; [
-      newReleases
-      ncsVisualizer
+      lyricsPlus
     ];
+    theme = spicePkgs.themes.defaultDynamic;
+    colorScheme = "base";
   };
 }
