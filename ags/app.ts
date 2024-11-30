@@ -5,7 +5,7 @@ import Applauncher from "./Widget/Applauncher";
 import NotificationPopups from "./Widget/notifications/NotificationPopups";
 import NotificaionCenter from "./Widget/notifications/Center"
 
-const settings = Gtk.Settings.get_default();
+const settings = Gtk.Settings.get_default()!;
 settings.gtk_enable_animations = true;
 
 App.start({

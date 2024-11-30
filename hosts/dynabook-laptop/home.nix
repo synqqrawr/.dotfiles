@@ -29,6 +29,7 @@
     ../../home-manager/configs/stylix.nix
     ../../home-manager/configs/discord.nix
     ../../home-manager/configs/browsers.nix
+    ../../home-manager/configs/emote.nix
     ../../nixos/config/nix.nix
   ];
 

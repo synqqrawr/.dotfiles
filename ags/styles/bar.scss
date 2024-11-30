@@ -10,9 +10,12 @@ window.Bar {
   box-shadow: none;
   background: transparent;
   color: $fg;
-  font-size: 1.1em;
-  font-weight: 600;
-  font-family: "Source Sans Pro", "Noto Sans", "Noto Sans CJK";
+
+  label {
+    font-size: 0.9em;
+    font-weight: 600;
+    font-family: "Jet Brains Mono Nerd Font", "Noto Sans", "Noto Sans CJK";
+  }
 
   & > centerbox {
     background-color: $bg;
