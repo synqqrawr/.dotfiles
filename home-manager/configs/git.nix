@@ -11,14 +11,7 @@
       };
     };
   };
-
-  programs.git.difftastic.enable = true;
-  programs.git.difftastic.display = "inline";
-
   programs.lazygit = {
     enable = true;
-    settings = {
-      git.paging.externalDiffCommand = "difft --color=always";
-    };
   };
 }

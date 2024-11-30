@@ -32,7 +32,7 @@
     };
 
     zen = {
-      url = "git+file:.?dir=/home-manager/configs/zen";
+      url = "path:./home-manager/configs/zen";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

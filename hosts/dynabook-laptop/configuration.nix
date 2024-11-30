@@ -1,4 +1,8 @@
-{pkgs, inputs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.nixos-hardware.nixosModules.common-gpu-intel
@@ -15,6 +19,7 @@
     ../../nixos/config/nix.nix
     ../../nixos/config/sound.nix
     ../../nixos/config/xdg.nix
+    ../../nixos/config/shell.nix
   ];
 
   # Set your time zone.
@@ -46,17 +51,17 @@
         "input"
         "networkmanager"
       ];
-      shell = pkgs.nushell;
+      shell = pkgs.zsh;
     };
   };
 
   services.resolved = {
     enable = true;
     extraConfig = ''
-      DNS=45.90.28.0#d12453.dns.nextdns.io
-      DNS=2a07:a8c0::#d12453.dns.nextdns.io
-      DNS=45.90.30.0#d12453.dns.nextdns.io
-      DNS=2a07:a8c1::#d12453.dns.nextdns.io
+      DNS=45.90.28.0#f82bcf.dns.nextdns.io
+      DNS=2a07:a8c0::#f82bcf.dns.nextdns.io
+      DNS=45.90.30.0#f82bcf.dns.nextdns.io
+      DNS=2a07:a8c1::#f82bcf.dns.nextdns.io
       DNSOverTLS=yes
     '';
   };

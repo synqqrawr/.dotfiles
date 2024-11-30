@@ -641,19 +641,14 @@
         ]
       },
       "locked": {
-        "dir": "/home-manager/configs/zen",
-        "lastModified": 1732711167,
-        "narHash": "sha256-7z3zziW90mqavCIIOotdPTekVES6YhniGv4Ea/BZC0c=",
-        "ref": "refs/heads/unstable",
-        "rev": "63bae146d3683c631c76b066e4010b2ceeb426b6",
-        "revCount": 185,
-        "type": "git",
-        "url": "file:.?dir=/home-manager/configs/zen"
+        "lastModified": 1,
+        "narHash": "sha256-tc8SF64YGJyYgDfRLHqTDuq5AuqYW2Zf8Zf2M48USt0=",
+        "path": "./home-manager/configs/zen",
+        "type": "path"
       },
       "original": {
-        "dir": "/home-manager/configs/zen",
-        "type": "git",
-        "url": "file:.?dir=/home-manager/configs/zen"
+        "path": "./home-manager/configs/zen",
+        "type": "path"
       }
     }
   },

@@ -20,7 +20,5 @@ with config.lib.stylix.colors; {
     enabledCustomApps = with spicePkgs.apps; [
       lyricsPlus
     ];
-    theme = spicePkgs.themes.defaultDynamic;
-    colorScheme = "base";
   };
 }
