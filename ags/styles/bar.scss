@@ -18,6 +18,11 @@ window.Bar {
     background-color: $bg;
     min-height: 35pt;
     border: 1pt solid gtkalpha($fg, 0.1);
+    border-radius: $radius;
+    margin-bottom: 3pt;
+    margin-left: 7pt;
+    margin-right: 7pt;
+    padding: 5pt;
   }
 
   button {
@@ -67,5 +72,14 @@ window.Bar {
 
   .Wifi {
     margin: 0 5px;
+  }
+
+  .focusedClient {
+    border-right: 1pt solid gtkalpha($fg, 0.1);
+    margin-right: 10pt;
+  }
+
+  .Clock {
+    border-right: 1pt solid gtkalpha($fg, 0.1);
   }
 }

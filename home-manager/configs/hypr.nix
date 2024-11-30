@@ -45,7 +45,7 @@ in {
       ];
       decoration = {
         shadow.enabled = false;
-        rounding = 0;
+        rounding = 5;
         dim_inactive = true;
         dim_strength = 0.1;
         blur = {

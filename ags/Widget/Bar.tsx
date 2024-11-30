@@ -103,20 +103,39 @@ function BatteryLevel() {
   );
 }
 
-function Time({ format = "%H:%M - %A %e." }) {
+function Time({ format = "%H:%M", date_format = "%A %e." }) {
+  const date = Variable<string>("").poll(
+    1000,
+    () => GLib.DateTime.new_now_local().format(date_format)!,
+  );
   const time = Variable<string>("").poll(
     1000,
     () => GLib.DateTime.new_now_local().format(format)!,
   );
 
   return (
-    <label className="Time" onDestroy={() => time.drop()} label={time()} />
+    <box valign={Gtk.Align.CENTER} css="min-width: 30pt; padding: 0 10pt;" className="Clock">
+      <box vertical>
+        <box className="txt-smaller">
+          <label
+            onDestroy={() => time.drop()}
+            label={time()}
+          />
+        </box>
+        <box className="txt-smallie">
+          <label
+            onDestroy={() => date.drop()}
+            label={date()}
+          />
+        </box>
+      </box>
+    </box>
   );
 }
 
 export default function Bar(monitor: number) {
   const anchor =
-    Astal.WindowAnchor.TOP |
+    Astal.WindowAnchor.BOTTOM |
     Astal.WindowAnchor.LEFT |
     Astal.WindowAnchor.RIGHT;
 
@@ -129,12 +148,11 @@ export default function Bar(monitor: number) {
     >
       <centerbox>
         <box hexpand halign={Gtk.Align.START}>
+          <Time />
           <FocusedClient />
           <Workspaces />
         </box>
-        <box>
-          <Time />
-        </box>
+        <box></box>
         <box hexpand halign={Gtk.Align.END}>
           <SysTray />
           <Wifi />
