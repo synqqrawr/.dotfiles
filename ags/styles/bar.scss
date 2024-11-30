@@ -17,12 +17,6 @@ window.Bar {
   & > centerbox {
     background-color: $bg;
     min-height: 35pt;
-    margin-top: 0pt;
-    margin-left: 15pt;
-    margin-right: 15pt;
-    margin-bottom: 5pt;
-    padding: 5pt;
-    border-radius: 7pt;
     border: 1pt solid gtkalpha($fg, 0.1);
   }
 

@@ -116,7 +116,7 @@ function Time({ format = "%H:%M - %A %e." }) {
 
 export default function Bar(monitor: number) {
   const anchor =
-    Astal.WindowAnchor.BOTTOM |
+    Astal.WindowAnchor.TOP |
     Astal.WindowAnchor.LEFT |
     Astal.WindowAnchor.RIGHT;
 
