@@ -30,6 +30,7 @@
     ../../home-manager/configs/discord.nix
     ../../home-manager/configs/browsers.nix
     ../../home-manager/configs/emote.nix
+    ../../home-manager/configs/games.nix
     ../../nixos/config/nix.nix
   ];
 
