@@ -20,12 +20,6 @@ window.Bar {
   & > centerbox {
     background-color: $bg;
     min-height: 35pt;
-    border: 1pt solid gtkalpha($fg, 0.1);
-    border-radius: $radius;
-    margin-bottom: 3pt;
-    margin-left: 7pt;
-    margin-right: 7pt;
-    padding: 5pt;
   }
 
   button {
@@ -61,7 +55,9 @@ window.Bar {
 
   .Battery {
     padding: unset;
-    margin-right: 10px;
+    padding-left: 10pt;
+    margin-right: 10pt;
+    border-left: 1pt solid gtkalpha($fg, 0.1);
   }
 
   .Battery label {
@@ -70,7 +66,7 @@ window.Bar {
   }
 
   .SysTray button {
-    margin: 0 5px;
+    margin: 0 3pt;
   }
 
   .Wifi {

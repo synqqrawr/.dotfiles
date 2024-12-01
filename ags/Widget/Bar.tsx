@@ -134,7 +134,7 @@ function Time({ format = "%H:%M", date_format = "%A %e." }) {
 
 export default function Bar(monitor: number) {
   const anchor =
-    Astal.WindowAnchor.BOTTOM |
+    Astal.WindowAnchor.TOP |
     Astal.WindowAnchor.LEFT |
     Astal.WindowAnchor.RIGHT;
 
@@ -144,6 +144,7 @@ export default function Bar(monitor: number) {
       monitor={monitor}
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
       anchor={anchor}
+      layer={Astal.Layer.BOTTOM}
     >
       <centerbox>
         <box hexpand halign={Gtk.Align.START}>

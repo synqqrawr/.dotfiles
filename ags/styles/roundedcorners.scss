@@ -1,0 +1,7 @@
+@use "variables.scss" as *;
+@use "sass:string";
+
+.corner {
+  background-color: $bg;
+  font-size: 1rem;
+}
