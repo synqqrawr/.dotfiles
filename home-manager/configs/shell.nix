@@ -8,7 +8,6 @@
     zsh = {
       enable = true;
       # enableCompletion = false;
-      autocd = true;
       sessionVariables = {
         NIXPKGS_ALLOW_UNFREE = "1";
         NIXPKGS_ALLOW_INSECURE = "1";
@@ -18,28 +17,21 @@
       };
       initExtra = ''
         if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-          source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+          . "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
         fi
         if [[ -f "''${ZDOTDIR}/plugins/fzf-tab/modules/config.h.in" ]]; then
           [[ ! -f "''${ZDOTDIR}/plugins/fzf-tab/modules/config.h" ]] && build-fzf-tab-module
         fi
 
-        setopt GLOB_COMPLETE
-        setopt HIST_EXPIRE_DUPS_FIRST
-        setopt HIST_IGNORE_DUPS
-        setopt HIST_IGNORE_ALL_DUPS
-        setopt HIST_IGNORE_SPACE
-        setopt HIST_FIND_NO_DUPS
-        setopt HIST_SAVE_NO_DUPS
-        setopt extended_glob
+        setopt GLOB_COMPLETE HIST_EXPIRE_DUPS_FIRST HIST_IGNORE_DUPS HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE HIST_FIND_NO_DUPS HIST_SAVE_NO_DUPS extended_glob autocd
         export KEYTIMEOUT=1
 
-        source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-        source ${./shell/p10k.zsh}
+        . ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+        . ${./shell/p10k.zsh}
 
-        source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-        source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-        source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+        . ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+        . ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+        . ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
         eval "$(fzf --zsh)"
         eval "$(zoxide init zsh)"
@@ -50,7 +42,7 @@
         HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='fg=red,bold'
         ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
-        source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+        . ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
         # disable sort when completing `git checkout`
         zstyle ':completion:*:git-checkout:*' sort false
         # set descriptions format to enable group support
@@ -69,6 +61,7 @@
     fzf.enable = true;
     btop.enable = true;
     eza.enable = true;
+    bat.enable = true;
   };
 
   home.packages = with pkgs; [

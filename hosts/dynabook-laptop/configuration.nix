@@ -27,6 +27,7 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
+  i18n.extraLocaleSettings = { LC_TIME = "ja_JP.UTF-8"; };
 
   # TODO: Set your hostname
   networking.hostName = "nixos";
