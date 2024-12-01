@@ -9,7 +9,7 @@ with config.lib.stylix.colors; let
 in {
   imports = [
     ./hypr/hyprlock.nix
-    ./hypr/xdg.nix
+    # ./hypr/xdg.nix
     ./hypr/hypridle.nix
     ./hypr/hyprland/binds.nix
     # ./hypr/hyprland/animations.nix
