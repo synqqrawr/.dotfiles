@@ -11,17 +11,16 @@
     declare -A ZINIT
     ZINIT_HOME=$HOME/.local/share/zinit
     ZINIT[HOME_DIR]=''${ZINIT_HOME}
+    ZINIT[BIN_DIR]=${pkgs.zinit}/share/zinit
     [[ -r ''${ZINIT_HOME} ]] || mkdir -p ''${ZINIT_HOME}
     source "${pkgs.zinit}/share/zinit/zinit.zsh"&>/dev/null
     ln -sf "${pkgs.zinit}/share/zsh/site-functions/_zinit" ''${ZINIT_HOME}/completions
     (( ''${+_comps} )) && _comps[zinit]="${pkgs.zinit}/share/zsh/site-functions/_zinit"
-    unalias zi
 
+    ${builtins.readFile ./zsh/zinit.zsh}
     ${builtins.readFile ./zsh/options.zsh}
     ${builtins.readFile ./zsh/binds.zsh}
     ${builtins.readFile ./zsh/lazyload.zsh}
-    source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-    source ${pkgs.zsh-defer}/share/zsh-defer/zsh-defer.plugin.zsh
     source ${./zsh/p10k.zsh}
 
     eval "$(fzf --zsh)"
