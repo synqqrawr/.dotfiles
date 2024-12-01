@@ -114,19 +114,18 @@ function Time({ format = "%H:%M", date_format = "%A %e." }) {
   );
 
   return (
-    <box valign={Gtk.Align.CENTER} css="min-width: 30pt; padding: 0 10pt;" className="Clock">
+    <box
+      valign={Gtk.Align.CENTER}
+      css="min-width: 30pt; padding: 0 10pt;"
+      className="Clock"
+    >
+      <label label={" "} css="margin-right: 5pt;" />
       <box vertical>
         <box className="txt-smaller">
-          <label
-            onDestroy={() => time.drop()}
-            label={time()}
-          />
+          <label onDestroy={() => time.drop()} label={time()} />
         </box>
         <box className="txt-smallie">
-          <label
-            onDestroy={() => date.drop()}
-            label={date()}
-          />
+          <label onDestroy={() => date.drop()} label={date()} />
         </box>
       </box>
     </box>
