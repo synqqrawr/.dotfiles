@@ -42,6 +42,23 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    zsh-autosuggestions = {
+      url = "github:zsh-users/zsh-autosuggestions";
+      flake = false;
+    };
+    zsh-syntax-highlighting = {
+      url = "github:zsh-users/zsh-syntax-highlighting";
+      flake = false;
+    };
+    zsh-history-substring-search = {
+      url = "github:zsh-users/zsh-history-substring-search";
+      flake = false;
+    };
+    zsh-fzf-tab = {
+      url = "github:Aloxaf/fzf-tab";
+      flake = false;
+    };
   };
 
   outputs = {
