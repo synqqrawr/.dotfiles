@@ -7,5 +7,6 @@
     neovim.enable = false;
     lazygit.enable = false;
     hyprland.enable = false;
+    spicetify.enable = false;
   };
 }

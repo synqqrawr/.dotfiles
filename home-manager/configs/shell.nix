@@ -91,7 +91,10 @@
       enable = true;
       enableZshIntegration = false;
     };
-    fzf.enable = true;
+    fzf = {
+      enable = true;
+      enableZshIntegration = false;
+    };
     btop.enable = true;
     eza.enable = true;
     bat.enable = true;

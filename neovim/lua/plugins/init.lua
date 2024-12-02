@@ -74,7 +74,7 @@ return {
 		"saghen/blink.cmp",
 		event = "InsertEnter",
 		dependencies = "rafamadriz/friendly-snippets",
-		build = "nix run .#build-plugin",
+    version = "v0.*";
 		opts = function()
 			return require("configs.blink")
 		end,
@@ -191,5 +191,28 @@ return {
 				cmp = { enabled = false },
 			},
 		},
+	},
+	{
+		"folke/snacks.nvim",
+		opts = {
+			-- profiler = {
+			-- 	enabled = true,
+			-- },
+		},
+		init = function()
+			if vim.env.PROF then
+				-- example for lazy.nvim
+				-- change this to the correct path for your plugin manager
+				local snacks = vim.fn.stdpath("data") .. "/lazy/snacks.nvim"
+				vim.opt.rtp:append(snacks)
+				require("snacks.profiler").startup({
+					startup = {
+						event = "VimEnter", -- stop profiler on this event. Defaults to `VimEnter`
+						-- event = "UIEnter",
+						-- event = "VeryLazy",
+					},
+				})
+			end
+		end,
 	},
 }

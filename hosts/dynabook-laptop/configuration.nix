@@ -20,6 +20,7 @@
     ../../nixos/config/sound.nix
     ../../nixos/config/xdg.nix
     ../../nixos/config/shell.nix
+    ../../nixos/config/security.nix
   ];
 
   # Set your time zone.
