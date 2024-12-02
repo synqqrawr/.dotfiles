@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   imports = [
-    ./themes/everblush.nix
-    # ./themes/gruvbox.nix
+    # ./themes/everblush.nix
+    ./themes/gruvbox.nix
     # ./themes/rosepine_dawn.nix
   ];
   stylix = {

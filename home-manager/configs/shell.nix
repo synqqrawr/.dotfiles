@@ -42,19 +42,25 @@
         setopt GLOB_COMPLETE HIST_EXPIRE_DUPS_FIRST HIST_IGNORE_DUPS HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE HIST_FIND_NO_DUPS HIST_SAVE_NO_DUPS extended_glob autocd
         export KEYTIMEOUT=1
 
-        source ${
-          zshCompilePlugin "zsh-autosuggestions" inputs.zsh-autosuggestions
-        }/zsh-autosuggestions.zsh
-        source ${zshCompilePlugin "fast-syntax-highlighting" inputs.fast-syntax-highlighting}/fast-syntax-highlighting.plugin.zsh
+        source ${zshCompilePlugin "zsh-autosuggestions" inputs.zsh-autosuggestions}/zsh-autosuggestions.zsh
+        source ${zshCompilePlugin "zsh-syntax-highlighting" inputs.zsh-syntax-highlighting}/zsh-syntax-highlighting.zsh
         source ${zshCompilePlugin "zsh-history-substring-search" inputs.zsh-history-substring-search}/zsh-history-substring-search.zsh
 
         source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-        source ${./shell/p10k.zsh}
+        source ${pkgs.runCommand "zcompile-p10k" {
+            nativeBuildInputs = [pkgs.zsh];
+            name = "p10k-zwc";
+          } ''
+            cp ${./shell/p10k.zsh} ./p10k.zsh
+              zsh -c 'zcompile p10k.zsh'
+              mkdir -p $out
+              cp p10k.zsh.zwc $out/
+          ''}/p10k.zsh
 
         source ${config.programs.fzf.package}/share/fzf/completion.zsh
         source ${config.programs.fzf.package}/share/fzf/key-bindings.zsh
         source ${
-          pkgs.runCommand "zoxide-init-zsh" { buildInputs = [pkgs.zoxide]; } ''
+          pkgs.runCommand "zoxide-init-zsh" {buildInputs = [pkgs.zoxide];} ''
             zoxide init zsh > $out
           ''
         }
@@ -81,7 +87,10 @@
       '';
     };
 
-    zoxide.enable = true;
+    zoxide = {
+      enable = true;
+      enableZshIntegration = false;
+    };
     fzf.enable = true;
     btop.enable = true;
     eza.enable = true;
