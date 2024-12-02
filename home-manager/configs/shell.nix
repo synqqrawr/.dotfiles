@@ -45,7 +45,7 @@
         source ${
           zshCompilePlugin "zsh-autosuggestions" inputs.zsh-autosuggestions
         }/zsh-autosuggestions.zsh
-        source ${zshCompilePlugin "zsh-syntax-highlighting" inputs.zsh-syntax-highlighting}/zsh-syntax-highlighting.zsh
+        source ${zshCompilePlugin "fast-syntax-highlighting" inputs.fast-syntax-highlighting}/fast-syntax-highlighting.plugin.zsh
         source ${zshCompilePlugin "zsh-history-substring-search" inputs.zsh-history-substring-search}/zsh-history-substring-search.zsh
 
         source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
