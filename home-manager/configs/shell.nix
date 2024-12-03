@@ -17,6 +17,14 @@
         EDITOR = config.home.sessionVariables.EDITOR;
         VISUAL = config.home.sessionVariables.VISUAL;
       };
+      history = {
+        ignoreDups = true;
+        ignoreSpace = true;
+        expireDuplicatesFirst = true;
+        share = true;
+      };
+      defaultKeymap = "viins";
+      autocd = true;
       initExtraBeforeCompInit = ''
         if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
           . "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
@@ -25,6 +33,12 @@
           [[ ! -f "''${ZDOTDIR}/plugins/fzf-tab/modules/config.h" ]] && build-fzf-tab-module
         fi
       '';
+      sessionVariables = {
+        KEYTIMEOUT = 1;
+        HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND = "fg=white,bold";
+        HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND = "fg=red,bold";
+        ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "fg=8";
+      };
       initExtra = let
         zshCompilePlugin = name: src:
           pkgs.runCommand name
@@ -39,11 +53,11 @@
             find -name '*.zsh' -execdir zsh -c 'zcompile {}' \;
           '';
       in ''
-        setopt GLOB_COMPLETE HIST_EXPIRE_DUPS_FIRST HIST_IGNORE_DUPS HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE HIST_FIND_NO_DUPS HIST_SAVE_NO_DUPS extended_glob autocd
+        setopt GLOB_COMPLETE extended_glob
         export KEYTIMEOUT=1
 
         source ${zshCompilePlugin "zsh-autosuggestions" inputs.zsh-autosuggestions}/zsh-autosuggestions.zsh
-        source ${zshCompilePlugin "zsh-syntax-highlighting" inputs.zsh-syntax-highlighting}/zsh-syntax-highlighting.zsh
+        # source ${zshCompilePlugin "zsh-syntax-highlighting" inputs.zsh-syntax-highlighting}/zsh-syntax-highlighting.zsh
         source ${zshCompilePlugin "zsh-history-substring-search" inputs.zsh-history-substring-search}/zsh-history-substring-search.zsh
 
         source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
@@ -69,9 +83,6 @@
 
         bindkey "$terminfo[kcuu1]" history-substring-search-up
         bindkey "$terminfo[kcud1]" history-substring-search-down
-        HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='fg=white,bold'
-        HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='fg=red,bold'
-        ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
         # disable sort when completing `git checkout`
         zstyle ':completion:*:git-checkout:*' sort false
