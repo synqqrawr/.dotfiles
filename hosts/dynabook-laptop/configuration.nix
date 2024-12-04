@@ -94,15 +94,6 @@
     unzip
     p7zip
     killall
-    (
-      equibop.overrideAttrs (e: {
-        desktopItems =
-          e.desktopItems
-          // {
-            exec = "equibop --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime %U"; # Replace with your desired command
-          };
-      })
-    )
     (brave.override {commandLineArgs = "--enable-wayland-ime";})
     grim
     age
