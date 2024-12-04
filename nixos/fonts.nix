@@ -7,11 +7,7 @@
     fontDir.enable = true;
     packages = [
       pkgs.noto-fonts-cjk-sans
-      (pkgs.nerdfonts.override {
-        fonts = [
-          "NerdFontsSymbolsOnly"
-        ];
-      })
+      pkgs.nerd-fonts.symbols-only
       pkgs.material-symbols
       pkgs.google-fonts
       pkgs.fira
