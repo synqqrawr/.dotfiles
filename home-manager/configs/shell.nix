@@ -4,18 +4,40 @@
   lib,
   inputs,
   ...
-}: {
+}: let
+  ZCOMPDUMP_CACHE_DIR = "${config.xdg.cacheHome}/zsh";
+  ZCOMPDUMP_CACHE_PATH = "${ZCOMPDUMP_CACHE_DIR}/zcompdump-${pkgs.zsh.version}";
+in {
+  home.activation = {
+    refreshZcompdumpCache = config.lib.dag.entryAnywhere ''
+      if [[ -v oldGenPath && -f '${ZCOMPDUMP_CACHE_PATH}' ]]; then
+        # Enforcing to clear old cache, because of just omitting -C kept the command names
+        ${lib.getBin pkgs.coreutils}/bin/rm '${ZCOMPDUMP_CACHE_PATH}'
+      fi
+    '';
+  };
   programs = {
     zsh = {
       enable = true;
       # enableCompletion = false;
-      completionInit = "autoload -Uz compinit && compinit && [[ -s \"~/.zcompdump\" && (! -s \"~/.zcompdump\".zwc || \"~/.zcompdump\" -nt \"~/.zcompdump\".zwc) ]] && zcompile \"~/.zcompdump\"";
+      completionInit = "autoload -Uz compinit && ${lib.getBin pkgs.coreutils}/bin/mkdir -p \"${ZCOMPDUMP_CACHE_DIR}\" && compinit -d \"${ZCOMPDUMP_CACHE_PATH}\" && [[ -s \"${ZCOMPDUMP_CACHE_PATH}\" && (! -s \"${ZCOMPDUMP_CACHE_PATH}\".zwc || \"${ZCOMPDUMP_CACHE_PATH}\" -nt \"${ZCOMPDUMP_CACHE_PATH}\".zwc) ]] && zcompile \"${ZCOMPDUMP_CACHE_PATH}\"";
       sessionVariables = {
         NIXPKGS_ALLOW_UNFREE = "1";
         NIXPKGS_ALLOW_INSECURE = "1";
         SHELL = "${lib.getExe pkgs.zsh}";
         EDITOR = config.home.sessionVariables.EDITOR;
         VISUAL = config.home.sessionVariables.VISUAL;
+      };
+      localVariables = {
+        inherit ZCOMPDUMP_CACHE_DIR ZCOMPDUMP_CACHE_PATH;
+        KEYTIMEOUT = 1;
+        HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND = "fg=white,bold";
+        HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND = "fg=red,bold";
+        ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "fg=8";
+        # https://github.com/zsh-users/zsh-autosuggestions#disabling-automatic-widget-re-binding
+        ZSH_AUTOSUGGEST_MANUAL_REBIND = 1;
+        ZSH_AUTOSUGGEST_USE_ASYNC = "true";
+        ZSH_AUTOSUGGEST_STRATEGY = ["match_prev_cmd" "completion"];
       };
       history = {
         ignoreDups = true;
@@ -33,12 +55,6 @@
           [[ ! -f "''${ZDOTDIR}/plugins/fzf-tab/modules/config.h" ]] && build-fzf-tab-module
         fi
       '';
-      sessionVariables = {
-        KEYTIMEOUT = 1;
-        HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND = "fg=white,bold";
-        HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND = "fg=red,bold";
-        ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "fg=8";
-      };
       initExtra = let
         zshCompilePlugin = name: src:
           pkgs.runCommand name
@@ -50,15 +66,17 @@
             mkdir $out
             cp -rT ${src} $out
             cd $out
-            find -name '*.zsh' -execdir zsh -c 'zcompile {}' \;
+            find . -name '*.zsh' -type f -execdir zsh -c 'zcompile "$1"' _ {} \;
           '';
       in ''
         setopt GLOB_COMPLETE extended_glob
         export KEYTIMEOUT=1
 
-        source ${zshCompilePlugin "zsh-autosuggestions" inputs.zsh-autosuggestions}/zsh-autosuggestions.zsh
-        # source ${zshCompilePlugin "zsh-syntax-highlighting" inputs.zsh-syntax-highlighting}/zsh-syntax-highlighting.zsh
+        # Very slow chormas https://github.com/zdharma-continuum/fast-syntax-highlighting/issues/27
+        unset "FAST_HIGHLIGHT[chroma-whatis]" "FAST_HIGHLIGHT[chroma-man]"
+        source ${zshCompilePlugin "fast-syntax-highlighting" inputs.fast-syntax-highlighting}/fast-syntax-highlighting.plugin.zsh
         source ${zshCompilePlugin "zsh-history-substring-search" inputs.zsh-history-substring-search}/zsh-history-substring-search.zsh
+        source ${zshCompilePlugin "zsh-autosuggestions" inputs.zsh-autosuggestions}/zsh-autosuggestions.zsh
 
         source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
         source ${pkgs.runCommand "zcompile-p10k" {
@@ -66,18 +84,21 @@
             name = "p10k-zwc";
           } ''
             cp ${./shell/p10k.zsh} ./p10k.zsh
-              zsh -c 'zcompile p10k.zsh'
-              mkdir -p $out
-              cp p10k.zsh.zwc $out/
+            zsh -c 'zcompile p10k.zsh'
+            mkdir -p $out
+            cp p10k.zsh.zwc $out/
           ''}/p10k.zsh
 
         source ${config.programs.fzf.package}/share/fzf/completion.zsh
         source ${config.programs.fzf.package}/share/fzf/key-bindings.zsh
-        source ${
-          pkgs.runCommand "zoxide-init-zsh" {buildInputs = [pkgs.zoxide];} ''
-            zoxide init zsh > $out
-          ''
-        }
+        source ${pkgs.runCommand "zoxide-init-zsh" {
+          buildInputs = [pkgs.zoxide];
+          nativeBuildInputs = [pkgs.zsh];
+        } ''
+          mkdir -p $out
+          zoxide init zsh > $out/zoxide-init.zsh
+          zsh -c "zcompile $out/zoxide-init.zsh"
+        ''}/zoxide-init.zsh;
 
         source ${zshCompilePlugin "zsh-fzf-tab" inputs.zsh-fzf-tab}/fzf-tab.plugin.zsh
 

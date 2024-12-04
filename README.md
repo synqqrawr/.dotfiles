@@ -16,4 +16,6 @@ This dotfiles took a bunch of dotfiles for inspiration etc... props for them for
 - [Stylix](https://github.com/danth/stylix)
 - [Thiago Kenji Okada](https://github.com/thiagokokada/nix-configs)
 - [Aylur/ags](https://github.com/Aylur/ags)
+- [N3RDIUM](https://github.com/N3RDIUM/dotfiles)
+
 - Various other configs I "borrowed" code from. I don't remember them as I was using Github search.
