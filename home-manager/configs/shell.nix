@@ -82,7 +82,7 @@ in {
         source ${zshCompilePlugin "zsh-history-substring-search" inputs.zsh-history-substring-search}/zsh-history-substring-search.zsh
         source ${zshCompilePlugin "zsh-autosuggestions" inputs.zsh-autosuggestions}/zsh-autosuggestions.zsh
 
-        source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+        source ${zshCompilePlugin "zsh-powerlevel10k" pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
         source ${pkgs.runCommand "zcompile-p10k" {
             nativeBuildInputs = [pkgs.zsh];
             name = "p10k-zwc";
@@ -93,8 +93,8 @@ in {
             cp p10k.zsh.zwc $out/
           ''}/p10k.zsh
 
-        source ${config.programs.fzf.package}/share/fzf/completion.zsh
-        source ${config.programs.fzf.package}/share/fzf/key-bindings.zsh
+        source ${zshCompilePlugin "fzf" config.programs.fzf.package}/share/fzf/completion.zsh
+        source ${zshCompilePlugin "fzf" config.programs.fzf.package}/share/fzf/key-bindings.zsh
         source ${pkgs.runCommand "zoxide-init-zsh" {
             buildInputs = [pkgs.zoxide];
             nativeBuildInputs = [pkgs.zsh];
@@ -105,13 +105,6 @@ in {
           ''}/zoxide-init.zsh;
 
         source ${zshCompilePlugin "zsh-fzf-tab" inputs.zsh-fzf-tab}/fzf-tab.plugin.zsh
-
-        chpwd() {
-          local count=$(find . -maxdepth 1 -type f | wc -l)
-          if (( count < 30 )); then
-            ls
-          fi
-        }
 
         bindkey "$terminfo[kcuu1]" history-substring-search-up
         bindkey "$terminfo[kcud1]" history-substring-search-down
