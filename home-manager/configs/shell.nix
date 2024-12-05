@@ -15,6 +15,10 @@ in {
         ${lib.getBin pkgs.coreutils}/bin/rm '${ZCOMPDUMP_CACHE_PATH}'
       fi
     '';
+    compileZshrc = lib.hm.dag.entryAfter ["installPackages"] ''
+      ${lib.getBin pkgs.coreutils}/bin/rm -f ".zshrc.zwc"
+      ${lib.getExe pkgs.zsh} -c 'zcompile ".zshrc"'
+    '';
   };
   programs = {
     zsh = {
@@ -92,15 +96,22 @@ in {
         source ${config.programs.fzf.package}/share/fzf/completion.zsh
         source ${config.programs.fzf.package}/share/fzf/key-bindings.zsh
         source ${pkgs.runCommand "zoxide-init-zsh" {
-          buildInputs = [pkgs.zoxide];
-          nativeBuildInputs = [pkgs.zsh];
-        } ''
-          mkdir -p $out
-          zoxide init zsh > $out/zoxide-init.zsh
-          zsh -c "zcompile $out/zoxide-init.zsh"
-        ''}/zoxide-init.zsh;
+            buildInputs = [pkgs.zoxide];
+            nativeBuildInputs = [pkgs.zsh];
+          } ''
+            mkdir -p $out
+            zoxide init zsh > $out/zoxide-init.zsh
+            zsh -c "zcompile $out/zoxide-init.zsh"
+          ''}/zoxide-init.zsh;
 
         source ${zshCompilePlugin "zsh-fzf-tab" inputs.zsh-fzf-tab}/fzf-tab.plugin.zsh
+
+        chpwd() {
+          local count=$(find . -maxdepth 1 -type f | wc -l)
+          if (( count < 30 )); then
+            ls
+          fi
+        }
 
         bindkey "$terminfo[kcuu1]" history-substring-search-up
         bindkey "$terminfo[kcud1]" history-substring-search-down
@@ -115,7 +126,7 @@ in {
         # force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
         zstyle ':completion:*' menu no
         # preview directory's content with eza when completing cd
-        zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+        zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls -1 --color=always $realpath'
       '';
     };
 
@@ -128,7 +139,6 @@ in {
       enableZshIntegration = false;
     };
     btop.enable = true;
-    eza.enable = true;
     bat.enable = true;
   };
 
