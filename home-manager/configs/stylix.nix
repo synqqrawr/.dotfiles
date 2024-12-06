@@ -1,6 +1,7 @@
 {lib, ...}: {
   imports = [
     ../../nixos/stylix/default.nix
+    ./obsidian/stylix.nix
   ];
   stylix.targets = {
     kde.enable = false;

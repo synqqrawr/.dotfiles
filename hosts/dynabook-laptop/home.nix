@@ -31,6 +31,7 @@
     ../../home-manager/configs/browsers.nix
     ../../home-manager/configs/emote.nix
     ../../home-manager/configs/games.nix
+    ../../home-manager/configs/obsidian.nix
     ../../nixos/config/nix.nix
   ];
 
