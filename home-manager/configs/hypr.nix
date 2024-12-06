@@ -28,6 +28,11 @@ in {
       general = {
         gaps_in = 5;
         gaps_out = 20;
+        workspace = [
+          "w[tv1], gapsout:10, gapsin:0"
+          "f[1], gapsout:10, gapsin:0"
+        ];
+
         "col.active_border" = lib.mkForce (rgb base0E);
         snap.enabled = true;
       };
