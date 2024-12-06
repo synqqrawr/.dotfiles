@@ -47,8 +47,8 @@
       url = "github:zsh-users/zsh-autosuggestions";
       flake = false;
     };
-    zsh-syntax-highlighting = {
-      url = "github:zsh-users/zsh-syntax-highlighting";
+    fast-syntax-highlighting = {
+      url = "github:zdharma-continuum/fast-syntax-highlighting";
       flake = false;
     };
     zsh-history-substring-search = {

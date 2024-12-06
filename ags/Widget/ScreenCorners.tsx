@@ -53,7 +53,7 @@ export const CornerTopleft = (gdkmonitor: Number) => (
   <window
     className="w-corner"
     name={`cornertl${gdkmonitor}`}
-    layer={Astal.Layer.BOTTOM}
+    layer={Astal.Layer.TOP}
     anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.LEFT}
     exclusivity={Astal.Exclusivity.NORMAL}
     visible={true}
@@ -65,7 +65,7 @@ export const CornerTopright = (gdkmonitor: Number) => (
   <window
     className="w-corner"
     name={`cornertr${gdkmonitor}`}
-    layer={Astal.Layer.BOTTOM}
+    layer={Astal.Layer.TOP}
     anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT}
     exclusivity={Astal.Exclusivity.NORMAL}
     visible={true}
@@ -77,7 +77,7 @@ export const CornerBottomleft = (gdkmonitor: Number) => (
   <window
     className="w-corner"
     name={`cornerbl${gdkmonitor}`}
-    layer={Astal.Layer.BOTTOM}
+    layer={Astal.Layer.TOP}
     anchor={Astal.WindowAnchor.BOTTOM | Astal.WindowAnchor.LEFT}
     exclusivity={Astal.Exclusivity.NORMAL}
     visible={true}
@@ -89,7 +89,7 @@ export const CornerBottomright = (gdkmonitor: Number) => (
   <window
     className="w-corner"
     name={`cornerbr${gdkmonitor}`}
-    layer={Astal.Layer.BOTTOM}
+    layer={Astal.Layer.TOP}
     anchor={Astal.WindowAnchor.BOTTOM | Astal.WindowAnchor.RIGHT}
     exclusivity={Astal.Exclusivity.NORMAL}
     visible={true}

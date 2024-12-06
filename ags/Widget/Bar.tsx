@@ -144,7 +144,7 @@ export default function Bar(monitor: number) {
       monitor={monitor}
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
       anchor={anchor}
-      layer={Astal.Layer.BOTTOM}
+      layer={Astal.Layer.TOP}
     >
       <centerbox>
         <box hexpand halign={Gtk.Align.START}>

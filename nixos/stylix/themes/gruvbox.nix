@@ -1,6 +1,6 @@
 {
   stylix = {
-    image = ../../../media/creek.jpg;
+    image = ../../../media/a_person_standing_on_a_rocky_cliff.png;
     polarity = "dark";
     base16Scheme = {
       base00 = "#1e2122";

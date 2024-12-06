@@ -1,21 +1,19 @@
+@use "variables.scss" as *;
 @use "sass:string";
 
 @function gtkalpha($c, $a) {
   @return string.unquote("alpha(#{$c},#{$a})");
 }
 
-// https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
-$fg-color: #{"@theme_fg_color"};
-$bg-color: #{"@theme_bg_color"};
 $error: red;
 
 window.NotificationCenter {
   box {
-    background-color: $bg-color;
+    background-color: $bg;
     margin: 1rem;
     min-width: 20rem;
     min-height: 20rem;
-    border: 1pt solid gtkalpha($fg-color, 0.03);
+    border: 1pt solid gtkalpha($fg, 0.03);
     border-radius: 13px;
   }
 }

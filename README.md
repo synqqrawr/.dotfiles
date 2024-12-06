@@ -13,6 +13,9 @@ This is my personal dotfile.
 This dotfiles took a bunch of dotfiles for inspiration etc... props for them for making them and making them public :\)
 
 - [Nix Starter Config](https://github.com/Misterio77/nix-starter-configs)
-- [ShyFox](https://github.com/Naezr/ShyFox)
 - [Stylix](https://github.com/danth/stylix)
-- [end-4](https://github.com/end-4/dots-hyprland)
+- [Thiago Kenji Okada](https://github.com/thiagokokada/nix-configs)
+- [Aylur/ags](https://github.com/Aylur/ags)
+- [N3RDIUM](https://github.com/N3RDIUM/dotfiles)
+
+- Various other configs I "borrowed" code from. I don't remember them as I was using Github search.
