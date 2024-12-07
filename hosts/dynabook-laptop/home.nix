@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }: {
   # You can import other home-manager modules here
@@ -62,4 +63,9 @@
       ];
     })
   ];
+
+  home.activation.forceUpdateFontConfigCache = lib.hm.dag.entryAfter ["intallPackages"] ''
+    echo "Rebuilding font cache"
+    ${pkgs.fontconfig}/bin/fc-cache -rf
+  '';
 }

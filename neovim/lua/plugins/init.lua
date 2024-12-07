@@ -194,11 +194,6 @@ return {
 	},
 	{
 		"folke/snacks.nvim",
-		opts = {
-			-- profiler = {
-			-- 	enabled = true,
-			-- },
-		},
 		init = function()
 			if vim.env.PROF then
 				-- example for lazy.nvim
