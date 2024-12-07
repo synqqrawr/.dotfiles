@@ -662,7 +662,7 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-TeoKwVKjT8/Ja9HT/11bwJXn590B5P+2Q9nAQLQ/Dhw=",
+        "narHash": "sha256-ctqiE86wu/y12eMHRQXjTTtjLCM7H8ZsZX0CDb8Cn14=",
         "path": "./home-manager/configs/zen",
         "type": "path"
       },
