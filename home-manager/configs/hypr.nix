@@ -30,7 +30,7 @@ in {
           bar_color = rgb base00;
           "col.text" = rgb base04;
           bar_text_font = config.stylix.fonts.sansSerif.name;
-          bar_precedence_over_border = true;
+          bar_precedence_over_border = false;
           bar_part_of_window = true;
         };
       };
@@ -43,14 +43,15 @@ in {
       ];
       monitor = ",preferred,auto,1";
       general = {
-        border_size = 0;
+        border_size = 10;
         gaps_in = 5;
         gaps_out = 30;
         workspace = [
           "w[tv1], gapsout:10, gapsin:0"
           "f[1], gapsout:10, gapsin:0"
         ];
-        "col.active_border" = lib.mkForce (rgb base0E);
+        "col.active_border" = lib.mkForce (rgb base01);
+        "col.inactive_border" = lib.mkForce (rgb base01);
 
         snap.enabled = true;
       };
