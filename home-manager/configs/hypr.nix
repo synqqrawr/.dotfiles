@@ -6,6 +6,7 @@
 }:
 with config.lib.stylix.colors; let
   rgb = color: "rgb(${color})";
+  rgba = color: alpha: "rgba(${lib.removePrefix "#" color}${alpha})";
 in {
   imports = [
     ./hypr/hyprlock.nix
@@ -19,21 +20,38 @@ in {
   ];
   wayland.windowManager.hyprland = {
     enable = true;
+    plugins = with pkgs; [
+      hyprlandPlugins.hyprbars
+    ];
     settings = {
+      plugin = {
+        hyprbars = {
+          bar_height = 35;
+          bar_color = rgb base00;
+          "col.text" = rgb base04;
+          bar_text_font = config.stylix.fonts.sansSerif.name;
+          bar_precedence_over_border = true;
+          bar_part_of_window = true;
+        };
+      };
+      windowrulev2 = [
+        "plugin:hyprbars:bar_color ${rgb base01}, focus:1"
+      ];
       exec-once = [
         "fcitx5 -d"
         "ags run"
       ];
       monitor = ",preferred,auto,1";
       general = {
+        border_size = 0;
         gaps_in = 5;
-        gaps_out = 20;
+        gaps_out = 30;
         workspace = [
           "w[tv1], gapsout:10, gapsin:0"
           "f[1], gapsout:10, gapsin:0"
         ];
-
         "col.active_border" = lib.mkForce (rgb base0E);
+
         snap.enabled = true;
       };
       group = {
@@ -50,7 +68,7 @@ in {
       ];
       decoration = {
         shadow.enabled = false;
-        rounding = 5;
+        rounding = 10;
         dim_inactive = true;
         dim_strength = 0.1;
         blur = {
