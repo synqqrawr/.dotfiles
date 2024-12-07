@@ -28,9 +28,6 @@ in {
             "Documents/${vault}/.obsidian/snippets/base16.css".source = config.lib.stylix.colors {
               template = ./obsidian.mustache;
             };
-            "Documents/${vault}/.obsidian/appearance.json".text = builtins.toJSON {
-              enabledCssSnippets = ["base16"];
-            };
           }
       ) {}
       cfg.vaults;
