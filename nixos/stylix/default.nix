@@ -8,13 +8,13 @@
     enable = true;
     fonts = {
       sansSerif = {
-        package = pkgs.source-sans-pro;
-        name = "Source Sans Pro";
+        package = pkgs.sn-pro;
+        name = "SN Pro";
       };
 
       serif = {
-        package = pkgs.source-serif-pro;
-        name = "Source Serif Pro";
+        package = pkgs.sn-pro;
+        name = "SN Pro";
       };
 
       monospace = {

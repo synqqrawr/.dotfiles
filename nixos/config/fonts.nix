@@ -16,6 +16,7 @@
       antialias = true;
       cache32Bit = true;
       hinting.enable = true;
+      useEmbeddedBitmaps = true;
       defaultFonts = {
         serif = [config.stylix.fonts.serif.name];
         sansSerif = [config.stylix.fonts.sansSerif.name];

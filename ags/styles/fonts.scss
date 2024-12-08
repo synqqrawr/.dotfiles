@@ -7,13 +7,13 @@
 
 @mixin mainfont {
   // Other clean sans-serif
-  font-family: "Rubik", "Geist", "AR One Sans", "Reddit Sans", "Inter", "Roboto",
+  font-family: "SN Pro", "Rubik", "Geist", "AR One Sans", "Reddit Sans", "Inter", "Roboto",
     "Ubuntu", "Noto Sans", sans-serif;
   font-weight: 500;
 }
 
 .txt-smallie {
-  font-size: calc(0.9091rem / 1.3);
+  font-size: calc(1rem / 1.3);
   color: gtkalpha($fg, 0.5);
   @include mainfont; 
 }
