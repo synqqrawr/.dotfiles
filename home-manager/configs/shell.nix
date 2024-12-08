@@ -10,6 +10,7 @@
 in {
   home.activation = {
     refreshZcompdumpCache = config.lib.dag.entryAnywhere ''
+      ${lib.getBin pkgs.coreutils}/bin/mkdir -p "${ZCOMPDUMP_CACHE_DIR}"
       if [[ -v oldGenPath && -f '${ZCOMPDUMP_CACHE_PATH}' ]]; then
         # Enforcing to clear old cache, because of just omitting -C kept the command names
         ${lib.getBin pkgs.coreutils}/bin/rm '${ZCOMPDUMP_CACHE_PATH}'
@@ -18,13 +19,18 @@ in {
     compileZshrc = lib.hm.dag.entryAfter ["installPackages"] ''
       ${lib.getBin pkgs.coreutils}/bin/rm -f ".zshrc.zwc"
       ${lib.getExe pkgs.zsh} -c 'zcompile ".zshrc"'
+      ${lib.getBin pkgs.coreutils}/bin/rm -f ".zshenv.zwc"
+      ${lib.getExe pkgs.zsh} -c 'zcompile ".zshenv"'
     '';
   };
   programs = {
     zsh = {
       enable = true;
       # enableCompletion = false;
-      completionInit = "autoload -Uz compinit && ${lib.getBin pkgs.coreutils}/bin/mkdir -p \"${ZCOMPDUMP_CACHE_DIR}\" && compinit -d \"${ZCOMPDUMP_CACHE_PATH}\" && [[ -s \"${ZCOMPDUMP_CACHE_PATH}\" && (! -s \"${ZCOMPDUMP_CACHE_PATH}\".zwc || \"${ZCOMPDUMP_CACHE_PATH}\" -nt \"${ZCOMPDUMP_CACHE_PATH}\".zwc) ]] && zcompile \"${ZCOMPDUMP_CACHE_PATH}\"";
+      completionInit = ''
+      autoload -Uz compinit
+      [[ -s "${ZCOMPDUMP_CACHE_PATH}" ]] && compinit -d "${ZCOMPDUMP_CACHE_PATH}" -C || compinit -d "${ZCOMPDUMP_CACHE_PATH}"; [[ -s "${ZCOMPDUMP_CACHE_PATH}" && (! -s "${ZCOMPDUMP_CACHE_PATH}".zwc || "${ZCOMPDUMP_CACHE_PATH}" -nt "${ZCOMPDUMP_CACHE_PATH}".zwc) ]] && zcompile "${ZCOMPDUMP_CACHE_PATH}"
+      '';
       sessionVariables = {
         NIXPKGS_ALLOW_UNFREE = "1";
         NIXPKGS_ALLOW_INSECURE = "1";
