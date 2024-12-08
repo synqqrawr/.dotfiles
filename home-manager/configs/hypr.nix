@@ -26,14 +26,15 @@ in {
       ];
       monitor = ",preferred,auto,1";
       general = {
+        border_size = 2;
         gaps_in = 5;
-        gaps_out = 20;
+        gaps_out = 30;
         workspace = [
           "w[tv1], gapsout:10, gapsin:0"
           "f[1], gapsout:10, gapsin:0"
         ];
 
-        "col.active_border" = lib.mkForce (rgb base0E);
+        "col.active_border" = lib.mkForce (rgb base0D);
         snap.enabled = true;
       };
       group = {
@@ -49,7 +50,11 @@ in {
         "float, ^(org.gnome.Nautilus)$"
       ];
       decoration = {
-        shadow.enabled = false;
+        rounding = 10;
+        shadow = {
+          enabled = true;
+          range = 16;
+        };
         dim_inactive = true;
         dim_strength = 0.1;
         blur = {
