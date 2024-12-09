@@ -53,7 +53,6 @@ in {
         rounding = 10;
         shadow = {
           enabled = true;
-          range = 16;
         };
         dim_inactive = true;
         dim_strength = 0.1;
