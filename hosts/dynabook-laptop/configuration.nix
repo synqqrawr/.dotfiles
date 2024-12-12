@@ -21,6 +21,7 @@
     ../../nixos/config/xdg.nix
     ../../nixos/config/shell.nix
     ../../nixos/config/security.nix
+    ../../nixos/config/neovim.nix
   ];
 
   # Set your time zone.
@@ -95,6 +96,7 @@
     newsflash
     brightnessctl
     nvtopPackages.intel
+    inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
   ];
 
   services.flatpak.enable = true;
