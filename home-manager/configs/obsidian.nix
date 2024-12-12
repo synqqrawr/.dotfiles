@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   stylix.targets.obsidian = {
     enable = true;
-    vaults = ["Vault"];
+    vaults = ["Vault" "2nd_brain"];
   };
   home.packages = [
     (pkgs.obsidian.overrideAttrs (e: rec {
