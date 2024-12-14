@@ -51,11 +51,20 @@ return {
 		end,
 	},
 	{
-		"lewis6991/gitsigns.nvim",
+		"echasnovski/mini.diff",
 		event = "User FilePost",
-		opts = function()
-			return require("configs.gitsigns")
-		end,
+		opts = {
+			view = {
+				style = "sign",
+				signs = { add = "▎", change = "▎", delete = "󰍵" },
+			},
+		},
+	},
+	{
+		"echasnovski/mini-git",
+		main = "mini.git",
+		event = "User FilePost",
+		opts = true,
 	},
 	{
 		"neovim/nvim-lspconfig",
@@ -74,7 +83,7 @@ return {
 		"saghen/blink.cmp",
 		event = "InsertEnter",
 		dependencies = "rafamadriz/friendly-snippets",
-    version = "v0.*";
+		version = "v0.*",
 		opts = function()
 			return require("configs.blink")
 		end,
@@ -115,22 +124,40 @@ return {
 		end,
 	},
 	{
-		"lukas-reineke/indent-blankline.nvim",
+		"Saghen/blink.nvim",
 		event = "User FilePost",
-		opts = {
-			indent = { char = "│", highlight = "IblChar" },
-			scope = { char = "│", highlight = "IblScopeChar" },
-		},
-		tag = "v3.8.2",
 		config = function(_, opts)
-			dofile(vim.g.base46_cache .. "blankline")
-
-			local hooks = require("ibl.hooks")
-			hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
-			require("ibl").setup(opts)
-
+			require("blink").setup(opts)
 			dofile(vim.g.base46_cache .. "blankline")
 		end,
+		opts = {
+			chartoggle = { enabled = false },
+			delimiters = { enabled = false },
+			indent = {
+				enabled = true,
+				static = {
+					enabled = true,
+					char = "│",
+					priority = 1,
+					-- specify multiple highlights here for rainbow-style indent guides
+					-- highlights = { 'BlinkIndentRed', 'BlinkIndentOrange', 'BlinkIndentYellow', 'BlinkIndentGreen', 'BlinkIndentViolet', 'BlinkIndentCyan' },
+					highlights = { "IblChar" },
+				},
+				scope = {
+					enabled = true,
+					char = "│",
+					priority = 1024,
+					-- set this to a single highlight, such as 'BlinkIndent' to disable rainbow-style indent guides
+					-- highlights = { 'BlinkIndent' },
+					highlights = {
+						"IblScopeChar",
+					},
+				},
+			},
+			tree = { enabled = false },
+			cmp = { enabled = false },
+			selector = { enabled = false },
+		},
 	},
 	{
 		"folke/lazydev.nvim",
