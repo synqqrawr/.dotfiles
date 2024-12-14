@@ -100,4 +100,6 @@
   ];
 
   services.flatpak.enable = true;
+
+  zramSwap.enable = true;
 }
