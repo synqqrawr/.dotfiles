@@ -6,7 +6,7 @@
 
 ## Dotfiles
 
-This is my personal dotfile.
+These are my personal dotfiles. Except them to not work at all on your machine. Although, it is certainly possible as tried before.
 
 ### CREDITS
 
