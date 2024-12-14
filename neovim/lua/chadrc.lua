@@ -6,7 +6,7 @@
 local M = {}
 
 M.base46 = {
-	theme = "everblush",
+  theme = "everblush",
 
 	hl_override = {
 		Comment = { italic = true },
@@ -28,25 +28,7 @@ M.ui = {
 		-- round and block will work for minimal theme only
 		separator_style = "default",
 		order = nil,
-		modules = {
-			git = function()
-
-				local git_status = vim.b.minidiff_summary
-
-				if not git_status then
-					return ""
-				end
-
-				local add = (git_status.add and git_status.add ~= 0) and ("  " .. git_status.add) or ""
-				local change = (git_status.change and git_status.change ~= 0) and ("  " .. git_status.change)
-					or ""
-				local delete = (git_status.delete and git_status.delete ~= 0) and ("  " .. git_status.delete)
-					or ""
-				local branch_name = " " .. vim.b.minigit_summary_string
-
-				return " " .. branch_name .. add .. change .. delete
-			end,
-		},
+		modules = nil,
 	},
 }
 
