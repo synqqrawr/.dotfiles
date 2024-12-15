@@ -42,7 +42,7 @@ M.ui = {
 					or ""
 				local delete = (git_status.delete and git_status.delete ~= 0) and ("  " .. git_status.delete)
 					or ""
-				local branch_name = " " .. vim.b.minigit_summary_string
+				local branch_name = vim.b.minigit_summary_string and (" " .. vim.b.minigit_summary_string) or ""
 
 				return " " .. branch_name .. add .. change .. delete
 			end,
