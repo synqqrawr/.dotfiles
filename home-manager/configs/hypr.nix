@@ -27,13 +27,16 @@ in {
       ];
       monitor = ",preferred,auto,1";
       general = {
-        border_size = 0;
+        border_size = 2;
         gaps_in = 5;
         gaps_out = 30;
         workspace = [
           "w[tv1], gapsout:10, gapsin:0"
           "f[1], gapsout:10, gapsin:0"
         ];
+
+        "col.active_border" = lib.mkForce (rgb base03);
+        "col.inactive_border" = lib.mkForce (rgb base01);
         snap.enabled = true;
       };
       group = {
