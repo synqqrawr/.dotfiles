@@ -48,6 +48,18 @@
 
         "SUPER, mouse_down, workspace, e-1"
         "SUPER, mouse_up, workspace, e+1"
+
+        "SUPER, M, exec, ${pkgs.writeShellScriptBin "awesome-layout" ''
+          FLOATING_STATE_FILE="$HOME/.hyprland_floating_state"
+
+          if [ -f "$FLOATING_STATE_FILE" ]; then
+              hyprctl reload
+              rm "$FLOATING_STATE_FILE"
+          else
+              hyprctl --batch "keyword windowrulev2 float, class:.*"
+              touch "$FLOATING_STATE_FILE"
+          fi
+        ''}/bin/awesome-layout"
       ]
       ++ (
         # workspaces
