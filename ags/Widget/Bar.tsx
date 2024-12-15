@@ -57,29 +57,15 @@ function AudioSlider() {
   const speaker = Wp.get_default()?.audio.defaultSpeaker!;
 
   return (
-    <box className="AudioSlider" css="margin: 0 10px;">
-      <eventbox
-        onScroll={(_, e) => {
-          if (!speaker) return;
-
-          speaker.volume = Math.max(
-            0,
-            Math.min(
-              speaker.volume +
-                (e.delta_y < 0
-                  ? speaker.volume <= 0.09
-                    ? 0.01
-                    : 0.03
-                  : speaker.volume <= 0.09
-                    ? -0.01
-                    : -0.03),
-              150,
-            ),
-          );
-        }}
-      >
-        <icon icon={bind(speaker, "volumeIcon")} />
-      </eventbox>
+    <box className="AudioSlider" css="margin: 0 10px; min-width: 150px;">
+      <button onClickRelease={() => {
+        speaker.volume = (speaker.volume && 100) ? 0 : 100
+      }}><icon icon={bind(speaker, "volumeIcon")} /></button>
+      <slider
+        hexpand
+        onDragged={({ value }) => (speaker.volume = value)}
+        value={bind(speaker, "volume")}
+      />
     </box>
   );
 }
@@ -134,9 +120,7 @@ function Time({ format = "%H:%M", date_format = "%a, %b %e" }) {
 
 export default function Bar(monitor: number) {
   const anchor =
-    Astal.WindowAnchor.TOP |
-    Astal.WindowAnchor.LEFT |
-    Astal.WindowAnchor.RIGHT;
+    Astal.WindowAnchor.TOP | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.RIGHT;
 
   return (
     <window
