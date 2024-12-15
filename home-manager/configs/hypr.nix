@@ -12,7 +12,7 @@ in {
     # ./hypr/xdg.nix
     ./hypr/hypridle.nix
     ./hypr/hyprland/binds.nix
-    # ./hypr/hyprland/animations.nix
+    ./hypr/hyprland/animations.nix
   ];
   home.packages = [
     pkgs.grimblast
