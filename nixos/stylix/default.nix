@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
-    ./themes/yoru.nix
+    ./themes/rxyhn.nix
+    # ./themes/yoru.nix
     # ./themes/everblush.nix
     # ./themes/everforest.nix
     # ./themes/gruvbox.nix
