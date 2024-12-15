@@ -1,0 +1,39 @@
+@use "variables.scss" as *;
+@use "sass:string";
+
+@function gtkalpha($c, $a) {
+  @return string.unquote("alpha(#{$c},#{$a})");
+}
+
+$error: red;
+
+window.ControlCenter {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  color: $fg;
+
+  label {
+    font-size: 0.9em;
+    font-weight: 500;
+    font-family: "JetBrainsMono Nerd Font", "SN Pro", "M Plus Code 50";
+  }
+
+  scrollable > * {
+    border: none;
+  }
+
+  button {
+    all: unset;
+  }
+
+  .main {
+    background-color: $bg;
+    margin: 1rem;
+    padding: 1rem;
+    min-width: 35rem;
+    min-height: 25rem;
+    border: 1pt solid gtkalpha($fg, 0.03);
+    border-radius: 13px;
+  }
+}

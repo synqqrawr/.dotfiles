@@ -13,8 +13,8 @@ window.Bar {
 
   label {
     font-size: 0.9em;
-    font-weight: 700;
-    font-family: "SN Pro", "M Plus Code 50";
+    font-weight: 500;
+    font-family: "JetBrainsMono Nerd Font", "SN Pro", "M Plus Code 50";
   }
 
   & > centerbox {
@@ -57,7 +57,6 @@ window.Bar {
     padding: unset;
     padding-left: 10pt;
     margin-right: 10pt;
-    border-left: 1pt solid gtkalpha($fg, 0.1);
   }
 
   .Battery label {
@@ -74,11 +73,6 @@ window.Bar {
   }
 
   .focusedClient {
-    border-right: 1pt solid gtkalpha($fg, 0.1);
     margin-right: 10pt;
-  }
-
-  .Clock {
-    border-right: 1pt solid gtkalpha($fg, 0.1);
   }
 }

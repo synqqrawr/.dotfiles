@@ -2,23 +2,22 @@
 @use "sass:string";
 
 @function gtkalpha($c, $a) {
-    @return string.unquote("alpha(#{$c},#{$a})");
+  @return string.unquote("alpha(#{$c},#{$a})");
 }
 
 @mixin mainfont {
-  // Other clean sans-serif
-  font-family: "SN Pro", "Rubik", "Geist", "AR One Sans", "Reddit Sans", "Inter", "Roboto",
-    "Ubuntu", "Noto Sans", sans-serif;
+  font-size: 0.9em;
   font-weight: 500;
+  font-family: "JetBrainsMono Nerd Font", "SN Pro", "M Plus Code 50";
 }
 
 .txt-smallie {
   font-size: calc(1rem / 1.1);
   color: gtkalpha($fg, 0.5);
-  @include mainfont; 
+  @include mainfont;
 }
 
 .txt-smaller {
   font-size: calc(1rem / 1.05);
-  @include mainfont; 
+  @include mainfont;
 }

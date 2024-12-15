@@ -3,7 +3,7 @@ import style from "./styles/index.scss";
 import Bar from "./Widget/Bar";
 import Applauncher from "./Widget/Applauncher";
 import NotificationPopups from "./Widget/notifications/NotificationPopups";
-import NotificaionCenter from "./Widget/notifications/Center"
+import ControlCenter from "./Widget/ControlCenter"
 import {
   CornerTopleft,
   CornerTopright,
@@ -23,11 +23,11 @@ App.start({
   main: () => {
     Bar(0);
     NotificationPopups(0);
+    ControlCenter();
     Applauncher();
     CornerTopleft(0);
     CornerTopright(0);
     CornerBottomleft(0);
     CornerBottomright(0);
-    // NotificaionCenter(0);
   },
 });

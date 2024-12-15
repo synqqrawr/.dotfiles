@@ -1,4 +1,4 @@
-import { Variable, GLib, bind } from "astal";
+import { Variable, GLib, bind, timeout } from "astal";
 import { App, Astal, Gtk, Gdk } from "astal/gtk3";
 import Battery from "gi://AstalBattery";
 import Wp from "gi://AstalWp";
@@ -57,15 +57,14 @@ function AudioSlider() {
   const speaker = Wp.get_default()?.audio.defaultSpeaker!;
 
   return (
-    <box className="AudioSlider" css="margin: 0 10px; min-width: 150px;">
-      <button onClickRelease={() => {
-        speaker.volume = (speaker.volume && 100) ? 0 : 100
-      }}><icon icon={bind(speaker, "volumeIcon")} /></button>
-      <slider
-        hexpand
-        onDragged={({ value }) => (speaker.volume = value)}
-        value={bind(speaker, "volume")}
-      />
+    <box className="AudioSlider" css="margin: 0 10px;">
+      <button
+        onClickRelease={() => {
+          speaker.volume = speaker.volume && 100 ? 0 : 100;
+        }}
+      >
+        <icon icon={bind(speaker, "volumeIcon")} />
+      </button>
     </box>
   );
 }
@@ -133,15 +132,27 @@ export default function Bar(monitor: number) {
       <centerbox>
         <box hexpand halign={Gtk.Align.START}>
           <Time />
+          <Gtk.Separator visible margin={10} />
           <FocusedClient />
+          <Gtk.Separator visible margin={10} />
           <Workspaces />
         </box>
         <box></box>
         <box hexpand halign={Gtk.Align.END}>
           <SysTray />
-          <Wifi />
-          <AudioSlider />
-          <BatteryLevel />
+          <button
+            onButtonReleaseEvent={() => {
+              const win = App.get_window("ControlCenter");
+              win.set_visible(!win.visible);
+            }}
+          >
+            <box>
+              <Gtk.Separator visible margin={10} />
+              <Wifi />
+              <AudioSlider />
+              <BatteryLevel />
+            </box>
+          </button>
         </box>
       </centerbox>
     </window>

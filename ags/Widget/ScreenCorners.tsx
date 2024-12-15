@@ -8,9 +8,6 @@ export const RoundedCorner = (place: String, props: Object) => (
     halign={place.includes("left") ? Gtk.Align.START : Gtk.Align.END}
     valign={place.includes("top") ? Gtk.Align.START : Gtk.Align.END}
     setup={(widget) => {
-      print(place);
-      print(widget);
-
       // HACK: Setting minimum size to show the widget at all.
       const r = 2;
       widget.set_size_request(r, r);

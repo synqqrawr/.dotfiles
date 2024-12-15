@@ -30,7 +30,10 @@ type Props = {
   notification: Notifd.Notification;
 };
 
-export default function Notification(props: Props) {
+export default function Notification(
+  props: Props,
+  disable_hover_lost: Boolean = true,
+) {
   const { notification: n, onHoverLost, setup } = props;
   const { START, CENTER, END } = Gtk.Align;
 
@@ -38,7 +41,9 @@ export default function Notification(props: Props) {
     <eventbox
       className={`Notification ${urgency(n)}`}
       setup={setup}
-      onHoverLost={onHoverLost}
+      onHoverLost={(...args: any[]) => {
+        !(disable_hover_lost) && onHoverLost(args);
+      }}
     >
       <box vertical>
         <box className="header">
