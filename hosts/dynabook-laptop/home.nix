@@ -25,7 +25,7 @@
     ../../home-manager/configs/gtk.nix
     ../../home-manager/configs/ags.nix
     ../../home-manager/configs/foot.nix
-    ../../home-manager/configs/swww.nix
+    # ../../home-manager/configs/swww.nix
     ../../home-manager/configs/spotify.nix
     ../../home-manager/configs/stylix.nix
     ../../home-manager/configs/discord.nix
