@@ -13,6 +13,9 @@
       material-symbols
       google-fonts
       fira
+      ipafont
+      kochi-substitute
+      mplus-outline-fonts.githubRelease
     ];
     fontconfig = {
       antialias = true;
@@ -20,8 +23,8 @@
       hinting.enable = true;
       useEmbeddedBitmaps = true;
       defaultFonts = {
-        serif = [config.stylix.fonts.serif.name "Noto Serif CJK JP" "Noto Color Emoji"];
-        sansSerif = [config.stylix.fonts.sansSerif.name "Noto Sans CJK JP" "Noto Color Emoji"];
+        serif = [config.stylix.fonts.serif.name "M Plus Code 50" "Noto Color Emoji"];
+        sansSerif = [config.stylix.fonts.sansSerif.name "M Plus Code 50" "Noto Color Emoji"];
         monospace = [config.stylix.fonts.monospace.name];
         emoji = [config.stylix.fonts.emoji.name];
       };
