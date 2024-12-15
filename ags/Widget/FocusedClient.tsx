@@ -19,7 +19,7 @@ export default function FocusedClient() {
   };
 
   return (
-    <box valign={Gtk.Align.CENTER} css="min-width: 80pt; padding: 0 10pt;" className="focusedClient">
+    <box valign={Gtk.Align.CENTER} css="min-width: 90pt; padding: 0 10pt;" className="focusedClient">
       <box vertical>
         <box className="txt-smaller">
           {focused.as((client) => renderLabel(client, "class", "Desktop", 15))}
