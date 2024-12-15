@@ -43,5 +43,6 @@
 
     pkgs.dart-sass
     pkgs.libnotify
+    pkgs.gvfs
   ];
 }

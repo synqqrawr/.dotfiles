@@ -101,5 +101,6 @@
 
   services.flatpak.enable = true;
 
+  services.gvfs.enable = true;
   zramSwap.enable = true;
 }

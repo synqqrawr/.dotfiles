@@ -36,4 +36,8 @@ window.ControlCenter {
     border: 1pt solid gtkalpha($fg, 0.03);
     border-radius: 13px;
   }
+
+  .notifs {
+    min-height: 20rem;
+  }
 }

@@ -1,11 +1,12 @@
 import { Variable, GLib, bind, timeout } from "astal";
-import { App, Astal, Gtk, Gdk } from "astal/gtk3";
+import { App, Astal, Gtk, Gdk, Widget } from "astal/gtk3";
 import Battery from "gi://AstalBattery";
 import Wp from "gi://AstalWp";
 import Network from "gi://AstalNetwork";
 import Tray from "gi://AstalTray";
 import Notifd from "gi://AstalNotifd";
 import Notification from "./notifications/Notification";
+import MediaPlayers from "./MediaPlayer";
 
 function hide() {
   App.get_window("ControlCenter")!.hide();
@@ -86,7 +87,7 @@ export default function ControlCenter() {
               </eventbox>
             </box>
           </box>
-          <scrollable vexpand>
+          <scrollable vexpand className="notifs">
             <box className="list" spacing={10} vertical>
               {bind(notifd, "notifications").as((ns) =>
                 ns.length === 0 ? (
@@ -103,14 +104,18 @@ export default function ControlCenter() {
                   </box>
                 ) : (
                   ns.slice(0, 100).map((n) =>
-                    Notification({
-                      notification: n!,
-                    }, true),
+                    Notification(
+                      {
+                        notification: n!,
+                      },
+                      true,
+                    ),
                   )
                 ),
               )}
             </box>
           </scrollable>
+          {MediaPlayers()}
         </box>
       </box>
     </window>
