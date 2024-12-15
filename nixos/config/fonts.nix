@@ -23,8 +23,8 @@
       hinting.enable = true;
       useEmbeddedBitmaps = true;
       defaultFonts = {
-        serif = [config.stylix.fonts.serif.name "M Plus Code 50" "Noto Color Emoji"];
-        sansSerif = [config.stylix.fonts.sansSerif.name "M Plus Code 50" "Noto Color Emoji"];
+        serif = [config.stylix.fonts.serif.name "IPAGothic" "Noto Color Emoji"];
+        sansSerif = [config.stylix.fonts.sansSerif.name "IPAGothic" "Noto Color Emoji"];
         monospace = [config.stylix.fonts.monospace.name];
         emoji = [config.stylix.fonts.emoji.name];
       };
