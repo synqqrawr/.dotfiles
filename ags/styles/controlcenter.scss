@@ -31,7 +31,7 @@ window.ControlCenter {
     background-color: $bg;
     margin: 1rem;
     padding: 1rem;
-    min-width: 35rem;
+    min-width: calc(400px + 5rem);
     min-height: 25rem;
     border: 1pt solid gtkalpha($fg, 0.03);
     border-radius: 13px;
@@ -39,5 +39,6 @@ window.ControlCenter {
 
   .notifs {
     min-height: 20rem;
+    min-width: 400px;
   }
 }

@@ -57,7 +57,7 @@ function AudioSlider() {
   const speaker = Wp.get_default()?.audio.defaultSpeaker!;
 
   return (
-    <box className="AudioSlider" css="margin: 0 10px;">
+    <box className="AudioSlider">
       <button
         onClickRelease={() => {
           speaker.volume = speaker.volume && 100 ? 0 : 100;
@@ -88,33 +88,13 @@ function BatteryLevel() {
   );
 }
 
-function Time({ format = "%H:%M", date_format = "%a, %b %e" }) {
-  const date = Variable<string>("").poll(
-    1000,
-    () => GLib.DateTime.new_now_local().format(date_format)!,
-  );
-  const time = Variable<string>("").poll(
+function Time({ format = "%H:%M - %a, %b %e" }) {
+  const clock = Variable<string>("").poll(
     1000,
     () => GLib.DateTime.new_now_local().format(format)!,
   );
 
-  return (
-    <box
-      valign={Gtk.Align.CENTER}
-      css="min-width: 30pt; padding: 0 10pt;"
-      className="Clock"
-    >
-      <label label={" "} css="margin-right: 5pt;" />
-      <box vertical>
-        <box className="txt-smaller">
-          <label onDestroy={() => time.drop()} label={time()} />
-        </box>
-        <box className="txt-smallie">
-          <label onDestroy={() => date.drop()} label={date()} />
-        </box>
-      </box>
-    </box>
-  );
+  return <label onDestroy={() => clock.drop()} label={clock()} />;
 }
 
 export default function Bar(monitor: number) {
@@ -131,13 +111,13 @@ export default function Bar(monitor: number) {
     >
       <centerbox>
         <box hexpand halign={Gtk.Align.START}>
-          <Time />
-          <Gtk.Separator visible margin={10} />
           <FocusedClient />
           <Gtk.Separator visible margin={10} />
           <Workspaces />
         </box>
-        <box></box>
+        <box>
+          <Time />
+        </box>
         <box hexpand halign={Gtk.Align.END}>
           <SysTray />
           <button
@@ -150,6 +130,7 @@ export default function Bar(monitor: number) {
               <Gtk.Separator visible margin={10} />
               <Wifi />
               <AudioSlider />
+              <Gtk.Separator visible margin={10} />
               <BatteryLevel />
             </box>
           </button>
