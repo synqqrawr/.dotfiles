@@ -12,7 +12,7 @@ function SysTray() {
   const tray = Tray.get_default();
 
   return (
-    <box className="SysTray">
+    <box className="SysTray" spacing={5}>
       {bind(tray, "items").as((items) =>
         items.map((item) => {
           if (item.iconThemePath) App.add_icons(item.iconThemePath);
@@ -128,8 +128,10 @@ export default function Bar(monitor: number) {
           >
             <box>
               <Gtk.Separator visible margin={10} />
-              <Wifi />
-              <AudioSlider />
+              <box spacing={5}>
+                <Wifi />
+                <AudioSlider />
+              </box>
               <Gtk.Separator visible margin={10} />
               <BatteryLevel />
             </box>
