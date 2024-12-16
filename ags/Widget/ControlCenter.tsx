@@ -16,7 +16,7 @@ function AudioSlider() {
   const speaker = Wp.get_default()?.audio.defaultSpeaker!;
 
   return (
-    <box>
+    <box className="AudioSlider">
       <button
         onClickRelease={() => {
           speaker.volume = speaker.volume && 100 ? 0 : 100;
@@ -47,7 +47,6 @@ export default function ControlCenter() {
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
       anchor={anchor}
       visible={false}
-      keymode={Astal.Keymode.ON_DEMAND}
       application={App}
     >
       <box vexpand hexpand className="main" vertical>
