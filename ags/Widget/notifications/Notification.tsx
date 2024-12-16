@@ -32,7 +32,7 @@ type Props = {
 
 export default function Notification(
   props: Props,
-  disable_hover_lost: Boolean = true,
+  disable_hover_lost: Boolean = false,
 ) {
   const { notification: n, onHoverLost, setup } = props;
   const { START, CENTER, END } = Gtk.Align;
