@@ -41,6 +41,9 @@ M.servers = {
 					},
 				},
 			},
+			nixpkgs = {
+				expr = "import <nixpkgs> { }",
+			},
 		},
 	},
 	ts_ls = {},
