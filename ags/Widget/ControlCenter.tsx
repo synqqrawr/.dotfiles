@@ -49,72 +49,74 @@ export default function ControlCenter() {
       visible={false}
       application={App}
     >
-      <box vexpand hexpand className="main" vertical>
-        <AudioSlider />
-        <Gtk.Separator visible margin={15} />
-        <box vertical>
-          <box>
-            <label halign={START} label={"Notifications"} hexpand />
-            {/* thx https://git.nelim.org/matt1432/nixos-configs/src/commit/a33fc66b15f9b1ca43b61298f5b15e656810d9db/nixosModules/ags/config/widgets/notifs/center.tsx */}
-            <box halign={END} hexpand>
-              <eventbox
-                cursor={bind(HasNotifs).as((hasNotifs) =>
-                  hasNotifs ? "pointer" : "not-allowed",
-                )}
-              >
-                <button
-                  className="clear"
-                  sensitive={bind(HasNotifs)}
-                  onButtonReleaseEvent={() => {
-                    notifd.get_notifications().forEach((notif) => {
-                      notif.dismiss();
-                    });
-                  }}
+      <box>
+        <box expand className="main" vertical>
+          <AudioSlider />
+          <Gtk.Separator visible margin={15} />
+          <box vertical>
+            <box>
+              <label halign={START} label={"Notifications"} hexpand />
+              {/* thx https://git.nelim.org/matt1432/nixos-configs/src/commit/a33fc66b15f9b1ca43b61298f5b15e656810d9db/nixosModules/ags/config/widgets/notifs/center.tsx */}
+              <box halign={END} hexpand>
+                <eventbox
+                  cursor={bind(HasNotifs).as((hasNotifs) =>
+                    hasNotifs ? "pointer" : "not-allowed",
+                  )}
                 >
-                  <box>
-                    <label label="Clear " />
+                  <button
+                    className="clear"
+                    sensitive={bind(HasNotifs)}
+                    onButtonReleaseEvent={() => {
+                      notifd.get_notifications().forEach((notif) => {
+                        notif.dismiss();
+                      });
+                    }}
+                  >
+                    <box>
+                      <label label="Clear " />
 
-                    <icon
-                      icon={bind(notifd, "notifications").as((notifs) =>
-                        notifs.length > 0
-                          ? "user-trash-full-symbolic"
-                          : "user-trash-symbolic",
-                      )}
-                    />
-                  </box>
-                </button>
-              </eventbox>
+                      <icon
+                        icon={bind(notifd, "notifications").as((notifs) =>
+                          notifs.length > 0
+                            ? "user-trash-full-symbolic"
+                            : "user-trash-symbolic",
+                        )}
+                      />
+                    </box>
+                  </button>
+                </eventbox>
+              </box>
             </box>
+            <scrollable vexpand className="notifs">
+              <box className="list" spacing={10} vertical>
+                {bind(notifd, "notifications").as((ns) =>
+                  ns.length === 0 ? (
+                    <box vertical css="padding: 1rem;" vexpand hexpand>
+                      <label
+                        className="placeholder"
+                        css="margin-top: 10pt;"
+                        label="There's nothing to show; You're all caught up. :)"
+                      />
+                      <icon
+                        css="font-size: 10rem; margin-top: 30pt;"
+                        icon={"notifications-disabled-symbolic"}
+                      />
+                    </box>
+                  ) : (
+                    ns.slice(0, 100).map((n) =>
+                      Notification(
+                        {
+                          notification: n!,
+                        },
+                        true,
+                      ),
+                    )
+                  ),
+                )}
+              </box>
+            </scrollable>
+            {MediaPlayers()}
           </box>
-          <scrollable vexpand className="notifs">
-            <box className="list" spacing={10} vertical>
-              {bind(notifd, "notifications").as((ns) =>
-                ns.length === 0 ? (
-                  <box vertical css="padding: 1rem;" vexpand hexpand>
-                    <label
-                      className="placeholder"
-                      css="margin-top: 10pt;"
-                      label="There's nothing to show; You're all caught up. :)"
-                    />
-                    <icon
-                      css="font-size: 10rem; margin-top: 30pt;"
-                      icon={"notifications-disabled-symbolic"}
-                    />
-                  </box>
-                ) : (
-                  ns.slice(0, 100).map((n) =>
-                    Notification(
-                      {
-                        notification: n!,
-                      },
-                      true,
-                    ),
-                  )
-                ),
-              )}
-            </box>
-          </scrollable>
-          {MediaPlayers()}
         </box>
       </box>
     </window>
