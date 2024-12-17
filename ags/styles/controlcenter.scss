@@ -1,4 +1,5 @@
 @use "variables.scss" as *;
+@use "fonts.scss" as *;
 @use "sass:string";
 
 @function gtkalpha($c, $a) {
@@ -10,12 +11,7 @@ window.ControlCenter {
   box-shadow: none;
   background: transparent;
   color: $fg;
-
-  label {
-    font-size: 0.9em;
-    font-weight: 500;
-    font-family: "JetBrainsMono Nerd Font", "SN Pro", "M Plus Code 50";
-  }
+  @include mainfont;
 
   scrollable > * {
     border: none;
@@ -26,9 +22,9 @@ window.ControlCenter {
   }
 
   .main {
+    margin: 5pt;
     background-color: $bg;
-    margin: 1rem;
-    padding: 1rem;
+    padding: 20pt;
     min-width: calc(400px + 5rem);
     min-height: 25rem;
     border: 1pt solid gtkalpha($fg, 0.03);
