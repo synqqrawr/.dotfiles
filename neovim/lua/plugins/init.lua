@@ -85,7 +85,7 @@ return {
 		dependencies = "rafamadriz/friendly-snippets",
 		version = "v0.*",
 		opts = function()
-			return require("configs.blink")
+			return require("configs.blink").nvim
 		end,
 	},
 	{
@@ -124,42 +124,6 @@ return {
 		end,
 	},
 	{
-		"Saghen/blink.nvim",
-		event = "User FilePost",
-		config = function(_, opts)
-			require("blink").setup(opts)
-			dofile(vim.g.base46_cache .. "blankline")
-		end,
-		opts = {
-			chartoggle = { enabled = false },
-			delimiters = { enabled = false },
-			indent = {
-				enabled = true,
-				static = {
-					enabled = true,
-					char = "│",
-					priority = 1,
-					-- specify multiple highlights here for rainbow-style indent guides
-					-- highlights = { 'BlinkIndentRed', 'BlinkIndentOrange', 'BlinkIndentYellow', 'BlinkIndentGreen', 'BlinkIndentViolet', 'BlinkIndentCyan' },
-					highlights = { "IblChar" },
-				},
-				scope = {
-					enabled = true,
-					char = "│",
-					priority = 1024,
-					-- set this to a single highlight, such as 'BlinkIndent' to disable rainbow-style indent guides
-					-- highlights = { 'BlinkIndent' },
-					highlights = {
-						"IblScopeChar",
-					},
-				},
-			},
-			tree = { enabled = false },
-			cmp = { enabled = false },
-			selector = { enabled = false },
-		},
-	},
-	{
 		"folke/lazydev.nvim",
 		ft = "lua",
 		cmd = "LazyDev",
@@ -190,5 +154,13 @@ return {
 			{ "sr", mode = { "n", "v" } },
 			{ "sn", mode = { "n", "x" } },
 		},
+	},
+	{
+		"folke/snacks.nvim",
+		opts = function()
+			dofile(vim.g.base46_cache .. "blankline")
+      return require("configs.snacks")
+    end,
+		lazy = false,
 	},
 }

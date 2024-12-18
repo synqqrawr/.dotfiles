@@ -1,4 +1,6 @@
-return {
+local M = {}
+
+M.cmp = {
 	nerd_font_variant = "normal",
 	-- experimental auto-brackets support
 	accept = { auto_brackets = { enabled = true } },
@@ -18,12 +20,16 @@ return {
 		},
 	},
 	sources = {
-		completion = {
-			enabled_providers = { "lsp", "path", "snippets", "buffer", "lazydev" },
-		},
+		default = { "lazydev" },
 		providers = {
 			lsp = { fallback_for = { "lazydev" } },
-			lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
+			lazydev = {
+				name = "LazyDev",
+				module = "lazydev.integrations.blink",
+				score_offset = 100, -- show at a higher priority than lsp
+			},
 		},
 	},
 }
+
+return M
