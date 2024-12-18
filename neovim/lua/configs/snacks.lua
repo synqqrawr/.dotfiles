@@ -6,4 +6,5 @@ return {
 			hl = "IblScopeChar",
 		},
 	},
+	lazygit = {},
 }

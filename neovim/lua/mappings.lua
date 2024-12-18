@@ -94,3 +94,7 @@ end, { desc = "terminal toggleable horizontal term" })
 map({ "n", "t" }, "<A-i>", function()
 	require("nvchad.term").toggle({ pos = "float", id = "floatTerm" })
 end, { desc = "terminal toggle floating term" })
+
+map("n", "<leader>go", function()
+	require("snacks").lazygit()
+end, { desc = "Open lazygit" })
