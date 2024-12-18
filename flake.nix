@@ -77,7 +77,7 @@
     formatter = system: nixpkgs.legacyPackages.x86_64-linux.alejandra;
 
     # Your custom packages and modifications, exported as overlays
-    overlays = import ./overlays {inherit inputs;};
+    # overlays = import ./overlays {inherit inputs;};
     # Reusable nixos modules you might want to export
     # These are usually stuff you would upstream into nixpkgs
     nixosModules = import ./modules/nixos;
