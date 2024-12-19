@@ -33,6 +33,7 @@
     ../../home-manager/configs/emote.nix
     ../../home-manager/configs/games.nix
     ../../home-manager/configs/obsidian.nix
+    ../../home-manager/configs/ghostty.nix
     ../../nixos/config/nix.nix
   ];
 

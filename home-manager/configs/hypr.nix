@@ -24,6 +24,7 @@ in {
       exec-once = [
         "fcitx5 -d"
         "ags run"
+        # "ghostty --initial-window=false --quit-after-last-window-closed=false"
       ];
       monitor = ",preferred,auto,1";
       general = {
