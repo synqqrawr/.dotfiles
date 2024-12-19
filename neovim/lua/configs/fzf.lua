@@ -14,7 +14,7 @@ return {
 	},
 	fzf_colors = {
 		["bg"] = { "bg", { "TelescopeNormal", "Normal" } },
-		["bg+"] = { "bg", "TelescopeNormal", "Normal" },
+		["bg+"] = { "bg", { "TelescopeNormal", "Normal" } },
 		-- ["gutter"] = { "bg", hls.bg },
 		-- ["bg"] = { "bg", hls.bg },
 		-- ["bg+"] = { "bg", hls.sel },
