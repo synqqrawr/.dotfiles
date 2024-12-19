@@ -28,6 +28,14 @@ return {
 		end,
 	},
 	{
+		"ibhagwan/fzf-lua",
+		cmd = "FzfLua",
+		opts = function()
+      dofile(vim.g.base46_cache .. "telescope")
+      return require("configs.fzf")
+    end,
+	},
+	{
 		"nvim-treesitter/nvim-treesitter",
 		event = { "BufReadPost", "BufNewFile" },
 		cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
@@ -159,8 +167,8 @@ return {
 		"folke/snacks.nvim",
 		opts = function()
 			dofile(vim.g.base46_cache .. "blankline")
-      return require("configs.snacks")
-    end,
+			return require("configs.snacks")
+		end,
 		lazy = false,
 	},
 }
