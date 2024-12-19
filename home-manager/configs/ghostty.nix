@@ -9,10 +9,11 @@
       #adjust-cell-height = 1%
       shell-integration = zsh
       theme = "tokyonight"
-      window-padding-x = 0
-      window-padding-y = 0
       window-save-state = always
       confirm-close-surface = false
+      window-decoration = true
+      window-padding-x = 20
+      window-padding-y = 20
 
       # foreground
       foreground = ${base05}
