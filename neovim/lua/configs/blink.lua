@@ -3,13 +3,22 @@ local M = {}
 M.cmp = {
 	nerd_font_variant = "normal",
 	-- experimental auto-brackets support
-	accept = { auto_brackets = { enabled = true } },
+	completion = {
+		accept = { auto_brackets = { enabled = true } },
+		menu = {
+			draw = {
+				treesitter = { "lsp" },
+			},
+		},
+	},
 	-- experimental signature help support
-	trigger = { signature_help = { enabled = true } },
+	signature = {
+		enabled = true,
+	},
 	keymap = {
-		["<C-k>"] = { "select_prev" },
-		["<C-j>"] = { "select_next" },
-		["<C-y>"] = { "select_and_accept" },
+		["<C-k>"] = { "select_prev", "fallback" },
+		["<C-j>"] = { "select_next", "fallback" },
+		["<C-y>"] = { "select_and_accept", "fallback" },
 
 		["Tab>"] = { "snippet_forward", "fallback" },
 		["<S-Tab>"] = { "snippet_backward", "fallback" },

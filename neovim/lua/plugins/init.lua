@@ -85,7 +85,7 @@ return {
 		dependencies = "rafamadriz/friendly-snippets",
 		version = "v0.*",
 		opts = function()
-			return require("configs.blink").nvim
+			return require("configs.blink").cmp
 		end,
 	},
 	{
