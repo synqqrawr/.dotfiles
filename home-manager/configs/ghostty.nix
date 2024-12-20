@@ -5,15 +5,8 @@
       font-family = ${config.stylix.fonts.monospace.name}
       font-style = medium
       font-feature = "ss01"
-      #adjust-cell-width = 1%
-      #adjust-cell-height = 1%
-      shell-integration = zsh
-      theme = "tokyonight"
-      window-save-state = always
-      confirm-close-surface = false
       window-decoration = true
-      window-padding-x = 20
-      window-padding-y = 20
+      confirm-close-surface = false
 
       # foreground
       foreground = ${base05}
