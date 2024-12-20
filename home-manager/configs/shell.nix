@@ -24,12 +24,12 @@ in {
     '';
   };
   programs = {
-    zsh = {
+    zsh = rec {
       enable = true;
       # enableCompletion = false;
       completionInit = ''
-      autoload -Uz compinit
-      [[ -s "${ZCOMPDUMP_CACHE_PATH}" ]] && compinit -d "${ZCOMPDUMP_CACHE_PATH}" -C || compinit -d "${ZCOMPDUMP_CACHE_PATH}"; [[ -s "${ZCOMPDUMP_CACHE_PATH}" && (! -s "${ZCOMPDUMP_CACHE_PATH}".zwc || "${ZCOMPDUMP_CACHE_PATH}" -nt "${ZCOMPDUMP_CACHE_PATH}".zwc) ]] && zcompile "${ZCOMPDUMP_CACHE_PATH}"
+        autoload -Uz compinit
+        [[ -s "${ZCOMPDUMP_CACHE_PATH}" ]] && compinit -d "${ZCOMPDUMP_CACHE_PATH}" -C || compinit -d "${ZCOMPDUMP_CACHE_PATH}"; [[ -s "${ZCOMPDUMP_CACHE_PATH}" && (! -s "${ZCOMPDUMP_CACHE_PATH}".zwc || "${ZCOMPDUMP_CACHE_PATH}" -nt "${ZCOMPDUMP_CACHE_PATH}".zwc) ]] && zcompile "${ZCOMPDUMP_CACHE_PATH}"
       '';
       sessionVariables = {
         NIXPKGS_ALLOW_UNFREE = "1";
@@ -51,9 +51,11 @@ in {
       };
       history = {
         ignoreDups = true;
+        ignoreAllDups = true;
         ignoreSpace = true;
         expireDuplicatesFirst = true;
         share = true;
+        append = true;
       };
       defaultKeymap = "viins";
       autocd = true;
@@ -80,6 +82,13 @@ in {
           '';
       in ''
         setopt GLOB_COMPLETE extended_glob
+        ${
+          if history.ignoreDups
+          then "
+          setopt HIST_SAVE_NO_DUPS
+          setopt HIST_FIND_NO_DUPS"
+          else ""
+        }
         export KEYTIMEOUT=1
 
         # Very slow chormas https://github.com/zdharma-continuum/fast-syntax-highlighting/issues/27
