@@ -9,4 +9,7 @@ return {
 	lazygit = {
 		configure = false,
 	},
+	statuscolumn = {
+		enabled = false,
+	},
 }
