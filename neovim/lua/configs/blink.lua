@@ -1,7 +1,9 @@
 local M = {}
 
 M.cmp = {
-	nerd_font_variant = "normal",
+	appearance = {
+		nerd_font_variant = "mono",
+	},
 	-- experimental auto-brackets support
 	completion = {
 		accept = { auto_brackets = { enabled = true } },
@@ -9,6 +11,9 @@ M.cmp = {
 			draw = {
 				treesitter = { "lsp" },
 			},
+		},
+		ghost_text = {
+			enabled = true,
 		},
 	},
 	-- experimental signature help support
@@ -23,15 +28,9 @@ M.cmp = {
 		["Tab>"] = { "snippet_forward", "fallback" },
 		["<S-Tab>"] = { "snippet_backward", "fallback" },
 	},
-	windows = {
-		ghost_text = {
-			enabled = true,
-		},
-	},
 	sources = {
-		default = { "lazydev" },
+		default = { "lazydev", "lsp", "path", "snippets", "buffer" },
 		providers = {
-			lsp = { fallback_for = { "lazydev" } },
 			lazydev = {
 				name = "LazyDev",
 				module = "lazydev.integrations.blink",

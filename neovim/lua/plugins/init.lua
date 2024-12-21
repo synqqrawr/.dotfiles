@@ -31,9 +31,9 @@ return {
 		"ibhagwan/fzf-lua",
 		cmd = "FzfLua",
 		opts = function()
-      dofile(vim.g.base46_cache .. "telescope")
-      return require("configs.fzf")
-    end,
+			dofile(vim.g.base46_cache .. "telescope")
+			return require("configs.fzf")
+		end,
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -89,8 +89,15 @@ return {
 	},
 	{
 		"saghen/blink.cmp",
-		event = "InsertEnter",
-		dependencies = "rafamadriz/friendly-snippets",
+		event = { "InsertEnter", "CmdlineEnter" },
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+			{
+				"saghen/blink.compat",
+				opts = {},
+				version = "*",
+			},
+		},
 		version = "v0.*",
 		opts = function()
 			return require("configs.blink").cmp
