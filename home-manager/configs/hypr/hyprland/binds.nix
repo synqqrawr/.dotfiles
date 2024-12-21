@@ -35,8 +35,6 @@
         "SUPER, E, exec, nautilus"
         "SUPER, period, exec, emote"
 
-        "SUPER, O, pin"
-
         "SUPER, G, fullscreen"
 
         "SUPER, T, togglegroup"
@@ -82,36 +80,90 @@
         )
       );
     binds = let
+      # Define the key mappings with their position values directly
       keyMap = {
-        "u" = 1;
-        "i" = 2;
-        "o" = 4;
-        "p" = 8;
+        "u" = {
+          value = 1;
+          pos = 0;
+        };
+        "i" = {
+          value = 2;
+          pos = 1;
+        };
+        "o" = {
+          value = 4;
+          pos = 2;
+        };
+        "p" = {
+          value = 8;
+          pos = 3;
+        };
       };
 
-      subsets = list: let
-        withElem = map (x: [head] ++ x) (subsets tail);
-        head = builtins.head list;
-        tail = builtins.tail list;
-      in
-        if list == []
+      # Helper function for power calculation
+      pow = base: exp:
+        if exp == 0
+        then 1
+        else base * pow base (exp - 1);
+
+      # Helper function to get lists without an element
+      removeAt = n: list:
+        (builtins.genList (x: builtins.elemAt list x) n)
+        ++ (builtins.genList (x: builtins.elemAt list (x + n + 1)) ((builtins.length list) - n - 1));
+
+      # Generate all permutations of a list
+      permutations = list:
+        if builtins.length list == 0
         then [[]]
-        else withElem ++ subsets tail;
-      keys = builtins.attrNames keyMap;
-      getNumber = key: builtins.getAttr key keyMap;
-    in (let
-      subsetBindings = map (
-        subset: let
-          subsetKeys = builtins.concatStringsSep "&" subset;
-          subsetValue = builtins.foldl' (acc: key: acc + getNumber key) 0 subset;
+        else
+          builtins.concatMap
+          (i: let
+            elem = builtins.elemAt list i;
+            rest = removeAt i list;
+            restPerms = permutations rest;
+          in
+            map (perm: [elem] ++ perm) restPerms)
+          (builtins.genList (x: x) (builtins.length list));
+
+      # Helper function to get all keys that are "pressed" based on a binary number
+      getActiveKeys = n: let
+        keys = builtins.attrNames keyMap;
+        # Check if bit is set at the key's position
+        checkBit = key: n: let
+          pos = keyMap.${key}.pos;
+          mask = builtins.bitAnd n (pow 2 pos);
         in
-          if subset == []
-          then []
-          else [
-            "SUPER_L, ${subsetKeys}, workspace, ${toString subsetValue}"
-          ]
-      ) (subsets keys);
+          mask != 0;
+        # Filter keys without sorting
+      in
+        builtins.filter (key: checkBit key n) keys;
+
+      # Calculate workspace number by summing values of pressed keys
+      calculateWorkspace = keys:
+        builtins.foldl' (sum: key: sum + keyMap.${key}.value) 0 keys;
+
+      # Generate all combinations using numbers 1 to 15 (2^4 - 1)
+      numbers = builtins.genList (x: x + 1) 15;
+
+      # Convert each number to all possible permutations
+      combinations = builtins.concatMap (n: let
+        activeKeys = getActiveKeys n;
+        workspace = calculateWorkspace activeKeys;
+        # Generate all permutations of the active keys
+        allPerms = permutations activeKeys;
+        # Convert each permutation to a list of strings
+        permStrings =
+          builtins.concatMap (perm: let
+            keyString = builtins.concatStringsSep "&" perm;
+          in [
+            "SUPER_L, ${keyString}, workspace, ${toString workspace}"
+            "SHIFT_L&SUPER_L, ${keyString}, movetoworkspace, ${toString workspace}"
+          ])
+          allPerms;
+      in
+        permStrings)
+      numbers;
     in
-      builtins.concatLists subsetBindings);
+      combinations;
   };
 }
