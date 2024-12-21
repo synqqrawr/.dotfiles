@@ -16,7 +16,6 @@
         "SUPER, F, togglefloating"
         # "SUPER, F, centerwindow"
         "SUPER_ALT, L, exec, hyprlock"
-        "SUPER, P, pseudo"
 
         "SUPER, h, movefocus, l"
         "SUPER, j, movefocus, d"
@@ -82,5 +81,37 @@
           10
         )
       );
+    binds = let
+      keyMap = {
+        "u" = 1;
+        "i" = 2;
+        "o" = 4;
+        "p" = 8;
+      };
+
+      subsets = list: let
+        withElem = map (x: [head] ++ x) (subsets tail);
+        head = builtins.head list;
+        tail = builtins.tail list;
+      in
+        if list == []
+        then [[]]
+        else withElem ++ subsets tail;
+      keys = builtins.attrNames keyMap;
+      getNumber = key: builtins.getAttr key keyMap;
+    in (let
+      subsetBindings = map (
+        subset: let
+          subsetKeys = builtins.concatStringsSep "&" subset;
+          subsetValue = builtins.foldl' (acc: key: acc + getNumber key) 0 subset;
+        in
+          if subset == []
+          then []
+          else [
+            "SUPER_L, ${subsetKeys}, workspace, ${toString subsetValue}"
+          ]
+      ) (subsets keys);
+    in
+      builtins.concatLists subsetBindings);
   };
 }
