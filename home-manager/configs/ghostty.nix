@@ -5,7 +5,7 @@
       font-family = ${config.stylix.fonts.monospace.name}
       font-style = medium
       font-feature = "ss01"
-      window-decoration = true
+      window-decoration = false
       confirm-close-surface = false
 
       # foreground
