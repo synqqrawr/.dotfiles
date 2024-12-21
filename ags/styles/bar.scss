@@ -35,7 +35,7 @@ window.Bar {
       background-color: $fg;
       border-radius: $radius * 2;
       min-width: calc(15pt + $workspace-padding);
-      min-height: calc(2pt + $workspace-padding);
+      min-height: calc(3pt + $workspace-padding);
     }
     &.occupied {
       background-color: gtkalpha($fg, 0.5);
