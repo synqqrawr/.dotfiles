@@ -9,6 +9,7 @@
       window-padding-x = 20
       window-padding-y = 20
       confirm-close-surface = false
+      shell-integration = zsh
 
       # foreground
       foreground = ${base05}
