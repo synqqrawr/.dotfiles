@@ -78,15 +78,17 @@ in {
             mkdir $out
             cp -rT ${src} $out
             cd $out
-            find . -name '*.zsh' -type f -execdir zsh -c 'zcompile "$1"' _ {} \;
+            find -name '*.zsh' -execdir zsh -c 'zcompile {}' \;
           '';
       in ''
+        typeset -U PATH
+        setopt correct
         setopt GLOB_COMPLETE extended_glob
         ${
           if history.ignoreDups
-          then "
+          then ''
           setopt HIST_SAVE_NO_DUPS
-          setopt HIST_FIND_NO_DUPS"
+          setopt HIST_FIND_NO_DUPS''
           else ""
         }
         export KEYTIMEOUT=1
