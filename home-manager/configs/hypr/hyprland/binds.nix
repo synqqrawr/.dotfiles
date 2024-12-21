@@ -70,10 +70,6 @@
               "SUPER, ${ws}, workspace, ${toString (x + 1)}"
               "SUPER SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
               "SUPER CTRL, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
-
-              "SUPER_ALT, ${ws}, workspace, ${toString (x + 11)}"
-              "SUPER_ALT SHIFT, ${ws}, movetoworkspace, ${toString (x + 11)}"
-              "SUPER_ALT CTRL, ${ws}, movetoworkspacesilent, ${toString (x + 11)}"
             ]
           )
           10
@@ -158,6 +154,7 @@
           in [
             "SUPER_L, ${keyString}, workspace, ${toString workspace}"
             "SHIFT_L&SUPER_L, ${keyString}, movetoworkspace, ${toString workspace}"
+            "SHIFT_R&SUPER_L, ${keyString}, movetoworkspace, ${toString workspace}"
           ])
           allPerms;
       in
