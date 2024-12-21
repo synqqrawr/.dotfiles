@@ -15,7 +15,7 @@
       background = ${base00}
       # black
       palette = 0=${base00}
-      palette = 8=${base01}
+      palette = 8=${base03}
       # red
       palette = 1=${base08}
       palette = 9=${base09}
