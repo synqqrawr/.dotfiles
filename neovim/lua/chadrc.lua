@@ -30,7 +30,6 @@ M.ui = {
 		order = nil,
 		modules = {
 			git = function()
-
 				local git_status = vim.b.minidiff_summary
 
 				if not git_status then
@@ -38,10 +37,8 @@ M.ui = {
 				end
 
 				local add = (git_status.add and git_status.add ~= 0) and ("  " .. git_status.add) or ""
-				local change = (git_status.change and git_status.change ~= 0) and ("  " .. git_status.change)
-					or ""
-				local delete = (git_status.delete and git_status.delete ~= 0) and ("  " .. git_status.delete)
-					or ""
+				local change = (git_status.change and git_status.change ~= 0) and ("  " .. git_status.change) or ""
+				local delete = (git_status.delete and git_status.delete ~= 0) and ("  " .. git_status.delete) or ""
 				local branch_name = vim.b.minigit_summary_string and (" " .. vim.b.minigit_summary_string) or ""
 
 				return " " .. branch_name .. add .. change .. delete
@@ -51,5 +48,11 @@ M.ui = {
 }
 
 M.lsp = { signature = false }
+
+M.term = {
+	winopts = {
+		winfixbuf = true,
+	},
+}
 
 return M
