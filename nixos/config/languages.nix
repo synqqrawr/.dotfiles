@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, inputs, ...}: {
   environment.systemPackages = with pkgs; [
     # nix
     nixd
@@ -26,7 +26,7 @@
     bun
     pnpm
     emmet-ls
-    tailwindcss-language-server
+    inputs.nixpkgs-small.legacyPackages.x86_64-linux.tailwindcss-language-server
     nodejs
     eslint_d
     nodePackages.typescript-language-server
