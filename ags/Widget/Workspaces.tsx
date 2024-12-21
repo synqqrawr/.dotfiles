@@ -41,7 +41,7 @@ const Workspace = ({ id }: { id: number }) => {
 export default function Workspaces() {
   return (
     <box>
-      {[...Array(10).keys()].map((i) => (
+      {[...Array(15).keys()].map((i) => (
         <Workspace id={i + 1} />
       ))}
     </box>
