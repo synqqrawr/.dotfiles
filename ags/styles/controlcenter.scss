@@ -35,7 +35,6 @@ window.ControlCenter {
     min-height: 20rem;
     min-width: 400px;
     border-radius: 13px;
-
   }
 
   .AudioSlider {
@@ -63,11 +62,11 @@ window.ControlCenter {
     }
 
     slider {
-      background-color: $fg;
-      border-radius: $radius;
-      min-height: 1em;
-      min-width: 1em;
-      margin: -0.2em;
+      background: transparent;
+      outline-color: transparent;
+      border-color: transparent;
+      color: transparent;
+      box-shadow: none;
     }
   }
 }
