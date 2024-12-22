@@ -21,7 +21,7 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
   );
 
   const playerIcon = bind(player, "entry").as((e) =>
-    Astal.Icon.lookup_icon(e) ? e : "audio-x-generic-symbolic",
+    e && Astal.Icon.lookup_icon(e) ? e : "audio-x-generic-symbolic",
   );
 
   const position = bind(player, "position").as((p) =>

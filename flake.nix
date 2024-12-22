@@ -24,8 +24,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    astal = {
+      url = "github:aylur/astal";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     ags.url = "github:aylur/ags";
     ags.inputs.nixpkgs.follows = "nixpkgs";
+    ags.inputs.astal.follows = "astal";
 
     prismlauncher = {
       url = "github:synqqrawr/PrismLauncher";
