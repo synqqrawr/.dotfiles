@@ -15,7 +15,8 @@
             ],
             "astal/*": [
                 "/home/async/.local/share/ags/*"
-            ]
+            ],
+            "@/*": ["./*"]
         },
     }
 }

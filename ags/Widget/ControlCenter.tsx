@@ -1,5 +1,6 @@
 import { Variable, GLib, bind, timeout } from "astal";
 import { App, Astal, Gtk, Gdk, Widget } from "astal/gtk3";
+import GdkPixbuf from "gi://GdkPixbuf";
 import Battery from "gi://AstalBattery";
 import Wp from "gi://AstalWp";
 import Network from "gi://AstalNetwork";
@@ -7,6 +8,7 @@ import Tray from "gi://AstalTray";
 import Notifd from "gi://AstalNotifd";
 import Notification from "./notifications/Notification";
 import MediaPlayers from "./MediaPlayer";
+import Brightness from "@/lib/brightness";
 
 function hide() {
   App.get_window("ControlCenter")!.hide();
@@ -33,6 +35,52 @@ function AudioSlider() {
   );
 }
 
+function BrightnessSlider() {
+  const brightness = Brightness.get_default();
+
+  return (
+    <box className="BrightnessSlider">
+      <button
+        onClickRelease={() => {
+          brightness.screen = brightness.screen && 100 ? 0 : 100;
+        }}
+      >
+        <icon icon="display-brightness-symbolic" />
+      </button>
+      <slider
+        hexpand
+        onDragged={({ value }) => {
+          // Ensure brightness.screen doesn't go below 10
+          brightness.screen = Math.max(value, 10 / 100);
+        }}
+        value={bind(brightness, "screen")}
+      />
+    </box>
+  );
+}
+
+const ProfilePicture = (): JSX.Element => {
+  return (
+    <box
+      className={"profile-picture"}
+      halign={Gtk.Align.CENTER}
+      css={`
+        background: url("assets/pfp.jpg");
+        min-width: 100px;
+        min-height: 100px;
+        border-radius: 10rem;
+        background-size: cover;
+      `}
+    />
+  );
+};
+
+export const uptime = Variable(0).poll(
+  60_00,
+  "cat /proc/uptime",
+  (line): number => Number.parseInt(line.split(".")[0]) / 60,
+);
+
 export default function ControlCenter() {
   const { START, CENTER, END } = Gtk.Align;
   const anchor = Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT;
@@ -51,7 +99,25 @@ export default function ControlCenter() {
     >
       <box>
         <box expand className="main" vertical>
-          <AudioSlider />
+          <box>
+            <box vertical>
+              <ProfilePicture />
+              <label
+                css={"font-size: 0.92em;"}
+                label={bind(uptime).as((curUptime: number): string => {
+                  const days = Math.floor(curUptime / (60 * 24));
+                  const hours = Math.floor((curUptime % (60 * 24)) / 60);
+                  const minutes = Math.floor(curUptime % 60);
+                  return `${days}d ${hours}h ${minutes}m`;
+                })}
+                tooltipText="Uptime"
+              />
+            </box>
+            <box spacing={10} vertical expand valign={CENTER}>
+              <AudioSlider />
+              <BrightnessSlider />
+            </box>
+          </box>
           <Gtk.Separator visible margin={15} />
           <box vertical>
             <box>
