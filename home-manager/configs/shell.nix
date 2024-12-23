@@ -150,7 +150,7 @@ in {
             mkdir -p $out
             zoxide init zsh > $out/zoxide-init.zsh
             zsh -c "zcompile $out/zoxide-init.zsh"
-          ''}/zoxide-init.zsh;
+          ''}/zoxide-init.zsh
 
         source ${zshCompilePlugin "zsh-fzf-tab" "{fzf-tab.zsh,**/*.zsh}" (pkgs.fetchFromGitHub {
           owner = "Aloxaf";
