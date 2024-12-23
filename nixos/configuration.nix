@@ -98,7 +98,7 @@
     git
     firefox
     home-manager
-    neovim
+    vim
     kitty
     jq
   ];

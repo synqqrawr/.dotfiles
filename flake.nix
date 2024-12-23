@@ -73,6 +73,11 @@
       inputs.nixpkgs-stable.follows = "nixpkgs";
       inputs.nixpkgs-unstable.follows = "nixpkgs";
     };
+
+    neovim-src = {
+      url = "github:neovim/neovim";
+      flake = false;
+    };
   };
 
   outputs = {
