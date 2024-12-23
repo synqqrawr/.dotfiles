@@ -5,7 +5,12 @@
   ...
 }: {
   programs.neovim = let
-    src = inputs.neovim-src;
+    src = pkgs.fetchFromGitHub {
+      owner = "neovim";
+      repo = "neovim";
+      rev = "7e1c1ff7fcf2cbc564c90a656124b70ad8bb4d5f";
+      sha256 = "sha256-XmjyQMxMycRqJyHG4jn0oFAeitu7rhAWWv5M03fbE+A=";
+    };
     deps = lib.pipe "${src}/cmake.deps/deps.txt" [
       builtins.readFile
       (lib.splitString "\n")

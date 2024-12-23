@@ -18,20 +18,18 @@
       };
     };
 
-    # neovim-nightly-overlay
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     astal = {
       url = "github:aylur/astal";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ags.url = "github:aylur/ags";
-    ags.inputs.nixpkgs.follows = "nixpkgs";
-    ags.inputs.astal.follows = "astal";
+    ags = {
+      url = "github:aylur/ags";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        astal.follows = "astal";
+      };
+    };
 
     prismlauncher = {
       url = "github:synqqrawr/PrismLauncher";
@@ -56,11 +54,6 @@
       # if you're on stable, they may break your build
       inputs.nixpkgs-stable.follows = "nixpkgs";
       inputs.nixpkgs-unstable.follows = "nixpkgs";
-    };
-
-    neovim-src = {
-      url = "github:neovim/neovim";
-      flake = false;
     };
   };
 
