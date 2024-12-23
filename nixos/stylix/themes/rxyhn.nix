@@ -1,8 +1,8 @@
 {
   stylix = {
-    # image = ../../../media/blackSeaShore.png;
+    image = ../../../media/blackSeaShore.png;
     # image = ../../../media/wave2.jpg;
-    image = ../../../media/forest-anime.jpg;
+    # image = ../../../media/forest-anime.jpg;
     polarity = "dark";
     base16Scheme = {
       base00 = "#061115";
