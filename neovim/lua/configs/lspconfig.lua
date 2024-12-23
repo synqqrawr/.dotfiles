@@ -80,10 +80,7 @@ M.on_attach = function(_, bufnr)
 end
 
 -- disable semanticTokens
-M.on_init = function(client, _)
-	if client.supports_method("textDocument/semanticTokens") then
-		client.server_capabilities.semanticTokensProvider = nil
-	end
+M.on_init = function()
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
