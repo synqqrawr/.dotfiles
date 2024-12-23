@@ -51,7 +51,7 @@ function BrightnessSlider() {
         hexpand
         onDragged={({ value }) => {
           // Ensure brightness.screen doesn't go below 10
-          brightness.screen = Math.max(value, 10 / 100);
+          brightness.screen = Math.max(value, 5 / 100);
         }}
         value={bind(brightness, "screen")}
       />
