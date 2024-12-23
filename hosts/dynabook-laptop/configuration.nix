@@ -98,6 +98,7 @@
     newsflash
     brightnessctl
     nvtopPackages.intel
+    freetube
     inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
     inputs.ghostty.packages.x86_64-linux.default
   ];
