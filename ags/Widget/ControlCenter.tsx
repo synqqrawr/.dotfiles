@@ -66,9 +66,9 @@ const ProfilePicture = (): JSX.Element => {
       halign={Gtk.Align.CENTER}
       css={`
         background: url("assets/pfp.jpg");
-        min-width: 100px;
-        min-height: 100px;
-        border-radius: 10rem;
+        min-width: 70px;
+        min-height: 70px;
+        border-radius: 100px;
         background-size: cover;
       `}
     />
