@@ -2,7 +2,6 @@
   pkgs,
   config,
   lib,
-  inputs,
   ...
 }: let
   ZCOMPDUMP_CACHE_DIR = "${config.xdg.cacheHome}/zsh";
@@ -68,7 +67,7 @@ in {
         fi
       '';
       initExtra = let
-        zshCompilePlugin = name: src:
+        zshCompilePlugin = name: pattern: src:
           pkgs.runCommand name
           {
             name = "${name}-zwc";
@@ -76,9 +75,26 @@ in {
           }
           ''
             mkdir $out
-            cp -rT ${src} $out
+            cp -rT --no-preserve=mode ${src} $out
             cd $out
-            find -name '*.zsh' -execdir zsh -c 'zcompile {}' \;
+            ${
+              if name == "fast-syntax-highlighting"
+              then "mv -- {'→chroma','tmp'}"
+              else ""
+            }
+            zsh -c '
+              function zcompile_many() {
+                autoload -U zrecompile
+                local f
+                for f in "$@"; do zrecompile -pq "$f"; done
+              }
+              zcompile_many ${pattern}
+            '
+            ${
+              if name == "fast-syntax-highlighting"
+              then "mv -- {'tmp','→chroma'}"
+              else ""
+            }
           '';
       in ''
         typeset -U PATH
@@ -87,19 +103,34 @@ in {
         ${
           if history.ignoreDups
           then ''
-          setopt HIST_SAVE_NO_DUPS
-          setopt HIST_FIND_NO_DUPS''
+            setopt HIST_SAVE_NO_DUPS
+            setopt HIST_FIND_NO_DUPS''
           else ""
         }
         export KEYTIMEOUT=1
 
         # Very slow chormas https://github.com/zdharma-continuum/fast-syntax-highlighting/issues/27
         unset "FAST_HIGHLIGHT[chroma-whatis]" "FAST_HIGHLIGHT[chroma-man]"
-        source ${zshCompilePlugin "fast-syntax-highlighting" inputs.fast-syntax-highlighting}/fast-syntax-highlighting.plugin.zsh
-        source ${zshCompilePlugin "zsh-history-substring-search" inputs.zsh-history-substring-search}/zsh-history-substring-search.zsh
-        source ${zshCompilePlugin "zsh-autosuggestions" inputs.zsh-autosuggestions}/zsh-autosuggestions.zsh
+        source ${zshCompilePlugin "fast-syntax-highlighting" "{fast*,.fast*,**/*.ch,**/*.zsh}" (pkgs.fetchFromGitHub {
+          owner = "zdharma-continuum";
+          repo = "fast-syntax-highlighting";
+          rev = "cf318e06a9b7c9f2219d78f41b46fa6e06011fd9";
+          sha256 = "sha256-RVX9ZSzjBW3LpFs2W86lKI6vtcvDWP6EPxzeTcRZua4=";
+        })}/fast-syntax-highlighting.plugin.zsh
+        source ${zshCompilePlugin "zsh-history-substring-search" "zsh-history-substring-search.zsh" (pkgs.fetchFromGitHub {
+          owner = "zsh-users";
+          repo = "zsh-history-substring-search";
+          rev = "87ce96b1862928d84b1afe7c173316614b30e301";
+          sha256 = "sha256-1+w0AeVJtu1EK5iNVwk3loenFuIyVlQmlw8TWliHZGI=";
+        })}/zsh-history-substring-search.zsh
+        source ${zshCompilePlugin "zsh-autosuggestions" "{zsh-autosuggestions.zsh,src/**/*.zsh}" (pkgs.fetchFromGitHub {
+          owner = "zsh-users";
+          repo = "zsh-autosuggestions";
+          rev = "0e810e5afa27acbd074398eefbe28d13005dbc15";
+          sha256 = "sha256-85aw9OM2pQPsWklXjuNOzp9El1MsNb+cIiZQVHUzBnk=";
+        })}/zsh-autosuggestions.zsh
 
-        source ${zshCompilePlugin "zsh-powerlevel10k" pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+        source ${zshCompilePlugin "zsh-powerlevel10k" "{powerlevel10k.zsh-theme,**/*.zsh}" pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
         source ${pkgs.runCommand "zcompile-p10k" {
             nativeBuildInputs = [pkgs.zsh];
             name = "p10k-zwc";
@@ -110,8 +141,8 @@ in {
             cp p10k.zsh.zwc $out/
           ''}/p10k.zsh
 
-        source ${zshCompilePlugin "fzf" config.programs.fzf.package}/share/fzf/completion.zsh
-        source ${zshCompilePlugin "fzf" config.programs.fzf.package}/share/fzf/key-bindings.zsh
+        source ${zshCompilePlugin "fzf" "**/*.zsh" pkgs.fzf}/share/fzf/completion.zsh
+        source ${zshCompilePlugin "fzf" "**/*.zsh" pkgs.fzf}/share/fzf/key-bindings.zsh
         source ${pkgs.runCommand "zoxide-init-zsh" {
             buildInputs = [pkgs.zoxide];
             nativeBuildInputs = [pkgs.zsh];
@@ -121,7 +152,12 @@ in {
             zsh -c "zcompile $out/zoxide-init.zsh"
           ''}/zoxide-init.zsh;
 
-        source ${zshCompilePlugin "zsh-fzf-tab" inputs.zsh-fzf-tab}/fzf-tab.plugin.zsh
+        source ${zshCompilePlugin "zsh-fzf-tab" "{fzf-tab.zsh,**/*.zsh}" (pkgs.fetchFromGitHub {
+          owner = "Aloxaf";
+          repo = "fzf-tab";
+          rev = "6aced3f35def61c5edf9d790e945e8bb4fe7b305";
+          sha256 = "sha256-EWMeslDgs/DWVaDdI9oAS46hfZtp4LHTRY8TclKTNK8=";
+        })}/fzf-tab.plugin.zsh
 
         bindkey "$terminfo[kcuu1]" history-substring-search-up
         bindkey "$terminfo[kcud1]" history-substring-search-down

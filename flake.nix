@@ -50,22 +50,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    zsh-autosuggestions = {
-      url = "github:zsh-users/zsh-autosuggestions";
-      flake = false;
-    };
-    fast-syntax-highlighting = {
-      url = "github:zdharma-continuum/fast-syntax-highlighting";
-      flake = false;
-    };
-    zsh-history-substring-search = {
-      url = "github:zsh-users/zsh-history-substring-search";
-      flake = false;
-    };
-    zsh-fzf-tab = {
-      url = "github:Aloxaf/fzf-tab";
-      flake = false;
-    };
     ghostty = {
       url = "git+ssh://git@github.com/ghostty-org/ghostty";
       # NOTE: The below 2 lines are only required on nixos-unstable,
