@@ -2,11 +2,12 @@
 
 > [!WARNING]
 > These dotfiles are very \*personal\* so expect this to NOT work on your machine. I will \*NOT\* be responsible for any damage to your machine.
-> You should only use this as reference and just copy paste the stuff you want. (NOTE: please do give credit)
+> You should only use this as reference and just copy paste the stuff you want. (NOTE: please do give credit though)
 
 ## Dotfiles
 
-These are my personal dotfiles. Except them to not work at all on your machine. Although, it is certainly possible as tried before.
+These are my personal dotfiles. Expect them to not work at all on your machine. Although, it is certainly possible as tried before. I will not help you though. You're on your own.  
+Also, it's ultra hacky FYI.
 
 ### CREDITS
 
