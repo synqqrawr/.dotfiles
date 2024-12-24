@@ -12,13 +12,9 @@
     system = "x86_64-linux";
     version = "twilight";
     downloadUrl = {
-      "specific" = {
-        url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-specific.tar.bz2";
-        sha256 = "sha256:0p5dfm0j3rgi8r5cia937b3dd6zsh43lkbvmlcibbknzy2fi1fsl";
-      };
-      "generic" = {
-        url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-generic.tar.bz2";
-        sha256 = "";
+      "default" = {
+        url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-x86_64.tar.bz2";
+        sha256 = "sha256:0hhq1v623768rxfqmiqa88sjp70b9wszpl3270iijq1h5a5jid2d";
       };
     };
 
@@ -120,9 +116,7 @@
       };
   in {
     packages."${system}" = {
-      generic = mkZen {variant = "generic";};
-      specific = mkZen {variant = "specific";};
-      default = self.packages."${system}".specific;
+      default = mkZen {variant = "default";};
     };
   };
 }

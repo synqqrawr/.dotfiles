@@ -3,5 +3,5 @@
   pkgs,
   ...
 }: {
-  home.packages = [inputs.zen.packages."${pkgs.system}".specific];
+  home.packages = [inputs.zen.packages."${pkgs.system}".default];
 }
