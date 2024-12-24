@@ -8,8 +8,8 @@
     src = pkgs.fetchFromGitHub {
       owner = "neovim";
       repo = "neovim";
-      rev = "7e1c1ff7fcf2cbc564c90a656124b70ad8bb4d5f";
-      sha256 = "sha256-XmjyQMxMycRqJyHG4jn0oFAeitu7rhAWWv5M03fbE+A=";
+      rev = "c51bf5a6b24928ac04d0bb129b1b424d4c78f28d";
+      sha256 = "sha256-DVlI7ua+VOkqC70WpSbJO+FjQyBEarGZnKoql7I7Unk=";
     };
     deps = lib.pipe "${src}/cmake.deps/deps.txt" [
       builtins.readFile
@@ -79,7 +79,7 @@
           ++ [
             (pkgs.fetchpatch {
               url = "https://patch-diff.githubusercontent.com/raw/neovim/neovim/pull/31631.patch";
-              hash = "sha256-mF/g+BPl05Krb471H3No0Jrpx0hDQm0OnY2/PgwhaZ8=";
+              hash = "sha256-ne0VseSBd2cANp2PEXCZpZ5kDzJ7mTIzL+jQ0/seAnY=";
             })
             # (pkgs.fetchpatch {
             #   url = "https://patch-diff.githubusercontent.com/raw/neovim/neovim/pull/31400.patch";
