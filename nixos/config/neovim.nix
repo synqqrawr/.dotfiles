@@ -74,18 +74,18 @@
             }))
           ]
           ++ old.buildInputs;
-        patches =
-          old.patches
-          ++ [
-            (pkgs.fetchpatch {
-              url = "https://patch-diff.githubusercontent.com/raw/neovim/neovim/pull/31631.patch";
-              hash = "sha256-ne0VseSBd2cANp2PEXCZpZ5kDzJ7mTIzL+jQ0/seAnY=";
-            })
-            # (pkgs.fetchpatch {
-            #   url = "https://patch-diff.githubusercontent.com/raw/neovim/neovim/pull/31400.patch";
-            #   hash = "sha256-DYtqfZ6H3uk2CUsu8h5/5fi48FT4tVYfGcmaf/+UIew=";
-            # })
-          ];
+        patchPhase = ''
+          set -x
+          patch -p1 < ${pkgs.fetchpatch {
+            url = "https://patch-diff.githubusercontent.com/raw/neovim/neovim/pull/31631.patch";
+            hash = "sha256-ne0VseSBd2cANp2PEXCZpZ5kDzJ7mTIzL+jQ0/seAnY=";
+          }}
+          patch -p1 < ${pkgs.fetchpatch {
+            url = "https://patch-diff.githubusercontent.com/raw/neovim/neovim/pull/31400.patch";
+            hash = "sha256-DYtqfZ6H3uk2CUsu8h5/5fi48FT4tVYfGcmaf/+UIew=";
+          }} || true
+          sed -i '/<<<<<<</,/>>>>>>/d' runtime/doc/news.txt || true
+        '';
       });
     vimAlias = true;
     viAlias = true;
