@@ -60,10 +60,13 @@
             "plugin/rplugin.vim"
             "plugin/shada.vim"
             "plugin/tohtml.vim"
+            "plugin/tohtml.lua"
             "plugin/tutor.vim"
             "plugin/gzip.vim"
             "plugin/tarPlugin.vim"
             "plugin/zipPlugin.vim"
+            "plugin/netrwPlugin.vim"
+            "plugin/spellfile.vim"
           ])}
         '';
         buildInputs = with pkgs;
@@ -86,6 +89,14 @@
           }} || true
           sed -i '/<<<<<<</,/>>>>>>/d' runtime/doc/news.txt || true
         '';
+        NIX_CFLAGS_COMPILE = "-march=native -O3";
+        NIX_LDFLAGS = "-fuse-ld=mold";
+        hardeningDisable = ["all"];
+        nativeBuildInputs =
+          old.nativeBuildInputs
+          ++ [
+            pkgs.mold-wrapped
+          ];
       });
     vimAlias = true;
     viAlias = true;
