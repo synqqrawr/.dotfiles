@@ -1,6 +1,6 @@
 {
   stylix = {
-    image = ../../../media/everblush-02.jpg;
+    image = ../../../media/blackSeaShore.png;
     polarity = "dark";
     base16Scheme = {
       base00 = "#141b1e";
